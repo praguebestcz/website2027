@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BigDataManager — Prodávejte chytřeji — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* Brand pill */
+.brand-pill{display:inline-flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border:1px solid var(--line);background:rgba(255,255,255,.4);backdrop-filter:blur(10px);border-radius:999px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:28px}
+.brand-pill .bag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--ink);color:var(--paper);border-radius:99px;font-weight:700}
+.brand-pill .bag sup{color:var(--red);font-size:.7em}
+
+/* ===== RECOMMENDER HERO ===== */
+.rec-wrap{padding:60px 0 120px}
+.rec{background:var(--ink);color:var(--paper);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);position:relative;min-height:620px}
+.rec::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.28),transparent 60%);filter:blur(50px);pointer-events:none}
+.rec::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000 30%,transparent 80%)}
+
+.rec .bar-r{position:relative;z-index:3;padding:20px 28px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(242,236,224,.1)}
+.rec .bar-r .lbl{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--paper);letter-spacing:.06em;text-transform:uppercase}
+.rec .bar-r .lbl::before{content:"";width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+.rec .bar-r .url{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5)}
+.rec .bar-r .url b{color:var(--paper);font-weight:500}
+.rec .bar-r .model{margin-left:auto;display:flex;gap:14px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);letter-spacing:.04em;text-transform:uppercase}
+.rec .bar-r .model span{display:flex;align-items:center;gap:6px}
+.rec .bar-r .model b{color:var(--paper);font-weight:500}
+.rec .bar-r .model .g{color:#5fcd86}
+
+.rec-body{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.3fr;min-height:540px}
+
+/* LEFT: customer 360 profile */
+.rec-body .profile{padding:36px 38px;border-right:1px solid rgba(242,236,224,.08)}
+.rec-body .profile .head-p{display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid rgba(242,236,224,.08);margin-bottom:22px}
+.rec-body .profile .av-p{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#c8a878,#5a3a1a);position:relative;overflow:hidden;flex-shrink:0}
+.rec-body .profile .av-p::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 25%,rgba(255,255,255,.3),transparent 60%)}
+.rec-body .profile .head-p b{display:block;font-size:18px;font-weight:700;letter-spacing:-.015em}
+.rec-body .profile .head-p small{display:block;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);margin-top:3px;letter-spacing:.02em}
+.rec-body .profile .head-p .seg{margin-top:6px;display:inline-block;padding:3px 9px;background:rgba(227,6,19,.18);color:#ff8a95;border:1px solid rgba(227,6,19,.3);border-radius:99px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+
+.rec-body .profile h5{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px;margin-top:20px}
+.rec-body .profile h5::before{content:"";width:16px;height:1px;background:rgba(242,236,224,.3)}
+
+.rec-body .profile .metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rec-body .profile .metrics .m-p{padding:12px 14px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:8px}
+.rec-body .profile .metrics .m-p .l{font-family:var(--mono);font-size:9px;color:rgba(242,236,224,.4);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.rec-body .profile .metrics .m-p .v{font-size:20px;font-weight:700;letter-spacing:-.015em;line-height:1.1;margin-top:4px}
+.rec-body .profile .metrics .m-p .v .r{color:var(--red)}
+.rec-body .profile .metrics .m-p .v sub{font-family:var(--mono);font-size:9px;font-weight:500;color:rgba(242,236,224,.5);margin-left:2px;vertical-align:baseline}
+
+.rec-body .profile .scores{margin-top:8px;display:grid;gap:6px}
+.rec-body .profile .scores .sc{padding:8px 12px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:8px;display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;font-family:var(--mono);font-size:10px}
+.rec-body .profile .scores .sc b{color:var(--paper);font-weight:500;font-family:var(--sans);font-size:11px}
+.rec-body .profile .scores .sc .barr{width:60px;height:4px;background:rgba(242,236,224,.08);border-radius:2px;position:relative;overflow:hidden}
+.rec-body .profile .scores .sc .barr::after{content:"";position:absolute;left:0;top:0;bottom:0;background:var(--red);border-radius:2px;width:var(--w,50%)}
+.rec-body .profile .scores .sc .vl{color:var(--red);font-weight:700;font-size:10px}
+
+/* RIGHT: recommendations */
+.rec-body .recs{padding:36px 38px;display:flex;flex-direction:column}
+.rec-body .recs .head-r{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px;border-bottom:1px solid rgba(242,236,224,.08);margin-bottom:22px}
+.rec-body .recs .head-r h4{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.rec-body .recs .head-r h4 small{display:block;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);font-weight:500;margin-top:4px;letter-spacing:.02em}
+.rec-body .recs .head-r .confidence{text-align:right;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);letter-spacing:.04em;text-transform:uppercase}
+.rec-body .recs .head-r .confidence b{color:#5fcd86;font-family:var(--sans);font-size:18px;letter-spacing:-.01em;font-weight:700;display:block;margin-top:2px;text-transform:none}
+
+.rec-list{display:flex;flex-direction:column;gap:8px;flex:1}
+.rec-item{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:12px 14px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:10px;transition:all .3s}
+.rec-item:hover{background:rgba(242,236,224,.08)}
+.rec-item .ph-r{width:52px;height:52px;border-radius:8px;background:linear-gradient(135deg,rgba(242,236,224,.15),rgba(242,236,224,.04));border:1px solid rgba(242,236,224,.1);position:relative}
+.rec-item .ph-r::after{content:"";position:absolute;inset:14px;background:radial-gradient(circle at 35% 35%,rgba(242,236,224,.4),transparent 60%);border-radius:50%}
+.rec-item .tx-r b{display:block;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.rec-item .tx-r small{display:block;font-family:var(--mono);font-size:9px;color:rgba(242,236,224,.45);margin-top:3px;letter-spacing:.02em}
+.rec-item .score{text-align:right}
+.rec-item .score .sc-v{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--red);letter-spacing:.02em}
+.rec-item .score .sc-l{font-family:var(--mono);font-size:8px;color:rgba(242,236,224,.4);letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+.rec-item .why{grid-column:1 / -1;padding-top:8px;margin-top:4px;border-top:1px dashed rgba(242,236,224,.08);font-family:var(--mono);font-size:9px;color:rgba(242,236,224,.5);line-height:1.6;letter-spacing:.02em}
+.rec-item .why b{color:#5fcd86}
+
+.rec-footer{position:relative;z-index:2;padding:18px 28px;border-top:1px solid rgba(242,236,224,.08);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);letter-spacing:.02em}
+.rec-footer b{color:var(--paper);font-weight:500}
+.rec-footer .signals{display:flex;gap:18px}
+.rec-footer .signals span{display:flex;align-items:center;gap:6px}
+.rec-footer .signals span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+
+/* ===== FEATURES ===== */
+.features{padding:140px 0;border-top:1px solid var(--ink)}
+.f-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.f-card{padding:48px 44px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
+.f-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.f-card:hover::before{transform:translateY(0)}
+.f-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.f-card:hover > *{color:var(--paper)}
+.f-card:hover{border-color:var(--ink);transform:translateY(-4px)}
+.f-card .head-f{display:flex;align-items:flex-start;gap:20px;margin-bottom:24px}
+.f-card .ico{width:58px;height:58px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .5s var(--ease)}
+.f-card:hover .ico{background:var(--red)}
+.f-card .ico svg{width:26px;height:26px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-card .head-f .tx{flex:1;padding-top:4px}
+.f-card .head-f .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.f-card:hover .head-f .n{color:rgba(242,236,224,.5)}
+.f-card h4{font-size:28px;font-weight:700;letter-spacing:-.025em;line-height:1.1}
+.f-card p.desc{font-size:15px;color:var(--ink-3);line-height:1.6;margin-bottom:24px;max-width:44ch}
+.f-card:hover p.desc{color:rgba(242,236,224,.75)}
+.f-card ul{list-style:none;font-family:var(--mono);font-size:13px;color:var(--ink-3);line-height:2}
+.f-card:hover ul{color:rgba(242,236,224,.75)}
+.f-card ul li{display:flex;align-items:center;gap:10px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.f-card:hover ul li{border-color:rgba(242,236,224,.12)}
+.f-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
+
+/* ===== HOW IT WORKS ===== */
+.how{padding:140px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.how::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.how > .wrap{position:relative;z-index:2}
+.h-row{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;margin-top:60px;position:relative}
+.h-row::after{content:"";position:absolute;top:40px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--red),var(--red) 50%,transparent 50%);background-size:12px 2px;background-repeat:repeat-x;z-index:0}
+.h-step{text-align:center;position:relative;z-index:1}
+.h-step .circle{width:80px;height:80px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:36px;font-weight:700;letter-spacing:-.035em;color:var(--ink);position:relative}
+.h-step .circle::after{content:"";position:absolute;inset:-6px;border:1px solid var(--red);border-radius:50%;opacity:0;transition:opacity .3s}
+.h-step:hover .circle::after{opacity:1}
+.h-step h4{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.h-step p{font-size:14px;color:var(--ink-3);line-height:1.6;max-width:32ch;margin:0 auto}
+
+/* ===== RESULTS ===== */
+.results{padding:140px 0;border-top:1px solid var(--ink)}
+.r-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
+.r-cell{padding:48px 36px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.r-cell::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(100%);transition:transform .7s var(--ease-out);z-index:0}
+.r-cell:hover::before{transform:translateY(0)}
+.r-cell > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.r-cell:hover > *{color:var(--paper)}
+.r-cell .n-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.r-cell:hover .n-r{color:rgba(242,236,224,.5)}
+.r-cell .v-r{font-size:clamp(64px,7vw,100px);font-weight:700;letter-spacing:-.045em;line-height:.9}
+.r-cell .v-r .red{color:var(--red)}
+.r-cell .l-r{font-size:14px;font-weight:600;margin-top:14px;letter-spacing:-.01em}
+.r-cell .d-r{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.55;max-width:30ch}
+.r-cell:hover .d-r{color:rgba(242,236,224,.7)}
+.results .footnote{margin-top:28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.02em}
+
+/* ===== INTEGRATIONS ===== */
+.integ{padding:140px 0;border-top:1px solid var(--ink)}
+.i-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
+.i-cell{height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;transition:background .4s var(--ease);position:relative}
+.i-cell:hover{background:var(--paper-2)}
+.i-cell::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.i-cell:hover::before{transform:scaleX(1)}
+.i-cell b{font-size:17px;font-weight:700;letter-spacing:-.015em;color:var(--ink);text-align:center}
+.i-cell small{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+
+@media (max-width:1100px){
+  .rec-body{grid-template-columns:1fr}
+  .rec-body .profile{border-right:none;border-bottom:1px solid rgba(242,236,224,.08)}
+  .f-grid{grid-template-columns:1fr}
+  .h-row{grid-template-columns:1fr;gap:40px}
+  .h-row::after{display:none}
+  .r-grid{grid-template-columns:1fr 1fr}
+  .i-grid{grid-template-columns:1fr 1fr 1fr}
+}
+@media (max-width:720px){
+  .r-grid,.i-grid{grid-template-columns:1fr}
+  .i-cell{height:100px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>BDM 3.0 · Live</span>
+    <a href="kontakt.html" class="btn sm"><span class="lbl" data-t="Chci demo"><span>Chci demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na úvod</a>
+    <div class="path"><b>Úvod</b> <span>/</span> Produkty <span>/</span> <b>BigDataManager</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="brand-pill reveal"><span class="bag">BigDataManager<sup>®</sup></span>Produkt PragueBest · Od&nbsp;2019 · 40+ e-shopů</div>
+    <h1 class="reveal d1">Prodávejte<br><span class="red">chytřeji.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Analyzujeme chování zákazníků a&nbsp;pomáháme nabízet <b>správné produkty správným lidem</b>.
+        Výsledek? Vyšší konverze a&nbsp;<span class="hi">větší košíky</span>.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci demo"><span>Chci demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="#results" class="btn ghost"><span class="lbl" data-t="Výsledky klientů"><span>Výsledky klientů</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Spuštěno</h6><p>2019<small>7 let ve vývoji</small></p></div>
+      <div class="m"><h6>E-shopů</h6><p>40<span style="color:var(--red)">+</span><small>V produkci</small></p></div>
+      <div class="m"><h6>Od</h6><p>4 900 Kč<small>Měsíčně, bez DPH</small></p></div>
+      <div class="m"><h6>Integrace</h6><p>2 týdny<small>Od kickoffu</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RECOMMENDER HERO ===== -->
+<section class="rec-wrap">
+  <div class="wrap">
+    <div class="rec reveal">
+      <div class="bar-r">
+        <div class="lbl">BDM Recommender &middot; Live</div>
+        <div class="url">admin.<b>elnino.cz</b>/bdm/customer/8421</div>
+        <div class="model">
+          <span>Model <b>ranking-v3</b></span>
+          <span>Latency <b class="g">42 ms</b></span>
+        </div>
+      </div>
+
+      <div class="rec-body">
+        <div class="profile">
+          <div class="head-p">
+            <div class="av-p"></div>
+            <div>
+              <b>Jana N.</b>
+              <small>customer #8421 &middot; Praha</small>
+              <div class="seg">VIP &middot; High Value</div>
+            </div>
+          </div>
+
+          <h5>360° metriky</h5>
+          <div class="metrics">
+            <div class="m-p"><div class="l">Orders</div><div class="v">42</div></div>
+            <div class="m-p"><div class="l">AOV</div><div class="v"><span class="r">2&nbsp;480</span><sub>Kč</sub></div></div>
+            <div class="m-p"><div class="l">CLV</div><div class="v">104<sub>k Kč</sub></div></div>
+            <div class="m-p"><div class="l">Last order</div><div class="v">7d</div></div>
+          </div>
+
+          <h5>Behaviorální skóre</h5>
+          <div class="scores">
+            <div class="sc"><b>Engagement</b><div class="barr" style="--w:92%"></div><span class="vl">92</span></div>
+            <div class="sc"><b>Loyalty</b><div class="barr" style="--w:88%"></div><span class="vl">88</span></div>
+            <div class="sc"><b>Propensity</b><div class="barr" style="--w:76%"></div><span class="vl">76</span></div>
+            <div class="sc"><b>Churn risk</b><div class="barr" style="--w:14%"></div><span class="vl">14</span></div>
+          </div>
+        </div>
+
+        <div class="recs">
+          <div class="head-r">
+            <h4>Personalizovaná doporučení<small>Na základě 42 objednávek &middot; cat: Parfumerie</small></h4>
+            <div class="confidence">Confidence<b>94%</b></div>
+          </div>
+
+          <div class="rec-list">
+            <div class="rec-item">
+              <div class="ph-r"></div>
+              <div class="tx-r"><b>Chanel N°5 — 100ml EDP</b><small>Parfumerie &middot; SKU 12-44921</small></div>
+              <div class="score"><div class="sc-v">9,4</div><div class="sc-l">/10 match</div></div>
+              <div class="why"><b>Why</b> &middot; kupuje Chanel značku &middot; podobný profil nakoupil v&nbsp;92 % případů &middot; high-margin item</div>
+            </div>
+
+            <div class="rec-item">
+              <div class="ph-r"></div>
+              <div class="tx-r"><b>YSL Libre 50ml</b><small>Parfumerie &middot; SKU 12-55142</small></div>
+              <div class="score"><div class="sc-v">9,1</div><div class="sc-l">/10 match</div></div>
+              <div class="why"><b>Why</b> &middot; podobné vůně v&nbsp;minulé historii &middot; trending v&nbsp;segmentu VIP</div>
+            </div>
+
+            <div class="rec-item">
+              <div class="ph-r"></div>
+              <div class="tx-r"><b>Dior Hypnotic Poison</b><small>Parfumerie &middot; SKU 12-66220</small></div>
+              <div class="score"><div class="sc-v">8,6</div><div class="sc-l">/10 match</div></div>
+              <div class="why"><b>Why</b> &middot; cross-sell z&nbsp;objednávky #12044 &middot; stejná cenová hladina</div>
+            </div>
+
+            <div class="rec-item">
+              <div class="ph-r"></div>
+              <div class="tx-r"><b>Lancôme La Vie Est Belle</b><small>Parfumerie &middot; SKU 12-77301</small></div>
+              <div class="score"><div class="sc-v">8,2</div><div class="sc-l">/10 match</div></div>
+              <div class="why"><b>Why</b> &middot; bestseller v&nbsp;segmentu &middot; nedávná propagace</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-footer">
+        <div>Model trained on <b>2,4 M events</b> &middot; retrained <b>every 4h</b></div>
+        <div class="signals">
+          <span>Signal: 124 features</span>
+          <span>Version: <b>ranking-v3.14</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 01 / Funkce</div>
+      <h2>Čtyři věci, které BDM <span class="red">umí.</span></h2>
+      <div class="aside">V základu všechno<br><b>bez dalších licencí</b></div>
+    </div>
+
+    <div class="f-grid">
+      <article class="f-card reveal">
+        <div class="head-f">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div>
+          <div class="tx">
+            <div class="n">Funkce / 01</div>
+            <h4>Doporučování produktů</h4>
+          </div>
+        </div>
+        <p class="desc">„Zákazníci, kteří koupili X, koupili i&nbsp;Y" &mdash; personalizovaná doporučení v&nbsp;reálném čase. Learn-to-rank model učený na&nbsp;historických datech.</p>
+        <ul>
+          <li>Cross-sell &amp; up-sell engine</li>
+          <li>Podobné produkty (content-based)</li>
+          <li>Collaborative filtering</li>
+          <li>Personalizované nabídky dle segmentu</li>
+          <li>A/B testovací framework</li>
+        </ul>
+      </article>
+
+      <article class="f-card reveal d1">
+        <div class="head-f">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="tx">
+            <div class="n">Funkce / 02</div>
+            <h4>Obohacení katalogu</h4>
+          </div>
+        </div>
+        <p class="desc">Automatické doplnění chybějících atributů a&nbsp;popisků pomocí AI a&nbsp;externích zdrojů. Standardizace dat napříč katalogem.</p>
+        <ul>
+          <li>Doplnění chybějících atributů</li>
+          <li>Generování SEO popisků (AI)</li>
+          <li>Standardizace parametrů</li>
+          <li>Automatická kategorizace</li>
+          <li>Detekce duplicit</li>
+        </ul>
+      </article>
+
+      <article class="f-card reveal d2">
+        <div class="head-f">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+          <div class="tx">
+            <div class="n">Funkce / 03</div>
+            <h4>Profilování zákazníka</h4>
+          </div>
+        </div>
+        <p class="desc">Pochopte, kdo u&nbsp;vás nakupuje. Segmentace podle chování a&nbsp;preferencí, RFM analýza, predikce churn.</p>
+        <ul>
+          <li>RFM analýza (Recency, Freq, Monetary)</li>
+          <li>Customer Lifetime Value</li>
+          <li>Predikce churn s&nbsp;důvody</li>
+          <li>Automatické segmenty</li>
+          <li>Behavioral scoring</li>
+        </ul>
+      </article>
+
+      <article class="f-card reveal d3">
+        <div class="head-f">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+          <div class="tx">
+            <div class="n">Funkce / 04</div>
+            <h4>BI reporty</h4>
+          </div>
+        </div>
+        <p class="desc">Přehledné dashboardy pro&nbsp;informované rozhodování. Všechna data na&nbsp;jednom místě, real-time, s&nbsp;drill-down.</p>
+        <ul>
+          <li>Prodejní analýzy po&nbsp;kategoriích</li>
+          <li>Zákaznické metriky &amp; kohorty</li>
+          <li>Custom reporty na&nbsp;míru</li>
+          <li>Export PDF / Excel / CSV</li>
+          <li>E-mailové digesty (denní / týdenní)</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Jak to funguje</div>
+      <h2>Tři kroky od&nbsp;setupu k&nbsp;<span class="red">prodejům.</span></h2>
+      <div class="aside">Integrace za 2 týdny<br><b>pak už je to automat</b></div>
+    </div>
+
+    <div class="h-row">
+      <article class="h-step reveal">
+        <div class="circle">1</div>
+        <h4>Sběr dat</h4>
+        <p>Sbíráme data o&nbsp;chování návštěvníků a&nbsp;nákupech z&nbsp;vašeho e-shopu. GTM + API, bez&nbsp;zásahu do&nbsp;kódu.</p>
+      </article>
+      <article class="h-step reveal d1">
+        <div class="circle">2</div>
+        <h4>Analýza</h4>
+        <p>Naše algoritmy identifikují vzorce chování a&nbsp;vytvářejí prediktivní modely. Retrénování každé 4 hodiny.</p>
+      </article>
+      <article class="h-step reveal d2">
+        <div class="circle">3</div>
+        <h4>Akce</h4>
+        <p>Personalizovaná doporučení se&nbsp;zobrazují zákazníkům v&nbsp;reálném čase. Widget, API nebo plugin.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULTS ===== -->
+<section class="results" id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Výsledky</div>
+      <h2>Čísla, která naši klienti <span class="red">reportují.</span></h2>
+      <div class="aside">Průměr ze 40+ klientů<br><b>po 90 dnech provozu</b></div>
+    </div>
+
+    <div class="r-grid">
+      <div class="r-cell reveal">
+        <div class="n-r">/ 01</div>
+        <div class="v-r"><span class="red">+</span>15<sub style="font-size:.6em">%</sub></div>
+        <div class="l-r">Průměrná hodnota objednávky</div>
+        <div class="d-r">Díky cross-sell a&nbsp;up-sell doporučením zákazníci přidávají další produkty do&nbsp;košíku.</div>
+      </div>
+      <div class="r-cell reveal d1">
+        <div class="n-r">/ 02</div>
+        <div class="v-r"><span class="red">+</span>20<sub style="font-size:.6em">%</sub></div>
+        <div class="l-r">Konverzní poměr</div>
+        <div class="d-r">Personalizované nabídky zvyšují šanci, že&nbsp;návštěvník dokončí nákup.</div>
+      </div>
+      <div class="r-cell reveal d2">
+        <div class="n-r">/ 03</div>
+        <div class="v-r">&minus;25<sub style="font-size:.6em">%</sub></div>
+        <div class="l-r">Odchod zákazníků</div>
+        <div class="d-r">Predikce churn umožňuje včasný zásah &mdash; retention kampaň, sleva, komunikace.</div>
+      </div>
+      <div class="r-cell reveal d3">
+        <div class="n-r">/ 04</div>
+        <div class="v-r">3<sub style="font-size:.6em">×</sub></div>
+        <div class="l-r">ROI na personalizaci</div>
+        <div class="d-r">Výnos z&nbsp;doporučení je 3× vyšší než&nbsp;investice do&nbsp;BDM licence.</div>
+      </div>
+    </div>
+
+    <p class="footnote">* Průměrné výsledky klientů po&nbsp;90 dnech provozu. Individuální výsledky se&nbsp;mohou lišit.</p>
+  </div>
+</section>
+
+<!-- ===== INTEGRATIONS ===== -->
+<section class="integ">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 04 / Integrace</div>
+      <h2>Napojí se na&nbsp;vaši <span class="red">platformu.</span></h2>
+      <div class="aside">Setup za 2 týdny<br><b>bez zásahu do kódu</b></div>
+    </div>
+
+    <div class="i-grid">
+      <div class="i-cell"><b>Vlastní platforma</b><small>PragueBest</small></div>
+      <div class="i-cell"><b>Shopify</b><small>Plus + Standard</small></div>
+      <div class="i-cell"><b>Shoptet</b><small>Plugin</small></div>
+      <div class="i-cell"><b>WooCommerce</b><small>Plugin</small></div>
+      <div class="i-cell"><b>Magento</b><small>Extension</small></div>
+      <div class="i-cell"><b>Headless</b><small>REST API</small></div>
+
+      <div class="i-cell"><b>GA4</b><small>Tracking</small></div>
+      <div class="i-cell"><b>GTM</b><small>Tag Manager</small></div>
+      <div class="i-cell"><b>Klaviyo</b><small>E-mail</small></div>
+      <div class="i-cell"><b>Mailchimp</b><small>E-mail</small></div>
+      <div class="i-cell"><b>HubSpot</b><small>CRM</small></div>
+      <div class="i-cell"><b>Salesforce</b><small>CRM</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Chcete vidět BDM<br>v <span class="red">akci?</span></h2>
+    <p class="sub reveal d1">Nabízíme živé demo na&nbsp;vašich datech. Za&nbsp;30 minut vám&nbsp;ukážeme, co&nbsp;byste získali.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci demo"><span>Chci demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="upsearch.html" class="btn ghost"><span class="lbl" data-t="UpSearch vyhledávač"><span>UpSearch vyhledávač</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Produkty</h5>
+        <a href="bigdata.html">BigDataManager <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch™ <span class="ar">→</span></a>
+        <a href="aplikace.html">Aplikace na míru <span class="ar">→</span></a>
+        <a href="eshop.html">E-shop na míru <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aplikace na míru — AI-driven MVP — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== AI PROMPT-TO-APP HERO ===== */
+.ai-wrap{padding:60px 0 120px}
+.ai-card{background:var(--ink);color:var(--paper);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);position:relative}
+.ai-card::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.3),transparent 60%);filter:blur(50px);pointer-events:none}
+.ai-card::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000 30%,transparent 80%)}
+
+.ai-card .bar{position:relative;z-index:3;padding:18px 26px;display:flex;align-items:center;gap:20px;border-bottom:1px solid rgba(242,236,224,.1)}
+.ai-card .bar .lbl-b{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--paper);letter-spacing:.06em;text-transform:uppercase}
+.ai-card .bar .lbl-b .sparkle{display:inline-block;width:16px;height:16px;background:radial-gradient(circle,var(--red) 20%,transparent 70%);border-radius:50%;animation:twinkle 2s infinite}
+@keyframes twinkle{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.2)}}
+.ai-card .bar .project{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.02em}
+.ai-card .bar .project b{color:var(--paper);font-weight:500}
+.ai-card .bar .time{margin-left:auto;display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.55);letter-spacing:.04em;text-transform:uppercase}
+.ai-card .bar .time b{color:var(--paper)}
+.ai-card .bar .time .g{color:#5fcd86}
+
+.ai-body{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+
+/* LEFT: prompt / brief */
+.ai-body .prompt{padding:36px 36px;border-right:1px solid rgba(242,236,224,.08);display:flex;flex-direction:column;gap:20px}
+.ai-body .prompt .head-p{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(242,236,224,.08)}
+.ai-body .prompt .head-p .tag-p{font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 10px;background:rgba(227,6,19,.18);color:#ff8a95;border:1px solid rgba(227,6,19,.3);border-radius:99px;letter-spacing:.06em;text-transform:uppercase}
+.ai-body .prompt .head-p span{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.55)}
+.ai-body .prompt .head-p span b{color:var(--paper);font-weight:500}
+
+.ai-body .prompt h4{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.08em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:10px}
+.ai-body .prompt h4::before{content:"";width:16px;height:1px;background:rgba(242,236,224,.3)}
+.ai-body .prompt .brief{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:rgba(242,236,224,.85);padding:16px 18px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:10px;white-space:pre-wrap}
+.ai-body .prompt .brief b{color:var(--paper);font-weight:600}
+.ai-body .prompt .brief em{color:#ff8a95;font-style:normal}
+
+.ai-body .prompt .tokens{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ai-body .prompt .tokens .tok{padding:10px 14px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:8px;font-family:var(--mono);font-size:10px;display:flex;justify-content:space-between;align-items:center}
+.ai-body .prompt .tokens .tok span{color:rgba(242,236,224,.5);letter-spacing:.04em;text-transform:uppercase}
+.ai-body .prompt .tokens .tok b{color:var(--paper);font-weight:500}
+
+.ai-body .prompt .send{margin-top:auto;padding:16px 18px;background:var(--red);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 10px 30px -10px rgba(227,6,19,.5)}
+.ai-body .prompt .send::after{content:"↗";font-size:16px}
+
+/* RIGHT: generated preview */
+.ai-body .preview{padding:36px 36px;display:flex;flex-direction:column;gap:16px;position:relative}
+.ai-body .preview .head-g{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid rgba(242,236,224,.08)}
+.ai-body .preview .head-g .left-h{display:flex;align-items:center;gap:10px}
+.ai-body .preview .head-g .dot-g{width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+.ai-body .preview .head-g .t-g{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--paper);letter-spacing:.04em;text-transform:uppercase}
+.ai-body .preview .head-g .tabs-g{display:flex;gap:6px;font-family:var(--mono);font-size:9px}
+.ai-body .preview .head-g .tabs-g span{padding:4px 9px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:99px;color:rgba(242,236,224,.5);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.ai-body .preview .head-g .tabs-g span.on{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+
+/* Generated mockup */
+.gen-mock{flex:1;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);color:var(--ink);min-height:340px;position:relative}
+.gen-mock .gm-top{padding:14px 18px;background:#f6f3ec;border-bottom:1px solid #e8e0d0;display:flex;align-items:center;gap:12px}
+.gen-mock .gm-top .br{font-weight:800;font-size:13px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.gen-mock .gm-top .br::before{content:"";width:10px;height:10px;background:var(--red);border-radius:2px}
+.gen-mock .gm-top .nav-g{display:flex;gap:10px;font-size:9px;color:#888;font-weight:500;margin-left:10px}
+.gen-mock .gm-top .nav-g .on{color:var(--red);font-weight:700}
+.gen-mock .gm-top .usr{margin-left:auto;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#c8a878,#5a3a1a)}
+
+.gen-mock .gm-body{padding:18px}
+.gen-mock .gm-body .ht{font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.gen-mock .gm-body .ht-sub{font-size:9px;color:#888;margin-bottom:14px}
+.gen-mock .gm-body .kpis-g{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+.gen-mock .gm-body .kpi-g{padding:10px 12px;background:#f6f3ec;border-radius:6px;border:1px solid #e8e0d0}
+.gen-mock .gm-body .kpi-g .l-g{font-size:7px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.gen-mock .gm-body .kpi-g .v-g{font-size:14px;font-weight:800;margin-top:3px;letter-spacing:-.01em}
+.gen-mock .gm-body .kpi-g .v-g .r{color:var(--red)}
+
+.gen-mock .gm-body .chart-g{height:64px;background:linear-gradient(180deg,#f9f6ef 0%,#fff 100%);border:1px solid #e8e0d0;border-radius:6px;padding:10px;position:relative;margin-bottom:14px;overflow:hidden}
+.gen-mock .gm-body .chart-g::before{content:"";position:absolute;bottom:10px;left:10px;right:10px;height:1px;background:#e8e0d0}
+.gen-mock .gm-body .chart-g svg{width:100%;height:100%}
+
+.gen-mock .gm-body .table-g{display:flex;flex-direction:column;gap:4px}
+.gen-mock .gm-body .table-g .r-g{display:grid;grid-template-columns:1fr auto auto;gap:10px;padding:6px 10px;background:#faf7f0;border-radius:4px;font-size:9px;align-items:center}
+.gen-mock .gm-body .table-g .r-g b{font-weight:600}
+.gen-mock .gm-body .table-g .r-g .s-g{font-family:'Geist Mono',monospace;font-size:8px;padding:2px 6px;background:#fff;border-radius:3px;color:var(--red);font-weight:700}
+
+/* Generation overlay (being built) */
+.gen-mock .scanner{position:absolute;left:0;right:0;top:58%;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);box-shadow:0 0 20px var(--red);animation:scan 3.5s linear infinite;pointer-events:none;z-index:2}
+@keyframes scan{0%{top:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+
+.ai-body .preview .gen-log{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);line-height:1.7;padding:10px 14px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:8px;max-height:80px;overflow:hidden}
+.ai-body .preview .gen-log div{display:flex;gap:8px}
+.ai-body .preview .gen-log .ok{color:#5fcd86}
+.ai-body .preview .gen-log b{color:var(--paper);font-weight:500}
+
+.ai-footer{position:relative;z-index:2;padding:16px 26px;border-top:1px solid rgba(242,236,224,.08);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);letter-spacing:.04em}
+.ai-footer .tools{display:flex;gap:14px}
+.ai-footer .tools span{display:flex;align-items:center;gap:6px;color:rgba(242,236,224,.55)}
+.ai-footer .tools span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+.ai-footer b{color:var(--paper);font-weight:500}
+
+/* ===== AI-DRIVEN SECTION ===== */
+.ai-section{padding:140px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.ai-section::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.ai-section > .wrap{position:relative;z-index:2}
+
+.ai-hd{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:end;margin-bottom:80px}
+.ai-hd .left{}
+.ai-hd .lbl-a{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ai-hd .lbl-a::before{content:"";width:28px;height:1px;background:var(--red)}
+.ai-hd h2{font-size:clamp(44px,6vw,92px);font-weight:700;letter-spacing:-.04em;line-height:.92}
+.ai-hd h2 .red{color:var(--red)}
+.ai-hd .right p{font-size:17px;line-height:1.6;color:var(--ink-3);max-width:42ch;margin-left:auto;text-align:right}
+.ai-hd .right p b{color:var(--ink);font-weight:600}
+
+/* Comparison bar */
+.comp-bar{margin-bottom:60px}
+.comp-bar .row-c{display:grid;grid-template-columns:200px 1fr auto;gap:24px;align-items:center;padding:18px 24px;background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
+.comp-bar .row-c.ai{border-color:var(--red);border-width:2px;background:linear-gradient(90deg,var(--paper),#fff5f6)}
+.comp-bar .row-c .label-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.comp-bar .row-c .label-r b{display:block;color:var(--ink);font-family:var(--sans);font-size:18px;letter-spacing:-.01em;text-transform:none;margin-top:4px}
+.comp-bar .row-c.ai .label-r b{color:var(--red)}
+.comp-bar .row-c .bar-c{height:14px;background:var(--paper-2);border-radius:4px;overflow:hidden;position:relative}
+.comp-bar .row-c .bar-c::after{content:"";position:absolute;top:0;bottom:0;left:0;background:var(--ink);border-radius:4px;width:var(--w,50%)}
+.comp-bar .row-c.trad .bar-c::after{width:100%}
+.comp-bar .row-c.ai .bar-c::after{background:var(--red);width:25%}
+.comp-bar .row-c .time-c{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--ink);min-width:80px;text-align:right}
+.comp-bar .row-c .time-c b{color:var(--red)}
+.comp-bar .row-c .time-c sub{font-weight:500;color:var(--mute);font-size:10px;display:block;margin-top:2px;letter-spacing:.04em;text-transform:uppercase}
+
+/* Tools grid */
+.tools-a{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:20px}
+.tool-a{padding:24px 22px;background:var(--paper);border:1px solid var(--line);border-radius:14px;transition:all .4s var(--ease);position:relative;overflow:hidden}
+.tool-a:hover{border-color:var(--ink);transform:translateY(-4px);background:var(--ink);color:var(--paper)}
+.tool-a .ic{width:36px;height:36px;border-radius:10px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all .4s var(--ease);font-weight:800;font-size:13px;letter-spacing:-.02em}
+.tool-a:hover .ic{background:var(--red)}
+.tool-a b{display:block;font-size:15px;font-weight:700;letter-spacing:-.015em;margin-bottom:4px}
+.tool-a small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.02em;line-height:1.5}
+.tool-a:hover small{color:rgba(242,236,224,.6)}
+
+/* Human vs AI roles */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:60px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.split .col-sp{padding:44px 40px 44px;background:var(--paper);position:relative}
+.split .col-sp.ai-col{background:var(--ink);color:var(--paper)}
+.split .col-sp .lb-sp{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.split .col-sp .lb-sp::before{content:"";width:24px;height:1px;background:var(--red)}
+.split .col-sp.ai-col .lb-sp{color:var(--red)}
+.split .col-sp h3{font-size:32px;font-weight:700;letter-spacing:-.025em;margin-bottom:12px}
+.split .col-sp h3 .mk{font-family:var(--mono);font-size:.4em;font-weight:600;color:var(--mute);display:block;text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
+.split .col-sp.ai-col h3 .mk{color:rgba(242,236,224,.5)}
+.split .col-sp p{font-size:14px;color:var(--ink-3);line-height:1.6;margin-bottom:22px;max-width:40ch}
+.split .col-sp.ai-col p{color:rgba(242,236,224,.7)}
+.split .col-sp ul{list-style:none;font-family:var(--mono);font-size:13px;line-height:2;color:var(--ink-3)}
+.split .col-sp.ai-col ul{color:rgba(242,236,224,.7)}
+.split .col-sp ul li{padding-left:16px;position:relative}
+.split .col-sp ul li::before{content:"—";position:absolute;left:0;color:var(--red);font-weight:700}
+
+/* ===== WHAT WE BUILD ===== */
+.types{padding:140px 0;border-top:1px solid var(--ink)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.t-item{padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.t-item::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.t-item:hover::before{transform:translateY(0)}
+.t-item > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.t-item:hover > *{color:var(--paper)}
+.t-item .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:all .5s var(--ease)}
+.t-item:hover .ico{background:var(--red)}
+.t-item .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.t-item .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.t-item:hover .n{color:rgba(242,236,224,.5)}
+.t-item h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.t-item p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.t-item:hover p{color:rgba(242,236,224,.75)}
+
+/* ===== CASE STUDIES ===== */
+.cases{padding:140px 0;border-top:1px solid var(--ink)}
+.cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cs{padding:40px 34px;border:1px solid var(--line);border-radius:18px;background:var(--paper);transition:all .5s var(--ease);position:relative;overflow:hidden;cursor:none}
+.cs:hover{border-color:var(--ink);transform:translateY(-4px);background:var(--paper-2)}
+.cs::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.cs:hover::before{transform:scaleX(1)}
+.cs .tag{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.cs .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+.cs h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+.cs p{font-size:14px;color:var(--ink-3);line-height:1.55;margin-bottom:24px;min-height:64px}
+.cs .cli{padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em}
+.cs .cli b{color:var(--ink);font-weight:600;letter-spacing:-.005em;font-family:var(--sans);font-size:13px;display:block;margin-top:2px}
+.cs .cli .yr{color:var(--red);font-weight:700}
+
+/* ===== PROCESS ===== */
+.process{padding:140px 0;border-top:1px solid var(--ink)}
+.p-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:60px}
+.pstep{padding:36px 20px 40px;border-right:1px solid var(--line);position:relative;transition:background .5s var(--ease)}
+.pstep:last-child{border-right:none}
+.pstep::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out)}
+.pstep.reveal.on::before{transform:scaleX(1)}
+.pstep .n-big{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:.85;color:var(--ink);margin-bottom:16px}
+.pstep .n-big .mk{color:var(--red)}
+.pstep .lb{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;font-weight:700;display:flex;align-items:center;gap:6px}
+.pstep .lb .ai-tag{padding:2px 7px;background:rgba(227,6,19,.1);color:var(--red);border:1px solid rgba(227,6,19,.3);border-radius:99px;font-size:9px;font-weight:700}
+.pstep h4{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.2;margin-bottom:10px}
+.pstep p{font-size:12px;color:var(--mute);line-height:1.55}
+.pstep:hover{background:var(--paper-2)}
+
+/* ===== TECH STACK ===== */
+.stack{padding:140px 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.stack::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.stack .sec-head{border-color:rgba(242,236,224,.2)}
+.stack .sec-head h2{color:var(--paper)}
+.stack .sec-head .aside{color:rgba(242,236,224,.5)}
+.stack .sec-head .aside b{color:var(--paper)}
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(242,236,224,.1);border:1px solid rgba(242,236,224,.1);border-radius:20px;overflow:hidden}
+.stack-col{padding:40px 32px;background:var(--ink);transition:background .4s var(--ease)}
+.stack-col:hover{background:var(--ink-2)}
+.stack-col .lbl-g{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.stack-col .lbl-g::before{content:"";width:24px;height:1px;background:var(--red)}
+.stack-col h4{font-size:22px;font-weight:700;letter-spacing:-.015em;margin-bottom:24px}
+.stack-col ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.stack-col ul li{padding:10px 14px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:10px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;transition:all .3s}
+.stack-col ul li:hover{background:rgba(242,236,224,.08);border-color:rgba(242,236,224,.2)}
+.stack-col ul li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 6px rgba(227,6,19,.5)}
+
+@media (max-width:1100px){
+  .ai-body{grid-template-columns:1fr}
+  .ai-body .prompt{border-right:none;border-bottom:1px solid rgba(242,236,224,.08)}
+  .ai-hd,.split{grid-template-columns:1fr;gap:40px}
+  .ai-hd .right p{text-align:left;margin-left:0}
+  .tools-a{grid-template-columns:1fr 1fr 1fr}
+  .t-grid,.cs-grid{grid-template-columns:1fr 1fr}
+  .p-grid{grid-template-columns:1fr 1fr 1fr}
+  .stack-grid{grid-template-columns:1fr 1fr}
+  .comp-bar .row-c{grid-template-columns:140px 1fr auto;gap:14px}
+}
+@media (max-width:720px){
+  .tools-a,.t-grid,.cs-grid,.p-grid,.stack-grid{grid-template-columns:1fr}
+  .comp-bar .row-c{grid-template-columns:1fr;gap:10px}
+  .comp-bar .row-c .time-c{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>AI-driven MVP za 2 týdny</span>
+    <a href="kontakt.html" class="btn sm"><span class="lbl" data-t="Popsat projekt"><span>Popsat projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na úvod</a>
+    <div class="path"><b>Úvod</b> <span>/</span> Produkty <span>/</span> <b>Aplikace na míru</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Produkt &nbsp;—&nbsp; Webové aplikace · Integrace · Automatizace &nbsp;—&nbsp; AI-driven MVP</div>
+    <h1 class="reveal d1">Systémy,<br>co <span class="red">pracují.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Automatizujte interní procesy, propojte systémy a&nbsp;<b>ušetřete čas</b>.
+        Vyvíjíme aplikace na&nbsp;míru &mdash; a&nbsp;s&nbsp;pomocí AI umíme <span class="hi">MVP za&nbsp;2 týdny</span>.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Popsat projekt"><span>Popsat projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="#ai" class="btn ghost"><span class="lbl" data-t="Jak to s AI funguje"><span>Jak to s AI funguje</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>MVP</h6><p>2 týdny<small>Vibe-code s&nbsp;AI</small></p></div>
+      <div class="m"><h6>Produkční verze</h6><p>6 &mdash; 16 týdnů<small>Lidský vývoj</small></p></div>
+      <div class="m"><h6>Stack</h6><p>Vue · React · Node<small>PHP · Python · .NET</small></p></div>
+      <div class="m"><h6>Investice od</h6><p>180 000 Kč<small>MVP fáze</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI PROMPT-TO-APP HERO ===== -->
+<section class="ai-wrap">
+  <div class="wrap">
+    <div class="ai-card reveal">
+      <div class="bar">
+        <div class="lbl-b"><span class="sparkle"></span>AI Rapid Prototyping &middot; Live</div>
+        <div class="project">project/<b>fleet-portal-v1</b></div>
+        <div class="time">
+          <span>Elapsed <b>04:12:38</b></span>
+          <span>ETA <b class="g">~2 dny</b></span>
+        </div>
+      </div>
+
+      <div class="ai-body">
+        <div class="prompt">
+          <div class="head-p">
+            <span class="tag-p">Brief / 01</span>
+            <span>od: <b>martin@bestdrive.cz</b></span>
+          </div>
+
+          <h4>Klientské zadání</h4>
+          <div class="brief"><b>Potřebujeme:</b>
+Fleet portál pro <em>330 autoservisů</em>.
+Objednávky servisu, přezutí,
+kalkulace, faktury. Napojení
+na <em>SAP</em> a <em>Zásilkovnu</em>.
+
+<b>Cílová skupina:</b>
+Interní technici + B2B klienti
+
+<b>MVP priorita:</b>
+Dashboard, objednávky, kalendář
+přezutí, export do faktur.
+
+<b>Termín:</b> ASAP, prototyp
+do <em>2 týdnů</em>.</div>
+
+          <h4>AI tokeny &amp; context</h4>
+          <div class="tokens">
+            <div class="tok"><span>Model</span><b>Claude Opus</b></div>
+            <div class="tok"><span>Context</span><b>200k tok</b></div>
+            <div class="tok"><span>Tool</span><b>v0 + Bolt</b></div>
+            <div class="tok"><span>Lang</span><b>TS / Nuxt</b></div>
+          </div>
+
+          <div class="send">Generovat MVP prototyp</div>
+        </div>
+
+        <div class="preview">
+          <div class="head-g">
+            <div class="left-h">
+              <span class="dot-g"></span>
+              <span class="t-g">Generated &mdash; Preview</span>
+            </div>
+            <div class="tabs-g">
+              <span class="on">Design</span>
+              <span>Code</span>
+              <span>Data</span>
+            </div>
+          </div>
+
+          <div class="gen-mock">
+            <div class="scanner"></div>
+            <div class="gm-top">
+              <div class="br">FLEET</div>
+              <div class="nav-g"><span class="on">Dashboard</span><span>Orders</span><span>Calendar</span><span>Reports</span></div>
+              <div class="usr"></div>
+            </div>
+            <div class="gm-body">
+              <div class="ht">Fleet Manager</div>
+              <div class="ht-sub">330 servisů &middot; Overview</div>
+
+              <div class="kpis-g">
+                <div class="kpi-g"><div class="l-g">Orders</div><div class="v-g">142</div></div>
+                <div class="kpi-g"><div class="l-g">Revenue</div><div class="v-g"><span class="r">2,4</span>M</div></div>
+                <div class="kpi-g"><div class="l-g">Active</div><div class="v-g">89</div></div>
+                <div class="kpi-g"><div class="l-g">SLA</div><div class="v-g">99<span class="r">%</span></div></div>
+              </div>
+
+              <div class="chart-g">
+                <svg viewBox="0 0 200 44" preserveAspectRatio="none">
+                  <path d="M 0 35 L 20 32 L 40 28 L 60 22 L 80 25 L 100 18 L 120 15 L 140 10 L 160 14 L 180 8 L 200 5" fill="none" stroke="#e30613" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="200" cy="5" r="3" fill="#e30613"/>
+                </svg>
+              </div>
+
+              <div class="table-g">
+                <div class="r-g"><b>#FL-2042 · Michelin Primacy</b><span>Brno</span><span class="s-g">Paid</span></div>
+                <div class="r-g"><b>#FL-2041 · Continental PC6</b><span>Praha</span><span class="s-g">Paid</span></div>
+                <div class="r-g"><b>#FL-2040 · Bridgestone T005</b><span>Plzeň</span><span class="s-g">Pending</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gen-log">
+            <div><span class="ok">✓</span> <b>Parsed brief</b> → 14&nbsp;requirements</div>
+            <div><span class="ok">✓</span> <b>Scaffold</b> Nuxt 3 + Tailwind + Prisma</div>
+            <div><span class="ok">✓</span> <b>Generated</b> 12 components · Dashboard + Orders</div>
+            <div>→ Generating <b>calendar view</b>...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-footer">
+        <div class="tools">
+          <span>Claude Code</span>
+          <span>v0 · Vercel</span>
+          <span>Bolt.new</span>
+          <span>Cursor IDE</span>
+        </div>
+        <div>Prototyp běží na <b>preview.fleet-portal.vercel.app</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI-DRIVEN SECTION ===== -->
+<section class="ai-section" id="ai">
+  <div class="wrap">
+    <div class="ai-hd reveal">
+      <div class="left">
+        <div class="lbl-a">§ 01 / AI-Driven MVP</div>
+        <h2>Rychlé MVP s&nbsp;<span class="red">AI</span>,<br>dokonalé finále s&nbsp;<span class="red">lidmi.</span></h2>
+      </div>
+      <div class="right">
+        <p>AI nástroje nám umožňují postavit <b>použitelný prototyp za&nbsp;2 týdny</b>, ne&nbsp;za&nbsp;2 měsíce. Následně přichází ke&nbsp;slovu lidé &mdash; <b>doladí, otestují, zabezpečí</b> a&nbsp;dotáhnou do&nbsp;produkce. To&nbsp;nejlepší z&nbsp;obou světů.</p>
+      </div>
+    </div>
+
+    <div class="comp-bar">
+      <div class="row-c trad">
+        <div class="label-r">Tradiční přístup<b>8 &mdash; 16 týdnů</b></div>
+        <div class="bar-c"></div>
+        <div class="time-c">16 týdnů<sub>na prototyp</sub></div>
+      </div>
+      <div class="row-c ai">
+        <div class="label-r">AI-driven MVP<b>2 týdny do prototypu</b></div>
+        <div class="bar-c"></div>
+        <div class="time-c"><b>2 týdny</b><sub>na&nbsp;prototyp</sub></div>
+      </div>
+    </div>
+
+    <div class="tools-a reveal d1">
+      <article class="tool-a">
+        <div class="ic">C</div>
+        <b>Claude Code</b>
+        <small>Anthropic · agentic coding</small>
+      </article>
+      <article class="tool-a">
+        <div class="ic">v0</div>
+        <b>v0 by Vercel</b>
+        <small>UI generator · React/Tailwind</small>
+      </article>
+      <article class="tool-a">
+        <div class="ic">B</div>
+        <b>Bolt.new</b>
+        <small>StackBlitz · full-stack prototype</small>
+      </article>
+      <article class="tool-a">
+        <div class="ic">Cu</div>
+        <b>Cursor</b>
+        <small>AI-first IDE · multi-file edits</small>
+      </article>
+      <article class="tool-a">
+        <div class="ic">Co</div>
+        <b>Copilot</b>
+        <small>GitHub · inline completions</small>
+      </article>
+    </div>
+
+    <div class="split">
+      <div class="col-sp">
+        <div class="lb-sp">Role / 01</div>
+        <h3>Co dělá <span style="color:var(--red)">AI</span><span class="mk">— 2 týdny · 40&ndash;60 % práce</span></h3>
+        <p>AI je skvělá v&nbsp;tom, co&nbsp;je opakované, mechanické a&nbsp;známé. Vypracuje scaffold, vygeneruje CRUD, doplní testy, napíše dokumentaci.</p>
+        <ul>
+          <li>Generování scaffoldu &amp; boilerplate</li>
+          <li>UI komponenty z&nbsp;popisu (v0, Bolt)</li>
+          <li>CRUD endpointy &amp; REST API</li>
+          <li>Databázové schéma &amp; migrace</li>
+          <li>Jednoduché formuláře, tabulky, dashboardy</li>
+          <li>Unit testy a&nbsp;dokumentace</li>
+          <li>Rychlé iterace nad&nbsp;brief</li>
+        </ul>
+      </div>
+
+      <div class="col-sp ai-col">
+        <div class="lb-sp">Role / 02</div>
+        <h3>Co dělají <span style="color:var(--red)">lidé</span><span class="mk">— 6–14 týdnů · 40–60 % práce</span></h3>
+        <p>Cokoliv, co&nbsp;je unikátní, kritické, bezpečnostní nebo vyžaduje doménovou expertízu. AI je&nbsp;rychlá, ale <b>produkt předáváme lidskou rukou</b>.</p>
+        <ul>
+          <li>Architektonické rozhodnutí a&nbsp;návrh</li>
+          <li>Business logika a&nbsp;edge cases</li>
+          <li>Integrace na&nbsp;legacy systémy (SAP, Abra)</li>
+          <li>Bezpečnost, compliance, audit</li>
+          <li>Performance optimalizace</li>
+          <li>Code review AI generované části</li>
+          <li>Testování s&nbsp;reálnými uživateli</li>
+          <li>Nasazení a&nbsp;provoz 24/7</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE BUILD ===== -->
+<section class="types">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Co stavíme</div>
+      <h2>Šest typů aplikací, co&nbsp;pro&nbsp;vás <span class="red">postavíme.</span></h2>
+      <div class="aside">Interní nástroje<br><b>i externí portály</b></div>
+    </div>
+
+    <div class="t-grid">
+      <article class="t-item reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="n">Typ / 01</div>
+        <h4>Webové aplikace</h4>
+        <p>Interní systémy, dashboardy, portály &mdash; přístupné odkudkoli přes prohlížeč. SSO, role, audit log.</p>
+      </article>
+
+      <article class="t-item reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 1 0 7 7l1-1"/></svg></div>
+        <div class="n">Typ / 02</div>
+        <h4>Integrace</h4>
+        <p>Propojení vašich systémů &mdash; ERP, CRM, e-shop, sklady. REST / GraphQL / SOAP, eventy, message queue.</p>
+      </article>
+
+      <article class="t-item reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 20v-6M6 20V10M18 20V4"/></svg></div>
+        <div class="n">Typ / 03</div>
+        <h4>Automatizace</h4>
+        <p>Workflow engine, které šetří čas a&nbsp;eliminují chyby. Schvalování, notifikace, eskalace, SLA.</p>
+      </article>
+
+      <article class="t-item reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+        <div class="n">Typ / 04</div>
+        <h4>Reportingové nástroje</h4>
+        <p>Dashboardy a&nbsp;reporty pro&nbsp;informované rozhodování. Real-time, drill-down, export PDF/Excel.</p>
+      </article>
+
+      <article class="t-item reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/><path d="M14 14h3M14 17h3"/></svg></div>
+        <div class="n">Typ / 05</div>
+        <h4>Konfigurátory</h4>
+        <p>Produktové konfigurátory pro komplexní nabídky. Kroky, validace, cena v&nbsp;reálném čase, PDF output.</p>
+      </article>
+
+      <article class="t-item reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 6-5M13 20c0-3 2.5-5 6-5"/></svg></div>
+        <div class="n">Typ / 06</div>
+        <h4>CRM systémy</h4>
+        <p>Správa zákazníků, pipeline, obchodních příležitostí. Napojení na&nbsp;e-mail, kalendář, VoIP.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASE STUDIES ===== -->
+<section class="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Realizace</div>
+      <h2>Ukázky aplikací z&nbsp;<span class="red">praxe.</span></h2>
+      <div class="aside">6 příkladů<br><b>z posledních 3 let</b></div>
+    </div>
+
+    <div class="cs-grid">
+      <article class="cs reveal">
+        <div class="tag">Fotogalerie &middot; Tisk</div>
+        <h4>Fotobox</h4>
+        <p>Správa fotogalerií s&nbsp;možností objednání tisku. Tisíce fotek, intuitivní rozhraní, rychlé filtry.</p>
+        <div class="cli">Klient<b>Eventová agentura</b><span class="yr">2024</span></div>
+      </article>
+
+      <article class="cs reveal d1">
+        <div class="tag">DMS &middot; Workflow</div>
+        <h4>Document Management</h4>
+        <p>Systém pro správu dokumentů s&nbsp;workflow schvalování, verzováním a&nbsp;audit logem. GDPR-ready.</p>
+        <div class="cli">Klient<b>Finanční instituce</b><span class="yr">2024</span></div>
+      </article>
+
+      <article class="cs reveal d2">
+        <div class="tag">SAP &middot; B2B portál</div>
+        <h4>Fleet aplikace</h4>
+        <p>Objednávky servisu a&nbsp;přezutí pro firemní flotily. Integrace na&nbsp;SAP, kalendář, automatické notifikace.</p>
+        <div class="cli">Klient<b>BestDrive</b><span class="yr">2024</span></div>
+      </article>
+
+      <article class="cs reveal">
+        <div class="tag">ATS &middot; Onboarding</div>
+        <h4>Recruitment systém</h4>
+        <p>Správa kandidátů, plánování pohovorů, onboarding &mdash; vše na&nbsp;jednom místě. LinkedIn integrace.</p>
+        <div class="cli">Klient<b>HR agentura</b><span class="yr">2023</span></div>
+      </article>
+
+      <article class="cs reveal d1">
+        <div class="tag">Konfigurátor &middot; Výroba</div>
+        <h4>Produktový konfigurátor</h4>
+        <p>Interaktivní konfigurátor pro personalizované produkty s&nbsp;3D náhledem a&nbsp;real-time kalkulací ceny.</p>
+        <div class="cli">Klient<b>Výrobní firma</b><span class="yr">2023</span></div>
+      </article>
+
+      <article class="cs reveal d2">
+        <div class="tag">BI &middot; Real-time</div>
+        <h4>BI Dashboard</h4>
+        <p>Real-time přehled prodejů, marží a&nbsp;KPIs pro&nbsp;management. 40+ stores, drill-down, alerty.</p>
+        <div class="cli">Klient<b>Retail řetězec</b><span class="yr">2023</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 04 / Proces</div>
+      <h2>Šest kroků od&nbsp;briefu k&nbsp;<span class="red">provozu.</span></h2>
+      <div class="aside">První 2 kroky<br><b>akcelerované AI</b></div>
+    </div>
+
+    <div class="p-grid">
+      <article class="pstep reveal">
+        <div class="n-big">0<span class="mk">1</span></div>
+        <div class="lb">Týden 1 <span class="ai-tag">AI</span></div>
+        <h4>Discovery</h4>
+        <p>Workshop se&nbsp;stakeholdery. AI shrnuje a&nbsp;navrhuje první verzi briefu.</p>
+      </article>
+      <article class="pstep reveal d1">
+        <div class="n-big">0<span class="mk">2</span></div>
+        <div class="lb">Týden 1–2 <span class="ai-tag">AI</span></div>
+        <h4>MVP prototyp</h4>
+        <p>AI vygeneruje funkční prototyp. Ten s&nbsp;klientem ladíme na&nbsp;živo.</p>
+      </article>
+      <article class="pstep reveal d2">
+        <div class="n-big">0<span class="mk">3</span></div>
+        <div class="lb">Týden 2–8</div>
+        <h4>Vývoj</h4>
+        <p>Agilní sprinty, lidský kód, code review, testy, integrace na&nbsp;systémy.</p>
+      </article>
+      <article class="pstep reveal d3">
+        <div class="n-big">0<span class="mk">4</span></div>
+        <div class="lb">Týden 8–10</div>
+        <h4>Testování</h4>
+        <p>QA testy, UAT s&nbsp;reálnými uživateli, bezpečnostní audit, perf testy.</p>
+      </article>
+      <article class="pstep reveal">
+        <div class="n-big">0<span class="mk">5</span></div>
+        <div class="lb">Týden 10–12</div>
+        <h4>Nasazení</h4>
+        <p>Go-live, školení uživatelů, dokumentace, handover, hot-fix sprint.</p>
+      </article>
+      <article class="pstep reveal d1">
+        <div class="n-big">0<span class="mk">6</span></div>
+        <div class="lb">Týden 12+</div>
+        <h4>Podpora</h4>
+        <p>Maintenance, rozvoj, SLA podle potřeby, měsíční retainer, 24/7 on-call.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TECH STACK ===== -->
+<section class="stack">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 05 / Stack</div>
+      <h2>Technologie, které <span class="red">používáme.</span></h2>
+      <div class="aside">Vybíráme podle projektu<br><b>ne podle módy</b></div>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-col">
+        <div class="lbl-g">Group / 01</div>
+        <h4>Frontend</h4>
+        <ul>
+          <li>Vue.js 3</li>
+          <li>React 19</li>
+          <li>TypeScript</li>
+          <li>Tailwind CSS</li>
+          <li>Nuxt / Next</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <div class="lbl-g">Group / 02</div>
+        <h4>Backend</h4>
+        <ul>
+          <li>Node.js</li>
+          <li>PHP 8 / Laravel</li>
+          <li>Python / FastAPI</li>
+          <li>.NET 8</li>
+          <li>GraphQL</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <div class="lbl-g">Group / 03</div>
+        <h4>Databáze</h4>
+        <ul>
+          <li>PostgreSQL</li>
+          <li>MySQL</li>
+          <li>MongoDB</li>
+          <li>Redis</li>
+          <li>Elasticsearch</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <div class="lbl-g">Group / 04</div>
+        <h4>AI &amp; DevOps</h4>
+        <ul>
+          <li>Claude / GPT API</li>
+          <li>v0 · Bolt · Cursor</li>
+          <li>Docker · K8s</li>
+          <li>AWS · Vercel</li>
+          <li>GitLab CI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Máte nápad<br>na <span class="red">aplikaci?</span></h2>
+    <p class="sub reveal d1">Popište nám projekt a&nbsp;během 2&nbsp;týdnů vám&nbsp;dodáme funkční MVP k&nbsp;otestování. Pak teprve rozhodnete, jestli jít dál.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Popsat projekt"><span>Popsat projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="reference.html" class="btn ghost"><span class="lbl" data-t="Další reference"><span>Další reference</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Produkty</h5>
+        <a href="eshop.html">E-shop na míru <span class="ar">→</span></a>
+        <a href="shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="aplikace.html">Aplikace na míru <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch™ <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="sluzby.html">Služby <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

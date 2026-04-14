@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Provoz & Podpora — Služby — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== STATUS PAGE HERO ===== */
+.status-wrap{padding:60px 0 120px}
+.status-card{background:var(--ink);color:var(--paper);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);position:relative}
+.status-card::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(43,182,93,.18),transparent 60%);filter:blur(50px);pointer-events:none}
+.status-card::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 30%,transparent 80%)}
+
+.status-card .bar{position:relative;z-index:3;padding:22px 28px;display:flex;align-items:center;gap:20px;border-bottom:1px solid rgba(242,236,224,.1)}
+.status-card .bar .logo-s{font-weight:800;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.status-card .bar .logo-s::before{content:"";width:12px;height:12px;background:var(--red);border-radius:3px}
+.status-card .bar .title-s{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.04em;text-transform:uppercase}
+.status-card .bar .title-s b{color:var(--paper);font-weight:600;margin-left:6px}
+.status-card .bar .global{margin-left:auto;display:flex;align-items:center;gap:10px;padding:8px 16px;background:rgba(43,182,93,.12);border:1px solid rgba(43,182,93,.3);border-radius:99px;font-family:var(--mono);font-size:11px;font-weight:600;color:#5fcd86;letter-spacing:.04em;text-transform:uppercase}
+.status-card .bar .global::before{content:"";width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.25);animation:pulse 2s infinite}
+
+.status-body{position:relative;z-index:2;padding:36px 32px}
+.status-head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-bottom:32px}
+.status-head h3{font-size:clamp(36px,4vw,56px);font-weight:700;letter-spacing:-.035em;line-height:.95}
+.status-head h3 .n{color:#5fcd86}
+.status-head .sub-s{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);margin-top:10px;letter-spacing:.04em}
+.status-head .right-h{text-align:right;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.45);letter-spacing:.04em;line-height:1.8}
+.status-head .right-h b{color:var(--paper);font-weight:500;font-family:var(--sans);font-size:14px;letter-spacing:-.01em;text-transform:none;display:block}
+
+/* Services list */
+.svc-list{display:flex;flex-direction:column;gap:8px;margin-bottom:32px}
+.svc{padding:16px 20px;background:rgba(242,236,224,.03);border:1px solid rgba(242,236,224,.08);border-radius:12px;display:grid;grid-template-columns:180px 1fr auto auto;gap:20px;align-items:center;transition:background .3s}
+.svc:hover{background:rgba(242,236,224,.06)}
+.svc .name{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;letter-spacing:-.01em}
+.svc .name .dot{width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.18)}
+.svc .name .dot.warn{background:#febc2e;box-shadow:0 0 0 3px rgba(254,188,46,.18)}
+.svc .uptime-bar{display:flex;gap:2px;align-items:flex-end;height:28px}
+.svc .uptime-bar span{flex:1;height:100%;background:#2bb65d;border-radius:2px;opacity:.8}
+.svc .uptime-bar span.down{background:#ff5f57;height:60%}
+.svc .uptime-bar span.deg{background:#febc2e;height:80%}
+.svc .uptime{font-family:var(--mono);font-size:11px;color:#5fcd86;font-weight:600;letter-spacing:.02em;min-width:60px;text-align:right}
+.svc .resp{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.02em}
+.svc .resp b{color:var(--paper);font-weight:500}
+
+/* Stats grid */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(242,236,224,.06);padding-top:24px;margin-top:24px;border-top:1px solid rgba(242,236,224,.1)}
+.stat-s{padding:24px 20px;background:var(--ink);text-align:center}
+.stat-s .vs{font-size:38px;font-weight:700;letter-spacing:-.03em;color:var(--paper);line-height:.9}
+.stat-s .vs .g{color:#5fcd86}
+.stat-s .vs .r{color:var(--red)}
+.stat-s .lbs{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;margin-top:8px}
+
+.status-footer{position:relative;z-index:2;padding:18px 32px;border-top:1px solid rgba(242,236,224,.08);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);letter-spacing:.04em}
+.status-footer b{color:var(--paper);font-weight:500}
+
+/* ===== INCLUDES (what it covers) ===== */
+.includes{padding:140px 0;border-top:1px solid var(--ink)}
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.inc{padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.inc::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.inc:hover::before{transform:translateY(0)}
+.inc > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.inc:hover > *{color:var(--paper)}
+.inc .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:all .5s var(--ease)}
+.inc:hover .ico{background:var(--red)}
+.inc .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.inc .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.inc:hover .n{color:rgba(242,236,224,.5)}
+.inc h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.inc p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.inc:hover p{color:rgba(242,236,224,.75)}
+
+/* ===== PRICING (SLA packages) ===== */
+.pricing{padding:140px 0;border-top:1px solid var(--ink)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{padding:44px 40px 40px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;transition:all .5s var(--ease);display:flex;flex-direction:column}
+.plan:hover{transform:translateY(-4px);border-color:var(--ink)}
+.plan.featured{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 40px 80px -30px rgba(10,10,10,.35)}
+.plan.featured .nb,.plan.featured .d,.plan.featured ul li{color:rgba(242,236,224,.7)}
+.plan.featured ul li::before{background:var(--red)}
+.plan.featured .plan-name,.plan.featured .price{color:var(--paper)}
+.plan .flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);padding:6px 14px;background:var(--red);color:#fff;border:1px solid var(--red);border-radius:999px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.plan .nb{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.plan .plan-name{font-size:30px;font-weight:700;letter-spacing:-.025em;margin-bottom:6px}
+.plan .d{font-size:13px;color:var(--mute);margin-bottom:28px;line-height:1.5;min-height:40px}
+.plan .price{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:.95}
+.plan .price sub{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--mute);letter-spacing:.02em;margin-left:6px;vertical-align:baseline}
+.plan.featured .price sub{color:rgba(242,236,224,.55)}
+.plan .unit{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-top:4px;margin-bottom:32px}
+.plan.featured .unit{color:rgba(242,236,224,.55)}
+.plan ul{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:10px;flex:1}
+.plan ul li{font-size:14px;color:var(--ink-3);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.plan ul li::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--ink);flex-shrink:0;margin-top:4px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2ece0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");background-repeat:no-repeat;background-position:center;background-size:8px}
+.plan.featured ul li{color:rgba(242,236,224,.85)}
+.plan .cta-p{margin-top:auto}
+
+/* ===== STATS ===== */
+.big-stats{padding:140px 0;border-top:1px solid var(--ink)}
+.bs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.bstat{padding:54px 40px 48px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.bstat::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(100%);transition:transform .7s var(--ease-out);z-index:0}
+.bstat:hover::before{transform:translateY(0)}
+.bstat > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.bstat:hover > *{color:var(--paper)}
+.bstat .nb{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.bstat:hover .nb{color:rgba(242,236,224,.5)}
+.bstat .vb{font-size:clamp(64px,7vw,108px);font-weight:700;letter-spacing:-.05em;line-height:.88}
+.bstat .vb .r{color:var(--red)}
+.bstat .vb sub{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--mute);letter-spacing:.02em;vertical-align:baseline;margin-left:4px}
+.bstat:hover .vb sub{color:rgba(242,236,224,.5)}
+.bstat .lb{font-size:15px;font-weight:600;margin-top:14px;letter-spacing:-.01em}
+
+/* ===== BODY SHOP CALLOUT ===== */
+.bodyshop{padding:140px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.bodyshop::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.bs-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+.bs-grid-2 .left{}
+.bs-grid-2 .lbl-bs{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.bs-grid-2 .lbl-bs::before{content:"";width:28px;height:1px;background:var(--red)}
+.bs-grid-2 h2{font-size:clamp(42px,5vw,72px);font-weight:700;letter-spacing:-.035em;line-height:.95;margin-bottom:24px}
+.bs-grid-2 h2 .red{color:var(--red)}
+.bs-grid-2 p{font-size:16px;color:var(--ink-3);line-height:1.6;max-width:48ch;margin-bottom:20px}
+.bs-grid-2 p b{color:var(--ink);font-weight:600}
+.bs-grid-2 ul{list-style:none;font-size:14px;line-height:2;margin-bottom:32px}
+.bs-grid-2 ul li{padding-left:18px;position:relative}
+.bs-grid-2 ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.bs-grid-2 ul li b{font-weight:600}
+
+/* Team cards right */
+.team-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;position:relative;box-shadow:0 30px 60px -30px rgba(10,10,10,.15)}
+.team-card .t-lbl{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.team-card .t-lbl .free{color:#5fcd86;font-weight:700}
+.team-card .team-list{display:flex;flex-direction:column;gap:10px}
+.team-card .tm-item{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;padding:12px 14px;background:var(--paper-2);border-radius:10px;transition:background .3s}
+.team-card .tm-item:hover{background:var(--paper-3)}
+.team-card .tm-item .av{width:36px;height:36px;border-radius:50%;position:relative;overflow:hidden}
+.team-card .tm-item .av::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.3),transparent 60%)}
+.team-card .tm-item.t1 .av{background:linear-gradient(135deg,#a47856,#3a2512)}
+.team-card .tm-item.t2 .av{background:linear-gradient(135deg,#e8d4a0,#7a5830)}
+.team-card .tm-item.t3 .av{background:linear-gradient(135deg,#c4a89c,#6a4030)}
+.team-card .tm-item.t4 .av{background:linear-gradient(135deg,#a8b896,#3a4830)}
+.team-card .tm-item .tx b{display:block;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.team-card .tm-item .tx small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);margin-top:2px;letter-spacing:.02em}
+.team-card .tm-item .avail{font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 10px;border-radius:99px;letter-spacing:.04em;text-transform:uppercase}
+.team-card .tm-item .avail.ok{background:rgba(43,182,93,.15);color:#2e8d4a;border:1px solid rgba(43,182,93,.3)}
+.team-card .tm-item .avail.busy{background:rgba(254,188,46,.18);color:#a07808;border:1px solid rgba(254,188,46,.35)}
+.team-card .foot-tc{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.04em;display:flex;justify-content:space-between}
+.team-card .foot-tc b{color:var(--ink)}
+
+@media (max-width:1100px){
+  .svc{grid-template-columns:1fr auto;gap:12px}
+  .svc .uptime-bar,.svc .resp{display:none}
+  .stats-grid,.bs-grid,.inc-grid{grid-template-columns:1fr 1fr}
+  .price-grid{grid-template-columns:1fr}
+  .bs-grid-2{grid-template-columns:1fr;gap:40px}
+  .status-head{grid-template-columns:1fr;gap:20px}
+  .status-head .right-h{text-align:left}
+}
+@media (max-width:720px){
+  .stats-grid,.bs-grid,.inc-grid{grid-template-columns:1fr}
+  .status-body{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>SLA 99,9% · 24/7</span>
+    <a href="kontakt.html" class="btn sm"><span class="lbl" data-t="Napište nám"><span>Napište nám</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="sluzby.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na služby</a>
+    <div class="path"><b>Úvod</b> <span>/</span> Služby <span>/</span> <b>Provoz &amp; Podpora</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Služba § 04 &nbsp;—&nbsp; Hosting · Monitoring · Security · 24/7 &nbsp;—&nbsp; SLA 99,9%</div>
+    <h1 class="reveal d1">Web v<br>dobrých <span class="red">rukou.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Hosting, maintenance, aktualizace, bezpečnost &mdash; postaráme se o&nbsp;váš&nbsp;web,
+        <span class="hi">abyste se mohli soustředit na&nbsp;byznys</span>.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci nabídku"><span>Chci nabídku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="sluzby.html" class="btn ghost"><span class="lbl" data-t="Další služby"><span>Další služby</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Dostupnost</h6><p>99,9 % SLA<small>Garantovaná</small></p></div>
+      <div class="m"><h6>Reakce</h6><p>1 &mdash; 24 hodin<small>Podle balíčku</small></p></div>
+      <div class="m"><h6>Monitoring</h6><p>24/7<small>S on-call rotací</small></p></div>
+      <div class="m"><h6>Od</h6><p>5 000 Kč<small>Měsíčně, bez DPH</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATUS PAGE HERO ===== -->
+<section class="status-wrap">
+  <div class="wrap">
+    <div class="status-card reveal">
+      <div class="bar">
+        <div class="logo-s">Status</div>
+        <div class="title-s">status.<b>praguebest.cz</b></div>
+        <div class="global">All systems operational</div>
+      </div>
+
+      <div class="status-body">
+        <div class="status-head">
+          <div>
+            <h3>Uptime <span class="n">99,97%</span><br>za&nbsp;posledních 90&nbsp;dní.</h3>
+            <div class="sub-s">Monitoring přes 50+ kontrolních bodů &nbsp;·&nbsp; 90 dní historie</div>
+          </div>
+          <div class="right-h">
+            <div>Aktualizováno</div>
+            <b>Před 12 s</b>
+            <div style="margin-top:6px">Incident history</div>
+            <b>0 · Last 30d</b>
+          </div>
+        </div>
+
+        <div class="svc-list">
+          <div class="svc">
+            <div class="name"><span class="dot"></span>Elnino.cz &mdash; web</div>
+            <div class="uptime-bar">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="uptime">100,00%</div>
+            <div class="resp">Response: <b>182 ms</b></div>
+          </div>
+          <div class="svc">
+            <div class="name"><span class="dot"></span>Bestdrive &mdash; B2B portál</div>
+            <div class="uptime-bar">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="uptime">99,98%</div>
+            <div class="resp">Response: <b>234 ms</b></div>
+          </div>
+          <div class="svc">
+            <div class="name"><span class="dot"></span>Albi &mdash; e-shop</div>
+            <div class="uptime-bar">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="deg"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="uptime">99,94%</div>
+            <div class="resp">Response: <b>156 ms</b></div>
+          </div>
+          <div class="svc">
+            <div class="name"><span class="dot"></span>UpSearch API</div>
+            <div class="uptime-bar">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="uptime">99,99%</div>
+            <div class="resp">Response: <b>38 ms</b></div>
+          </div>
+          <div class="svc">
+            <div class="name"><span class="dot warn"></span>Konsepti &mdash; web</div>
+            <div class="uptime-bar">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="down"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="uptime">99,72%</div>
+            <div class="resp">Response: <b>412 ms</b></div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-s">
+            <div class="vs"><span class="g">99,97</span><sub>%</sub></div>
+            <div class="lbs">Avg uptime</div>
+          </div>
+          <div class="stat-s">
+            <div class="vs">50<sub>+</sub></div>
+            <div class="lbs">Webů ve správě</div>
+          </div>
+          <div class="stat-s">
+            <div class="vs"><span class="r">&lt;1</span><sub>h</sub></div>
+            <div class="lbs">Reakce P1</div>
+          </div>
+          <div class="stat-s">
+            <div class="vs">24/7</div>
+            <div class="lbs">On-call rotace</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-footer">
+        <div>Last incident: <b>Feb 12, 2026 — resolved in 18 min</b></div>
+        <div>Monitoring: <b>Datadog · Uptime Robot · Sentry</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INCLUDES ===== -->
+<section class="includes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 01 / Co zahrnuje</div>
+      <h2>Šest věcí, které <span class="red">pokrývá.</span></h2>
+      <div class="aside">V každém balíčku<br><b>bez příplatků</b></div>
+    </div>
+
+    <div class="inc-grid">
+      <article class="inc reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="n">/ 01</div>
+        <h4>Hosting</h4>
+        <p>Výkonný a&nbsp;spolehlivý hosting v&nbsp;českých datacentrech. SSD disky, CDN, automatické zálohování každých 24&nbsp;h.</p>
+      </article>
+
+      <article class="inc reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></div>
+        <div class="n">/ 02</div>
+        <h4>Bezpečnost</h4>
+        <p>SSL certifikáty, firewall, WAF, monitoring, pravidelné bezpečnostní audity. Ochrana před OWASP Top&nbsp;10.</p>
+      </article>
+
+      <article class="inc reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></div>
+        <div class="n">/ 03</div>
+        <h4>Aktualizace</h4>
+        <p>Pravidelné aktualizace CMS, knihoven, bezpečnostních záplat a&nbsp;runtime. Vždy předem otestované v&nbsp;staging prostředí.</p>
+      </article>
+
+      <article class="inc reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+        <div class="n">/ 04</div>
+        <h4>Monitoring</h4>
+        <p>24/7 dohled nad&nbsp;dostupností, výkonem a&nbsp;chybami. Alerting do&nbsp;Slacku, PagerDuty, e-mailu &mdash; podle preference.</p>
+      </article>
+
+      <article class="inc reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div>
+        <div class="n">/ 05</div>
+        <h4>Zálohy</h4>
+        <p>Denní automatické zálohy databáze i&nbsp;souborů s&nbsp;možností rychlé obnovy. Retention 30 dní, geo-replikace.</p>
+      </article>
+
+      <article class="inc reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-4"/><path d="M12 3v10M8 7l4-4 4 4"/></svg></div>
+        <div class="n">/ 06</div>
+        <h4>Helpdesk</h4>
+        <p>Podpora pro vaše uživatele i&nbsp;administrátory. Ticketovací systém, SLA podle balíčku, česky nebo anglicky.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / SLA balíčky</div>
+      <h2>Tři úrovně, podle&nbsp;<span class="red">kritičnosti.</span></h2>
+      <div class="aside">Od basic správy<br><b>po enterprise s&nbsp;AM</b></div>
+    </div>
+
+    <div class="price-grid">
+      <div class="plan reveal">
+        <div class="nb">Plan / 01</div>
+        <div class="plan-name">Basic</div>
+        <div class="d">Pro menší weby bez&nbsp;kritické ztráty při krátkém výpadku.</div>
+        <div class="price">5 000<sub>Kč</sub></div>
+        <div class="unit">měsíčně bez DPH</div>
+        <ul>
+          <li>Hosting v&nbsp;CZ datacentru</li>
+          <li>Denní zálohy (30&nbsp;dní retention)</li>
+          <li>SSL certifikát</li>
+          <li>Základní monitoring</li>
+          <li>E-mail podpora (Po&ndash;Pá)</li>
+          <li>Reakční doba 24&nbsp;hodin</li>
+        </ul>
+        <div class="cta-p">
+          <a href="kontakt.html" class="btn ghost" style="width:100%;justify-content:space-between"><span class="lbl" data-t="Vybrat Basic"><span>Vybrat Basic</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        </div>
+      </div>
+
+      <div class="plan featured reveal d1">
+        <div class="flag">Nejpopulárnější</div>
+        <div class="nb">Plan / 02</div>
+        <div class="plan-name">Business</div>
+        <div class="d">Pro aktivní e-shopy a&nbsp;weby, kde má výpadek dopad na&nbsp;byznys.</div>
+        <div class="price">15 000<sub>Kč</sub></div>
+        <div class="unit">měsíčně bez DPH</div>
+        <ul>
+          <li>Vše z&nbsp;Basic plus:</li>
+          <li>24/7 monitoring &amp; alerting</li>
+          <li>Měsíční bezpečnostní aktualizace</li>
+          <li>Prioritní podpora (24/7)</li>
+          <li>Reakční doba 4&nbsp;hodiny</li>
+          <li>5 hodin rozvoje měsíčně</li>
+          <li>Staging prostředí</li>
+        </ul>
+        <div class="cta-p">
+          <a href="kontakt.html" class="btn" style="width:100%;justify-content:space-between"><span class="lbl" data-t="Vybrat Business"><span>Vybrat Business</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        </div>
+      </div>
+
+      <div class="plan reveal d2">
+        <div class="nb">Plan / 03</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="d">Pro mezinárodní platformy s&nbsp;hard SLA a&nbsp;regulatorními požadavky.</div>
+        <div class="price">Na&nbsp;míru</div>
+        <div class="unit">individuální nabídka</div>
+        <ul>
+          <li>Vše z&nbsp;Business plus:</li>
+          <li>Dedikovaný account manager</li>
+          <li>99,95&nbsp;% SLA s&nbsp;garancí</li>
+          <li>Reakční doba 1&nbsp;hodina (P1)</li>
+          <li>Neomezený rozvoj</li>
+          <li>Čtvrtletní technické review</li>
+          <li>Penetrační testy 2× ročně</li>
+        </ul>
+        <div class="cta-p">
+          <a href="kontakt.html" class="btn ghost" style="width:100%;justify-content:space-between"><span class="lbl" data-t="Kontaktovat"><span>Kontaktovat</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIG STATS ===== -->
+<section class="big-stats">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Čísla</div>
+      <h2>Proč nám klienti&nbsp;<span class="red">věří.</span></h2>
+      <div class="aside">Data z&nbsp;roku 2025<br><b>žádná marketingová kouzla</b></div>
+    </div>
+
+    <div class="bs-grid">
+      <div class="bstat reveal">
+        <div class="nb">/ 01</div>
+        <div class="vb"><span class="r">99,97</span><sub>%</sub></div>
+        <div class="lb">Uptime za 2025</div>
+      </div>
+      <div class="bstat reveal d1">
+        <div class="nb">/ 02</div>
+        <div class="vb">&lt;1<sub>h</sub></div>
+        <div class="lb">Reakční doba P1</div>
+      </div>
+      <div class="bstat reveal d2">
+        <div class="nb">/ 03</div>
+        <div class="vb">50<span class="r">+</span></div>
+        <div class="lb">Webů ve správě</div>
+      </div>
+      <div class="bstat reveal d3">
+        <div class="nb">/ 04</div>
+        <div class="vb">24/7</div>
+        <div class="lb">Monitoring &amp; on-call</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BODY SHOP CALLOUT ===== -->
+<section class="bodyshop">
+  <div class="wrap">
+    <div class="bs-grid-2">
+      <div class="left reveal">
+        <div class="lbl-bs">§ 04 / Body Shop</div>
+        <h2>Potřebujete dlouhodobě <span class="red">posílit tým?</span></h2>
+        <p>Nabízíme i&nbsp;<b>možnost pronájmu expertů</b> na&nbsp;delší spolupráci. Pracují podle vašich procesů, ve&nbsp;vašich nástrojích, s&nbsp;vaším týmem &mdash; ale zůstávají zaměstnanci PragueBestu.</p>
+        <ul>
+          <li><b>Frontend vývojáři</b> &mdash; Vue.js, React, TypeScript</li>
+          <li><b>Backend vývojáři</b> &mdash; PHP, Node.js, Python</li>
+          <li><b>DevOps / SRE</b> &mdash; AWS, Kubernetes, Terraform</li>
+          <li><b>UX/UI designéři</b> &mdash; Figma, Design systems</li>
+          <li><b>Projektoví manažeři</b> &mdash; Scrum, Kanban</li>
+        </ul>
+        <p>Flexibilní rozsah &mdash; od&nbsp;pár hodin týdně po&nbsp;full-time. Minimum 3 měsíce, výpověď 30&nbsp;dní.</p>
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Poptat body shop"><span>Poptat body shop</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+
+      <div class="team-card reveal d1">
+        <div class="t-lbl"><span>Dostupnost k Q3/2026</span><span class="free">4 lidé volní</span></div>
+        <div class="team-list">
+          <div class="tm-item t1">
+            <div class="av"></div>
+            <div class="tx"><b>Martina V.</b><small>Senior UX · 8 let praxe</small></div>
+            <div class="avail ok">Volná</div>
+          </div>
+          <div class="tm-item t2">
+            <div class="av"></div>
+            <div class="tx"><b>Jana S.</b><small>Frontend Lead · Vue / React</small></div>
+            <div class="avail busy">Od srpna</div>
+          </div>
+          <div class="tm-item t3">
+            <div class="av"></div>
+            <div class="tx"><b>Tomáš H.</b><small>Backend · PHP / Laravel</small></div>
+            <div class="avail ok">Volný</div>
+          </div>
+          <div class="tm-item t4">
+            <div class="av"></div>
+            <div class="tx"><b>Ondřej M.</b><small>PM · Scrum Master</small></div>
+            <div class="avail ok">Volný</div>
+          </div>
+        </div>
+        <div class="foot-tc">
+          <span>Zobrazeno 4&nbsp;z&nbsp;37 specialistů</span>
+          <b>Vše in-house &middot; Karlín</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Chcete mít<br>web v <span class="red">klidu?</span></h2>
+    <p class="sub reveal d1">Napište nám a&nbsp;navrhneme optimální SLA balíček podle velikosti a&nbsp;kritičnosti vašeho webu.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci nabídku"><span>Chci nabídku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="sluzby.html" class="btn ghost"><span class="lbl" data-t="Další služby"><span>Další služby</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="sluzby-vyzkum.html">Výzkum &amp; Design <span class="ar">→</span></a>
+        <a href="sluzby-data.html">Data &amp; Analytika <span class="ar">→</span></a>
+        <a href="sluzby-vyvoj.html">Vývoj <span class="ar">→</span></a>
+        <a href="sluzby-provoz.html">Provoz &amp; Podpora <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

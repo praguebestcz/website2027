@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Data & Analytika — Služby — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== DASHBOARD HERO ===== */
+.dash-wrap{padding:60px 0 120px}
+.dash{
+  background:var(--ink);color:var(--paper);border-radius:24px;overflow:hidden;
+  box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);
+  position:relative;
+}
+.dash::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.28),transparent 60%);filter:blur(50px);pointer-events:none}
+.dash::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 30%,transparent 80%)}
+
+.dash .bar{position:relative;z-index:3;padding:20px 28px;display:flex;align-items:center;gap:20px;border-bottom:1px solid rgba(242,236,224,.1)}
+.dash .bar .logo-d{font-weight:800;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.dash .bar .logo-d::before{content:"";width:12px;height:12px;background:var(--red);border-radius:3px}
+.dash .bar .title-d{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--paper);margin-left:8px}
+.dash .bar .title-d small{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);margin-left:10px;font-weight:500}
+.dash .bar .range{margin-left:auto;display:flex;gap:4px;padding:4px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:99px}
+.dash .bar .range span{padding:5px 12px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.55);border-radius:99px;font-weight:500}
+.dash .bar .range span.on{background:var(--red);color:#fff}
+.dash .bar .live{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:#2bb65d;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.dash .bar .live::before{content:"";width:6px;height:6px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+
+.dash-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(242,236,224,.06);padding:2px}
+.kpi{padding:28px 28px;background:var(--ink);position:relative;transition:background .4s var(--ease)}
+.kpi:hover{background:var(--ink-2)}
+.kpi .lbl-k{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.kpi .lbl-k .trend{padding:2px 7px;background:rgba(43,182,93,.18);color:#5fcd86;border-radius:99px;font-weight:700;font-size:9px}
+.kpi .lbl-k .trend.down{background:rgba(227,6,19,.18);color:#f58080}
+.kpi .val{font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:.9}
+.kpi .val .red{color:var(--red)}
+.kpi .val sub{font-family:var(--mono);font-size:11px;font-weight:500;color:rgba(242,236,224,.4);letter-spacing:.02em;margin-left:4px;vertical-align:baseline}
+.kpi .delta{margin-top:6px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5)}
+.kpi .delta b{color:#5fcd86;font-weight:600}
+.kpi .delta.down b{color:#f58080}
+.kpi .sparkline{margin-top:14px;height:34px;display:flex;align-items:flex-end;gap:3px}
+.kpi .sparkline span{flex:1;background:linear-gradient(to top,rgba(227,6,19,.6),rgba(227,6,19,.15));border-radius:2px 2px 0 0}
+.kpi .sparkline.alt span{background:linear-gradient(to top,rgba(43,182,93,.6),rgba(43,182,93,.15))}
+
+.dash-body{position:relative;z-index:2;display:grid;grid-template-columns:1.5fr 1fr;gap:2px;background:rgba(242,236,224,.06)}
+.dash-body .chart-main{padding:30px 32px;background:var(--ink);min-height:280px}
+.dash-body .chart-main .head-c{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.dash-body .chart-main .head-c h5{font-size:16px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.dash-body .chart-main .head-c .sub-c{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);letter-spacing:.02em}
+.dash-body .chart-main .legend{display:flex;gap:14px;font-family:var(--mono);font-size:9px;color:rgba(242,236,224,.55);letter-spacing:.04em;text-transform:uppercase}
+.dash-body .chart-main .legend span{display:flex;align-items:center;gap:6px}
+.dash-body .chart-main .legend span::before{content:"";width:10px;height:2px;border-radius:1px}
+.dash-body .chart-main .legend .l1::before{background:var(--red)}
+.dash-body .chart-main .legend .l2::before{background:#5fcd86}
+.dash-body .chart-main .legend .l3::before{background:rgba(242,236,224,.4)}
+
+.chart-svg{width:100%;height:200px}
+.chart-svg .grid-l{stroke:rgba(242,236,224,.08);stroke-width:1}
+.chart-svg .axis{fill:rgba(242,236,224,.4);font-family:'Geist Mono',monospace;font-size:9px}
+.chart-svg .line-r{fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.chart-svg .line-g{fill:none;stroke:#5fcd86;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4 4}
+.chart-svg .area-r{fill:url(#grad-r);opacity:.4}
+.chart-svg .dot-r{fill:var(--red);stroke:var(--ink);stroke-width:2}
+
+.dash-body .side-c{padding:30px 32px;background:var(--ink);display:flex;flex-direction:column;gap:20px}
+.dash-body .side-c h5{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:14px}
+.dash-body .side-c .top-q{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(242,236,224,.06);font-size:12px}
+.dash-body .side-c .top-q b{font-weight:500}
+.dash-body .side-c .top-q .cnt{font-family:var(--mono);font-size:10px;color:var(--red);font-weight:600}
+.dash-body .side-c .donut{display:flex;align-items:center;gap:18px;padding-top:10px;border-top:1px solid rgba(242,236,224,.08);margin-top:6px}
+.dash-body .side-c .donut svg{flex-shrink:0}
+.dash-body .side-c .donut .lab{flex:1;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.55);line-height:1.8}
+.dash-body .side-c .donut .lab div{display:flex;justify-content:space-between}
+.dash-body .side-c .donut .lab b{color:var(--paper);font-weight:500}
+
+.dash-footer{position:relative;z-index:2;padding:16px 28px;border-top:1px solid rgba(242,236,224,.08);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.45);letter-spacing:.04em}
+.dash-footer b{color:var(--paper);font-weight:500}
+
+/* ===== OFFERINGS (reuse o-grid concept) ===== */
+.offers{padding:140px 0;border-top:1px solid var(--ink)}
+.o-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.o-card{padding:44px 40px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
+.o-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.o-card:hover::before{transform:translateY(0)}
+.o-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.o-card:hover > *{color:var(--paper)}
+.o-card:hover{border-color:var(--ink);transform:translateY(-4px)}
+.o-card .head{display:flex;align-items:flex-start;gap:20px;margin-bottom:22px}
+.o-card .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .5s var(--ease)}
+.o-card:hover .ico{background:var(--red)}
+.o-card .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.o-card .head-txt{flex:1;padding-top:4px}
+.o-card .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.o-card:hover .n{color:rgba(242,236,224,.5)}
+.o-card h4{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.o-card p.desc{font-size:14px;color:var(--ink-3);line-height:1.55;margin-bottom:22px}
+.o-card:hover p.desc{color:rgba(242,236,224,.75)}
+.o-card ul{list-style:none;font-family:var(--mono);font-size:13px;color:var(--ink-3);line-height:2}
+.o-card:hover ul{color:rgba(242,236,224,.75)}
+.o-card ul li{display:flex;align-items:center;gap:10px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.o-card:hover ul li{border-color:rgba(242,236,224,.12)}
+.o-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
+
+/* ===== WHY SERVER-SIDE (comparison) ===== */
+.compare{padding:140px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.compare::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.c-item{padding:40px 32px;background:var(--paper);border:1px solid var(--line);border-radius:18px;transition:all .5s var(--ease)}
+.c-item:hover{background:var(--ink);color:var(--paper);transform:translateY(-4px)}
+.c-item .ico{width:52px;height:52px;border-radius:14px;background:var(--paper-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:all .4s var(--ease)}
+.c-item:hover .ico{background:var(--red);border-color:var(--red)}
+.c-item .ico svg{width:22px;height:22px;stroke:var(--ink);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s}
+.c-item:hover .ico svg{stroke:#fff}
+.c-item h4{font-size:22px;font-weight:700;letter-spacing:-.015em;margin-bottom:10px}
+.c-item p{font-size:14px;color:var(--ink-3);line-height:1.55}
+.c-item:hover p{color:rgba(242,236,224,.75)}
+.c-item .bonus{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:11px;color:var(--red);font-weight:600;letter-spacing:.02em}
+.c-item:hover .bonus{border-color:rgba(242,236,224,.15)}
+
+/* ===== TOOLS ===== */
+.tools{padding:140px 0;border-top:1px solid var(--ink)}
+.t-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
+.t-cell{height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;transition:background .4s var(--ease);position:relative}
+.t-cell:hover{background:var(--paper-2)}
+.t-cell::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.t-cell:hover::before{transform:scaleX(1)}
+.t-cell .lg{font-size:18px;font-weight:700;letter-spacing:-.015em;color:var(--ink);text-align:center}
+.t-cell .cat{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+
+@media (max-width:1100px){
+  .dash-grid{grid-template-columns:1fr 1fr}
+  .dash-body{grid-template-columns:1fr}
+  .c-grid,.o-grid{grid-template-columns:1fr 1fr}
+  .t-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:720px){
+  .dash-grid,.c-grid,.o-grid{grid-template-columns:1fr}
+  .t-grid{grid-template-columns:repeat(2,1fr)}
+  .t-cell{height:110px}
+  .t-cell .lg{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <a href="kontakt.html" class="btn sm"><span class="lbl" data-t="Napište nám"><span>Napište nám</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="sluzby.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na služby</a>
+    <div class="path"><b>Úvod</b> <span>/</span> Služby <span>/</span> <b>Data &amp; Analytika</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Služba § 02 &nbsp;—&nbsp; GA4 · GTM · Server-side · BI &nbsp;—&nbsp; 4 specialisté</div>
+    <h1 class="reveal d1">Rozhodujte<br>na <span class="red">datech.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Nastavíme vám <b>měření, které dává smysl</b>. GTM, server-side tracking,
+        dashboardy &mdash; všechno pro <span class="hi">informovaná rozhodnutí</span>, ne pro&nbsp;managementové pohádky.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci audit analytiky"><span>Chci audit analytiky</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="sluzby.html" class="btn ghost"><span class="lbl" data-t="Další služby"><span>Další služby</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Typický výstup</h6><p>GTM + Dashboards<small>Server-side, reporting</small></p></div>
+      <div class="m"><h6>Doba nasazení</h6><p>2 &mdash; 8 týdnů<small>Audit: 1 týden</small></p></div>
+      <div class="m"><h6>Stack</h6><p>GA4 · GTM · BQ<small>Looker · Power BI</small></p></div>
+      <div class="m"><h6>Hodinová sazba</h6><p>2 400 &mdash; 3 200 Kč<small>Podle seniority</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DASHBOARD ===== -->
+<section class="dash-wrap">
+  <div class="wrap">
+    <div class="dash reveal">
+      <div class="bar">
+        <div class="logo-d">Analytics</div>
+        <div class="title-d">Elnino.cz<small>Apr 2026</small></div>
+        <div class="range">
+          <span>24h</span>
+          <span>7d</span>
+          <span class="on">30d</span>
+          <span>90d</span>
+        </div>
+        <div class="live">Live</div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="kpi">
+          <div class="lbl-k">Revenue<span class="trend">+24%</span></div>
+          <div class="val">12,4<sub>mil. Kč</sub></div>
+          <div class="delta">vs. předchozí · <b>+2,4 mil.</b></div>
+          <div class="sparkline">
+            <span style="height:35%"></span><span style="height:42%"></span><span style="height:38%"></span><span style="height:55%"></span><span style="height:48%"></span><span style="height:65%"></span><span style="height:72%"></span><span style="height:68%"></span><span style="height:85%"></span><span style="height:92%"></span><span style="height:78%"></span><span style="height:100%"></span>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="lbl-k">Sessions<span class="trend">+18%</span></div>
+          <div class="val"><span class="red">842</span>k</div>
+          <div class="delta">vs. předchozí · <b>+128k</b></div>
+          <div class="sparkline alt">
+            <span style="height:40%"></span><span style="height:45%"></span><span style="height:52%"></span><span style="height:48%"></span><span style="height:60%"></span><span style="height:58%"></span><span style="height:70%"></span><span style="height:75%"></span><span style="height:82%"></span><span style="height:88%"></span><span style="height:95%"></span><span style="height:100%"></span>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="lbl-k">Conv. rate<span class="trend">+0,8p</span></div>
+          <div class="val">4,2<sub>%</sub></div>
+          <div class="delta">vs. předchozí · <b>+0,8 bodu</b></div>
+          <div class="sparkline">
+            <span style="height:30%"></span><span style="height:35%"></span><span style="height:40%"></span><span style="height:38%"></span><span style="height:45%"></span><span style="height:52%"></span><span style="height:58%"></span><span style="height:62%"></span><span style="height:70%"></span><span style="height:78%"></span><span style="height:85%"></span><span style="height:92%"></span>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="lbl-k">AOV<span class="trend down">−3%</span></div>
+          <div class="val">1&nbsp;487<sub>Kč</sub></div>
+          <div class="delta down">vs. předchozí · <b>&minus;46 Kč</b></div>
+          <div class="sparkline">
+            <span style="height:80%"></span><span style="height:85%"></span><span style="height:78%"></span><span style="height:82%"></span><span style="height:75%"></span><span style="height:78%"></span><span style="height:72%"></span><span style="height:76%"></span><span style="height:68%"></span><span style="height:72%"></span><span style="height:65%"></span><span style="height:70%"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-body">
+        <div class="chart-main">
+          <div class="head-c">
+            <div>
+              <h5>Revenue vs. Sessions &mdash; posledních 30 dní</h5>
+              <div class="sub-c">zdroj: GA4 + Server-side GTM · updated 2 min ago</div>
+            </div>
+            <div class="legend">
+              <span class="l1">Revenue</span>
+              <span class="l2">Sessions</span>
+              <span class="l3">Target</span>
+            </div>
+          </div>
+          <svg class="chart-svg" viewBox="0 0 700 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-r" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e30613" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#e30613" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line class="grid-l" x1="0" y1="40" x2="700" y2="40"/>
+            <line class="grid-l" x1="0" y1="90" x2="700" y2="90"/>
+            <line class="grid-l" x1="0" y1="140" x2="700" y2="140"/>
+            <line class="grid-l" x1="0" y1="190" x2="700" y2="190"/>
+
+            <text class="axis" x="0" y="36">12M</text>
+            <text class="axis" x="0" y="86">9M</text>
+            <text class="axis" x="0" y="136">6M</text>
+            <text class="axis" x="0" y="186">3M</text>
+
+            <path class="area-r" d="M 40 160 L 80 145 L 120 155 L 160 130 L 200 135 L 240 110 L 280 100 L 320 115 L 360 85 L 400 90 L 440 65 L 480 70 L 520 50 L 560 45 L 600 55 L 640 35 L 680 25 L 680 200 L 40 200 Z"/>
+            <path class="line-r" d="M 40 160 L 80 145 L 120 155 L 160 130 L 200 135 L 240 110 L 280 100 L 320 115 L 360 85 L 400 90 L 440 65 L 480 70 L 520 50 L 560 45 L 600 55 L 640 35 L 680 25"/>
+            <path class="line-g" d="M 40 170 L 80 165 L 120 160 L 160 155 L 200 150 L 240 145 L 280 140 L 320 135 L 360 125 L 400 118 L 440 108 L 480 98 L 520 90 L 560 82 L 600 75 L 640 68 L 680 60"/>
+
+            <circle class="dot-r" cx="680" cy="25" r="5"/>
+
+            <text class="axis" x="40" y="199">1.</text>
+            <text class="axis" x="180" y="199">8.</text>
+            <text class="axis" x="320" y="199">15.</text>
+            <text class="axis" x="460" y="199">22.</text>
+            <text class="axis" x="660" y="199">30. dub</text>
+          </svg>
+        </div>
+
+        <div class="side-c">
+          <div>
+            <h5>Top hledané dotazy</h5>
+            <div class="top-q"><b>chanel n°5</b><span class="cnt">4 219</span></div>
+            <div class="top-q"><b>dior sauvage</b><span class="cnt">3 842</span></div>
+            <div class="top-q"><b>ysl libre</b><span class="cnt">2 918</span></div>
+            <div class="top-q"><b>boss bottled</b><span class="cnt">2 104</span></div>
+            <div class="top-q"><b>lancôme</b><span class="cnt">1 872</span></div>
+          </div>
+
+          <div class="donut">
+            <svg width="90" height="90" viewBox="0 0 90 90">
+              <circle cx="45" cy="45" r="34" fill="none" stroke="rgba(242,236,224,.08)" stroke-width="14"/>
+              <circle cx="45" cy="45" r="34" fill="none" stroke="#e30613" stroke-width="14" stroke-dasharray="150 214" stroke-dashoffset="0" transform="rotate(-90 45 45)"/>
+              <circle cx="45" cy="45" r="34" fill="none" stroke="#5fcd86" stroke-width="14" stroke-dasharray="45 214" stroke-dashoffset="-150" transform="rotate(-90 45 45)"/>
+              <circle cx="45" cy="45" r="34" fill="none" stroke="rgba(242,236,224,.4)" stroke-width="14" stroke-dasharray="19 214" stroke-dashoffset="-195" transform="rotate(-90 45 45)"/>
+            </svg>
+            <div class="lab">
+              <div><span>Mobile</span><b>70%</b></div>
+              <div><span>Desktop</span><b>21%</b></div>
+              <div><span>Tablet</span><b>9%</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-footer">
+        <div>Data zdroj: <b>GA4 + Server-side GTM</b> · synced <b>2 min ago</b></div>
+        <div>Looker Studio · Dashboard <b>ECOM-042</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OFFERINGS ===== -->
+<section class="offers">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 01 / Co nabízíme</div>
+      <h2>Čtyři oblasti, ve&nbsp;kterých <span class="red">dodáme.</span></h2>
+      <div class="aside">Od setupu po&nbsp;školení<br><b>celý stack</b></div>
+    </div>
+
+    <div class="o-grid">
+      <article class="o-card reveal">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Služba / 01</div>
+            <h4>SGTM implementace</h4>
+          </div>
+        </div>
+        <p class="desc">Server-side Google Tag Manager pro přesnější měření, obcházení ad-blockerů a&nbsp;lepší výkon webu.</p>
+        <ul>
+          <li>Nastavení server-side kontejneru</li>
+          <li>Migrace tagů z&nbsp;client-side</li>
+          <li>First-party cookies &amp; identity</li>
+          <li>Obcházení ad-blockerů a&nbsp;ITP</li>
+          <li>Data enrichment před odesláním</li>
+        </ul>
+      </article>
+
+      <article class="o-card reveal d1">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M11 8v3l2 2"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Služba / 02</div>
+            <h4>Analytické audity</h4>
+          </div>
+        </div>
+        <p class="desc">Zhodnotíme stávající měření a&nbsp;navrhneme vylepšení. Dostanete konkrétní akční plán.</p>
+        <ul>
+          <li>Audit GA4 implementace</li>
+          <li>Kontrola e-commerce trackingu</li>
+          <li>Identifikace chyb a&nbsp;mezer</li>
+          <li>Prioritizovaná doporučení</li>
+          <li>Audit dashboardů a&nbsp;reportů</li>
+        </ul>
+      </article>
+
+      <article class="o-card reveal d2">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Služba / 03</div>
+            <h4>Custom dashboardy</h4>
+          </div>
+        </div>
+        <p class="desc">Přehledné dashboardy pro rychlé rozhodování &mdash; management, marketing, sales.</p>
+        <ul>
+          <li>Looker Studio (Data Studio)</li>
+          <li>Power BI &amp; Tableau</li>
+          <li>Custom BI řešení na&nbsp;míru</li>
+          <li>Automatické e-mailové reporty</li>
+          <li>Mobilní dashboardy pro CEO</li>
+        </ul>
+      </article>
+
+      <article class="o-card reveal d3">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Služba / 04</div>
+            <h4>Konzultace &amp; školení</h4>
+          </div>
+        </div>
+        <p class="desc">Naučíme váš&nbsp;tým pracovat s&nbsp;daty. Od basic GA4 po&nbsp;pokročilé atribuční modely.</p>
+        <ul>
+          <li>GA4 školení (půldenní, celodenní)</li>
+          <li>GTM workshop</li>
+          <li>Interpretace dat &amp; storytelling</li>
+          <li>Ongoing konzultace</li>
+          <li>Budování data culture</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY SERVER-SIDE ===== -->
+<section class="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Proč server-side</div>
+      <h2>Čtyři důvody, proč tracking <span class="red">přesunout na&nbsp;server.</span></h2>
+      <div class="aside">Doporučujeme<br><b>každému e-shopu</b></div>
+    </div>
+
+    <div class="c-grid">
+      <article class="c-item reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+        <h4>Přesnější data</h4>
+        <p>Obejdete ad-blockery a&nbsp;ITP omezení prohlížečů. Získáte 15&mdash;30&nbsp;% dat navíc.</p>
+        <div class="bonus">+15 — 30% dat</div>
+      </article>
+
+      <article class="c-item reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h4>Rychlejší web</h4>
+        <p>Méně skriptů na&nbsp;klientovi = rychlejší načítání. Lepší Lighthouse a&nbsp;SEO.</p>
+        <div class="bonus">−40% JS bundle</div>
+      </article>
+
+      <article class="c-item reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></div>
+        <h4>Lepší ochrana dat</h4>
+        <p>Kontrola nad&nbsp;daty předtím, než&nbsp;opustí server. GDPR-friendly, žádné dark patterns.</p>
+        <div class="bonus">GDPR + ePrivacy</div>
+      </article>
+
+      <article class="c-item reveal d3">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6M21 18v-4a4 4 0 0 0-4-4H3"/></svg></div>
+        <h4>First-party cookies</h4>
+        <p>Delší platnost cookies (1 rok vs. 7 dní), lepší měření, lepší atribuce.</p>
+        <div class="bonus">365 dní TTL</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOOLS ===== -->
+<section class="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Nástroje</div>
+      <h2>Stack, se&nbsp;kterým&nbsp;<span class="red">pracujeme.</span></h2>
+      <div class="aside">Vybíráme podle projektu<br><b>ne podle módy</b></div>
+    </div>
+
+    <div class="t-grid">
+      <div class="t-cell"><div class="lg">GA4</div><div class="cat">Analytics</div></div>
+      <div class="t-cell"><div class="lg">GTM</div><div class="cat">Tag Manager</div></div>
+      <div class="t-cell"><div class="lg">BigQuery</div><div class="cat">Warehouse</div></div>
+      <div class="t-cell"><div class="lg">Looker</div><div class="cat">BI</div></div>
+      <div class="t-cell"><div class="lg">Power BI</div><div class="cat">BI</div></div>
+      <div class="t-cell"><div class="lg">Tableau</div><div class="cat">BI</div></div>
+      <div class="t-cell"><div class="lg">Hotjar</div><div class="cat">Behavior</div></div>
+      <div class="t-cell"><div class="lg">Mixpanel</div><div class="cat">Product</div></div>
+      <div class="t-cell"><div class="lg">Amplitude</div><div class="cat">Product</div></div>
+      <div class="t-cell"><div class="lg">Segment</div><div class="cat">CDP</div></div>
+      <div class="t-cell"><div class="lg">Matomo</div><div class="cat">Analytics</div></div>
+      <div class="t-cell"><div class="lg">Snowflake</div><div class="cat">Warehouse</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Chcete<br>měřit <span class="red">lépe?</span></h2>
+    <p class="sub reveal d1">Začneme auditem vaší stávající analytiky. Výstup obdržíte do&nbsp;1&nbsp;týdne se&nbsp;seznamem konkrétních opatření.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Nezávazný audit"><span>Nezávazný audit</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="sluzby.html" class="btn ghost"><span class="lbl" data-t="Další služby"><span>Další služby</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="sluzby-vyzkum.html">Výzkum &amp; Design <span class="ar">→</span></a>
+        <a href="sluzby-data.html">Data &amp; Analytika <span class="ar">→</span></a>
+        <a href="sluzby-vyvoj.html">Vývoj <span class="ar">→</span></a>
+        <a href="sluzby-provoz.html">Provoz &amp; Podpora <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

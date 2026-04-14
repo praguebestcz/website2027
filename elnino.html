@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Elnino — Case Study — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2ece0;
+  --paper-2:#ebe4d4;
+  --paper-3:#e3dac8;
+  --ink:#0a0a0a;
+  --ink-2:#1a1a1a;
+  --ink-3:#2a2a2a;
+  --mute:#6b6862;
+  --mute-2:#8a8680;
+  --line:rgba(10,10,10,.12);
+  --line-2:rgba(10,10,10,.06);
+  --red:#e30613;
+  --red-2:#b8050f;
+  --red-3:#fff2f3;
+  --sans:"Geist",system-ui,-apple-system,sans-serif;
+  --mono:"Geist Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--red);color:#fff}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);background:var(--paper);color:var(--ink);
+  font-size:16px;line-height:1.55;letter-spacing:-.01em;
+  font-feature-settings:"ss01","cv11","tnum";
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:none;border:none;background:none;color:inherit}
+img,svg{display:block;max-width:100%}
+
+/* Grain */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.18;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Custom cursor */
+.cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);mix-blend-mode:difference}
+.cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(10,10,10,.35);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease),border-color .3s,background .3s}
+body.cursor-hover .cursor{width:4px;height:4px;background:#fff}
+body.cursor-hover .cursor-ring{width:56px;height:56px;border-color:var(--ink);background:rgba(10,10,10,.08)}
+@media (hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none}a,button{cursor:pointer}}
+
+/* Scroll progress */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:200}
+.scroll-progress::after{content:"";position:absolute;top:0;left:0;height:100%;width:var(--p,0%);background:var(--red);transition:width .05s linear;box-shadow:0 0 8px rgba(227,6,19,.5)}
+
+/* Wrap */
+.wrap{max-width:1480px;margin:0 auto;padding:0 40px;position:relative;z-index:2}
+.wrap-sm{max-width:1080px;margin:0 auto;padding:0 40px;position:relative;z-index:2}
+
+/* ===================== NAV ===================== */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;transition:padding .4s var(--ease),background .3s,backdrop-filter .3s}
+nav.top.scrolled{padding:14px 40px;background:rgba(242,236,224,.82);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;letter-spacing:-.02em;position:relative}
+.logo .mark{width:12px;height:12px;border-radius:50%;background:var(--red);animation:breath 3.2s var(--ease) infinite;position:relative}
+.logo .mark::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 70%);animation:halo 3.2s var(--ease) infinite}
+@keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(.85)}}
+@keyframes halo{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:1;transform:scale(1.4)}}
+.logo .name{letter-spacing:-.015em}
+.logo .name b{font-weight:800}
+.logo sup{font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:500;margin-left:4px;position:relative;top:-6px}
+nav.top ul{list-style:none;display:flex;gap:8px;justify-content:center}
+nav.top ul a{position:relative;padding:10px 16px;font-size:14px;font-weight:500;border-radius:999px;transition:color .3s}
+nav.top ul a .t{position:relative;display:inline-block;overflow:hidden;vertical-align:bottom}
+nav.top ul a .t span{display:block;transition:transform .45s var(--ease)}
+nav.top ul a .t::after{content:attr(data-t);position:absolute;top:100%;left:0;font-weight:500;transition:transform .45s var(--ease)}
+nav.top ul a:hover .t span{transform:translateY(-100%)}
+nav.top ul a:hover .t::after{transform:translateY(-100%)}
+nav.top .meta{display:flex;gap:20px;align-items:center;justify-content:flex-end;font-family:var(--mono);font-size:11px;color:var(--mute)}
+nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;margin-right:6px;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(43,182,93,.12)}}
+
+/* Button */
+.btn{--bg:var(--ink);--fg:var(--paper);position:relative;display:inline-flex;align-items:center;gap:14px;padding:16px 24px 16px 28px;background:var(--bg);color:var(--fg);border-radius:999px;font-weight:500;font-size:14px;letter-spacing:-.01em;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease-out)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--red);transform:translateY(101%);transition:transform .55s var(--ease-out)}
+.btn:hover::before{transform:translateY(0)}
+.btn .lbl{position:relative;display:inline-block;overflow:hidden;line-height:1.2}
+.btn .lbl span{display:block;transition:transform .5s var(--ease)}
+.btn .lbl::after{content:attr(data-t);position:absolute;top:100%;left:0;transition:transform .5s var(--ease)}
+.btn:hover .lbl span{transform:translateY(-100%)}
+.btn:hover .lbl::after{transform:translateY(-100%)}
+.btn .arr{width:22px;height:22px;border-radius:50%;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .4s,color .4s;overflow:hidden;position:relative}
+.btn .arr svg{width:12px;height:12px;transition:transform .5s var(--ease)}
+.btn:hover .arr svg{transform:translate(32px,-32px)}
+.btn .arr::after{content:"";position:absolute;width:12px;height:12px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 5l7 7-7 7'/></svg>") center/contain no-repeat;transform:translate(-32px,32px);transition:transform .5s var(--ease) .05s}
+.btn:hover .arr::after{transform:translate(0,0)}
+.btn.ghost{--bg:transparent;--fg:var(--ink);border:1px solid var(--ink)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+.btn.ghost .arr{background:var(--ink);color:var(--paper)}
+.btn.ghost .arr svg{stroke:var(--paper)}
+.btn.ghost .arr::after{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2ece0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 5l7 7-7 7'/></svg>") center/contain no-repeat}
+.btn.sm{padding:11px 16px 11px 20px;font-size:13px;gap:10px}
+.btn.sm .arr{width:18px;height:18px}
+.btn.sm .arr svg{width:10px;height:10px}
+.btn.red{--bg:var(--red);--fg:#fff}
+.btn.red::before{background:var(--ink)}
+
+.lnk{position:relative;display:inline-flex;align-items:baseline;gap:6px;font-weight:500}
+.lnk::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:currentColor;transform-origin:right;transform:scaleX(1);transition:transform .5s var(--ease-out)}
+.lnk::before{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:currentColor;transform-origin:left;transform:scaleX(0);transition:transform .5s .15s var(--ease-out)}
+.lnk:hover::after{transform:scaleX(0)}
+.lnk:hover::before{transform:scaleX(1)}
+.lnk .arr{display:inline-block;transition:transform .4s var(--ease)}
+.lnk:hover .arr{transform:translateX(4px)}
+
+/* ===================== BREADCRUMB ===================== */
+.crumbs{padding:130px 0 0}
+.crumbs .wrap{display:flex;justify-content:space-between;align-items:center}
+.crumbs .back{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:500;transition:color .3s}
+.crumbs .back .dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.crumbs .back .dot svg{width:12px;height:12px;stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+.crumbs .back:hover{color:var(--ink)}
+.crumbs .back:hover .dot{background:var(--ink);border-color:var(--ink)}
+.crumbs .back:hover .dot svg{stroke:var(--paper);transform:translateX(-3px)}
+.crumbs .path{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.crumbs .path b{color:var(--ink);font-weight:600}
+.crumbs .path span{opacity:.4;margin:0 10px}
+
+/* ===================== TITLE ===================== */
+.title{padding:80px 0 60px}
+.title .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:30px;display:flex;align-items:center;gap:14px}
+.title .idx::before{content:"";width:40px;height:1px;background:var(--red)}
+.title h1{font-size:clamp(88px,16vw,240px);font-weight:800;letter-spacing:-.055em;line-height:.82}
+.title .sub{margin-top:36px;font-size:clamp(24px,2.6vw,40px);font-weight:500;letter-spacing:-.025em;line-height:1.15;max-width:22ch;color:var(--ink-3)}
+.title .sub b{color:var(--ink);font-weight:600}
+
+/* Meta bar */
+.meta-bar{margin-top:70px;padding:32px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:40px}
+.meta-bar .m{position:relative}
+.meta-bar .m::before{content:"";position:absolute;left:-20px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.meta-bar .m:first-child::before{display:none}
+.meta-bar .m h6{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.meta-bar .m p{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+.meta-bar .m p small{display:block;font-weight:400;color:var(--mute);font-size:13px;margin-top:2px}
+
+/* ===================== HERO VISUAL ===================== */
+.hero-viz{padding:40px 0 120px}
+.hero-viz .frame{
+  position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/9;
+  background:linear-gradient(135deg,#1a0608 0%,#330810 50%,#0a0a0a 100%);
+  box-shadow:0 60px 120px -40px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.08);
+}
+.hero-viz .frame::before{
+  content:"";position:absolute;inset:0;opacity:.25;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);
+}
+.hero-viz .frame::after{
+  content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(227,6,19,.35),transparent 60%);filter:blur(40px);
+}
+.hero-viz .stage{position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:center;padding:60px;gap:40px}
+.hero-viz .label-floating{position:absolute;top:32px;left:40px;color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px;z-index:3}
+.hero-viz .label-floating::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:pulse 2s infinite}
+.hero-viz .float-corner{position:absolute;bottom:32px;right:40px;color:rgba(255,255,255,.4);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;z-index:3;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.hero-viz .float-corner b{color:#fff;font-weight:600}
+
+/* Large device mockup */
+.device{
+  background:#fff;color:var(--ink);border-radius:12px;overflow:hidden;
+  width:100%;max-width:700px;
+  box-shadow:0 60px 100px -30px rgba(0,0,0,.7),0 30px 60px -20px rgba(0,0,0,.5);
+  transform:perspective(2000px) rotateY(-4deg) rotateX(3deg);
+}
+.device .chrome{background:#ebe7df;padding:12px 16px;display:flex;gap:12px;align-items:center;border-bottom:1px solid #dcd6ca}
+.device .chrome .dots{display:flex;gap:6px}
+.device .chrome .dots i{width:11px;height:11px;border-radius:50%;display:block}
+.device .chrome .dots i:nth-child(1){background:#ff5f57}.device .chrome .dots i:nth-child(2){background:#febc2e}.device .chrome .dots i:nth-child(3){background:#28c841}
+.device .chrome .url{flex:1;background:#fff;border-radius:6px;padding:6px 14px;font-family:var(--mono);font-size:11px;color:#666;display:flex;align-items:center;gap:6px}
+.device .chrome .url::before{content:"🔒";font-size:9px;opacity:.5}
+.device .topbar2{padding:22px 30px;display:flex;align-items:center;gap:24px;border-bottom:1px solid #f0ebe0}
+.device .topbar2 .br{font-weight:900;font-size:24px;letter-spacing:-.03em}
+.device .topbar2 .lnks{display:flex;gap:20px;font-size:12px;font-weight:500;color:#666}
+.device .topbar2 .lnks .on{color:var(--red);font-weight:700;position:relative}
+.device .topbar2 .lnks .on::after{content:"";position:absolute;left:0;right:0;bottom:-26px;height:2px;background:var(--red)}
+.device .topbar2 .cart{margin-left:auto;display:flex;gap:10px;align-items:center}
+.device .topbar2 .cart .i{width:30px;height:30px;border-radius:50%;background:#f4efe0;display:flex;align-items:center;justify-content:center;font-size:12px}
+.device .banner{padding:50px 30px;background:linear-gradient(120deg,#1a1a1a 0%,#3a0810 100%);color:#fff;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.device .banner::after{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.5),transparent 60%)}
+.device .banner h4{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:.95;position:relative;z-index:2}
+.device .banner p{font-size:12px;color:rgba(255,255,255,.7);margin-top:10px;max-width:30ch;line-height:1.5;position:relative;z-index:2}
+.device .banner .minibtn{margin-top:22px;display:inline-block;font-size:11px;font-weight:700;padding:11px 20px;background:var(--red);color:#fff;border-radius:99px;letter-spacing:.06em;text-transform:uppercase;position:relative;z-index:2}
+.device .banner .pic{width:180px;height:220px;border-radius:10px;background:linear-gradient(135deg,#c8c2b0,#484236);box-shadow:0 20px 40px -10px rgba(0,0,0,.7);position:relative;z-index:2}
+.device .banner .pic::after{content:"";position:absolute;inset:36px;background:radial-gradient(circle at 40% 30%,rgba(255,255,255,.5),transparent 60%);border-radius:50%}
+.device .subh{padding:20px 30px 10px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.device .subh small{font-size:11px;color:#999;font-weight:500;letter-spacing:0;text-transform:none}
+.device .prods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:4px 30px 30px}
+.device .prods .p{text-align:left}
+.device .prods .ph{aspect-ratio:1;background:linear-gradient(135deg,#f4f0e8,#d6cdb6);border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden}
+.device .prods .ph::after{content:"";position:absolute;inset:18px;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.7),transparent 60%);border-radius:50%}
+.device .prods b{font-size:11px;color:#333;display:block;font-weight:600}
+.device .prods .cat{font-size:9px;color:#999;display:block;margin-top:2px}
+.device .prods small{font-size:11px;color:var(--red);font-weight:800;display:block;margin-top:6px}
+
+/* ===================== SECTION HEAD ===================== */
+.sec-head{display:grid;grid-template-columns:140px 1fr auto;gap:48px;align-items:baseline;padding-bottom:32px;border-bottom:1px solid var(--ink);margin-bottom:60px}
+.sec-head .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.sec-head h2{font-size:clamp(44px,5.5vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.92;max-width:22ch}
+.sec-head h2 .red{color:var(--red)}
+.sec-head .aside{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;line-height:1.8}
+.sec-head .aside b{color:var(--ink);font-weight:600}
+
+/* ===================== CHALLENGE / INTRO ===================== */
+section.sx{padding:140px 0;position:relative}
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.intro .left h3{font-size:clamp(32px,3vw,48px);font-weight:500;letter-spacing:-.025em;line-height:1.1;max-width:18ch}
+.intro .left h3 b{font-weight:700}
+.intro .left h3 .red{color:var(--red)}
+.intro .right p{font-size:17px;line-height:1.7;color:var(--ink-3);max-width:52ch}
+.intro .right p + p{margin-top:20px}
+.intro .right p b{color:var(--ink);font-weight:600}
+.intro .right .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.15) 62% 92%,transparent 92%);padding:0 2px}
+
+/* ===================== PULL QUOTE ===================== */
+.pull{padding:160px 0;text-align:center;position:relative}
+.pull::before,.pull::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);width:60px;height:1px;background:var(--ink);
+}
+.pull::before{top:60px}
+.pull::after{bottom:60px}
+.pull .q{font-size:clamp(32px,4vw,60px);font-weight:500;letter-spacing:-.03em;line-height:1.2;max-width:22ch;margin:0 auto;color:var(--ink)}
+.pull .q .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 4px}
+.pull .who{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mute);text-transform:uppercase}
+.pull .who .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c8a878,#7a5030);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line)}
+.pull .who b{color:var(--ink);font-weight:600;display:block;font-family:var(--sans);font-size:14px;letter-spacing:-.01em;text-transform:none;margin-bottom:2px}
+
+/* ===================== PROCESS TIMELINE ===================== */
+.process{padding:140px 0;border-top:1px solid var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;counter-reset:step}
+.step{
+  padding:40px 28px 48px;border-right:1px solid var(--line);position:relative;
+  transition:background .5s var(--ease);
+}
+.step:last-child{border-right:none}
+.step::before{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);
+  transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out);
+}
+.step.on::before{transform:scaleX(1)}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:10px}
+.step .n b{color:var(--red);font-weight:700}
+.step .dur{margin-left:auto;color:var(--mute);font-weight:500}
+.step h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.step p{font-size:14px;color:var(--mute);line-height:1.55}
+.step ul{list-style:none;margin-top:18px;font-size:12px;font-family:var(--mono);color:var(--ink-3);line-height:1.9}
+.step ul li{padding-left:14px;position:relative}
+.step ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.step:hover{background:var(--paper-2)}
+
+/* ===================== APPROACH PILLARS ===================== */
+.pillars{padding:160px 0;border-top:1px solid var(--ink)}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.pillar{
+  padding:48px 36px;border:1px solid var(--line);border-radius:16px;
+  background:var(--paper-2);position:relative;overflow:hidden;
+  transition:transform .6s var(--ease),background .5s var(--ease);
+}
+.pillar::before{
+  content:"";position:absolute;inset:0;background:var(--ink);
+  transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0;
+}
+.pillar:hover::before{transform:translateY(0)}
+.pillar > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.pillar:hover > *{color:var(--paper)}
+.pillar:hover{transform:translateY(-4px)}
+.pillar .ico{
+  width:56px;height:56px;border-radius:14px;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;margin-bottom:28px;
+  transition:all .5s var(--ease);
+}
+.pillar:hover .ico{background:var(--red);color:#fff}
+.pillar .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pillar .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.pillar:hover .n{color:rgba(242,236,224,.5)}
+.pillar h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.pillar p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.pillar:hover p{color:rgba(242,236,224,.75)}
+
+/* ===================== MOCKUP GALLERY ===================== */
+.gallery{padding:140px 0;border-top:1px solid var(--ink)}
+.gal-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.gal-row:last-child{margin-bottom:0}
+.gal-row.wide{grid-template-columns:1fr}
+.gal{
+  border-radius:16px;overflow:hidden;aspect-ratio:4/3;position:relative;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.3);
+  transition:transform .8s var(--ease);
+}
+.gal.wide-one{aspect-ratio:21/9}
+.gal:hover{transform:translateY(-4px)}
+.gal .tag{position:absolute;top:20px;left:24px;z-index:3;font-family:var(--mono);font-size:11px;font-weight:500;padding:6px 12px;background:rgba(10,10,10,.6);color:#fff;border-radius:999px;backdrop-filter:blur(8px);letter-spacing:.04em}
+
+.gal.g1{background:linear-gradient(135deg,#2a0810,#0a0a0a);padding:60px 50px;display:flex;align-items:center;justify-content:center;color:#fff;position:relative}
+.gal.g1::after{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.35),transparent 60%);filter:blur(30px)}
+.gal.g1 .content{position:relative;z-index:2;text-align:center}
+.gal.g1 h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px}
+.gal.g1 .big{font-size:clamp(48px,6vw,88px);font-weight:800;letter-spacing:-.04em;line-height:.9}
+.gal.g1 .big .red{color:var(--red)}
+.gal.g1 p{font-size:13px;color:rgba(255,255,255,.6);margin-top:20px;max-width:42ch;margin-left:auto;margin-right:auto;line-height:1.55}
+
+.gal.g2{background:linear-gradient(135deg,#f4efe0 0%,#e6dfd0 100%);display:flex;align-items:flex-end;justify-content:center;padding:40px 40px 0;overflow:hidden}
+.gal.g2 .phone{
+  width:240px;background:#fff;border-radius:32px 32px 0 0;overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.3);
+  border:8px solid #0a0a0a;border-bottom:none;padding:0;
+  transform:perspective(1200px) rotateX(3deg);
+}
+.gal.g2 .phone .notch{height:30px;background:#0a0a0a;border-radius:0 0 18px 18px;margin:0 auto;width:120px;margin-top:-1px}
+.gal.g2 .phone .content{padding:14px 14px 0}
+.gal.g2 .phone .topl{display:flex;justify-content:space-between;font-size:10px;font-weight:700;margin-bottom:14px}
+.gal.g2 .phone .topl b{color:var(--red)}
+.gal.g2 .phone .srch{background:#f4efe0;border-radius:10px;padding:10px;font-size:10px;color:#999;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.gal.g2 .phone .srch::before{content:"⌕";font-size:14px;color:var(--red)}
+.gal.g2 .phone .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gal.g2 .phone .pgrid .pi{background:#f9f5ea;border-radius:8px;padding:8px}
+.gal.g2 .phone .pgrid .pi .pph{aspect-ratio:1;background:linear-gradient(135deg,#ebe5d5,#c8bfa8);border-radius:5px;margin-bottom:6px}
+.gal.g2 .phone .pgrid .pi b{font-size:9px;color:#333;display:block}
+.gal.g2 .phone .pgrid .pi small{font-size:9px;color:var(--red);font-weight:700}
+
+.gal.g3{background:linear-gradient(135deg,#1a1a1a,#2a2a2a);color:#fff;padding:50px 60px;position:relative;display:flex;align-items:center;overflow:hidden}
+.gal.g3::before{content:"";position:absolute;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:40px 40px}
+.gal.g3 .content{position:relative;z-index:2;width:100%}
+.gal.g3 h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px}
+.gal.g3 .schema{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+.gal.g3 .sbox{padding:18px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:10px;position:relative}
+.gal.g3 .sbox.main{background:var(--red);border-color:var(--red)}
+.gal.g3 .sbox b{display:block;font-size:13px;font-weight:700}
+.gal.g3 .sbox small{font-size:9px;color:rgba(255,255,255,.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;display:block}
+.gal.g3 .line{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.05em}
+
+.gal.g4{background:linear-gradient(135deg,#e8dac0,#c8b890);padding:40px;display:flex;align-items:center;justify-content:center;position:relative}
+.gal.g4 .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%}
+.gal.g4 .swatch{aspect-ratio:1;border-radius:12px;position:relative;box-shadow:0 10px 20px -8px rgba(0,0,0,.2);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;color:#fff}
+.gal.g4 .swatch b{font-family:var(--mono);font-size:10px;display:block;letter-spacing:.04em}
+.gal.g4 .swatch small{font-size:10px;opacity:.7;font-family:var(--mono)}
+.gal.g4 .swatch.c1{background:#e30613}
+.gal.g4 .swatch.c2{background:#0a0a0a}
+.gal.g4 .swatch.c3{background:#f2ece0;color:#0a0a0a}
+.gal.g4 .swatch.c4{background:#6b6862}
+.gal.g4 .swatch.c5{background:#e3dac8;color:#0a0a0a}
+
+.gal.g5{background:linear-gradient(135deg,#1a1a1a,#0a0a0a);color:#fff;padding:50px;position:relative;overflow:hidden}
+.gal.g5::before{content:"";position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.25),transparent 60%)}
+.gal.g5 .content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:40px;height:100%;align-items:center}
+.gal.g5 h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px}
+.gal.g5 .chart{position:relative;height:180px;display:flex;align-items:flex-end;gap:10px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.15)}
+.gal.g5 .bar{flex:1;background:linear-gradient(to top,var(--red),rgba(227,6,19,.3));border-radius:4px 4px 0 0;position:relative;animation:grow 1.5s var(--ease-out)}
+.gal.g5 .bar b{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.7)}
+.gal.g5 .bar:nth-child(1){height:30%}
+.gal.g5 .bar:nth-child(2){height:45%}
+.gal.g5 .bar:nth-child(3){height:60%}
+.gal.g5 .bar:nth-child(4){height:75%}
+.gal.g5 .bar:nth-child(5){height:88%}
+.gal.g5 .bar:nth-child(6){height:100%}
+@keyframes grow{from{height:0}}
+.gal.g5 .stats{display:flex;flex-direction:column;gap:20px}
+.gal.g5 .stats .s b{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:.9;display:block}
+.gal.g5 .stats .s b .red{color:var(--red)}
+.gal.g5 .stats .s small{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.04em;margin-top:6px;display:block}
+
+/* ===================== BIG RESULTS ===================== */
+.results{padding:160px 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--paper);margin-top:0}
+.results .sec-head{border-color:rgba(242,236,224,.2)}
+.results .sec-head .aside{color:rgba(242,236,224,.5)}
+.results .sec-head .aside b{color:var(--paper)}
+.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.res{
+  padding:60px 48px 56px;border-radius:16px;background:rgba(242,236,224,.04);
+  border:1px solid rgba(242,236,224,.1);position:relative;overflow:hidden;
+  transition:background .5s var(--ease),transform .5s var(--ease);
+}
+.res:hover{background:rgba(242,236,224,.08);transform:translateY(-4px)}
+.res::before{
+  content:"";position:absolute;top:0;right:0;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(227,6,19,.3),transparent 60%);filter:blur(40px);
+  opacity:0;transition:opacity .5s;
+}
+.res:hover::before{opacity:1}
+.res > *{position:relative}
+.res .rn{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px}
+.res .value{font-size:clamp(80px,10vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.88;display:flex;align-items:baseline;gap:16px}
+.res .value .plus{color:var(--red);font-size:.7em}
+.res .value sub{font-family:var(--mono);font-size:14px;font-weight:500;color:rgba(242,236,224,.5);vertical-align:baseline}
+.res h4{font-size:22px;font-weight:600;letter-spacing:-.015em;margin-top:24px}
+.res p{font-size:15px;color:rgba(242,236,224,.7);line-height:1.6;margin-top:12px;max-width:48ch}
+
+/* ===================== TESTIMONIAL ===================== */
+.testimonial{padding:180px 0;text-align:center;position:relative}
+.testimonial .mark{font-size:140px;line-height:.4;color:var(--red);font-weight:700;font-family:var(--sans);user-select:none}
+.testimonial .q{font-size:clamp(28px,3.4vw,52px);font-weight:500;letter-spacing:-.03em;line-height:1.25;max-width:26ch;margin:-20px auto 0;color:var(--ink)}
+.testimonial .who{margin-top:60px;display:inline-flex;align-items:center;gap:20px;padding:20px 32px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+.testimonial .who .av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#a8b890,#405030);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line)}
+.testimonial .who .txt{text-align:left}
+.testimonial .who b{display:block;font-size:16px;font-weight:600;letter-spacing:-.01em}
+.testimonial .who small{display:block;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:2px}
+
+/* ===================== NEXT PROJECT ===================== */
+.next{padding:120px 0;border-top:1px solid var(--ink);position:relative;overflow:hidden}
+.next a{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;padding:60px 0;border-radius:0;position:relative;transition:background .5s var(--ease)}
+.next .lbl{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.next h3{font-size:clamp(48px,7vw,130px);font-weight:800;letter-spacing:-.055em;line-height:.9;justify-self:center;transition:color .4s var(--ease),transform .6s var(--ease)}
+.next .meta2{text-align:right;font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.02em;line-height:1.7}
+.next .meta2 b{color:var(--ink);font-weight:600}
+.next a:hover h3{color:var(--red);transform:translateX(10px)}
+.next .arrow-big{position:absolute;right:40px;bottom:40px;font-size:80px;font-weight:300;opacity:.15;transition:all .5s var(--ease);line-height:.8}
+.next a:hover .arrow-big{opacity:1;color:var(--red);transform:translate(6px,-6px)}
+
+/* ===================== CTA ===================== */
+.cta{padding:180px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
+.cta h2{font-size:clamp(48px,8vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85}
+.cta h2 .red{color:var(--red)}
+.cta .sub{margin-top:28px;font-size:17px;color:var(--mute);max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.55}
+.cta .ctas{margin-top:48px;display:flex;gap:14px;justify-content:center}
+
+/* ===================== FOOTER ===================== */
+footer{background:var(--ink);color:var(--paper);padding:80px 0 40px;position:relative;overflow:hidden}
+footer .big{font-size:clamp(80px,14vw,260px);font-weight:800;letter-spacing:-.06em;line-height:.82;margin-bottom:80px}
+footer .big .red{color:var(--red)}
+footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-top:48px;border-top:1px solid rgba(242,236,224,.12)}
+footer .cols .about p{font-size:14px;color:rgba(242,236,224,.6);line-height:1.6;max-width:36ch;margin-top:20px}
+footer .cols h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,236,224,.45);font-weight:500;margin-bottom:20px}
+footer .cols a{display:block;padding:6px 0;font-size:15px;color:var(--paper);position:relative;width:fit-content;transition:color .3s}
+footer .cols a:hover{color:var(--red)}
+footer .cols a .ar{display:inline-block;opacity:0;transform:translateX(-8px);transition:all .3s var(--ease);margin-left:4px}
+footer .cols a:hover .ar{opacity:1;transform:translateX(0)}
+footer .base{margin-top:60px;padding-top:30px;border-top:1px solid rgba(242,236,224,.12);display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5)}
+footer .base .clock{display:flex;gap:20px;justify-content:center}
+footer .base .clock span{display:flex;align-items:center;gap:8px}
+footer .base .clock .k{color:rgba(242,236,224,.3)}
+footer .base .clock b{color:var(--paper);font-weight:500}
+footer .base .right{text-align:right}
+
+@media (max-width:1100px){
+  .meta-bar{grid-template-columns:repeat(2,1fr);gap:24px}
+  .meta-bar .m::before{display:none}
+  .intro,.steps,.pillar-grid,.gal-row,.res-grid,footer .cols{grid-template-columns:1fr}
+  .sec-head{grid-template-columns:1fr;gap:20px}
+  .next a{grid-template-columns:1fr}
+  .next .meta2{text-align:left}
+}
+@media (max-width:720px){
+  body{cursor:auto}.cursor,.cursor-ring{display:none}
+  nav.top{padding:14px 20px;grid-template-columns:auto auto}
+  nav.top ul,nav.top .meta{display:none}
+  .wrap,.wrap-sm{padding:0 20px}
+  .title h1{font-size:56px}
+  .hero-viz .stage{padding:30px}
+  footer .base{grid-template-columns:1fr}
+}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+</style>
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="top">
+  <a class="logo" href="index.html">
+    <span class="mark"></span>
+    <span class="name"><b>PragueBest</b><sup>®</sup></span>
+  </a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <a href="#" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===================== BREADCRUMB ===================== -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Všechny reference
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> Reference <span>/</span> <b>Elnino</b>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TITLE ===================== -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Case Study 026 &nbsp;—&nbsp; Retail · B2B · Headless</div>
+    <h1 class="reveal d1">Elnino<sup style="font-size:.18em;vertical-align:super;color:var(--red);font-weight:500">®</sup></h1>
+    <p class="sub reveal d2">Jedna <b>headless platforma</b>, 13&nbsp;zemí, 330&nbsp;poboček. Sjednotili jsme evropskou síť parfumerií do&nbsp;jedné <b>codebase</b>.</p>
+
+    <div class="meta-bar reveal d3">
+      <div class="m">
+        <h6>Klient</h6>
+        <p>Elnino Partners<small>Parfumerie · Retail</small></p>
+      </div>
+      <div class="m">
+        <h6>Rok</h6>
+        <p>2024&mdash;2025<small>11 měsíců vývoje</small></p>
+      </div>
+      <div class="m">
+        <h6>Tým</h6>
+        <p>11 lidí<small>6 dev, 2 design, 3 PM</small></p>
+      </div>
+      <div class="m">
+        <h6>Služby</h6>
+        <p>E-shop, PIM, UpSearch<small>Design + vývoj + provoz</small></p>
+      </div>
+      <div class="m">
+        <h6>Stack</h6>
+        <p>Nuxt 3 · Elastic<small>PHP · ERP Abra</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HERO VISUAL ===================== -->
+<section class="hero-viz">
+  <div class="wrap">
+    <div class="frame reveal">
+      <span class="label-floating">Live on elnino.cz</span>
+      <span class="float-corner">Desktop preview<b>1440 × 810</b></span>
+      <div class="stage">
+        <div class="device">
+          <div class="chrome">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url">elnino.cz</div>
+          </div>
+          <div class="topbar2">
+            <div class="br">ELNINO</div>
+            <div class="lnks"><span class="on">PARFÉMY</span><span>KOSMETIKA</span><span>TĚLO</span><span>VLASY</span><span>DÁRKY</span></div>
+            <div class="cart"><div class="i">♥</div><div class="i">⌕</div><div class="i">◐</div></div>
+          </div>
+          <div class="banner">
+            <div>
+              <h4>BOSS The<br>Scent.</h4>
+              <p>Limitovaná podzimní edice. Dostupná online i&nbsp;ve&nbsp;všech 330 pobočkách po celé Evropě.</p>
+              <span class="minibtn">Koupit nyní →</span>
+            </div>
+            <div class="pic"></div>
+          </div>
+          <div class="subh">Bestsellery tento týden <small>zobrazit vše →</small></div>
+          <div class="prods">
+            <div class="p"><div class="ph"></div><b>Chanel N°5</b><small class="cat">Parfémy pro ni</small><small>2&nbsp;490 Kč</small></div>
+            <div class="p"><div class="ph"></div><b>Dior Sauvage</b><small class="cat">Parfémy pro něj</small><small>1&nbsp;890 Kč</small></div>
+            <div class="p"><div class="ph"></div><b>YSL Libre</b><small class="cat">Parfémy pro ni</small><small>2&nbsp;150 Kč</small></div>
+            <div class="p"><div class="ph"></div><b>Lancôme La Vie</b><small class="cat">Parfémy pro ni</small><small>1&nbsp;690 Kč</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CHALLENGE ===================== -->
+<section class="sx">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 01 / Výchozí stav</div>
+      <h2>Třináct e-shopů, které si <span class="red">nerozuměly.</span></h2>
+      <div class="aside">Diagnóza<br><b>4/2024</b></div>
+    </div>
+
+    <div class="intro">
+      <div class="left">
+        <h3 class="reveal">Každá země řešila stejný problém <b>svým vlastním</b> způsobem &mdash; a <span class="red">nikdo z toho neměl užitek.</span></h3>
+      </div>
+      <div class="right reveal d1">
+        <p>Elnino mělo v&nbsp;dubnu 2024 třináct národních e-shopů &mdash; <b>každý na jiné platformě</b>, s&nbsp;vlastními templaty, vlastním katalogem a&nbsp;vlastními integracemi na místní ERP. Když někdo chtěl přidat produkt na všechny trhy, trvalo to dva týdny.</p>
+        <p>Mezinárodní B2B zákazníci přitom dostávali <span class="hi">tři různé ceny za stejný produkt</span> podle toho, kterou doménu si otevřeli. Helpdesk trávil polovinu času vysvětlováním nesrovnalostí.</p>
+        <p>Naše zadání bylo jednoznačné: <b>jedna codebase, jedna pravda</b>, třináct jazykových mutací s&nbsp;lokálními cenami, měnami a&nbsp;logistikou. A&nbsp;to všechno na dobu neurčitou dopředu &mdash; žádný redesign za&nbsp;dva roky.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PULL QUOTE ===================== -->
+<section class="pull">
+  <div class="wrap-sm">
+    <p class="q reveal">Hledali jsme partnera, který rozumí <span class="hi">retailu i&nbsp;datům</span> &mdash; ne jen agenturu, která umí vyrobit pěkný&nbsp;web.</p>
+    <div class="who reveal d1">
+      <div class="av"></div>
+      <div>
+        <b>Tomáš Mareš</b>
+        CEO &middot; Elnino Partners
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPROACH PILLARS ===================== -->
+<section class="pillars">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Přístup</div>
+      <h2>Čtyři pilíře, na&nbsp;kterých platforma <span class="red">stojí.</span></h2>
+      <div class="aside">Architektonické<br><b>rozhodnutí</b></div>
+    </div>
+
+    <div class="pillar-grid">
+      <article class="pillar reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="n">Pilíř / 01</div>
+        <h4>Jedna codebase</h4>
+        <p>Nuxt 3 monorepo s&nbsp;lokalizací na&nbsp;úrovni route. Každá země má vlastní obsah, ceník a&nbsp;logistiku &mdash; kód je ale jeden.</p>
+      </article>
+
+      <article class="pillar reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 10l9 4 9-4M3 14l9 4 9-4"/></svg></div>
+        <div class="n">Pilíř / 02</div>
+        <h4>Headless PIM</h4>
+        <p>Centrální katalog s&nbsp;produkty, obrázky a&nbsp;překlady. Nový produkt se přidá jednou &mdash; a&nbsp;do hodiny je na&nbsp;všech 13 trzích.</p>
+      </article>
+
+      <article class="pillar reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15 15l5 5"/></svg></div>
+        <div class="n">Pilíř / 03</div>
+        <h4>UpSearch™</h4>
+        <p>Vlastní vyhledávání s&nbsp;tolerancí překlepů ve&nbsp;13&nbsp;jazycích, kontextovým řazením a&nbsp;learn-to-rank modelem na&nbsp;historických objednávkách.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Proces</div>
+      <h2>Od výzkumu k&nbsp;launchi za&nbsp;<span class="red">11 měsíců.</span></h2>
+      <div class="aside">Dubben 2024 —<br><b>Březen 2025</b></div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="n"><b>/ 01</b>Discovery<span class="dur">6 týdnů</span></div>
+        <h4>Výzkum, audit, strategie</h4>
+        <p>Prošli jsme všech 13 stávajících e-shopů, sebrali data z&nbsp;GA4 a&nbsp;Hotjaru, udělali 22 zákaznických interview.</p>
+        <ul>
+          <li>Competitive audit</li>
+          <li>Content inventory</li>
+          <li>UX testy (CZ, DE, IT)</li>
+          <li>Tech audit stávajících systémů</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="n"><b>/ 02</b>Design<span class="dur">10 týdnů</span></div>
+        <h4>Design system, prototypy</h4>
+        <p>Tokenizovaný design system v&nbsp;Figmě, 80+ komponent, interaktivní prototyp testovaný na&nbsp;skutečných zákaznících.</p>
+        <ul>
+          <li>Design tokens (cena, měna)</li>
+          <li>120+ obrazovek</li>
+          <li>Accessibility WCAG 2.2 AA</li>
+          <li>Usability tests (n=24)</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="n"><b>/ 03</b>Build<span class="dur">22 týdnů</span></div>
+        <h4>Vývoj v&nbsp;dvoutýdenních sprintech</h4>
+        <p>11 lidí, 11 sprintů, denní standup. CI/CD s&nbsp;feature flagy, ať můžeme vypouštět po částech bez rizika pro živý provoz.</p>
+        <ul>
+          <li>Nuxt 3 + TypeScript</li>
+          <li>PHP BFF layer</li>
+          <li>ElasticSearch 8</li>
+          <li>ERP Abra napojení</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="n"><b>/ 04</b>Launch<span class="dur">6 týdnů</span></div>
+        <h4>Migrace, launch, provoz</h4>
+        <p>Postupná migrace trh po trhu &mdash; začali jsme Českem, pak Slovenskem, pak zbytek. Žádný downtime, žádná ztracená objednávka.</p>
+        <ul>
+          <li>Migrace 240k produktů</li>
+          <li>Rollout ve 13 zemích</li>
+          <li>SLA 99,95 %</li>
+          <li>24/7 support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 04 / Design</div>
+      <h2>Jak to <span class="red">vypadá.</span></h2>
+      <div class="aside">Vybrané<br><b>obrazovky</b></div>
+    </div>
+
+    <div class="gal-row wide">
+      <div class="gal g1 wide-one reveal">
+        <span class="tag">Brand direction</span>
+        <div class="content">
+          <h5>Nová identita</h5>
+          <div class="big">Parfumerie,<br>co <span class="red">voní digitálně.</span></div>
+          <p>Tmavě vínový podklad, editorial typography, fotografie produktů v&nbsp;dramatickém světle. Identita, která funguje stejně tak na&nbsp;webu jako v&nbsp;pobočce.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-row">
+      <div class="gal g2 reveal">
+        <span class="tag">Mobile first</span>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="content">
+            <div class="topl"><span>ELNINO</span><b>Košík · 0</b></div>
+            <div class="srch">Hledat parfém, značku, vůni…</div>
+            <div class="pgrid">
+              <div class="pi"><div class="pph"></div><b>Chanel N°5</b><small>2 490 Kč</small></div>
+              <div class="pi"><div class="pph"></div><b>Dior</b><small>1 890 Kč</small></div>
+              <div class="pi"><div class="pph"></div><b>YSL Libre</b><small>2 150 Kč</small></div>
+              <div class="pi"><div class="pph"></div><b>Boss</b><small>1 290 Kč</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gal g4 reveal d1">
+        <span class="tag">Design tokens</span>
+        <div class="palette">
+          <div class="swatch c1"><b>Primary</b><small>#E30613</small></div>
+          <div class="swatch c2"><b>Ink</b><small>#0A0A0A</small></div>
+          <div class="swatch c3"><b>Paper</b><small>#F2ECE0</small></div>
+          <div class="swatch c4"><b>Mute</b><small>#6B6862</small></div>
+          <div class="swatch c5"><b>Paper 2</b><small>#E3DAC8</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-row">
+      <div class="gal g3 reveal">
+        <span class="tag">Architektura</span>
+        <div class="content">
+          <h5>Systémová mapa</h5>
+          <div class="schema">
+            <div class="sbox main"><b>Nuxt 3</b><small>Frontend</small></div>
+            <div class="sbox"><b>BFF</b><small>PHP API</small></div>
+            <div class="sbox"><b>PIM</b><small>Katalog</small></div>
+            <div class="sbox"><b>ERP</b><small>Abra</small></div>
+          </div>
+          <div class="schema">
+            <div class="sbox"><b>Elastic</b><small>UpSearch</small></div>
+            <div class="sbox"><b>Redis</b><small>Cache</small></div>
+            <div class="sbox"><b>S3</b><small>Media</small></div>
+            <div class="sbox"><b>Stripe</b><small>Payments</small></div>
+          </div>
+          <div class="line">13 zemí &nbsp;·&nbsp; 240k produktů &nbsp;·&nbsp; 1.2M požadavků / den &nbsp;·&nbsp; 99,95 % uptime</div>
+        </div>
+      </div>
+      <div class="gal g5 reveal d1">
+        <span class="tag">Performance</span>
+        <div class="content">
+          <div>
+            <h5>Core Web Vitals</h5>
+            <div class="chart">
+              <div class="bar"><b>30%</b></div>
+              <div class="bar"><b>45%</b></div>
+              <div class="bar"><b>60%</b></div>
+              <div class="bar"><b>75%</b></div>
+              <div class="bar"><b>88%</b></div>
+              <div class="bar"><b>98%</b></div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="s"><b>0,8<sub>s</sub></b><small>Largest Contentful Paint</small></div>
+            <div class="s"><b>98<span class="red">/100</span></b><small>Lighthouse desktop</small></div>
+            <div class="s"><b>95<span class="red">/100</span></b><small>Lighthouse mobile</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTS ===================== -->
+<section class="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 05 / Výsledky</div>
+      <h2>Po roce v&nbsp;provozu, <span class="red">čísla mluví.</span></h2>
+      <div class="aside">Měřeno<br><b>Q1 2026 vs Q1 2024</b></div>
+    </div>
+
+    <div class="res-grid">
+      <div class="res reveal">
+        <div class="rn">Výsledek / 01</div>
+        <div class="value"><span class="plus">+</span>214<sub>%</sub></div>
+        <h4>Konverze v B2B sekci</h4>
+        <p>Velkoobchodní zákazníci nově vidí ceny podle své role a&nbsp;historie objednávek. Průměrná velikost košíku se ztrojnásobila.</p>
+      </div>
+      <div class="res reveal d1">
+        <div class="rn">Výsledek / 02</div>
+        <div class="value">&minus;61<sub>%</sub></div>
+        <h4>Bounce rate na mobilu</h4>
+        <p>Rychlejší načítání (LCP 0,8&nbsp;s), čistší layout a&nbsp;lepší search v&nbsp;místních jazycích. Mobilní nákupní košík dnes generuje 62&nbsp;% obratu.</p>
+      </div>
+      <div class="res reveal d2">
+        <div class="rn">Výsledek / 03</div>
+        <div class="value"><span class="plus">+</span>38<sub>%</sub></div>
+        <h4>Meziroční obrat</h4>
+        <p>Celkový obrat napříč 13&nbsp;zeměmi vzrostl o&nbsp;38&nbsp;%. Nejvyšší přírůstky v&nbsp;Německu a&nbsp;Rakousku, kde UpSearch začal rozumět lokální terminologii.</p>
+      </div>
+      <div class="res reveal d3">
+        <div class="rn">Výsledek / 04</div>
+        <div class="value">11<sub>→ 1</sub></div>
+        <h4>Doba nasazení změn</h4>
+        <p>Přidat nový produkt na&nbsp;všechny trhy trvalo dva&nbsp;týdny. Dnes to zabere hodinu &mdash; přes centrální PIM. Marketing je konečně spokojen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIAL ===================== -->
+<section class="testimonial">
+  <div class="wrap-sm">
+    <div class="mark">&ldquo;</div>
+    <p class="q reveal">PragueBest dokázal převést náš&nbsp;ERP chaos do&nbsp;jednoho koherentního rozhraní. Zákazníci ve&nbsp;velkoobchodě i&nbsp;koncoví kupující teď nakupují ze&nbsp;<span class="hi">stejného zdroje pravdy</span> &mdash; a&nbsp;to byl zlom, který jsme 10&nbsp;let hledali.</p>
+    <div class="who reveal d1">
+      <div class="av"></div>
+      <div class="txt">
+        <b>Tomáš Mareš</b>
+        <small>CEO &middot; Elnino Partners &middot; 330 poboček v&nbsp;Evropě</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEXT PROJECT ===================== -->
+<section class="next">
+  <a href="#">
+    <div class="lbl">Další projekt →</div>
+    <h3>Bestdrive<sup style="font-size:.25em;color:var(--red);font-weight:500;vertical-align:super">®</sup></h3>
+    <div class="meta2">
+      Case Study <b>027</b><br>
+      Auto &middot; B2B &middot; <b>ERP</b>
+    </div>
+    <div class="arrow-big">→</div>
+  </a>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Máte podobný<br>projekt na <span class="red">stole?</span></h2>
+    <p class="sub reveal d1">Napište nám &mdash; ozveme se do&nbsp;24&nbsp;hodin s&nbsp;prvním odhadem a&nbsp;návrhem dalších kroků.</p>
+    <div class="ctas reveal d2">
+      <a href="#" class="btn">
+        <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="index.html" class="btn ghost">
+        <span class="lbl" data-t="Další reference"><span>Další reference</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="#">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
+        <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
+        <a href="#">Big Data <span class="ar">→</span></a>
+        <a href="#">UpSearch™ <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="#">Reference <span class="ar">→</span></a>
+        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.pillar,.res,.step,.gal').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+
+  document.querySelectorAll('.btn').forEach(b=>{
+    let rect;
+    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
+    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
+    b.addEventListener('mouseleave',()=>{b.style.transform=''});
+  });
+})();
+</script>
+</body>
+</html>

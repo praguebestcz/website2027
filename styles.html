@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PragueBest — Style Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Archivo:wght@400;500;600;700;800;900&family=Geist:wght@300;400;500;600;700;900&family=DM+Serif+Display&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:"Inter Tight",system-ui,sans-serif;background:#0d0d0f;color:#e8e8ea;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit}
+
+/* Page shell */
+.shell{max-width:1440px;margin:0 auto;padding:60px 40px 100px}
+.page-head{margin-bottom:60px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:28px;border-bottom:1px solid #222}
+.page-head h1{font-size:38px;font-weight:600;letter-spacing:-.03em;line-height:1.05}
+.page-head h1 b{color:#ff2d2d}
+.page-head p{font-size:14px;color:#8a8a92;max-width:46ch;line-height:1.5}
+
+/* Grid of style previews */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.shell{padding:40px 20px}}
+
+/* Preview frame */
+.preview{
+  border-radius:16px;overflow:hidden;position:relative;
+  border:1px solid #2a2a2e;background:#16161a;
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.preview:hover{transform:translateY(-3px);border-color:#3a3a42;box-shadow:0 30px 60px -25px rgba(0,0,0,.6)}
+.preview .bar{
+  padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+  background:#16161a;border-bottom:1px solid #2a2a2e;
+}
+.preview .bar .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6b6b73;font-weight:600}
+.preview .bar .tag b{color:#ff2d2d}
+.preview .bar .num{font-family:"JetBrains Mono",monospace;font-size:10px;color:#5a5a62;letter-spacing:.08em}
+.preview .stage{height:520px;position:relative;overflow:hidden}
+.preview .meta{padding:18px 20px;border-top:1px solid #2a2a2e;display:flex;justify-content:space-between;gap:20px;font-family:"Inter",sans-serif}
+.preview .meta h3{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;letter-spacing:-.01em}
+.preview .meta p{font-size:12px;color:#8a8a92;line-height:1.55;max-width:48ch}
+.preview .meta .pick{
+  align-self:flex-start;flex-shrink:0;
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 14px;border-radius:999px;background:#ff2d2d;color:#fff;cursor:pointer;border:none;
+  transition:background .2s;
+}
+.preview .meta .pick:hover{background:#ff4545}
+
+/* ================================================
+   1. SWISS / EDITORIAL RED
+   ================================================ */
+.style-1 .stage{background:#fff;color:#0a0a0a;padding:28px 32px;font-family:"Inter Tight",sans-serif}
+.style-1 .nav{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid #0a0a0a;font-size:10px;font-weight:500;letter-spacing:.04em}
+.style-1 .nav .lg{font-weight:800;font-size:13px;letter-spacing:-.01em}
+.style-1 .nav ul{list-style:none;display:flex;gap:18px}
+.style-1 .idx{display:flex;justify-content:space-between;margin-top:26px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;color:#6b6b73;text-transform:uppercase}
+.style-1 .idx b{color:#e10d0d}
+.style-1 h1{margin-top:18px;font-size:52px;font-weight:500;letter-spacing:-.035em;line-height:.95;max-width:10ch}
+.style-1 h1 .red{color:#e10d0d}
+.style-1 .sub{margin-top:22px;font-size:12px;line-height:1.55;max-width:38ch;color:#2a2a2e}
+.style-1 .rule{margin-top:28px;border-top:1px solid #0a0a0a;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#0a0a0a}
+.style-1 .rule div{padding:14px 0;border-right:1px solid #0a0a0a}
+.style-1 .rule div:last-child{border-right:none}
+.style-1 .rule div b{display:block;font-family:"Inter Tight",sans-serif;font-size:22px;font-weight:600;color:#e10d0d;letter-spacing:-.02em;margin-top:4px}
+
+/* ================================================
+   2. BOLD TYPE MONOLITH
+   ================================================ */
+.style-2 .stage{background:#f4f0e8;color:#0a0a0a;padding:32px;font-family:"Geist",sans-serif;position:relative}
+.style-2 .stage::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.style-2 .nav{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.style-2 .nav .lg{font-weight:900;font-size:14px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.style-2 .nav .lg::before{content:"";width:10px;height:10px;background:#e10d0d;border-radius:50%}
+.style-2 .nav ul{list-style:none;display:flex;gap:18px;font-size:11px;font-weight:500;color:#3a3a3e}
+.style-2 .nav .cta{font-size:10px;font-weight:700;letter-spacing:.05em;padding:8px 14px;background:#0a0a0a;color:#fff;border-radius:999px}
+.style-2 h1{margin-top:80px;font-size:98px;font-weight:800;letter-spacing:-.055em;line-height:.85;position:relative;z-index:2}
+.style-2 h1 .red{color:#e10d0d}
+.style-2 .bottom{position:absolute;left:32px;right:32px;bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;z-index:2}
+.style-2 .bottom .sub{font-size:13px;max-width:32ch;color:#3a3a3e;line-height:1.45}
+.style-2 .bottom .arrow{font-size:40px;color:#e10d0d;font-weight:300}
+
+/* ================================================
+   3. TECH / PRODUCT DARK
+   ================================================ */
+.style-3 .stage{background:#0a0a0c;color:#fff;padding:28px 32px;font-family:"Geist",sans-serif;position:relative;overflow:hidden}
+.style-3 .stage::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 80%);
+}
+.style-3 .stage::after{
+  content:"";position:absolute;top:-120px;right:-120px;width:400px;height:400px;
+  background:radial-gradient(circle,#ff2d2d 0%,transparent 60%);opacity:.25;pointer-events:none;
+}
+.style-3 .nav{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.style-3 .nav .lg{font-weight:700;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.style-3 .nav .lg::before{content:"";width:18px;height:18px;background:linear-gradient(135deg,#ff2d2d,#b20505);border-radius:5px;box-shadow:0 0 20px rgba(255,45,45,.5)}
+.style-3 .nav ul{list-style:none;display:flex;gap:16px;font-size:11px;color:#8a8a92;font-weight:500}
+.style-3 .nav .cta{font-size:10px;font-weight:600;padding:7px 14px;background:#fff;color:#0a0a0c;border-radius:6px}
+.style-3 .pill{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;margin-top:50px;padding:6px 14px;border:1px solid #2a2a32;background:rgba(255,255,255,.03);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;color:#a0a0a8;letter-spacing:.06em}
+.style-3 .pill .dot{width:6px;height:6px;border-radius:50%;background:#ff2d2d;box-shadow:0 0 8px #ff2d2d}
+.style-3 h1{position:relative;z-index:2;margin-top:18px;font-size:44px;font-weight:500;letter-spacing:-.03em;line-height:1;max-width:11ch;background:linear-gradient(180deg,#fff,#a0a0a8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.style-3 h1 .red{background:linear-gradient(180deg,#ff5959,#ff2d2d);-webkit-background-clip:text;background-clip:text;color:transparent}
+.style-3 .sub{position:relative;z-index:2;margin-top:22px;font-size:12px;max-width:34ch;color:#8a8a92;line-height:1.55}
+.style-3 .stats{position:absolute;left:32px;right:32px;bottom:28px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:18px;z-index:2;padding-top:18px;border-top:1px solid #1a1a1f}
+.style-3 .stats div{}
+.style-3 .stats .n{font-size:22px;font-weight:600;letter-spacing:-.02em;color:#fff}
+.style-3 .stats .l{font-family:"JetBrains Mono",monospace;font-size:9px;color:#6b6b73;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* ================================================
+   4. BRUTALIST GRID
+   ================================================ */
+.style-4 .stage{background:#f2eee6;color:#0a0a0a;padding:0;font-family:"Archivo",sans-serif;position:relative;overflow:hidden}
+.style-4 .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:3px solid #0a0a0a}
+.style-4 .nav .lg{font-weight:900;font-size:14px;letter-spacing:-.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.style-4 .nav .lg::before{content:"■";color:#e10d0d}
+.style-4 .nav ul{list-style:none;display:flex;gap:14px;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.style-4 .nav .cta{font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;padding:8px 14px;background:#e10d0d;color:#fff;border:2px solid #0a0a0a}
+.style-4 .grid-layout{display:grid;grid-template-columns:1.6fr 1fr;height:calc(100% - 54px)}
+.style-4 .left{padding:22px;border-right:3px solid #0a0a0a;display:flex;flex-direction:column;justify-content:space-between}
+.style-4 .left .eye{font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:2px solid #0a0a0a;display:inline-block;background:#fff;align-self:flex-start}
+.style-4 .left h1{font-size:58px;font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase;margin-top:16px}
+.style-4 .left h1 .red{color:#e10d0d;-webkit-text-stroke:2px #0a0a0a;paint-order:stroke fill}
+.style-4 .left .sub{font-size:11px;line-height:1.4;max-width:34ch;margin-top:14px}
+.style-4 .left .row{display:flex;gap:10px}
+.style-4 .left .row .chip{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;border:2px solid #0a0a0a;background:#fff}
+.style-4 .right{display:flex;flex-direction:column}
+.style-4 .right .top{flex:1;background:#e10d0d;padding:18px;color:#fff;border-bottom:3px solid #0a0a0a;display:flex;flex-direction:column;justify-content:space-between}
+.style-4 .right .top b{font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:.9}
+.style-4 .right .top small{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.style-4 .right .bot{flex:1;background:#0a0a0a;padding:18px;color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.style-4 .right .bot b{font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:.9}
+.style-4 .right .bot small{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#e10d0d}
+
+/* ================================================
+   5. WARM EDITORIAL MAGAZINE
+   ================================================ */
+.style-5 .stage{background:#f4efe3;color:#0a0a0a;padding:24px 28px;font-family:"IBM Plex Sans",sans-serif;position:relative}
+.style-5 .nav{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid #0a0a0a}
+.style-5 .nav .lg{font-family:"DM Serif Display",serif;font-weight:400;font-size:22px;letter-spacing:-.01em}
+.style-5 .nav ul{list-style:none;display:flex;gap:16px;font-size:10px;font-weight:500;letter-spacing:.03em}
+.style-5 .issue{display:flex;justify-content:space-between;padding:10px 0;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#5a5550;border-bottom:1px solid #0a0a0a}
+.style-5 .issue b{color:#c81818}
+.style-5 h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:46px;letter-spacing:-.025em;line-height:1;margin-top:22px;max-width:13ch}
+.style-5 h1 .red{color:#c81818}
+.style-5 .cols{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:24px}
+.style-5 .cols .lede{font-size:11.5px;line-height:1.55;color:#2a2520;column-count:2;column-gap:14px}
+.style-5 .cols .lede:first-letter{font-family:"DM Serif Display",serif;font-size:38px;float:left;line-height:.9;padding-right:6px;padding-top:3px;color:#c81818}
+.style-5 .cols .sidebar{font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#5a5550}
+.style-5 .cols .sidebar h4{color:#0a0a0a;font-weight:600;margin-bottom:8px;border-bottom:1px solid #0a0a0a;padding-bottom:4px}
+.style-5 .cols .sidebar ul{list-style:none;margin-bottom:14px}
+.style-5 .cols .sidebar li{padding:3px 0;display:flex;justify-content:space-between}
+.style-5 .cols .sidebar li span:last-child{color:#c81818;font-weight:700}
+.style-5 .strip{position:absolute;left:0;right:0;bottom:0;background:#c81818;color:#f4efe3;padding:10px 28px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
+
+/* ================================================
+   6. NEO-CORPORATE RED
+   ================================================ */
+.style-6 .stage{background:#fff;color:#1a1a2e;padding:24px 28px;font-family:"Inter",sans-serif;position:relative}
+.style-6 .nav{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px}
+.style-6 .nav .lg{font-weight:800;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;color:#1a1a2e}
+.style-6 .nav .lg::before{content:"";width:20px;height:20px;background:#d32f2f;border-radius:4px}
+.style-6 .nav ul{list-style:none;display:flex;gap:18px;font-size:12px;font-weight:500;color:#4a4a5e}
+.style-6 .nav .cta{font-size:11px;font-weight:600;padding:9px 16px;background:#d32f2f;color:#fff;border-radius:6px}
+.style-6 .pill{display:inline-flex;align-items:center;gap:7px;margin-top:30px;padding:6px 12px;background:#fee;color:#d32f2f;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.02em}
+.style-6 .pill .dot{width:6px;height:6px;border-radius:50%;background:#d32f2f}
+.style-6 h1{margin-top:14px;font-size:44px;font-weight:700;letter-spacing:-.028em;line-height:1.05;max-width:13ch;color:#1a1a2e}
+.style-6 h1 .red{color:#d32f2f}
+.style-6 .sub{margin-top:18px;font-size:12px;max-width:36ch;color:#6a6a7e;line-height:1.55}
+.style-6 .btns{margin-top:22px;display:flex;gap:10px}
+.style-6 .btns a{font-size:11px;font-weight:600;padding:10px 18px;border-radius:6px}
+.style-6 .btns .a{background:#d32f2f;color:#fff}
+.style-6 .btns .b{border:1px solid #ddd;color:#1a1a2e}
+.style-6 .cards{position:absolute;left:28px;right:28px;bottom:22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.style-6 .cards .c{padding:14px;background:#f7f7fa;border-radius:8px;border:1px solid #e8e8ee}
+.style-6 .cards .c .ico{width:28px;height:28px;border-radius:6px;background:#d32f2f;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;margin-bottom:8px}
+.style-6 .cards .c b{font-size:11px;font-weight:700;color:#1a1a2e;display:block}
+.style-6 .cards .c small{font-size:9px;color:#6a6a7e;display:block;margin-top:2px;line-height:1.4}
+
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="page-head">
+    <div>
+      <h1>Vyber styl pro <b>PragueBest.</b></h1>
+      <p style="margin-top:8px">6 směrů &mdash; stejný obsah, 6 různých estetik. Kurziva nikde, hlavní barva červená. Klikni na "Zvolit" a pustím se do plné verze.</p>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b6b73;letter-spacing:.08em;text-align:right">
+      STYLE EXPLORER<br>v1 / 06 options
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="preview style-1">
+      <div class="bar"><span class="tag">Option <b>01</b></span><span class="num">SWISS / EDITORIAL RED</span></div>
+      <div class="stage">
+        <div class="nav">
+          <div class="lg">PRAGUEBEST</div>
+          <ul><li>Reference</li><li>Služby</li><li>O nás</li><li>Kontakt</li></ul>
+          <div>+420 775 219 999</div>
+        </div>
+        <div class="idx">
+          <span><b>§ 01</b> &nbsp; Studio</span>
+          <span>1999 &mdash; 2026</span>
+          <span>Praha / Karlín</span>
+        </div>
+        <h1>Tvoříme eshopy, weby a aplikace<span class="red">.</span></h1>
+        <p class="sub">Digitální agentura s 27 lety praxe. Headless e-commerce, webové aplikace, vlastní vyhledávač UpSearch a datové modely.</p>
+        <div class="rule">
+          <div>Klientů<b>180+</b></div>
+          <div>Obrat<b>150 mld.</b></div>
+          <div>Ocenění<b>17×</b></div>
+          <div>Tým<b>37</b></div>
+        </div>
+      </div>
+      <div class="meta">
+        <div>
+          <h3>01. Swiss / Editorial Red</h3>
+          <p>Čistá bílá, černý text, červená jako ostrý akcent. Ruler lines, číselné indexy. Disciplinovaný studio-grade minimalismus.</p>
+        </div>
+        <button class="pick" onclick="pick(1)">Zvolit</button>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="preview style-2">
+      <div class="bar"><span class="tag">Option <b>02</b></span><span class="num">BOLD TYPE MONOLITH</span></div>
+      <div class="stage">
+        <div class="nav">
+          <div class="lg">PragueBest</div>
+          <ul><li>Reference</li><li>Služby</li><li>O nás</li></ul>
+          <div class="cta">Napište nám</div>
+        </div>
+        <h1>E-shopy.<br>Weby.<br><span class="red">Data.</span></h1>
+        <div class="bottom">
+          <p class="sub">Stavíme digitální produkty, které umí prodávat. Od roku 1999 z&nbsp;Karlína.</p>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div>
+          <h3>02. Bold Type Monolith</h3>
+          <p>Cream pozadí, jedna červená, obří ultra-tight sans. Generous whitespace, subtilní grain. Refined a drahý.</p>
+        </div>
+        <button class="pick" onclick="pick(2)">Zvolit</button>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="preview style-3">
+      <div class="bar"><span class="tag">Option <b>03</b></span><span class="num">TECH / PRODUCT DARK</span></div>
+      <div class="stage">
+        <div class="nav">
+          <div class="lg">PragueBest</div>
+          <ul><li>Platform</li><li>Services</li><li>Work</li><li>Team</li></ul>
+          <div class="cta">Get in touch</div>
+        </div>
+        <div class="pill"><span class="dot"></span>Přijímáme projekty Q3/26</div>
+        <h1>Tvoříme eshopy a aplikace, které umí <span class="red">prodávat.</span></h1>
+        <p class="sub">Headless commerce, vlastní vyhledávač UpSearch a prediktivní modely. Stack: Nuxt, React, ElasticSearch.</p>
+        <div class="stats">
+          <div><div class="n">150<span style="font-size:12px;color:#6b6b73"> mld.</span></div><div class="l">Obrat klientů</div></div>
+          <div><div class="n">100+</div><div class="l">E-shopů</div></div>
+          <div><div class="n">27</div><div class="l">Let praxe</div></div>
+          <div><div class="n">17×</div><div class="l">Ocenění</div></div>
+        </div>
+      </div>
+      <div class="meta">
+        <div>
+          <h3>03. Tech / Product Dark</h3>
+          <p>Antracit + červený glow, subtilní grid, mono labels. Vercel / Linear / Resend feel. Product-lead agency look.</p>
+        </div>
+        <button class="pick" onclick="pick(3)">Zvolit</button>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="preview style-4">
+      <div class="bar"><span class="tag">Option <b>04</b></span><span class="num">BRUTALIST GRID</span></div>
+      <div class="stage">
+        <div class="nav">
+          <div class="lg">PRAGUEBEST</div>
+          <ul><li>Reference</li><li>Služby</li><li>O nás</li></ul>
+          <div class="cta">Poptávka</div>
+        </div>
+        <div class="grid-layout">
+          <div class="left">
+            <div>
+              <div class="eye">Est. 1999 &nbsp;·&nbsp; Praha</div>
+              <h1>Tvoříme <span class="red">eshopy</span> &amp; weby</h1>
+              <p class="sub">Headless architektura, Big Data a vlastní vyhledávač UpSearch. Žádné šablony. Žádné kompromisy.</p>
+            </div>
+            <div class="row">
+              <span class="chip">Nuxt</span>
+              <span class="chip">PHP</span>
+              <span class="chip">Data</span>
+              <span class="chip">UX</span>
+            </div>
+          </div>
+          <div class="right">
+            <div class="top"><small>Obrat</small><b>150<br>mld.</b></div>
+            <div class="bot"><small>E-shopů</small><b>100+</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+        <div>
+          <h3>04. Brutalist Grid</h3>
+          <p>Tlusté černé borders, full-bleed červené bloky, raw feel bez stínů. Archivo heavy. Rebel, ale ne chaos.</p>
+        </div>
+        <button class="pick" onclick="pick(4)">Zvolit</button>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="preview style-5">
+      <div class="bar"><span class="tag">Option <b>05</b></span><span class="num">WARM EDITORIAL MAGAZINE</span></div>
+      <div class="stage">
+        <div class="nav">
+          <div class="lg">PragueBest</div>
+          <ul><li>Work</li><li>Studio</li><li>Journal</li><li>Contact</li></ul>
+        </div>
+        <div class="issue">
+          <span>Vydání No. 0427</span>
+          <span><b>●</b> Praha / Karlín</span>
+          <span>14 / 04 / 2026</span>
+          <span>Ročník XXVII</span>
+        </div>
+        <h1>Stavíme e-shopy, které umí prodávat<span class="red">.</span></h1>
+        <div class="cols">
+          <p class="lede">Digitální agentura z Karlína. Od roku 1999 navrhujeme a stavíme e-commerce platformy, webové aplikace a datové nástroje. Klienty doprovázíme dlouhodobě &mdash; většina s námi zůstává přes pět let. Věříme, že software je řemeslo, ne produkt.</p>
+          <div class="sidebar">
+            <h4>V tomto vydání</h4>
+            <ul>
+              <li><span>§ 01 Studio</span><span>02</span></li>
+              <li><span>§ 02 Služby</span><span>06</span></li>
+              <li><span>§ 03 Reference</span><span>12</span></li>
+              <li><span>§ 04 Kariéra</span><span>24</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="strip"><span>SPOJUJEME DESIGN · VÝVOJ · DATA</span><span>27 LET ŘEMESLA →</span></div>
+      </div>
+      <div class="meta">
+        <div>
+          <h3>05. Warm Editorial Magazine</h3>
+          <p>Béžové pozadí, serif pro display (DM Serif Display), redakční rytmus — ročník, vydání, sekce. Bloomberg Businessweek vibe.</p>
+        </div>
+        <button class="pick" onclick="pick(5)">Zvolit</button>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="preview style-6">
+      <div class="bar"><span class="tag">Option <b>06</b></span><span class="num">NEO-CORPORATE RED</span></div>
+      <div class="stage">
+        <div class="nav">
+          <div class="lg">PragueBest</div>
+          <ul><li>Produkty</li><li>Řešení</li><li>Reference</li><li>O nás</li></ul>
+          <div class="cta">Kontakt</div>
+        </div>
+        <div class="pill"><span class="dot"></span>27 let zkušeností · 100+ e-shopů</div>
+        <h1>Tvoříme eshopy a aplikace, které <span class="red">umí prodávat.</span></h1>
+        <p class="sub">Od analýzy po provoz &mdash; headless e-commerce, webové aplikace a datové nástroje pro moderní obchod.</p>
+        <div class="btns">
+          <a class="a" href="#">Začněme projekt →</a>
+          <a class="b" href="#">Reference</a>
+        </div>
+        <div class="cards">
+          <div class="c"><div class="ico">E</div><b>E-shopy</b><small>B2B &amp; B2C</small></div>
+          <div class="c"><div class="ico">W</div><b>Aplikace</b><small>Web &amp; API</small></div>
+          <div class="c"><div class="ico">D</div><b>Big Data</b><small>Personalizace</small></div>
+        </div>
+      </div>
+      <div class="meta">
+        <div>
+          <h3>06. Neo-Corporate Red</h3>
+          <p>Bílé pozadí, klasická červená, ploché karty, čitelná hierarchie. Seriózní a důvěryhodné &mdash; blízko tomu, co PragueBest je dnes, jen moderněji.</p>
+        </div>
+        <button class="pick" onclick="pick(6)">Zvolit</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function pick(n){
+  const names=["","Swiss / Editorial Red","Bold Type Monolith","Tech / Product Dark","Brutalist Grid","Warm Editorial Magazine","Neo-Corporate Red"];
+  alert("Zvoleno: Option "+n+" — "+names[n]+"\n\nŘekni to Claudovi a rozpracuje plnou verzi.");
+}
+</script>
+</body>
+</html>

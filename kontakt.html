@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kontakt — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2ece0;--paper-2:#ebe4d4;--paper-3:#e3dac8;
+  --ink:#0a0a0a;--ink-2:#1a1a1a;--ink-3:#2a2a2a;
+  --mute:#6b6862;--mute-2:#8a8680;
+  --line:rgba(10,10,10,.12);--line-2:rgba(10,10,10,.06);
+  --red:#e30613;--red-2:#b8050f;
+  --sans:"Geist",system-ui,-apple-system,sans-serif;
+  --mono:"Geist Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--red);color:#fff}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;letter-spacing:-.01em;font-feature-settings:"ss01","cv11","tnum";-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:none;border:none;background:none}
+img,svg{display:block;max-width:100%}
+
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+.cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);mix-blend-mode:difference}
+.cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(10,10,10,.35);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease),border-color .3s,background .3s}
+body.cursor-hover .cursor{width:4px;height:4px;background:#fff}
+body.cursor-hover .cursor-ring{width:56px;height:56px;border-color:var(--ink);background:rgba(10,10,10,.08)}
+@media (hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none}a,button,input,textarea,select{cursor:auto}}
+
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:200}
+.scroll-progress::after{content:"";position:absolute;top:0;left:0;height:100%;width:var(--p,0%);background:var(--red);transition:width .05s linear;box-shadow:0 0 8px rgba(227,6,19,.5)}
+
+.wrap{max-width:1480px;margin:0 auto;padding:0 40px;position:relative;z-index:2}
+.wrap-sm{max-width:1080px;margin:0 auto;padding:0 40px;position:relative;z-index:2}
+
+/* ===================== NAV ===================== */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;transition:padding .4s var(--ease),background .3s,backdrop-filter .3s}
+nav.top.scrolled{padding:14px 40px;background:rgba(242,236,224,.82);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;letter-spacing:-.02em;position:relative}
+.logo .mark{width:12px;height:12px;border-radius:50%;background:var(--red);animation:breath 3.2s var(--ease) infinite;position:relative}
+.logo .mark::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 70%);animation:halo 3.2s var(--ease) infinite}
+@keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(.85)}}
+@keyframes halo{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:1;transform:scale(1.4)}}
+.logo .name b{font-weight:800}
+.logo sup{font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:500;margin-left:4px;position:relative;top:-6px}
+nav.top ul{list-style:none;display:flex;gap:8px;justify-content:center}
+nav.top ul a{position:relative;padding:10px 16px;font-size:14px;font-weight:500;border-radius:999px}
+nav.top ul a .t{position:relative;display:inline-block;overflow:hidden;vertical-align:bottom}
+nav.top ul a .t span{display:block;transition:transform .45s var(--ease)}
+nav.top ul a .t::after{content:attr(data-t);position:absolute;top:100%;left:0;font-weight:500;transition:transform .45s var(--ease)}
+nav.top ul a:hover .t span{transform:translateY(-100%)}
+nav.top ul a:hover .t::after{transform:translateY(-100%)}
+nav.top .meta{display:flex;gap:20px;align-items:center;justify-content:flex-end;font-family:var(--mono);font-size:11px;color:var(--mute)}
+nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;margin-right:6px;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(43,182,93,.12)}}
+
+/* ===================== BUTTONS ===================== */
+.btn{--bg:var(--ink);--fg:var(--paper);position:relative;display:inline-flex;align-items:center;gap:14px;padding:16px 24px 16px 28px;background:var(--bg);color:var(--fg);border-radius:999px;font-weight:500;font-size:14px;letter-spacing:-.01em;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease-out)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--red);transform:translateY(101%);transition:transform .55s var(--ease-out)}
+.btn:hover::before{transform:translateY(0)}
+.btn .lbl{position:relative;display:inline-block;overflow:hidden;line-height:1.2}
+.btn .lbl span{display:block;transition:transform .5s var(--ease)}
+.btn .lbl::after{content:attr(data-t);position:absolute;top:100%;left:0;transition:transform .5s var(--ease)}
+.btn:hover .lbl span{transform:translateY(-100%)}
+.btn:hover .lbl::after{transform:translateY(-100%)}
+.btn .arr{width:22px;height:22px;border-radius:50%;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;position:relative}
+.btn .arr svg{width:12px;height:12px;transition:transform .5s var(--ease)}
+.btn:hover .arr svg{transform:translate(32px,-32px)}
+.btn .arr::after{content:"";position:absolute;width:12px;height:12px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 5l7 7-7 7'/></svg>") center/contain no-repeat;transform:translate(-32px,32px);transition:transform .5s var(--ease) .05s}
+.btn:hover .arr::after{transform:translate(0,0)}
+.btn.ghost{--bg:transparent;--fg:var(--ink);border:1px solid var(--ink)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+.btn.ghost .arr{background:var(--ink);color:var(--paper)}
+.btn.ghost .arr svg{stroke:var(--paper)}
+.btn.ghost .arr::after{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2ece0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 5l7 7-7 7'/></svg>") center/contain no-repeat}
+.btn.sm{padding:11px 16px 11px 20px;font-size:13px;gap:10px}
+.btn.sm .arr{width:18px;height:18px}
+.btn.sm .arr svg{width:10px;height:10px}
+.btn.big{padding:22px 32px 22px 36px;font-size:16px}
+.btn.big .arr{width:28px;height:28px}
+.btn.big .arr svg{width:14px;height:14px}
+
+/* ===================== BREADCRUMB ===================== */
+.crumbs{padding:130px 0 0}
+.crumbs .wrap{display:flex;justify-content:space-between;align-items:center}
+.crumbs .back{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:500;transition:color .3s}
+.crumbs .back .dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.crumbs .back .dot svg{width:12px;height:12px;stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+.crumbs .back:hover{color:var(--ink)}
+.crumbs .back:hover .dot{background:var(--ink);border-color:var(--ink)}
+.crumbs .back:hover .dot svg{stroke:var(--paper);transform:translateX(-3px)}
+.crumbs .path{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.crumbs .path b{color:var(--ink);font-weight:600}
+.crumbs .path span{opacity:.4;margin:0 10px}
+
+/* ===================== TITLE ===================== */
+.title{padding:80px 0 60px;position:relative}
+.title .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:30px;display:flex;align-items:center;gap:14px}
+.title .idx::before{content:"";width:40px;height:1px;background:var(--red)}
+.title h1{font-size:clamp(88px,16vw,260px);font-weight:800;letter-spacing:-.055em;line-height:.82}
+.title h1 .red{color:var(--red)}
+.title .lede{margin-top:48px;font-size:clamp(22px,2.4vw,36px);font-weight:400;letter-spacing:-.02em;line-height:1.2;max-width:28ch;color:var(--ink-3)}
+.title .lede b{color:var(--ink);font-weight:600}
+.title .lede .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 2px}
+
+/* Status strip */
+.status{margin-top:60px;padding:20px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto auto;gap:40px;align-items:center;font-family:var(--mono);font-size:12px}
+.status .live{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.status .live .d{width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 4px rgba(43,182,93,.18);animation:pulse2 2s infinite}
+@keyframes pulse2{50%{box-shadow:0 0 0 8px rgba(43,182,93,.08)}}
+.status .mid{color:var(--mute);letter-spacing:.02em}
+.status .mid b{color:var(--ink);font-weight:600}
+.status .time{color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
+.status .time b{color:var(--ink);font-weight:600}
+
+/* ===================== CHANNEL CARDS ===================== */
+.channels{padding:100px 0 40px}
+.ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ch{
+  padding:48px 44px 44px;border:1px solid var(--line);border-radius:20px;
+  background:var(--paper);position:relative;overflow:hidden;
+  transition:all .5s var(--ease);display:flex;flex-direction:column;
+}
+.ch::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.ch:hover::before{transform:translateY(0)}
+.ch > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.ch:hover > *{color:var(--paper)}
+.ch:hover{border-color:var(--ink);transform:translateY(-4px)}
+.ch .ico{
+  width:64px;height:64px;border-radius:18px;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;margin-bottom:32px;
+  transition:all .5s var(--ease);
+}
+.ch:hover .ico{background:var(--red);color:#fff}
+.ch .ico svg{width:28px;height:28px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ch .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.ch:hover .n{color:rgba(242,236,224,.5)}
+.ch h3{font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1.05;margin-bottom:20px}
+.ch .primary{font-size:22px;font-weight:600;letter-spacing:-.015em;margin-bottom:6px;word-break:break-word}
+.ch .primary small{display:block;font-weight:400;color:var(--mute);font-size:13px;margin-top:4px;font-family:var(--mono)}
+.ch:hover .primary small{color:rgba(242,236,224,.55)}
+.ch .extras{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--mute);line-height:1.9}
+.ch:hover .extras{border-color:rgba(242,236,224,.2);color:rgba(242,236,224,.55)}
+.ch .extras b{color:var(--ink);font-weight:500;display:block;font-family:var(--sans);font-size:14px;letter-spacing:-.01em;margin-top:2px}
+.ch:hover .extras b{color:var(--paper)}
+.ch .extras .row{display:flex;justify-content:space-between;padding:2px 0}
+.ch .copy{
+  margin-top:auto;padding-top:28px;display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;
+  transition:color .4s var(--ease);
+}
+.ch:hover .copy{color:rgba(242,236,224,.5)}
+.ch .copy .cbtn{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease);
+}
+.ch:hover .copy .cbtn{border-color:rgba(242,236,224,.2)}
+.ch .copy .cbtn svg{width:13px;height:13px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s var(--ease)}
+.ch:hover .copy .cbtn svg{stroke:var(--paper)}
+.ch .copy:hover .cbtn{background:var(--red);border-color:var(--red)}
+.ch .copy:hover .cbtn svg{stroke:#fff}
+.ch .copy.copied .cbtn{background:var(--red);border-color:var(--red)}
+.ch .copy.copied .cbtn svg{stroke:#fff}
+
+/* ===================== FORM SECTION ===================== */
+.form-section{padding:160px 0;border-top:1px solid var(--ink);margin-top:100px}
+.form-grid{display:grid;grid-template-columns:0.75fr 1.25fr;gap:120px;align-items:start}
+.form-grid .left{position:sticky;top:120px}
+.form-grid .left .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:28px;display:flex;align-items:center;gap:14px}
+.form-grid .left .idx::before{content:"";width:32px;height:1px;background:var(--red)}
+.form-grid .left h2{font-size:clamp(48px,5.5vw,88px);font-weight:700;letter-spacing:-.045em;line-height:.92;margin-bottom:30px}
+.form-grid .left h2 .red{color:var(--red)}
+.form-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.6;max-width:40ch}
+.form-grid .left p + p{margin-top:16px}
+.form-grid .left p b{color:var(--ink);font-weight:600}
+.form-grid .left .proof{margin-top:40px;padding-top:28px;border-top:1px solid var(--line);display:flex;gap:30px}
+.form-grid .left .proof div{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
+.form-grid .left .proof div b{display:block;font-family:var(--sans);font-size:28px;font-weight:700;letter-spacing:-.025em;color:var(--ink);margin-top:6px;text-transform:none}
+.form-grid .left .proof div b .red{color:var(--red)}
+
+/* Form */
+form{display:grid;gap:14px}
+.field{position:relative}
+.field label{
+  position:absolute;left:22px;top:22px;font-size:15px;color:var(--mute);
+  pointer-events:none;transition:all .35s var(--ease);font-weight:400;
+  background:var(--paper);padding:0 6px;
+}
+.field input,.field textarea,.field select{
+  width:100%;padding:22px 22px;border:1px solid var(--line);
+  background:transparent;border-radius:14px;font-size:15px;font-weight:500;
+  letter-spacing:-.005em;transition:all .35s var(--ease);
+  font-family:var(--sans);
+}
+.field textarea{resize:none;min-height:160px;line-height:1.6}
+.field select{appearance:none;-webkit-appearance:none;cursor:none;padding-right:48px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 22px center;background-size:16px}
+.field input:hover,.field textarea:hover,.field select:hover{border-color:rgba(10,10,10,.3)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--ink);background:rgba(255,255,255,.4)}
+.field input:focus ~ label,.field textarea:focus ~ label,.field input:not(:placeholder-shown) ~ label,.field textarea:not(:placeholder-shown) ~ label,.field.has-val label{
+  top:-8px;font-size:11px;font-weight:600;color:var(--red);letter-spacing:.04em;text-transform:uppercase;
+}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field .hint{position:absolute;right:22px;top:22px;font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;pointer-events:none}
+
+/* Chip choice */
+.chips-label{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.chips-label::before{content:"";width:20px;height:1px;background:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{
+  padding:12px 20px;border:1px solid var(--line);border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:-.005em;color:var(--ink);
+  transition:all .3s var(--ease);background:transparent;cursor:none;
+}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* Budget slider placeholder — visual card group */
+.budget{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
+.budget button{
+  padding:16px 14px;border:1px solid var(--line);border-radius:12px;
+  font-size:13px;font-weight:600;text-align:center;color:var(--ink);
+  transition:all .3s var(--ease);cursor:none;
+}
+.budget button small{display:block;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--mute);letter-spacing:.04em;margin-top:4px}
+.budget button:hover{border-color:var(--ink)}
+.budget button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.budget button.on small{color:rgba(242,236,224,.55)}
+
+/* Submit */
+.submit-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-top:10px;padding-top:22px;border-top:1px solid var(--line)}
+.submit-row .note{font-family:var(--mono);font-size:11px;color:var(--mute);line-height:1.6;max-width:48ch}
+.submit-row .note b{color:var(--ink);font-weight:600}
+
+/* ===================== TEAM ===================== */
+.team{padding:140px 0;border-top:1px solid var(--ink)}
+.sec-head{display:grid;grid-template-columns:140px 1fr auto;gap:48px;align-items:baseline;padding-bottom:32px;border-bottom:1px solid var(--ink);margin-bottom:60px}
+.sec-head .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.sec-head h2{font-size:clamp(44px,5.5vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.92;max-width:22ch}
+.sec-head h2 .red{color:var(--red)}
+.sec-head .aside{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;line-height:1.8}
+.sec-head .aside b{color:var(--ink);font-weight:600}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.person{
+  padding:0;border-radius:16px;overflow:hidden;background:var(--paper);
+  border:1px solid var(--line);transition:all .5s var(--ease);
+  position:relative;
+}
+.person:hover{border-color:var(--ink);transform:translateY(-4px)}
+.person .photo{aspect-ratio:4/5;position:relative;overflow:hidden;background:#ddd}
+.person.p1 .photo{background:linear-gradient(140deg,#a47856,#3a2512)}
+.person.p2 .photo{background:linear-gradient(140deg,#e8d4a0,#7a5830)}
+.person.p3 .photo{background:linear-gradient(140deg,#c4a89c,#6a4030)}
+.person.p4 .photo{background:linear-gradient(140deg,#a8b896,#3a4830)}
+.person .photo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.2),transparent 60%)}
+.person .photo .tag{position:absolute;top:16px;left:16px;font-family:var(--mono);font-size:10px;font-weight:600;padding:5px 10px;background:rgba(10,10,10,.55);backdrop-filter:blur(8px);color:#fff;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;z-index:2}
+.person .photo .dept{position:absolute;bottom:16px;left:16px;right:16px;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase;z-index:2}
+.person .info{padding:24px 26px 28px}
+.person h4{font-size:20px;font-weight:700;letter-spacing:-.015em;line-height:1.1}
+.person .role{font-size:13px;color:var(--mute);margin-top:4px;font-family:var(--mono)}
+.person .contact{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;font-weight:500;display:flex;flex-direction:column;gap:4px}
+.person .contact a{color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:color .3s}
+.person .contact a:hover{color:var(--red)}
+.person .contact a small{font-family:var(--mono);font-size:10px;color:var(--mute);margin-right:6px;letter-spacing:.04em;text-transform:uppercase;min-width:30px}
+
+/* ===================== VISIT / MAP ===================== */
+.visit{padding:140px 0;border-top:1px solid var(--ink)}
+.visit-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:stretch}
+.visit .info-box{padding:56px 48px;background:var(--ink);color:var(--paper);border-radius:20px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.visit .info-box::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.25),transparent 60%);filter:blur(40px);pointer-events:none}
+.visit .info-box > *{position:relative}
+.visit .info-box .lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.visit .info-box .lbl::before{content:"";width:24px;height:1px;background:var(--red)}
+.visit .info-box h3{font-size:52px;font-weight:700;letter-spacing:-.035em;line-height:.95;margin-bottom:24px}
+.visit .info-box h3 .red{color:var(--red)}
+.visit .info-box .addr{font-size:18px;font-weight:500;line-height:1.5;margin-bottom:28px}
+.visit .info-box .addr small{display:block;font-family:var(--mono);font-size:12px;color:rgba(242,236,224,.55);margin-top:6px;font-weight:400;letter-spacing:.02em}
+.visit .info-box .metro{padding:24px 0;margin-bottom:28px;border-top:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.6);letter-spacing:.04em;line-height:2}
+.visit .info-box .metro .row{display:flex;justify-content:space-between;align-items:center}
+.visit .info-box .metro .row b{color:var(--paper);font-family:var(--sans);font-weight:600;letter-spacing:-.01em;font-size:14px}
+.visit .info-box .metro .row .line{display:inline-block;width:16px;height:16px;border-radius:50%;color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-right:8px}
+.visit .info-box .metro .row .B{background:#1e5aad}
+.visit .info-box .metro .row .bus{background:var(--red)}
+.visit .info-box .open{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:#2bb65d;letter-spacing:.04em;text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.visit .info-box .open::before{content:"";width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.25);animation:pulse2 2s infinite}
+.visit .map{position:relative;border-radius:20px;overflow:hidden;background:var(--paper-2);border:1px solid var(--line);min-height:460px}
+.visit .map svg{position:absolute;inset:0;width:100%;height:100%}
+.visit .map .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);z-index:5;display:flex;flex-direction:column;align-items:center}
+.visit .map .pin .drop{
+  width:44px;height:44px;background:var(--red);border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px -5px rgba(227,6,19,.6);
+  animation:bounce 2s infinite;
+}
+.visit .map .pin .drop::before{content:"";width:14px;height:14px;background:var(--paper);border-radius:50%;transform:rotate(45deg)}
+@keyframes bounce{0%,100%{transform:rotate(-45deg) translateY(0)}50%{transform:rotate(-45deg) translateY(-8px)}}
+.visit .map .pin .pulse{
+  position:absolute;top:50%;left:50%;width:80px;height:80px;
+  border:2px solid var(--red);border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation:ripple 2.5s infinite;opacity:0;
+}
+@keyframes ripple{0%{width:20px;height:20px;opacity:.8}100%{width:160px;height:160px;opacity:0}}
+.visit .map .overlay{position:absolute;left:30px;top:30px;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:12px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;z-index:5;box-shadow:0 16px 32px -15px rgba(10,10,10,.2);line-height:1.7}
+.visit .map .overlay b{color:var(--ink);font-family:var(--sans);font-weight:600;letter-spacing:-.005em;display:block;font-size:14px;margin-bottom:4px;text-transform:none}
+.visit .map .overlay .k{color:var(--red);font-weight:600;text-transform:uppercase}
+.visit .map .controls{position:absolute;right:30px;top:30px;display:flex;flex-direction:column;gap:6px;z-index:5}
+.visit .map .controls button{
+  width:38px;height:38px;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -10px rgba(10,10,10,.3);
+  transition:all .3s var(--ease);
+}
+.visit .map .controls button:hover{background:var(--ink);border-color:var(--ink)}
+.visit .map .controls button svg{width:16px;height:16px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.visit .map .controls button:hover svg{stroke:var(--paper)}
+
+/* ===================== NEXT STEPS ===================== */
+.next-steps{padding:140px 0;border-top:1px solid var(--ink)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px}
+.nstep{padding:40px 28px 48px;border-right:1px solid var(--line);position:relative}
+.nstep:last-child{border-right:none}
+.nstep::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out)}
+.nstep.on::before{transform:scaleX(1)}
+.nstep .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:32px}
+.nstep .n b{color:var(--red);font-weight:700}
+.nstep .n .dur{margin-left:auto;font-weight:500}
+.nstep h4{font-size:22px;font-weight:700;letter-spacing:-.015em;line-height:1.2;margin-bottom:14px}
+.nstep p{font-size:14px;color:var(--mute);line-height:1.6}
+.nstep:hover{background:var(--paper-2)}
+
+/* ===================== INVOICE / LEGAL ===================== */
+.invoice{padding:140px 0;border-top:1px solid var(--ink)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.inv-card{
+  padding:44px 40px;background:var(--paper-2);border:1px solid var(--line);border-radius:20px;
+  position:relative;overflow:hidden;transition:all .5s var(--ease);
+}
+.inv-card:hover{background:var(--paper-3)}
+.inv-card .lbl{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.inv-card .lbl::before{content:"";width:20px;height:1px;background:var(--mute)}
+.inv-card h3{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:24px}
+.inv-card .grid{display:grid;grid-template-columns:120px 1fr;gap:12px 24px;font-size:14px}
+.inv-card .grid dt{font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em;padding-top:3px}
+.inv-card .grid dd{font-weight:500;letter-spacing:-.005em}
+.inv-card .grid dd b{font-weight:700}
+
+/* ===================== CTA ===================== */
+.cta{padding:180px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
+.cta h2{font-size:clamp(48px,8vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85}
+.cta h2 .red{color:var(--red)}
+.cta .sub{margin-top:28px;font-size:17px;color:var(--mute);max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.55}
+.cta .ctas{margin-top:48px;display:flex;gap:14px;justify-content:center}
+
+/* ===================== FOOTER ===================== */
+footer{background:var(--ink);color:var(--paper);padding:80px 0 40px;position:relative;overflow:hidden}
+footer .big{font-size:clamp(80px,14vw,260px);font-weight:800;letter-spacing:-.06em;line-height:.82;margin-bottom:80px}
+footer .big .red{color:var(--red)}
+footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-top:48px;border-top:1px solid rgba(242,236,224,.12)}
+footer .cols .about p{font-size:14px;color:rgba(242,236,224,.6);line-height:1.6;max-width:36ch;margin-top:20px}
+footer .cols h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,236,224,.45);font-weight:500;margin-bottom:20px}
+footer .cols a{display:block;padding:6px 0;font-size:15px;color:var(--paper);position:relative;width:fit-content;transition:color .3s}
+footer .cols a:hover{color:var(--red)}
+footer .cols a .ar{display:inline-block;opacity:0;transform:translateX(-8px);transition:all .3s var(--ease);margin-left:4px}
+footer .cols a:hover .ar{opacity:1;transform:translateX(0)}
+footer .base{margin-top:60px;padding-top:30px;border-top:1px solid rgba(242,236,224,.12);display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5)}
+footer .base .clock{display:flex;gap:20px;justify-content:center}
+footer .base .clock span{display:flex;align-items:center;gap:8px}
+footer .base .clock .k{color:rgba(242,236,224,.3)}
+footer .base .clock b{color:var(--paper);font-weight:500}
+footer .base .right{text-align:right}
+
+@media (max-width:1100px){
+  .ch-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr;gap:60px}
+  .form-grid .left{position:static}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .visit .map{min-height:340px}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .inv-grid{grid-template-columns:1fr}
+  .sec-head{grid-template-columns:1fr;gap:20px}
+  .row-2,.budget{grid-template-columns:1fr 1fr}
+  .budget{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  body{cursor:auto}.cursor,.cursor-ring{display:none}
+  nav.top{padding:14px 20px;grid-template-columns:auto auto}
+  nav.top ul,nav.top .meta{display:none}
+  .wrap,.wrap-sm{padding:0 20px}
+  .title h1{font-size:64px}
+  .team-grid,.steps-grid,.submit-row,.row-2,.budget{grid-template-columns:1fr}
+  .submit-row{gap:20px}
+  footer .base{grid-template-columns:1fr}
+  .status{grid-template-columns:1fr;gap:10px}
+}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+</style>
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="top">
+  <a class="logo" href="index.html">
+    <span class="mark"></span>
+    <span class="name"><b>PragueBest</b><sup>®</sup></span>
+  </a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <a href="#form" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===================== BREADCRUMB ===================== -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na úvod
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> <b>Kontakt</b>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TITLE ===================== -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Spojme se &nbsp;—&nbsp; Praha 8, Karlín &nbsp;—&nbsp; Po&ndash;Pá, 9:00&ndash;18:00</div>
+    <h1 class="reveal d1">Ozvěte se<br><span class="red">nám.</span></h1>
+    <p class="lede reveal d2">
+      Odpovídáme <span class="hi">obvykle do&nbsp;24 hodin</span>.
+      Víkendy nechte svůj projekt v&nbsp;klidu odležet &mdash; <b>v&nbsp;pondělí na&nbsp;něj skočíme spolu.</b>
+    </p>
+
+    <div class="status reveal d3">
+      <div class="live"><span class="d"></span>Online teď</div>
+      <div class="mid">Přijímáme projekty &mdash; <b>volné kapacity Q3/2026</b>. Discovery fázi nových projektů začínáme v&nbsp;srpnu.</div>
+      <div class="time">Praha <b id="clk2">--:--</b></div>
+      <div class="time">Reakce <b>&lt; 24 h</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CHANNEL CARDS ===================== -->
+<section class="channels">
+  <div class="wrap">
+    <div class="ch-grid">
+
+      <article class="ch reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5 12.8 12.8 0 0 0 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+        </div>
+        <div class="n">Kanál / 01</div>
+        <h3>Zavolejte.</h3>
+        <div class="primary">+420 775 219 999<small>Obchodní oddělení · Po&ndash;Pá 9&ndash;18</small></div>
+        <div class="extras">
+          <div class="row"><span>Helpdesk 24/7</span><span>+420 608 252 303</span></div>
+          <div class="row"><span>Kariéra</span><span>+420 608 172 331</span></div>
+          <div class="row"><span>Administrativa</span><span>+420 266 091 373</span></div>
+        </div>
+        <button class="copy" data-copy="+420775219999">
+          <span class="cbtn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          Kopírovat číslo
+        </button>
+      </article>
+
+      <article class="ch reveal d1">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </div>
+        <div class="n">Kanál / 02</div>
+        <h3>Napište.</h3>
+        <div class="primary">info@praguebest.cz<small>Nezávazná poptávka · odpověď do&nbsp;24&nbsp;h</small></div>
+        <div class="extras">
+          <div class="row"><span>Helpdesk</span><span>helpdesk@praguebest.cz</span></div>
+          <div class="row"><span>Kariéra</span><span>kariera@praguebest.cz</span></div>
+          <div class="row"><span>Press &amp; PR</span><span>pr@praguebest.cz</span></div>
+        </div>
+        <button class="copy" data-copy="info@praguebest.cz">
+          <span class="cbtn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          Kopírovat e-mail
+        </button>
+      </article>
+
+      <article class="ch reveal d2">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="n">Kanál / 03</div>
+        <h3>Přijďte.</h3>
+        <div class="primary">Vítkova 32<small>186 00 Praha 8, Karlín</small></div>
+        <div class="extras">
+          <div class="row"><span>Patro</span><span>4. patro, recepce</span></div>
+          <div class="row"><span>Metro</span><span>Florenc, Křižíkova (B)</span></div>
+          <div class="row"><span>Parkování</span><span>Modrá zóna · P+R Letňany</span></div>
+        </div>
+        <button class="copy" data-copy="Vítkova 32, 186 00 Praha 8, Karlín">
+          <span class="cbtn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          Kopírovat adresu
+        </button>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORM ===================== -->
+<section class="form-section" id="form">
+  <div class="wrap">
+    <div class="form-grid">
+      <div class="left">
+        <div class="idx">§ 01 / Poptávka</div>
+        <h2>Máte projekt<br>na <span class="red">stole?</span></h2>
+        <p>Vyplňte pár polí vpravo &mdash; zkusíme vám ještě dnes odpovědět, <b>i&nbsp;kdyby jen potvrzením, že zpráva dorazila</b>.</p>
+        <p>Po&nbsp;obdržení zprávy vám pošleme <b>pár doplňujících otázek</b>, případně rovnou domluvíme kickoff call na&nbsp;30&nbsp;minut.</p>
+        <div class="proof">
+          <div>Projektů<b>100<span class="red">+</span></b></div>
+          <div>Průměr<br>reakce<b>&lt; 24<span class="red">h</span></b></div>
+          <div>Tým<b>37</b></div>
+        </div>
+      </div>
+
+      <form onsubmit="event.preventDefault();this.querySelector('.btn').click()">
+        <div class="row-2">
+          <div class="field">
+            <input type="text" id="f-name" placeholder=" " autocomplete="name" required>
+            <label for="f-name">Jméno a příjmení</label>
+          </div>
+          <div class="field">
+            <input type="text" id="f-company" placeholder=" " autocomplete="organization">
+            <label for="f-company">Firma <small>(nepovinné)</small></label>
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <input type="email" id="f-email" placeholder=" " autocomplete="email" required>
+            <label for="f-email">E-mail</label>
+          </div>
+          <div class="field">
+            <input type="tel" id="f-phone" placeholder=" " autocomplete="tel">
+            <label for="f-phone">Telefon <small>(nepovinné)</small></label>
+          </div>
+        </div>
+
+        <div class="chips-label">Co potřebujete?</div>
+        <div class="chips" id="chips">
+          <button type="button" class="chip on">E-shop na míru</button>
+          <button type="button" class="chip">Webová aplikace</button>
+          <button type="button" class="chip">Redesign / rozvoj</button>
+          <button type="button" class="chip">Big Data &amp; analytika</button>
+          <button type="button" class="chip">UpSearch™</button>
+          <button type="button" class="chip">Ještě nevím</button>
+        </div>
+
+        <div class="chips-label">Orientační rozpočet</div>
+        <div class="budget" id="budget">
+          <button type="button">do 1 mil.<small>Kč</small></button>
+          <button type="button" class="on">1&mdash;3 mil.<small>Kč</small></button>
+          <button type="button">3&mdash;8 mil.<small>Kč</small></button>
+          <button type="button">8 mil. +<small>Kč</small></button>
+        </div>
+
+        <div class="field">
+          <textarea id="f-msg" placeholder=" " required></textarea>
+          <label for="f-msg">Řekněte nám o&nbsp;projektu &mdash; co stavíte, pro koho, kdy to chcete spustit…</label>
+        </div>
+
+        <div class="submit-row">
+          <div class="note">
+            Odesláním souhlasíte se&nbsp;<b>zpracováním osobních údajů</b> dle&nbsp;GDPR. Vaše data používáme výhradně k&nbsp;odpovědi na&nbsp;poptávku a&nbsp;nikdy nikomu neprodáváme.
+          </div>
+          <button type="button" class="btn big">
+            <span class="lbl" data-t="Odeslat poptávku"><span>Odeslat poptávku</span></span>
+            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Tým</div>
+      <h2>Lidé, kteří zvednou <span class="red">telefon.</span></h2>
+      <div class="aside">Žádný generický<br><b>help@ formulář</b></div>
+    </div>
+
+    <div class="team-grid">
+
+      <article class="person p1 reveal">
+        <div class="photo">
+          <span class="tag">CEO</span>
+          <span class="dept">Business &amp; Strategy</span>
+        </div>
+        <div class="info">
+          <h4>Jan Pavlík</h4>
+          <div class="role">CEO &amp; zakladatel</div>
+          <div class="contact">
+            <a href="tel:+420775219999"><small>TEL</small>+420 775 219 999</a>
+            <a href="mailto:jan@praguebest.cz"><small>MAIL</small>jan@praguebest.cz</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="person p2 reveal d1">
+        <div class="photo">
+          <span class="tag">CTO</span>
+          <span class="dept">Tech &amp; Delivery</span>
+        </div>
+        <div class="info">
+          <h4>Petra Marková</h4>
+          <div class="role">CTO &amp; Head of Delivery</div>
+          <div class="contact">
+            <a href="tel:+420608252303"><small>TEL</small>+420 608 252 303</a>
+            <a href="mailto:petra@praguebest.cz"><small>MAIL</small>petra@praguebest.cz</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="person p3 reveal d2">
+        <div class="photo">
+          <span class="tag">HEAD</span>
+          <span class="dept">Design &amp; UX</span>
+        </div>
+        <div class="info">
+          <h4>Martin Štěpán</h4>
+          <div class="role">Head of Design</div>
+          <div class="contact">
+            <a href="tel:+420608172331"><small>TEL</small>+420 608 172 331</a>
+            <a href="mailto:martin@praguebest.cz"><small>MAIL</small>martin@praguebest.cz</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="person p4 reveal d3">
+        <div class="photo">
+          <span class="tag">HEAD</span>
+          <span class="dept">People &amp; Careers</span>
+        </div>
+        <div class="info">
+          <h4>Tereza Veselá</h4>
+          <div class="role">Head of People</div>
+          <div class="contact">
+            <a href="tel:+420266091373"><small>TEL</small>+420 266 091 373</a>
+            <a href="mailto:tereza@praguebest.cz"><small>MAIL</small>tereza@praguebest.cz</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VISIT / MAP ===================== -->
+<section class="visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Studio</div>
+      <h2>Máme rádi <span class="red">návštěvy.</span></h2>
+      <div class="aside">Po&ndash;Pá 9&ndash;18<br><b>Vítkova 32, Karlín</b></div>
+    </div>
+
+    <div class="visit-grid">
+      <div class="info-box">
+        <div>
+          <div class="lbl">Adresa studia</div>
+          <h3>Vítkova 32,<br><span class="red">Karlín.</span></h3>
+          <p class="addr">Vítkova 32<small>186 00 Praha 8, Karlín · Česká republika</small></p>
+          <div class="open">Otevřeno &mdash; dnes do 18:00</div>
+        </div>
+
+        <div>
+          <div class="metro">
+            <div class="row"><span><span class="line B">B</span>Metro Florenc</span><b>5 min pěšky</b></div>
+            <div class="row"><span><span class="line B">B</span>Metro Křižíkova</span><b>3 min pěšky</b></div>
+            <div class="row"><span><span class="line bus">⬒</span>Tram Florenc</span><b>4 min pěšky</b></div>
+          </div>
+
+          <a href="#" class="btn" style="width:100%;justify-content:space-between">
+            <span class="lbl" data-t="Otevřít v Mapy.cz"><span>Otevřít v Mapy.cz</span></span>
+            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="map">
+        <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(10,10,10,.06)" stroke-width="1"/>
+            </pattern>
+            <pattern id="smallgrid" width="16" height="16" patternUnits="userSpaceOnUse">
+              <path d="M 16 0 L 0 0 0 16" fill="none" stroke="rgba(10,10,10,.03)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="800" height="520" fill="url(#smallgrid)"/>
+          <rect width="800" height="520" fill="url(#grid)"/>
+
+          <!-- River -->
+          <path d="M -50 180 Q 200 140, 400 220 T 850 280 L 850 360 Q 600 380, 400 300 T -50 260 Z" fill="rgba(50,120,200,.12)" stroke="rgba(50,120,200,.25)" stroke-width="1.5"/>
+          <path d="M -50 180 Q 200 140, 400 220 T 850 280" fill="none" stroke="rgba(50,120,200,.35)" stroke-width="1" stroke-dasharray="4 6"/>
+
+          <!-- Main roads -->
+          <path d="M 0 300 L 800 280" stroke="rgba(10,10,10,.28)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 0 300 L 800 280" stroke="rgba(242,236,224,.95)" stroke-width="3" stroke-linecap="round"/>
+
+          <path d="M 420 0 L 400 520" stroke="rgba(10,10,10,.22)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 420 0 L 400 520" stroke="rgba(242,236,224,.85)" stroke-width="2" stroke-linecap="round"/>
+
+          <path d="M 100 80 L 700 450" stroke="rgba(10,10,10,.15)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 100 80 L 700 450" stroke="rgba(242,236,224,.6)" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Side streets -->
+          <path d="M 200 0 L 220 520" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
+          <path d="M 600 0 L 580 520" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
+          <path d="M 0 150 L 800 170" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
+          <path d="M 0 420 L 800 440" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
+
+          <!-- Building blocks -->
+          <g fill="rgba(10,10,10,.05)" stroke="rgba(10,10,10,.15)" stroke-width="1">
+            <rect x="230" y="330" width="110" height="60" rx="2"/>
+            <rect x="360" y="330" width="60" height="60" rx="2"/>
+            <rect x="440" y="330" width="90" height="60" rx="2"/>
+            <rect x="550" y="330" width="80" height="60" rx="2"/>
+            <rect x="230" y="400" width="90" height="50" rx="2"/>
+            <rect x="340" y="400" width="70" height="50" rx="2"/>
+            <rect x="430" y="400" width="100" height="50" rx="2"/>
+            <rect x="230" y="30" width="80" height="80" rx="2"/>
+            <rect x="320" y="30" width="100" height="80" rx="2"/>
+            <rect x="430" y="30" width="70" height="80" rx="2"/>
+            <rect x="510" y="30" width="120" height="80" rx="2"/>
+            <rect x="640" y="30" width="90" height="80" rx="2"/>
+          </g>
+
+          <!-- Street labels -->
+          <text x="220" y="270" font-family="Geist Mono, monospace" font-size="9" fill="rgba(10,10,10,.35)" letter-spacing="1">SOKOLOVSKÁ</text>
+          <text x="410" y="140" font-family="Geist Mono, monospace" font-size="9" fill="rgba(10,10,10,.35)" letter-spacing="1" transform="rotate(90 410 140)">VÍTKOVA</text>
+          <text x="130" y="160" font-family="Geist Mono, monospace" font-size="9" fill="rgba(50,120,200,.55)" letter-spacing="1">VLTAVA</text>
+
+          <!-- Metro dots -->
+          <circle cx="180" cy="305" r="7" fill="#1e5aad"/>
+          <text x="195" y="309" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Florenc</text>
+          <circle cx="540" cy="285" r="7" fill="#1e5aad"/>
+          <text x="555" y="289" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Křižíkova</text>
+        </svg>
+
+        <div class="overlay">
+          <span class="k">PragueBest®</span>
+          <b>Vítkova 32</b>
+          186 00 Praha 8, Karlín<br>
+          <span style="color:var(--mute)">50.0913° N &nbsp;·&nbsp; 14.4525° E</span>
+        </div>
+
+        <div class="controls">
+          <button><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+        </div>
+
+        <div class="pin">
+          <div class="pulse"></div>
+          <div class="drop"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEXT STEPS ===================== -->
+<section class="next-steps">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 04 / Co potom</div>
+      <h2>Co se stane po&nbsp;<span class="red">odeslání zprávy.</span></h2>
+      <div class="aside">Žádné voicemaily,<br><b>žádné ghostování</b></div>
+    </div>
+
+    <div class="steps-grid">
+      <div class="nstep">
+        <div class="n"><b>/ 01</b>Reakce<span class="dur">&lt; 24 h</span></div>
+        <h4>Přečteme si, co&nbsp;chcete.</h4>
+        <p>Odpovíme do&nbsp;24 hodin &mdash; i&nbsp;kdyby to&nbsp;bylo jen potvrzení, že zpráva dorazila a&nbsp;někdo se&nbsp;na&nbsp;ni ještě&nbsp;dnes podívá.</p>
+      </div>
+      <div class="nstep">
+        <div class="n"><b>/ 02</b>Doplnění<span class="dur">1&ndash;2 dny</span></div>
+        <h4>Pošleme pár otázek.</h4>
+        <p>Pravděpodobně se&nbsp;budeme chtít něco doptat &mdash; rozpočet, termíny, stávající stack, klíčové metriky. Krátce, na&nbsp;5&nbsp;minut čtení.</p>
+      </div>
+      <div class="nstep">
+        <div class="n"><b>/ 03</b>Kickoff<span class="dur">do 1 týdne</span></div>
+        <h4>Domluvíme 30&nbsp;min call.</h4>
+        <p>Online nebo v&nbsp;Karlíně. Představíme se, proberete projekt, ukážeme pár podobných case studies a&nbsp;společně zhodnotíme, jestli si&nbsp;sednete s&nbsp;námi a&nbsp;my s&nbsp;vámi.</p>
+      </div>
+      <div class="nstep">
+        <div class="n"><b>/ 04</b>Nabídka<span class="dur">do 2 týdnů</span></div>
+        <h4>Pošleme strukturovaný návrh.</h4>
+        <p>Co, za&nbsp;kolik, jak dlouho, kdo z&nbsp;týmu to&nbsp;povede. Pak už jen rozhodnutí &mdash; a&nbsp;pokud ano, kickoff discovery fáze.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVOICE / LEGAL ===================== -->
+<section class="invoice">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 05 / Fakturace</div>
+      <h2>Fakturační údaje <span class="red">&amp; sídlo.</span></h2>
+      <div class="aside">Pro stávající klienty<br><b>a dodavatele</b></div>
+    </div>
+
+    <div class="inv-grid">
+      <div class="inv-card">
+        <div class="lbl">Společnost</div>
+        <h3>PragueBest s.r.o.</h3>
+        <dl class="grid">
+          <dt>Sídlo</dt><dd>Vítkova 32/21, 186 00 Praha 8 &mdash; Karlín</dd>
+          <dt>IČ</dt><dd><b>25648101</b></dd>
+          <dt>DIČ</dt><dd><b>CZ25648101</b></dd>
+          <dt>Registrace</dt><dd>Městský soud v&nbsp;Praze, spis. zn. <b>C 59001</b></dd>
+          <dt>Datum vzniku</dt><dd>26. 4. 1999</dd>
+        </dl>
+      </div>
+      <div class="inv-card">
+        <div class="lbl">Bankovní spojení</div>
+        <h3>Platby a&nbsp;doklady.</h3>
+        <dl class="grid">
+          <dt>Banka</dt><dd>Česká spořitelna, a.&nbsp;s.</dd>
+          <dt>Účet CZK</dt><dd><b>2701 123 456 / 0800</b></dd>
+          <dt>IBAN</dt><dd style="font-family:var(--mono);font-size:13px">CZ65 0800 0000 0027 0112 3456</dd>
+          <dt>SWIFT</dt><dd><b>GIBACZPX</b></dd>
+          <dt>Faktury</dt><dd><a href="mailto:faktury@praguebest.cz" style="border-bottom:1px solid currentColor">faktury@praguebest.cz</a></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Radši osobně?<br><span class="red">Přijďte.</span></h2>
+    <p class="sub reveal d1">V&nbsp;Karlíně máme dobrou kávu, klidnou zasedačku a&nbsp;obvykle někoho z&nbsp;týmu, kdo vám&nbsp;umí na&nbsp;ruku namalovat, jak to&nbsp;bude fungovat.</p>
+    <div class="ctas reveal d2">
+      <a href="#" class="btn">
+        <span class="lbl" data-t="Domluvit návštěvu"><span>Domluvit návštěvu</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tel:+420775219999" class="btn ghost">
+        <span class="lbl" data-t="+420 775 219 999"><span>+420 775 219 999</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
+        <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
+        <a href="#">Big Data <span class="ar">→</span></a>
+        <a href="#">UpSearch™ <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="#">Reference <span class="ar">→</span></a>
+        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.ch,.person,.chip,.inv-card,.nstep,.field input,.field textarea,.field select').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.nstep').forEach(el=>io.observe(el));
+
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const e1=document.getElementById('clk');const e2=document.getElementById('clk2');if(e1)e1.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;if(e2)e2.textContent=`${p(d.getHours())}:${p(d.getMinutes())}`}
+  setInterval(tick,1000);tick();
+
+  document.querySelectorAll('.btn').forEach(b=>{
+    let rect;
+    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
+    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
+    b.addEventListener('mouseleave',()=>{b.style.transform=''});
+  });
+
+  // Copy to clipboard
+  document.querySelectorAll('.copy').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const txt=btn.dataset.copy;
+      navigator.clipboard?.writeText(txt);
+      btn.classList.add('copied');
+      const orig=btn.querySelector('span:last-child')?.textContent||btn.textContent;
+      const lbl=btn.childNodes[btn.childNodes.length-1];
+      if(lbl)lbl.textContent=' Zkopírováno!';
+      setTimeout(()=>{btn.classList.remove('copied');if(lbl)lbl.textContent=' '+(btn.dataset.originalLabel||'Kopírovat')},1800);
+    });
+    // store original label text
+    const lblNode=btn.childNodes[btn.childNodes.length-1];
+    if(lblNode&&lblNode.nodeType===3)btn.dataset.originalLabel=lblNode.textContent.trim();
+  });
+
+  // Chips toggle (multi not — single select for demo)
+  document.querySelectorAll('#chips .chip').forEach(c=>{
+    c.addEventListener('click',()=>{
+      document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('on'));
+      c.classList.add('on');
+    });
+  });
+
+  // Budget single select
+  document.querySelectorAll('#budget button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('#budget button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+    });
+  });
+
+  // Floating label helper — add has-val class for non-empty values (handles autofill edge)
+  document.querySelectorAll('.field input,.field textarea').forEach(inp=>{
+    const upd=()=>inp.closest('.field').classList.toggle('has-val',!!inp.value);
+    inp.addEventListener('input',upd);inp.addEventListener('blur',upd);upd();
+  });
+})();
+</script>
+</body>
+</html>

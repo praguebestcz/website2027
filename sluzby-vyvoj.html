@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vývoj — Služby — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== IDE HERO ===== */
+.ide-wrap{padding:60px 0 120px}
+.ide{background:#0a0a0a;color:var(--paper);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);position:relative;font-family:var(--mono)}
+.ide::before{content:"";position:absolute;top:-200px;left:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.2),transparent 60%);filter:blur(60px);pointer-events:none}
+.ide .chrome{background:#1a1a1a;padding:12px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #2a2a2a;position:relative;z-index:2}
+.ide .chrome .dots{display:flex;gap:6px}
+.ide .chrome .dots i{width:11px;height:11px;border-radius:50%;display:block}
+.ide .chrome .dots i:nth-child(1){background:#ff5f57}.ide .chrome .dots i:nth-child(2){background:#febc2e}.ide .chrome .dots i:nth-child(3){background:#28c841}
+.ide .chrome .path-c{font-size:11px;color:rgba(242,236,224,.5);font-family:var(--mono)}
+.ide .chrome .path-c b{color:var(--paper);font-weight:500}
+.ide .chrome .branch{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:10px;color:rgba(242,236,224,.5);background:rgba(242,236,224,.05);padding:4px 10px;border-radius:5px;border:1px solid rgba(242,236,224,.1)}
+.ide .chrome .branch::before{content:"⎇";color:#5fcd86;font-size:12px}
+.ide .chrome .branch b{color:#5fcd86;font-weight:600}
+
+.ide-body{display:grid;grid-template-columns:220px 1fr;min-height:480px;position:relative;z-index:2}
+.ide-sidebar{background:#111;border-right:1px solid #2a2a2a;padding:18px 0}
+.ide-sidebar .lbl-s{padding:0 18px;font-size:9px;color:rgba(242,236,224,.35);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.ide-sidebar .tree{font-size:12px;line-height:1.9}
+.ide-sidebar .tree .item{padding:3px 18px;color:rgba(242,236,224,.6);display:flex;align-items:center;gap:6px;cursor:none}
+.ide-sidebar .tree .item::before{content:"▸";font-size:8px;color:rgba(242,236,224,.3)}
+.ide-sidebar .tree .item.open::before{content:"▾"}
+.ide-sidebar .tree .item.file::before{content:"";width:10px}
+.ide-sidebar .tree .item.file{padding-left:34px}
+.ide-sidebar .tree .item.file.on{background:rgba(227,6,19,.1);color:var(--paper);border-left:2px solid var(--red);padding-left:32px}
+.ide-sidebar .tree .item.file .ext{color:rgba(242,236,224,.25);margin-left:auto;font-size:9px}
+.ide-sidebar .tree .sub{padding-left:16px}
+
+.ide-main{background:#0a0a0a;display:flex;flex-direction:column}
+.ide-tabs{background:#111;border-bottom:1px solid #2a2a2a;display:flex;padding:0 10px;padding-top:6px}
+.ide-tabs .tab{padding:10px 16px;font-size:11px;color:rgba(242,236,224,.45);border-right:1px solid #2a2a2a;display:flex;align-items:center;gap:8px}
+.ide-tabs .tab .dot{width:6px;height:6px;border-radius:50%;background:#febc2e}
+.ide-tabs .tab.on{background:#0a0a0a;color:var(--paper);border-top:2px solid var(--red);padding-top:8px}
+.ide-tabs .x{margin-left:20px;opacity:.4}
+
+.ide-editor{flex:1;display:grid;grid-template-columns:48px 1fr;font-size:12.5px;line-height:1.75;padding:20px 0}
+.ide-editor .lnums{color:rgba(242,236,224,.2);text-align:right;padding-right:12px;user-select:none;font-variant-numeric:tabular-nums}
+.ide-editor .lnums div{padding-right:4px}
+.ide-editor .code{white-space:pre;overflow-x:auto;padding-right:24px}
+.ide-editor .code .kw{color:#ff6b8b}
+.ide-editor .code .fn{color:#9cdcfe}
+.ide-editor .code .str{color:#a8e6a1}
+.ide-editor .code .cmt{color:rgba(242,236,224,.35);font-style:italic}
+.ide-editor .code .ty{color:#e8c888}
+.ide-editor .code .num{color:#b69cff}
+.ide-editor .code .pn{color:rgba(242,236,224,.5)}
+.ide-editor .code .attr{color:#ffb86c}
+.ide-editor .code .red{background:rgba(227,6,19,.2);border-radius:3px;padding:1px 3px;color:#ff8a95}
+
+.ide-status{background:#111;border-top:1px solid #2a2a2a;padding:6px 18px;display:flex;justify-content:space-between;font-size:10px;color:rgba(242,236,224,.45);font-family:var(--mono)}
+.ide-status .left-s{display:flex;gap:16px}
+.ide-status .left-s span{display:flex;align-items:center;gap:6px}
+.ide-status .left-s .pass{color:#5fcd86}
+.ide-status .left-s .pass::before{content:"✓";font-size:11px}
+.ide-status .left-s .typ::before{content:"TS";color:#3178c6;font-weight:700;font-size:10px}
+.ide-status .right-s{display:flex;gap:14px}
+.ide-status b{color:var(--paper);font-weight:500}
+
+/* ===== OFFERINGS ===== */
+.offers{padding:140px 0;border-top:1px solid var(--ink)}
+.o-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.o-card{padding:44px 40px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
+.o-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.o-card:hover::before{transform:translateY(0)}
+.o-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.o-card:hover > *{color:var(--paper)}
+.o-card:hover{border-color:var(--ink);transform:translateY(-4px)}
+.o-card .head{display:flex;align-items:flex-start;gap:20px;margin-bottom:22px}
+.o-card .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .5s var(--ease)}
+.o-card:hover .ico{background:var(--red)}
+.o-card .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.o-card .head-txt{flex:1;padding-top:4px}
+.o-card .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.o-card:hover .n{color:rgba(242,236,224,.5)}
+.o-card h4{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.o-card p.desc{font-size:14px;color:var(--ink-3);line-height:1.55;margin-bottom:22px}
+.o-card:hover p.desc{color:rgba(242,236,224,.75)}
+.o-card ul{list-style:none;font-family:var(--mono);font-size:13px;color:var(--ink-3);line-height:2}
+.o-card:hover ul{color:rgba(242,236,224,.75)}
+.o-card ul li{display:flex;align-items:center;gap:10px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.o-card:hover ul li{border-color:rgba(242,236,224,.12)}
+.o-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
+
+/* ===== TECH STACK (4 groups) ===== */
+.stack{padding:140px 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.stack::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.stack .sec-head{border-color:rgba(242,236,224,.2)}
+.stack .sec-head h2{color:var(--paper)}
+.stack .sec-head .aside{color:rgba(242,236,224,.5)}
+.stack .sec-head .aside b{color:var(--paper)}
+.s-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(242,236,224,.1);border:1px solid rgba(242,236,224,.1);border-radius:20px;overflow:hidden}
+.s-col{padding:40px 32px;background:var(--ink);transition:background .4s var(--ease)}
+.s-col:hover{background:var(--ink-2)}
+.s-col .lbl-g{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.s-col .lbl-g::before{content:"";width:24px;height:1px;background:var(--red)}
+.s-col h4{font-size:22px;font-weight:700;letter-spacing:-.015em;margin-bottom:24px}
+.s-col ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.s-col ul li{padding:10px 14px;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.1);border-radius:10px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;transition:all .3s}
+.s-col ul li:hover{background:rgba(242,236,224,.08);border-color:rgba(242,236,224,.2)}
+.s-col ul li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 6px rgba(227,6,19,.5)}
+
+/* ===== COLLAB ===== */
+.collab{padding:140px 0;border-top:1px solid var(--ink)}
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.c-card{padding:44px 36px 48px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
+.c-card:hover{border-color:var(--ink);transform:translateY(-4px);background:var(--paper-2)}
+.c-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease-out)}
+.c-card:hover::before{transform:scaleX(1)}
+.c-card .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:all .5s var(--ease)}
+.c-card:hover .ico{background:var(--red)}
+.c-card .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.c-card .lbl-c{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.c-card h4{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.c-card p{font-size:14px;color:var(--ink-3);line-height:1.6;margin-bottom:24px}
+.c-card .specs{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:1.9}
+.c-card .specs div{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--line)}
+.c-card .specs div b{color:var(--ink);font-weight:600}
+
+@media (max-width:1100px){
+  .ide-body{grid-template-columns:1fr}
+  .ide-sidebar{border-right:none;border-bottom:1px solid #2a2a2a}
+  .s-grid{grid-template-columns:1fr 1fr}
+  .o-grid,.c-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .ide-sidebar{display:none}
+  .s-grid,.o-grid,.c-grid{grid-template-columns:1fr}
+  .ide-editor{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <a href="kontakt.html" class="btn sm"><span class="lbl" data-t="Napište nám"><span>Napište nám</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="sluzby.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na služby</a>
+    <div class="path"><b>Úvod</b> <span>/</span> Služby <span>/</span> <b>Vývoj</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Služba § 03 &nbsp;—&nbsp; Frontend · Backend · Integrace · DevOps &nbsp;—&nbsp; 20 vývojářů</div>
+    <h1 class="reveal d1">Vývoj,<br>co <span class="red">rozumí.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Headless frontend, Vue.js, Node.js, PHP &mdash; ovládáme moderní technologie.
+        Potřebujete <b>posílit tým</b> nebo <span class="hi">dodat konkrétní modul?</span> Jsme tu.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Popsat projekt"><span>Popsat projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="sluzby.html" class="btn ghost"><span class="lbl" data-t="Další služby"><span>Další služby</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Velikost týmu</h6><p>1 &mdash; 8 vývojářů<small>Podle projektu</small></p></div>
+      <div class="m"><h6>Nástup</h6><p>Do 2 týdnů<small>Podle potřeby</small></p></div>
+      <div class="m"><h6>Stack</h6><p>Vue · React · PHP<small>Node · Python · TS</small></p></div>
+      <div class="m"><h6>Hodinová sazba</h6><p>1 800 &mdash; 3 200 Kč<small>Podle seniority</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IDE HERO ===== -->
+<section class="ide-wrap">
+  <div class="wrap">
+    <div class="ide reveal">
+      <div class="chrome">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="path-c">~/projects/elnino/web/<b>components/Search.vue</b></div>
+        <div class="branch"><b>feat/upsearch-integration</b></div>
+      </div>
+
+      <div class="ide-body">
+        <div class="ide-sidebar">
+          <div class="lbl-s">Project</div>
+          <div class="tree">
+            <div class="item open">src</div>
+            <div class="sub">
+              <div class="item open">components</div>
+              <div class="sub">
+                <div class="item file">Header.vue<span class="ext">vue</span></div>
+                <div class="item file on">Search.vue<span class="ext">vue</span></div>
+                <div class="item file">Product.vue<span class="ext">vue</span></div>
+                <div class="item file">Cart.vue<span class="ext">vue</span></div>
+              </div>
+              <div class="item">composables</div>
+              <div class="item">pages</div>
+              <div class="item">stores</div>
+              <div class="item">utils</div>
+            </div>
+            <div class="item">server</div>
+            <div class="item">tests</div>
+            <div class="item file">nuxt.config.ts<span class="ext">ts</span></div>
+            <div class="item file">package.json<span class="ext">json</span></div>
+          </div>
+        </div>
+
+        <div class="ide-main">
+          <div class="ide-tabs">
+            <div class="tab on"><span class="dot"></span>Search.vue<span class="x">×</span></div>
+            <div class="tab"><span class="dot" style="background:#5fcd86"></span>Header.vue<span class="x">×</span></div>
+            <div class="tab">nuxt.config.ts<span class="x">×</span></div>
+          </div>
+          <div class="ide-editor">
+            <div class="lnums">
+              <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
+            </div>
+            <div class="code"><span class="cmt">// components/Search.vue — UpSearch integration</span>
+<span class="kw">import</span> { <span class="fn">useUpSearch</span> } <span class="kw">from</span> <span class="str">'@praguebest/upsearch'</span>
+<span class="kw">import</span> { <span class="fn">ref</span>, <span class="fn">watch</span>, <span class="fn">computed</span> } <span class="kw">from</span> <span class="str">'vue'</span>
+
+<span class="kw">const</span> query = <span class="fn">ref</span><span class="pn">(</span><span class="str">''</span><span class="pn">)</span>
+<span class="kw">const</span> { results, loading, error } = <span class="fn">useUpSearch</span><span class="pn">(</span>query, {
+  <span class="attr">locale</span>: <span class="str">'cs'</span>,
+  <span class="attr">typoTolerance</span>: <span class="kw">true</span>,
+  <span class="attr">synonyms</span>: <span class="kw">true</span>,
+  <span class="attr">boost</span>: <span class="pn">[</span><span class="str">'bestseller'</span>, <span class="str">'stock'</span><span class="pn">]</span>,
+  <span class="attr">hitsPerPage</span>: <span class="num">12</span>
+<span class="pn">})</span>
+
+<span class="kw">const</span> hasHits = <span class="fn">computed</span><span class="pn">(() =&gt; </span>results<span class="pn">.</span>value<span class="pn">.</span>length &gt; <span class="num">0</span><span class="pn">)</span>
+
+<span class="fn">watch</span><span class="pn">(</span>query, <span class="kw">async</span> <span class="pn">(</span>q<span class="pn">) =&gt; {</span>
+  <span class="kw">if</span> <span class="pn">(</span>q<span class="pn">.</span>length &lt; <span class="num">2</span><span class="pn">)</span> <span class="kw">return</span>
+  <span class="fn">trackSearch</span><span class="pn">(</span>q, <span class="pn">{</span> <span class="attr">source</span>: <span class="str">'header'</span> <span class="pn">})</span>
+<span class="pn">})</span></div>
+          </div>
+          <div class="ide-status">
+            <div class="left-s">
+              <span class="pass">Tests 142 passing</span>
+              <span class="typ">TypeScript</span>
+              <span>UTF-8</span>
+              <span>LF</span>
+            </div>
+            <div class="right-s">
+              <span>Ln <b>12</b>, Col <b>34</b></span>
+              <span>Nuxt <b>3.12</b></span>
+              <span>Vue <b>3.4</b></span>
+              <span>Prettier <b>✓</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE BUILD ===== -->
+<section class="offers">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 01 / Co vyvíjíme</div>
+      <h2>Čtyři disciplíny, jeden <span class="red">tým.</span></h2>
+      <div class="aside">Celý stack<br><b>in-house</b></div>
+    </div>
+
+    <div class="o-grid">
+      <article class="o-card reveal">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><circle cx="6" cy="6" r=".5"/><circle cx="8" cy="6" r=".5"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Disciplína / 01</div>
+            <h4>Frontend vývoj</h4>
+          </div>
+        </div>
+        <p class="desc">Moderní, rychlé a&nbsp;responzivní uživatelské rozhraní. Accessibility WCAG 2.2 AA jako standard.</p>
+        <ul>
+          <li>Vue.js 3 / Nuxt.js 3</li>
+          <li>React 19 / Next.js</li>
+          <li>TypeScript 5</li>
+          <li>Headless architektura</li>
+          <li>Tailwind, CSS modules</li>
+        </ul>
+      </article>
+
+      <article class="o-card reveal d1">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Disciplína / 02</div>
+            <h4>Backend vývoj</h4>
+          </div>
+        </div>
+        <p class="desc">Robustní a&nbsp;škálovatelné serverové aplikace. Testy, monitoring, CI/CD od&nbsp;prvního commitu.</p>
+        <ul>
+          <li>Node.js / Express / Nest</li>
+          <li>PHP / Laravel / Symfony</li>
+          <li>Python / Django / FastAPI</li>
+          <li>REST &amp; GraphQL API</li>
+          <li>PostgreSQL, Redis, Elastic</li>
+        </ul>
+      </article>
+
+      <article class="o-card reveal d2">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 1 0 7 7l1-1"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Disciplína / 03</div>
+            <h4>Integrace</h4>
+          </div>
+        </div>
+        <p class="desc">Propojení systémů a&nbsp;automatizace procesů. ERP, CRM, platební brány, logistika.</p>
+        <ul>
+          <li>ERP (SAP, Abra, Money, Pohoda)</li>
+          <li>CRM (HubSpot, Salesforce)</li>
+          <li>Platební brány (Stripe, GP)</li>
+          <li>Dopravci (Zásilkovna, PPL, DPD)</li>
+          <li>Marketplaces (Heureka, Zbozi)</li>
+        </ul>
+      </article>
+
+      <article class="o-card reveal d3">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+          <div class="head-txt">
+            <div class="n">Disciplína / 04</div>
+            <h4>Mobilní aplikace</h4>
+          </div>
+        </div>
+        <p class="desc">Cross-platform aplikace pro iOS a&nbsp;Android. Jedna codebase, dvě storu.</p>
+        <ul>
+          <li>React Native</li>
+          <li>Expo + OTA updates</li>
+          <li>PWA aplikace</li>
+          <li>Hybridní řešení (Capacitor)</li>
+          <li>App Store / Google Play deploy</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TECH STACK ===== -->
+<section class="stack">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Stack</div>
+      <h2>Technologie, kterým <span class="red">rozumíme.</span></h2>
+      <div class="aside">Vybíráme podle projektu<br><b>ne podle módy</b></div>
+    </div>
+
+    <div class="s-grid">
+      <div class="s-col">
+        <div class="lbl-g">Group / 01</div>
+        <h4>Frontend</h4>
+        <ul>
+          <li>Vue.js 3</li>
+          <li>React 19</li>
+          <li>TypeScript</li>
+          <li>Nuxt.js 3</li>
+          <li>Next.js 15</li>
+          <li>Tailwind CSS</li>
+        </ul>
+      </div>
+      <div class="s-col">
+        <div class="lbl-g">Group / 02</div>
+        <h4>Backend</h4>
+        <ul>
+          <li>Node.js</li>
+          <li>PHP 8</li>
+          <li>Python</li>
+          <li>Laravel</li>
+          <li>Express / Nest</li>
+          <li>GraphQL</li>
+        </ul>
+      </div>
+      <div class="s-col">
+        <div class="lbl-g">Group / 03</div>
+        <h4>Databáze</h4>
+        <ul>
+          <li>PostgreSQL</li>
+          <li>MySQL</li>
+          <li>MongoDB</li>
+          <li>Redis</li>
+          <li>Elasticsearch</li>
+          <li>BigQuery</li>
+        </ul>
+      </div>
+      <div class="s-col">
+        <div class="lbl-g">Group / 04</div>
+        <h4>DevOps</h4>
+        <ul>
+          <li>Docker</li>
+          <li>Kubernetes</li>
+          <li>AWS</li>
+          <li>Azure / GCP</li>
+          <li>GitLab CI</li>
+          <li>Terraform</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW WE COLLABORATE ===== -->
+<section class="collab">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Spolupráce</div>
+      <h2>Tři způsoby, jak si&nbsp;nás <span class="red">najmout.</span></h2>
+      <div class="aside">Vyberete si sami<br><b>nebo vám poradíme</b></div>
+    </div>
+
+    <div class="c-grid">
+      <article class="c-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-4M12 11V3M8 7l4-4 4 4"/></svg></div>
+        <div class="lbl-c">Model / 01</div>
+        <h4>Projektově</h4>
+        <p>Kompletní dodávka projektu od&nbsp;A do&nbsp;Z. Jasný scope, termín a&nbsp;cena domluvené předem.</p>
+        <div class="specs">
+          <div><span>Délka</span><b>2 &mdash; 12 měs.</b></div>
+          <div><span>Kontrakt</span><b>Fixní cena</b></div>
+          <div><span>Tým</span><b>4 &mdash; 12 lidí</b></div>
+          <div><span>Ideální pro</span><b>Jasné zadání</b></div>
+        </div>
+      </article>
+
+      <article class="c-card reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="lbl-c">Model / 02</div>
+        <h4>Time &amp; Material</h4>
+        <p>Flexibilní spolupráce na&nbsp;hodinové sazbě. Platíte jen za&nbsp;odpracované hodiny.</p>
+        <div class="specs">
+          <div><span>Délka</span><b>Neomezeno</b></div>
+          <div><span>Sazba</span><b>1 800 — 3 200 Kč/h</b></div>
+          <div><span>Minimum</span><b>40 hodin / měsíc</b></div>
+          <div><span>Ideální pro</span><b>Průběžný vývoj</b></div>
+        </div>
+      </article>
+
+      <article class="c-card reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 6-5M13 20c0-3 2.5-5 6-5"/></svg></div>
+        <div class="lbl-c">Model / 03</div>
+        <h4>Dedikovaný tým</h4>
+        <p>Posílíme váš&nbsp;tým vývojáři na&nbsp;dlouhodobou spolupráci. Body Shop model.</p>
+        <div class="specs">
+          <div><span>Délka</span><b>3+ měsíců</b></div>
+          <div><span>Kontrakt</span><b>Měsíční FTE</b></div>
+          <div><span>Seniorita</span><b>Med / Sen / Lead</b></div>
+          <div><span>Ideální pro</span><b>Scale-up</b></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Potřebujete<br><span class="red">vývojáře?</span></h2>
+    <p class="sub reveal d1">Popište projekt a&nbsp;navrhneme optimální tým, sazbu i&nbsp;termín nástupu. Ozveme se do&nbsp;24 hodin.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Nezávazná konzultace"><span>Nezávazná konzultace</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="sluzby.html" class="btn ghost"><span class="lbl" data-t="Další služby"><span>Další služby</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="sluzby-vyzkum.html">Výzkum &amp; Design <span class="ar">→</span></a>
+        <a href="sluzby-data.html">Data &amp; Analytika <span class="ar">→</span></a>
+        <a href="sluzby-vyvoj.html">Vývoj <span class="ar">→</span></a>
+        <a href="sluzby-provoz.html">Provoz &amp; Podpora <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Reference — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2ece0;--paper-2:#ebe4d4;--paper-3:#e3dac8;
+  --ink:#0a0a0a;--ink-2:#1a1a1a;--ink-3:#2a2a2a;
+  --mute:#6b6862;--mute-2:#8a8680;
+  --line:rgba(10,10,10,.12);--line-2:rgba(10,10,10,.06);
+  --red:#e30613;--red-2:#b8050f;
+  --sans:"Geist",system-ui,-apple-system,sans-serif;
+  --mono:"Geist Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--red);color:#fff}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;letter-spacing:-.01em;font-feature-settings:"ss01","cv11","tnum";-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:none;border:none;background:none;color:inherit}
+img,svg{display:block;max-width:100%}
+
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+.cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);mix-blend-mode:difference}
+.cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(10,10,10,.35);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease),border-color .3s,background .3s}
+body.cursor-hover .cursor{width:4px;height:4px;background:#fff}
+body.cursor-hover .cursor-ring{width:56px;height:56px;border-color:var(--ink);background:rgba(10,10,10,.08)}
+@media (hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none}a,button{cursor:pointer}}
+
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:200}
+.scroll-progress::after{content:"";position:absolute;top:0;left:0;height:100%;width:var(--p,0%);background:var(--red);transition:width .05s linear;box-shadow:0 0 8px rgba(227,6,19,.5)}
+
+.wrap{max-width:1480px;margin:0 auto;padding:0 40px;position:relative;z-index:2}
+
+/* ===================== NAV ===================== */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;transition:padding .4s var(--ease),background .3s,backdrop-filter .3s}
+nav.top.scrolled{padding:14px 40px;background:rgba(242,236,224,.82);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;letter-spacing:-.02em;position:relative}
+.logo .mark{width:12px;height:12px;border-radius:50%;background:var(--red);animation:breath 3.2s var(--ease) infinite;position:relative}
+.logo .mark::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 70%);animation:halo 3.2s var(--ease) infinite}
+@keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(.85)}}
+@keyframes halo{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:1;transform:scale(1.4)}}
+.logo .name b{font-weight:800}
+.logo sup{font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:500;margin-left:4px;position:relative;top:-6px}
+nav.top ul{list-style:none;display:flex;gap:8px;justify-content:center}
+nav.top ul a{position:relative;padding:10px 16px;font-size:14px;font-weight:500;border-radius:999px}
+nav.top ul a .t{position:relative;display:inline-block;overflow:hidden;vertical-align:bottom}
+nav.top ul a .t span{display:block;transition:transform .45s var(--ease)}
+nav.top ul a .t::after{content:attr(data-t);position:absolute;top:100%;left:0;font-weight:500;transition:transform .45s var(--ease)}
+nav.top ul a:hover .t span{transform:translateY(-100%)}
+nav.top ul a:hover .t::after{transform:translateY(-100%)}
+nav.top .meta{display:flex;gap:20px;align-items:center;justify-content:flex-end;font-family:var(--mono);font-size:11px;color:var(--mute)}
+nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;margin-right:6px;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(43,182,93,.12)}}
+
+/* ===================== BUTTONS ===================== */
+.btn{--bg:var(--ink);--fg:var(--paper);position:relative;display:inline-flex;align-items:center;gap:14px;padding:16px 24px 16px 28px;background:var(--bg);color:var(--fg);border-radius:999px;font-weight:500;font-size:14px;letter-spacing:-.01em;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease-out)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--red);transform:translateY(101%);transition:transform .55s var(--ease-out)}
+.btn:hover::before{transform:translateY(0)}
+.btn .lbl{position:relative;display:inline-block;overflow:hidden;line-height:1.2}
+.btn .lbl span{display:block;transition:transform .5s var(--ease)}
+.btn .lbl::after{content:attr(data-t);position:absolute;top:100%;left:0;transition:transform .5s var(--ease)}
+.btn:hover .lbl span{transform:translateY(-100%)}
+.btn:hover .lbl::after{transform:translateY(-100%)}
+.btn .arr{width:22px;height:22px;border-radius:50%;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;position:relative}
+.btn .arr svg{width:12px;height:12px;transition:transform .5s var(--ease)}
+.btn:hover .arr svg{transform:translate(32px,-32px)}
+.btn .arr::after{content:"";position:absolute;width:12px;height:12px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 5l7 7-7 7'/></svg>") center/contain no-repeat;transform:translate(-32px,32px);transition:transform .5s var(--ease) .05s}
+.btn:hover .arr::after{transform:translate(0,0)}
+.btn.ghost{--bg:transparent;--fg:var(--ink);border:1px solid var(--ink)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+.btn.ghost .arr{background:var(--ink);color:var(--paper)}
+.btn.ghost .arr svg{stroke:var(--paper)}
+.btn.ghost .arr::after{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2ece0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 5l7 7-7 7'/></svg>") center/contain no-repeat}
+.btn.sm{padding:11px 16px 11px 20px;font-size:13px;gap:10px}
+.btn.sm .arr{width:18px;height:18px}
+.btn.sm .arr svg{width:10px;height:10px}
+
+/* ===================== BREADCRUMB ===================== */
+.crumbs{padding:130px 0 0}
+.crumbs .wrap{display:flex;justify-content:space-between;align-items:center}
+.crumbs .back{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:500;transition:color .3s}
+.crumbs .back .dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.crumbs .back .dot svg{width:12px;height:12px;stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+.crumbs .back:hover{color:var(--ink)}
+.crumbs .back:hover .dot{background:var(--ink);border-color:var(--ink)}
+.crumbs .back:hover .dot svg{stroke:var(--paper);transform:translateX(-3px)}
+.crumbs .path{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.crumbs .path b{color:var(--ink);font-weight:600}
+.crumbs .path span{opacity:.4;margin:0 10px}
+
+/* ===================== TITLE ===================== */
+.title{padding:80px 0 60px;position:relative}
+.title .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:30px;display:flex;align-items:center;gap:14px}
+.title .idx::before{content:"";width:40px;height:1px;background:var(--red)}
+.title .top-row{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:end}
+.title h1{font-size:clamp(88px,15vw,240px);font-weight:800;letter-spacing:-.055em;line-height:.82}
+.title h1 .red{color:var(--red)}
+.title .counter{
+  text-align:right;font-family:var(--sans);
+  padding-bottom:18px;
+}
+.title .counter .big{font-size:clamp(56px,7vw,120px);font-weight:700;letter-spacing:-.045em;line-height:.9;color:var(--ink)}
+.title .counter .big sup{font-size:.4em;color:var(--red);vertical-align:super;font-weight:600;position:relative;top:.1em}
+.title .counter .lbl{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.title .lede{margin-top:44px;font-size:clamp(20px,2vw,28px);font-weight:400;letter-spacing:-.015em;line-height:1.3;max-width:30ch;color:var(--ink-3)}
+.title .lede b{color:var(--ink);font-weight:600}
+.title .lede .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 2px}
+
+/* Stats strip */
+.stats-strip{margin-top:60px;padding:28px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:30px}
+.stats-strip .s{position:relative}
+.stats-strip .s::before{content:"";position:absolute;left:-15px;top:0;bottom:0;width:1px;background:var(--line)}
+.stats-strip .s:first-child::before{display:none}
+.stats-strip .s .n{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.stats-strip .s .n .red{color:var(--red)}
+.stats-strip .s .n sub{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--mute);letter-spacing:.02em;vertical-align:baseline;margin-left:4px}
+.stats-strip .s .l{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-top:8px}
+
+/* ===================== FILTER BAR ===================== */
+.filter-bar{
+  position:sticky;top:80px;z-index:50;margin-top:80px;
+  padding:20px 0;background:rgba(242,236,224,.92);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);
+  transition:padding .3s var(--ease);
+}
+.filter-bar .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
+.filter-bar .lbl{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.filter-bar .lbl::before{content:"";width:20px;height:1px;background:var(--mute)}
+.filter-chips{display:flex;flex-wrap:wrap;gap:6px}
+.fchip{
+  padding:10px 16px;border:1px solid var(--line);border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:-.005em;color:var(--ink);
+  background:transparent;transition:all .3s var(--ease);position:relative;cursor:none;
+}
+.fchip:hover{border-color:var(--ink)}
+.fchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink);padding-left:28px}
+.fchip.on::before{content:"";position:absolute;left:12px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--red);transform:translateY(-50%);box-shadow:0 0 8px rgba(227,6,19,.6)}
+.fchip .cnt{display:inline-block;margin-left:6px;font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:500}
+.fchip.on .cnt{color:rgba(242,236,224,.55)}
+.filter-bar .sort{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.filter-bar .sort select{
+  padding:8px 32px 8px 14px;background:transparent;border:1px solid var(--line);
+  border-radius:999px;font-family:var(--mono);font-size:11px;color:var(--ink);
+  letter-spacing:.04em;text-transform:uppercase;font-weight:600;
+  appearance:none;-webkit-appearance:none;cursor:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:12px;
+  transition:all .3s;
+}
+.filter-bar .sort select:hover{border-color:var(--ink)}
+
+/* Result counter */
+.result-count{padding:40px 0 30px;display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.result-count b{color:var(--ink);font-weight:600}
+.result-count .num{font-size:14px}
+.result-count .num span{display:inline-block;color:var(--red);font-weight:700;font-family:var(--sans);font-size:18px;letter-spacing:-.01em;margin:0 4px}
+
+/* ===================== FEATURED ROW ===================== */
+.featured{padding:20px 0 40px}
+.feat-row{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;margin-bottom:24px}
+.proj{
+  position:relative;border-radius:20px;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(10,10,10,.06);
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease);
+  display:block;cursor:none;
+}
+.proj:hover{transform:translateY(-6px);box-shadow:0 40px 80px -30px rgba(10,10,10,.35),0 0 0 1px rgba(10,10,10,.15)}
+.proj .img{
+  position:absolute;inset:0;transition:transform 1.2s var(--ease);will-change:transform;
+  z-index:0;
+}
+.proj:hover .img{transform:scale(1.06)}
+.proj .content{position:relative;z-index:2;padding:40px 44px;height:100%;display:flex;flex-direction:column;justify-content:space-between;color:#fff;min-height:400px}
+.proj .content::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,transparent 30%,transparent 60%,rgba(0,0,0,.85) 100%);z-index:-1}
+.proj .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.proj .tag{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:999px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.proj .tag .d{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px rgba(227,6,19,.7)}
+.proj .year{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.06em}
+.proj .brandmark{font-size:clamp(36px,4.5vw,72px);font-weight:900;letter-spacing:-.035em;line-height:.95;text-transform:uppercase;color:#fff}
+.proj .brandmark sup{font-size:.2em;font-weight:500;color:var(--red);vertical-align:super;margin-left:4px}
+.proj h3{font-size:22px;font-weight:600;letter-spacing:-.015em;margin-top:20px;color:#fff;max-width:36ch}
+.proj .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:20px}
+.proj .kpis{display:flex;gap:28px;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.65);letter-spacing:.04em;text-transform:uppercase}
+.proj .kpis b{display:block;font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:-.02em;color:#fff;text-transform:none;margin-top:4px}
+.proj .kpis b .red{color:var(--red)}
+.proj .go{
+  width:52px;height:52px;border-radius:50%;background:#fff;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transform:translate(20px,-20px) scale(.5);opacity:0;
+  transition:all .5s var(--ease);
+}
+.proj:hover .go{transform:translate(0,0) scale(1);opacity:1}
+.proj .go svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* Aspect ratios */
+.proj.small{min-height:400px}
+.proj.big .content{min-height:480px}
+
+/* Gradient BGs per card */
+.bg-elnino{background:linear-gradient(135deg,#3a0810 0%,#0a0a0a 70%)}
+.bg-elnino::after{content:"";position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 60%);filter:blur(40px)}
+.bg-bestdrive{background:linear-gradient(135deg,#1a2332 0%,#0a0e18 70%)}
+.bg-bestdrive::after{content:"";position:absolute;bottom:-120px;left:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(80,140,230,.25),transparent 60%);filter:blur(40px)}
+.bg-albi{background:linear-gradient(135deg,#f4efe0 0%,#c8a868 70%)}
+.bg-albi .content{color:var(--ink)}
+.bg-albi .content::before{background:linear-gradient(to bottom,transparent 0%,transparent 60%,rgba(10,10,10,.35) 100%)}
+.bg-albi .tag{background:rgba(10,10,10,.12);color:var(--ink);border-color:rgba(10,10,10,.22)}
+.bg-albi .brandmark,.bg-albi h3{color:var(--ink)}
+.bg-albi .year,.bg-albi .kpis{color:rgba(10,10,10,.55)}
+.bg-albi .kpis b{color:var(--ink)}
+
+.bg-hyundai{background:linear-gradient(135deg,#051525 0%,#020710 70%)}
+.bg-hyundai::after{content:"";position:absolute;top:-80px;left:30%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,120,200,.3),transparent 60%);filter:blur(30px)}
+.bg-bushman{background:linear-gradient(135deg,#2a1e10 0%,#140a05 70%)}
+.bg-bushman::after{content:"";position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.28),transparent 60%);filter:blur(40px)}
+.bg-konsepti{background:linear-gradient(135deg,#ebe1d0 0%,#a88a5c 70%)}
+.bg-konsepti .content{color:var(--ink)}
+.bg-konsepti .content::before{background:linear-gradient(to bottom,transparent 0%,transparent 60%,rgba(10,10,10,.35) 100%)}
+.bg-konsepti .tag{background:rgba(10,10,10,.12);color:var(--ink);border-color:rgba(10,10,10,.22)}
+.bg-konsepti .brandmark,.bg-konsepti h3{color:var(--ink)}
+.bg-konsepti .year,.bg-konsepti .kpis{color:rgba(10,10,10,.55)}
+.bg-konsepti .kpis b{color:var(--ink)}
+
+.bg-travel{background:linear-gradient(135deg,#1e3a4a 0%,#0a1820 70%)}
+.bg-travel::after{content:"";position:absolute;bottom:-100px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,180,.2),transparent 60%);filter:blur(30px)}
+.bg-stampol{background:linear-gradient(135deg,#3a0a0a 0%,#150404 70%)}
+.bg-stampol::after{content:"";position:absolute;top:-120px;left:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.35),transparent 60%);filter:blur(40px)}
+.bg-ekosport{background:linear-gradient(135deg,#0a2a1a 0%,#03140a 70%)}
+.bg-ekosport::after{content:"";position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(80,220,120,.2),transparent 60%);filter:blur(40px)}
+.bg-armed{background:linear-gradient(135deg,#1a1f14 0%,#0a0d05 70%)}
+.bg-armed::after{content:"";position:absolute;top:-80px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(140,160,80,.22),transparent 60%);filter:blur(35px)}
+
+.bg-kofola{background:linear-gradient(135deg,#4a0a1a 0%,#1a0308 70%)}
+.bg-kofola::after{content:"";position:absolute;top:30%;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 60%);filter:blur(40px)}
+.bg-skoda{background:linear-gradient(135deg,#0a1a0f 0%,#050a05 70%)}
+.bg-skoda::after{content:"";position:absolute;bottom:-100px;left:40%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(60,180,100,.22),transparent 60%);filter:blur(35px)}
+.bg-timous{background:linear-gradient(135deg,#e8dac0 0%,#9c7848 70%)}
+.bg-timous .content{color:var(--ink)}
+.bg-timous .content::before{background:linear-gradient(to bottom,transparent 0%,transparent 60%,rgba(10,10,10,.35) 100%)}
+.bg-timous .tag{background:rgba(10,10,10,.12);color:var(--ink);border-color:rgba(10,10,10,.22)}
+.bg-timous .brandmark,.bg-timous h3{color:var(--ink)}
+.bg-timous .year,.bg-timous .kpis{color:rgba(10,10,10,.55)}
+.bg-timous .kpis b{color:var(--ink)}
+
+/* ===================== GRID ===================== */
+.grid-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:24px}
+.grid-row .proj{min-height:420px}
+.grid-row .proj .content{min-height:420px;padding:32px 36px}
+.grid-row .proj .brandmark{font-size:44px}
+.grid-row .proj h3{font-size:16px;max-width:28ch;margin-top:16px}
+.grid-row .proj .kpis{gap:20px}
+.grid-row .proj .kpis b{font-size:18px}
+.grid-row .proj .go{width:42px;height:42px}
+
+/* ===================== LOAD MORE ===================== */
+.loadmore{padding:80px 0 120px;text-align:center;border-top:1px solid var(--line);margin-top:40px}
+.loadmore .meta{margin-bottom:32px;font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.loadmore .meta b{color:var(--ink);font-weight:600}
+.loadmore .bar{max-width:480px;margin:20px auto 36px;height:3px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.loadmore .bar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:20%;background:var(--red);border-radius:2px}
+
+/* ===================== LOGOS ===================== */
+.logos{padding:140px 0;border-top:1px solid var(--ink)}
+.sec-head{display:grid;grid-template-columns:140px 1fr auto;gap:48px;align-items:baseline;padding-bottom:32px;border-bottom:1px solid var(--ink);margin-bottom:60px}
+.sec-head .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.sec-head h2{font-size:clamp(44px,5.5vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.92}
+.sec-head h2 .red{color:var(--red)}
+.sec-head .aside{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;line-height:1.8}
+.sec-head .aside b{color:var(--ink);font-weight:600}
+.lgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.lcell{
+  height:130px;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--mute);
+  transition:all .4s var(--ease);position:relative;
+}
+.lcell:hover{color:var(--ink);background:var(--paper-2)}
+.lcell::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.lcell:hover::before{transform:scaleX(1)}
+
+/* ===================== CTA ===================== */
+.cta{padding:180px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
+.cta h2{font-size:clamp(48px,8vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85}
+.cta h2 .red{color:var(--red)}
+.cta .sub{margin-top:28px;font-size:17px;color:var(--mute);max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.55}
+.cta .ctas{margin-top:48px;display:flex;gap:14px;justify-content:center}
+
+/* ===================== FOOTER ===================== */
+footer{background:var(--ink);color:var(--paper);padding:80px 0 40px;position:relative;overflow:hidden}
+footer .big{font-size:clamp(80px,14vw,260px);font-weight:800;letter-spacing:-.06em;line-height:.82;margin-bottom:80px}
+footer .big .red{color:var(--red)}
+footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-top:48px;border-top:1px solid rgba(242,236,224,.12)}
+footer .cols .about p{font-size:14px;color:rgba(242,236,224,.6);line-height:1.6;max-width:36ch;margin-top:20px}
+footer .cols h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,236,224,.45);font-weight:500;margin-bottom:20px}
+footer .cols a{display:block;padding:6px 0;font-size:15px;color:var(--paper);position:relative;width:fit-content;transition:color .3s}
+footer .cols a:hover{color:var(--red)}
+footer .cols a .ar{display:inline-block;opacity:0;transform:translateX(-8px);transition:all .3s var(--ease);margin-left:4px}
+footer .cols a:hover .ar{opacity:1;transform:translateX(0)}
+footer .base{margin-top:60px;padding-top:30px;border-top:1px solid rgba(242,236,224,.12);display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5)}
+footer .base .clock{display:flex;gap:20px;justify-content:center}
+footer .base .clock span{display:flex;align-items:center;gap:8px}
+footer .base .clock .k{color:rgba(242,236,224,.3)}
+footer .base .clock b{color:var(--paper);font-weight:500}
+footer .base .right{text-align:right}
+
+@media (max-width:1100px){
+  .title .top-row{grid-template-columns:1fr;gap:40px}
+  .title .counter{text-align:left}
+  .stats-strip{grid-template-columns:repeat(2,1fr);gap:24px}
+  .stats-strip .s::before{display:none}
+  .filter-bar .wrap{grid-template-columns:1fr;gap:16px}
+  .filter-chips{overflow-x:auto;flex-wrap:nowrap}
+  .feat-row,.grid-row{grid-template-columns:1fr 1fr}
+  .sec-head{grid-template-columns:1fr;gap:20px}
+  .lgrid{grid-template-columns:repeat(3,1fr)}
+  footer .cols{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  body{cursor:auto}.cursor,.cursor-ring{display:none}
+  nav.top{padding:14px 20px;grid-template-columns:auto auto}
+  nav.top ul,nav.top .meta{display:none}
+  .wrap{padding:0 20px}
+  .title h1{font-size:64px}
+  .feat-row,.grid-row{grid-template-columns:1fr}
+  .stats-strip{grid-template-columns:1fr}
+  .lgrid{grid-template-columns:repeat(2,1fr)}
+  .lcell{height:100px;font-size:14px}
+  footer .cols,footer .base{grid-template-columns:1fr}
+}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* Hide filtered out */
+.proj.hidden{display:none}
+</style>
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="top">
+  <a class="logo" href="index.html">
+    <span class="mark"></span>
+    <span class="name"><b>PragueBest</b><sup>®</sup></span>
+  </a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <a href="kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===================== BREADCRUMB ===================== -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na úvod
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> <b>Reference</b>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TITLE ===================== -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Vybrané projekty &nbsp;—&nbsp; 1999 &ndash; 2026 &nbsp;—&nbsp; 100+ e-shopů, 80+ webů</div>
+
+    <div class="top-row">
+      <h1 class="reveal d1">Reference<span class="red">.</span></h1>
+      <div class="counter reveal d2">
+        <div class="big">180<sup>+</sup></div>
+        <div class="lbl">Dokončených projektů</div>
+      </div>
+    </div>
+
+    <p class="lede reveal d3">
+      27 let práce v&nbsp;jednom přehledu. Každý projekt jsme stavěli
+      <span class="hi">od základu</span>, ve&nbsp;vlastním stacku a&nbsp;ve&nbsp;vlastním studiu v&nbsp;Karlíně.
+    </p>
+
+    <div class="stats-strip reveal">
+      <div class="s"><div class="n">100<span class="red">+</span></div><div class="l">E-shopů</div></div>
+      <div class="s"><div class="n">80<span class="red">+</span></div><div class="l">Webů &amp; aplikací</div></div>
+      <div class="s"><div class="n">150<sub>mld. Kč</sub></div><div class="l">Obrat klientů</div></div>
+      <div class="s"><div class="n">17<span class="red">×</span></div><div class="l">Ocenění</div></div>
+      <div class="s"><div class="n">27<sub>let</sub></div><div class="l">Na trhu</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FILTER BAR ===================== -->
+<div class="filter-bar">
+  <div class="wrap">
+    <div class="lbl">Filtrovat</div>
+    <div class="filter-chips" id="filters">
+      <button class="fchip on" data-f="all">Vše <span class="cnt">180+</span></button>
+      <button class="fchip" data-f="eshop">E-shopy <span class="cnt">100+</span></button>
+      <button class="fchip" data-f="webapp">Webové aplikace <span class="cnt">40</span></button>
+      <button class="fchip" data-f="b2b">B2B <span class="cnt">35</span></button>
+      <button class="fchip" data-f="b2c">B2C <span class="cnt">70</span></button>
+      <button class="fchip" data-f="retail">Retail <span class="cnt">45</span></button>
+      <button class="fchip" data-f="auto">Automotive <span class="cnt">12</span></button>
+      <button class="fchip" data-f="fashion">Fashion <span class="cnt">18</span></button>
+      <button class="fchip" data-f="food">Food <span class="cnt">9</span></button>
+    </div>
+    <div class="sort">
+      <span>Řadit</span>
+      <select>
+        <option>Nejnovější</option>
+        <option>Abecedně A→Z</option>
+        <option>Nejvýkonnější</option>
+        <option>Nejstarší</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RESULT COUNT ===================== -->
+<div class="wrap">
+  <div class="result-count">
+    <div>Zobrazeno<span class="num"><span id="shown">12</span>&nbsp;z&nbsp;<span>180+</span></span>projektů</div>
+    <div>Filtr: <b id="active-filter">Vše</b></div>
+  </div>
+</div>
+
+<!-- ===================== FEATURED ROW 1 ===================== -->
+<section class="featured">
+  <div class="wrap">
+
+    <!-- Big feature 1: Elnino -->
+    <div class="feat-row">
+      <a class="proj big bg-elnino" href="elnino.html" data-tags="eshop b2b b2c retail fashion">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Case Study 026</span>
+            <span class="year">2025</span>
+          </div>
+          <div>
+            <div class="brandmark">Elnino<sup>®</sup></div>
+            <h3>Evropská síť parfumerií sjednocená do&nbsp;jedné headless platformy pro&nbsp;13 zemí.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Konverze B2B<b><span class="red">+</span>214<span style="font-size:.6em">%</span></b></div>
+                <div>LCP mobil<b>0,8 s</b></div>
+                <div>Trhů<b>13</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj small bg-bestdrive" href="#" data-tags="eshop b2b auto">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Case Study 027</span>
+            <span class="year">2024</span>
+          </div>
+          <div>
+            <div class="brandmark">BestDrive</div>
+            <h3>B2B portál pro&nbsp;330 autoservisů s&nbsp;ERP integrací.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>B2B obrat<b><span class="red">+</span>89%</b></div>
+                <div>SKU/den<b>4 200</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Big feature 2: Albi -->
+    <div class="feat-row" style="grid-template-columns:1fr 1.6fr">
+      <a class="proj small bg-hyundai" href="#" data-tags="webapp auto">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Web aplikace</span>
+            <span class="year">2024</span>
+          </div>
+          <div>
+            <div class="brandmark">Hyundai</div>
+            <h3>Konfigurátor a&nbsp;dealer portál pro CZ&amp;SK síť.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Dealerů<b>52</b></div>
+                <div>Configů/měs<b>12k</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj big bg-albi" href="#" data-tags="eshop b2c retail">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Case Study 025</span>
+            <span class="year">2024</span>
+          </div>
+          <div>
+            <div class="brandmark">Albi<sup>®</sup></div>
+            <h3>Omnichannel e-shop propojující 120 poboček v&nbsp;CZ&nbsp;&amp;&nbsp;SK.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Online obrat<b><span class="red">+</span>156%</b></div>
+                <div>Poboček<b>120</b></div>
+                <div>SKU<b>24 000</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Grid row 1 -->
+    <div class="grid-row">
+      <a class="proj bg-bushman" href="#" data-tags="eshop b2c fashion retail">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>E-shop</span>
+            <span class="year">2023</span>
+          </div>
+          <div>
+            <div class="brandmark">Bushman</div>
+            <h3>Outdoor fashion brand, CZ/SK/PL markety.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Trhů<b>3</b></div>
+                <div>Konverze<b><span class="red">+</span>48%</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj bg-konsepti" href="#" data-tags="eshop b2b retail">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>B2B platforma</span>
+            <span class="year">2023</span>
+          </div>
+          <div>
+            <div class="brandmark">Konsepti</div>
+            <h3>Luxusní design nábytek s&nbsp;PIM a&nbsp;ceníky pro architekty.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Role<b>8</b></div>
+                <div>Značek<b>120</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj bg-travel" href="#" data-tags="eshop b2c retail">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Loyalty platform</span>
+            <span class="year">2023</span>
+          </div>
+          <div>
+            <div class="brandmark">Travel Free</div>
+            <h3>Věrnostní program a&nbsp;personalizace pro&nbsp;26 retail prodejen.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Prodejen<b>26</b></div>
+                <div>Členů<b>380k</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Grid row 2 -->
+    <div class="grid-row">
+      <a class="proj bg-stampol" href="#" data-tags="eshop b2b">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>B2B e-shop</span>
+            <span class="year">2022</span>
+          </div>
+          <div>
+            <div class="brandmark">Stampol</div>
+            <h3>Velkoobchod s&nbsp;papírnickým zbožím &mdash; 18k SKU.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>SKU<b>18k</b></div>
+                <div>Objednávek/den<b>850</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj bg-ekosport" href="#" data-tags="eshop b2c retail">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>E-shop</span>
+            <span class="year">2022</span>
+          </div>
+          <div>
+            <div class="brandmark">Ekosport</div>
+            <h3>Sportovní potřeby s&nbsp;inteligentním doporučováním.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Cross-sell<b><span class="red">+</span>72%</b></div>
+                <div>AOV<b><span class="red">+</span>38%</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj bg-armed" href="#" data-tags="eshop b2c retail">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>E-shop</span>
+            <span class="year">2022</span>
+          </div>
+          <div>
+            <div class="brandmark">Armed</div>
+            <h3>Specializovaný retailer s&nbsp;věkovou verifikací a&nbsp;licencemi.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Konverze<b><span class="red">+</span>54%</b></div>
+                <div>RMA<b>&minus;68%</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Grid row 3 -->
+    <div class="grid-row">
+      <a class="proj bg-kofola" href="#" data-tags="webapp food">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Web aplikace</span>
+            <span class="year">2021</span>
+          </div>
+          <div>
+            <div class="brandmark">Kofola</div>
+            <h3>B2B portál pro&nbsp;distributory a&nbsp;gastro partnery.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Uživatelů<b>2 400</b></div>
+                <div>Objednávek/měs<b>32k</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj bg-skoda" href="#" data-tags="webapp auto">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>Web aplikace</span>
+            <span class="year">2021</span>
+          </div>
+          <div>
+            <div class="brandmark">Škoda Auto</div>
+            <h3>Interní tréninkový portál pro&nbsp;dealery a&nbsp;servisní techniky.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>Uživatelů<b>8 200</b></div>
+                <div>Kurzů<b>140</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="proj bg-timous" href="#" data-tags="eshop b2c fashion">
+        <div class="content">
+          <div class="top">
+            <span class="tag"><span class="d"></span>E-shop</span>
+            <span class="year">2021</span>
+          </div>
+          <div>
+            <div class="brandmark">Timous</div>
+            <h3>Designové hodinky a&nbsp;šperky, prémiový online zážitek.</h3>
+            <div class="meta">
+              <div class="kpis">
+                <div>AOV<b>8 400 Kč</b></div>
+                <div>NPS<b>68</b></div>
+              </div>
+              <div class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== LOAD MORE ===================== -->
+<div class="loadmore">
+  <div class="wrap">
+    <div class="meta">Zobrazeno <b>12</b> z&nbsp;<b>180+</b> projektů</div>
+    <div class="bar"></div>
+    <a href="#" class="btn">
+      <span class="lbl" data-t="Načíst dalších 12"><span>Načíst dalších 12</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+    </a>
+  </div>
+</div>
+
+<!-- ===================== CLIENT LOGO GRID ===================== -->
+<section class="logos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Další klienti</div>
+      <h2>180+ klientů za&nbsp;<span class="red">27 let.</span></h2>
+      <div class="aside">Dlouhodobá spolupráce<br><b>je u nás standard</b></div>
+    </div>
+
+    <div class="lgrid">
+      <div class="lcell">ELNINO</div>
+      <div class="lcell">BESTDRIVE</div>
+      <div class="lcell">ALBI</div>
+      <div class="lcell">HYUNDAI</div>
+      <div class="lcell">BUSHMAN</div>
+      <div class="lcell">KONSEPTI</div>
+      <div class="lcell">TRAVEL FREE</div>
+      <div class="lcell">STAMPOL</div>
+      <div class="lcell">EKOSPORT</div>
+      <div class="lcell">ARMED</div>
+      <div class="lcell">KOFOLA</div>
+      <div class="lcell">ŠKODA AUTO</div>
+      <div class="lcell">TIMOUS</div>
+      <div class="lcell">GE</div>
+      <div class="lcell">DK OPTIC</div>
+      <div class="lcell">ZÁKRETO</div>
+      <div class="lcell">ČSOB</div>
+      <div class="lcell">+ 160</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Chcete být<br>další na&nbsp;<span class="red">seznamu?</span></h2>
+    <p class="sub reveal d1">Napište nám &mdash; proberete projekt, ukážeme podobné case studies a&nbsp;společně zhodnotíme, jestli si&nbsp;sedneme.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn">
+        <span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="eshop.html" class="btn ghost">
+        <span class="lbl" data-t="Co umíme"><span>Co umíme</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
+        <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
+        <a href="#">Big Data <span class="ar">→</span></a>
+        <a href="#">UpSearch™ <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.proj,.lcell,.fchip').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+
+  document.querySelectorAll('.btn').forEach(b=>{
+    let rect;
+    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
+    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
+    b.addEventListener('mouseleave',()=>{b.style.transform=''});
+  });
+
+  // Filter logic
+  const chips=document.querySelectorAll('#filters .fchip');
+  const projs=document.querySelectorAll('.proj');
+  const shownEl=document.getElementById('shown');
+  const activeEl=document.getElementById('active-filter');
+  chips.forEach(ch=>{
+    ch.addEventListener('click',()=>{
+      chips.forEach(c=>c.classList.remove('on'));
+      ch.classList.add('on');
+      const f=ch.dataset.f;
+      let count=0;
+      projs.forEach(p=>{
+        const tags=(p.dataset.tags||'').split(' ');
+        if(f==='all'||tags.includes(f)){p.classList.remove('hidden');count++}
+        else p.classList.add('hidden');
+      });
+      if(shownEl)shownEl.textContent=count;
+      if(activeEl)activeEl.textContent=ch.textContent.replace(/\d+\+?/,'').trim();
+    });
+  });
+})();
+</script>
+</body>
+</html>

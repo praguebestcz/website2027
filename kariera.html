@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kariéra — Přidej se k nám — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== JOBS HERO (opening list big) ===== */
+.jobs-wrap{padding:60px 0 120px}
+.jobs-card{background:var(--ink);color:var(--paper);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);position:relative}
+.jobs-card::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.28),transparent 60%);filter:blur(50px);pointer-events:none}
+.jobs-card::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000 30%,transparent 80%)}
+.jobs-card .bar-j{position:relative;z-index:3;padding:22px 30px;display:flex;align-items:center;gap:20px;border-bottom:1px solid rgba(242,236,224,.1)}
+.jobs-card .bar-j .lbl-j{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--paper);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.jobs-card .bar-j .lbl-j .d{width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}
+.jobs-card .bar-j .cnt-j{margin-left:auto;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5)}
+.jobs-card .bar-j .cnt-j b{color:var(--paper);font-weight:600}
+
+.j-list{position:relative;z-index:2}
+.j-row{display:grid;grid-template-columns:80px 1.5fr 1fr 1fr auto;gap:30px;align-items:center;padding:34px 40px;border-bottom:1px solid rgba(242,236,224,.08);position:relative;transition:all .5s var(--ease);cursor:none}
+.j-row:last-child{border-bottom:none}
+.j-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out)}
+.j-row:hover::before{transform:scaleY(1)}
+.j-row:hover{background:rgba(242,236,224,.03);padding-left:50px}
+.j-row .no-j{font-family:var(--mono);font-size:12px;color:rgba(242,236,224,.5);font-weight:600;letter-spacing:.04em}
+.j-row h4{font-size:clamp(22px,2.2vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.1;transition:color .4s var(--ease)}
+.j-row:hover h4{color:var(--red)}
+.j-row .meta-j{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.6);letter-spacing:.02em;line-height:1.8}
+.j-row .meta-j div{display:flex;align-items:center;gap:8px}
+.j-row .meta-j div::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--red)}
+.j-row .salary{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--paper);letter-spacing:.02em}
+.j-row .salary small{display:block;color:rgba(242,236,224,.5);font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
+.j-row .go-j{width:46px;height:46px;border-radius:50%;border:1px solid rgba(242,236,224,.2);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.j-row:hover .go-j{background:var(--red);border-color:var(--red);transform:rotate(-45deg)}
+.j-row .go-j svg{width:16px;height:16px;stroke:var(--paper);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.jobs-footer{position:relative;z-index:2;padding:22px 40px;border-top:1px solid rgba(242,236,224,.08);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.45);letter-spacing:.02em}
+.jobs-footer b{color:var(--paper);font-weight:500}
+
+/* ===== WHY WORK HERE ===== */
+.why{padding:140px 0;border-top:1px solid var(--ink)}
+.w-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.w-card{padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.w-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.w-card:hover::before{transform:translateY(0)}
+.w-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.w-card:hover > *{color:var(--paper)}
+.w-card .ico{width:56px;height:56px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:all .5s var(--ease)}
+.w-card:hover .ico{background:var(--red)}
+.w-card .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.w-card .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.w-card:hover .n{color:rgba(242,236,224,.5)}
+.w-card h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.w-card p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.w-card:hover p{color:rgba(242,236,224,.75)}
+
+/* ===== LIFE AT PB (polaroid grid) ===== */
+.life{padding:140px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.life::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.life > .wrap{position:relative;z-index:2}
+.polaroids{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:40px}
+.pol{background:#fff;padding:16px 16px 44px;box-shadow:0 20px 40px -15px rgba(10,10,10,.25);transform:rotate(var(--r,0deg));transition:all .6s var(--ease);position:relative}
+.pol:hover{transform:rotate(0deg) translateY(-8px);z-index:5;box-shadow:0 40px 60px -15px rgba(10,10,10,.35)}
+.pol.p1{--r:-2deg}
+.pol.p2{--r:1.5deg}
+.pol.p3{--r:-1deg}
+.pol.p4{--r:2deg}
+.pol .photo{aspect-ratio:1;position:relative;overflow:hidden;margin-bottom:14px}
+.pol.p1 .photo{background:linear-gradient(135deg,#c8a878,#5a3a1a)}
+.pol.p2 .photo{background:linear-gradient(135deg,#a8b896,#3a4830)}
+.pol.p3 .photo{background:linear-gradient(135deg,#e8b8b0,#7a3028)}
+.pol.p4 .photo{background:linear-gradient(135deg,#98b0c8,#2a4a68)}
+.pol .photo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 25%,rgba(255,255,255,.3),transparent 60%)}
+.pol .photo .ic-p{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);font-weight:700}
+.pol .cap{font-family:var(--mono);font-size:11px;color:var(--ink);letter-spacing:.02em;text-align:center;font-weight:600}
+.pol .cap small{display:block;font-size:9px;color:var(--mute);margin-top:4px;letter-spacing:.04em;text-transform:uppercase}
+
+/* ===== TALENT POOL ===== */
+.talent{padding:140px 0;border-top:1px solid var(--ink)}
+.talent-card{
+  padding:72px 60px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:24px;
+  max-width:980px;margin:0 auto;
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:center;
+}
+.talent-card::before{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.15),transparent 60%);filter:blur(40px)}
+.talent-card > *{position:relative;z-index:1}
+.talent-card .lbl-t{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.talent-card .lbl-t::before{content:"";width:28px;height:1px;background:var(--red)}
+.talent-card h3{font-size:clamp(36px,4.5vw,64px);font-weight:700;letter-spacing:-.035em;line-height:.95;margin-bottom:20px}
+.talent-card h3 .red{color:var(--red)}
+.talent-card p{font-size:16px;color:var(--ink-3);line-height:1.6;margin-bottom:32px;max-width:44ch}
+
+.talent-card .visual{position:relative}
+.cv-stack{display:flex;flex-direction:column;gap:-10px;align-items:center}
+.cv-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 26px;box-shadow:0 20px 40px -15px rgba(10,10,10,.15);width:220px;transform:rotate(var(--r,0deg));transition:transform .5s var(--ease);margin-bottom:-40px}
+.cv-card.c1{--r:-4deg}
+.cv-card.c2{--r:2deg;margin-left:30px}
+.cv-card.c3{--r:-2deg;margin-left:-10px}
+.cv-card:hover{transform:rotate(0deg) translateY(-4px)}
+.cv-card .cv-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cv-card .cv-av{width:30px;height:30px;border-radius:50%}
+.cv-card.c1 .cv-av{background:linear-gradient(135deg,#c8a878,#5a3a1a)}
+.cv-card.c2 .cv-av{background:linear-gradient(135deg,#a8b896,#3a4830)}
+.cv-card.c3 .cv-av{background:linear-gradient(135deg,#e0a4a0,#8a3a34)}
+.cv-card .cv-head b{font-size:12px;font-weight:700;display:block}
+.cv-card .cv-head small{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.02em}
+.cv-card .skills{display:flex;flex-wrap:wrap;gap:4px}
+.cv-card .skills span{font-family:var(--mono);font-size:8px;padding:2px 6px;background:var(--paper-2);border:1px solid var(--line);border-radius:99px;color:var(--mute)}
+
+/* ===== PROCESS / HOW TO APPLY ===== */
+.how{padding:140px 0;border-top:1px solid var(--ink)}
+.h-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px}
+.hstep{padding:40px 28px 48px;border-right:1px solid var(--line);position:relative;transition:background .5s var(--ease)}
+.hstep:last-child{border-right:none}
+.hstep::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out)}
+.hstep.reveal.on::before{transform:scaleX(1)}
+.hstep .n-big{font-size:72px;font-weight:700;letter-spacing:-.05em;line-height:.85;color:var(--ink);margin-bottom:20px}
+.hstep .n-big .mk{color:var(--red)}
+.hstep .lbl-h{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.hstep h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+.hstep p{font-size:13px;color:var(--mute);line-height:1.6}
+.hstep:hover{background:var(--paper-2)}
+
+@media (max-width:1100px){
+  .j-row{grid-template-columns:60px 1fr auto;gap:20px;padding:24px 28px}
+  .j-row .meta-j,.j-row .salary{display:none}
+  .w-grid{grid-template-columns:1fr 1fr}
+  .polaroids{grid-template-columns:1fr 1fr}
+  .talent-card{grid-template-columns:1fr;gap:40px;padding:50px 36px}
+  .h-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .w-grid,.polaroids,.h-grid{grid-template-columns:1fr}
+  .j-row{grid-template-columns:40px 1fr auto;padding:20px}
+  .j-row h4{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>6 otevřených pozic</span>
+    <a href="mailto:kariera@praguebest.cz" class="btn sm"><span class="lbl" data-t="Poslat CV"><span>Poslat CV</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na úvod</a>
+    <div class="path"><b>Úvod</b> <span>/</span> <b>Kariéra</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Kariéra &nbsp;—&nbsp; Přijímáme &nbsp;—&nbsp; Praha · Karlín &nbsp;—&nbsp; 6 otevřených pozic</div>
+    <h1 class="reveal d1">Přidej<br>se <span class="red">k nám.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Hledáme šikovné lidi, kteří chtějí dělat <b>smysluplnou práci</b> v&nbsp;přátelském týmu &mdash; na&nbsp;projektech, které <span class="hi">reálně něco znamenají</span>.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="#positions" class="btn"><span class="lbl" data-t="Volné pozice"><span>Volné pozice</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></a>
+        <a href="mailto:kariera@praguebest.cz" class="btn ghost"><span class="lbl" data-t="Poslat CV"><span>Poslat CV</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Otevřené pozice</h6><p>6<small>K&nbsp;dubnu 2026</small></p></div>
+      <div class="m"><h6>Lokalita</h6><p>Praha, Karlín<small>Hybrid / Remote friendly</small></p></div>
+      <div class="m"><h6>Průměrná délka</h6><p>6 let ve&nbsp;firmě<small>Low turnover</small></p></div>
+      <div class="m"><h6>Reakce</h6><p>Do 48 hodin<small>Na každé&nbsp;CV</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOBS LIST HERO ===== -->
+<section class="jobs-wrap" id="positions">
+  <div class="wrap">
+    <div class="jobs-card reveal">
+      <div class="bar-j">
+        <div class="lbl-j"><span class="d"></span>Open positions &middot; Live</div>
+        <div class="cnt-j">Zobrazeno <b>6 z 6</b> pozic</div>
+      </div>
+
+      <div class="j-list">
+        <a href="#" class="j-row">
+          <div class="no-j">/ 01</div>
+          <div><h4>Senior Frontend Developer</h4></div>
+          <div class="meta-j">
+            <div>Vue · Nuxt · TS</div>
+            <div>Praha / Remote &middot; Full-time</div>
+          </div>
+          <div class="salary">85 &mdash; 130 k Kč<small>Měsíčně, dle praxe</small></div>
+          <div class="go-j"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="j-row">
+          <div class="no-j">/ 02</div>
+          <div><h4>Backend Developer</h4></div>
+          <div class="meta-j">
+            <div>PHP · Node.js · Python</div>
+            <div>Praha / Remote &middot; Full-time</div>
+          </div>
+          <div class="salary">75 &mdash; 120 k Kč<small>Měsíčně, dle praxe</small></div>
+          <div class="go-j"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="j-row">
+          <div class="no-j">/ 03</div>
+          <div><h4>UX Designer</h4></div>
+          <div class="meta-j">
+            <div>Figma · Research · Prototypes</div>
+            <div>Praha / Hybrid &middot; Full-time</div>
+          </div>
+          <div class="salary">65 &mdash; 95 k Kč<small>Měsíčně, dle praxe</small></div>
+          <div class="go-j"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="j-row">
+          <div class="no-j">/ 04</div>
+          <div><h4>Project Manager</h4></div>
+          <div class="meta-j">
+            <div>Scrum · Delivery · B2B</div>
+            <div>Praha &middot; Full-time</div>
+          </div>
+          <div class="salary">70 &mdash; 105 k Kč<small>Měsíčně, dle praxe</small></div>
+          <div class="go-j"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="j-row">
+          <div class="no-j">/ 05</div>
+          <div><h4>Data Analyst</h4></div>
+          <div class="meta-j">
+            <div>SQL · Python · Looker</div>
+            <div>Praha / Hybrid &middot; Full-time</div>
+          </div>
+          <div class="salary">60 &mdash; 90 k Kč<small>Měsíčně, dle praxe</small></div>
+          <div class="go-j"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="j-row">
+          <div class="no-j">/ 06</div>
+          <div><h4>Junior Frontend Developer</h4></div>
+          <div class="meta-j">
+            <div>HTML · CSS · JS</div>
+            <div>Praha / Hybrid &middot; Full-time</div>
+          </div>
+          <div class="salary">38 &mdash; 55 k Kč<small>Měsíčně, dle praxe</small></div>
+          <div class="go-j"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </a>
+      </div>
+
+      <div class="jobs-footer">
+        <div>Aktualizováno <b>před 3 hodinami</b> &middot; Všechny pozice jsou HPP</div>
+        <div>Otázky? <b>kariera@praguebest.cz</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY WORK HERE ===== -->
+<section class="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 01 / Proč u nás</div>
+      <h2>Šest věcí, co&nbsp;u&nbsp;nás <span class="red">najdete.</span></h2>
+      <div class="aside">Ne benefity na&nbsp;papíře<br><b>věci, které fakt&nbsp;děláme</b></div>
+    </div>
+
+    <div class="w-grid">
+      <article class="w-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="n">/ 01</div>
+        <h4>Flexibilita</h4>
+        <p>Flexibilní pracovní doba, <b>home office dva dny v&nbsp;týdnu</b>, žádné kontrolované docházky. Důvěřujeme lidem.</p>
+      </article>
+
+      <article class="w-card reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg></div>
+        <div class="n">/ 02</div>
+        <h4>Vzdělávání</h4>
+        <p>Konference, kurzy, knihy, certifikace. Každý má <b>30 000 Kč ročně</b> na&nbsp;vzdělávání &mdash; bez&nbsp;schvalování.</p>
+      </article>
+
+      <article class="w-card reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <div class="n">/ 03</div>
+        <h4>Zajímavé projekty</h4>
+        <p>Pracujeme pro známé značky (Elnino, Bestdrive, Albi, Hyundai) na&nbsp;projektech, které mají <b>reálný dopad na&nbsp;byznys</b>.</p>
+      </article>
+
+      <article class="w-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 6-5M13 20c0-3 2.5-5 6-5"/></svg></div>
+        <div class="n">/ 04</div>
+        <h4>Přátelský tým</h4>
+        <p>Žádná korporátní kultura, žádné hierarchické drama. Jsme parta lidí, kteří si&nbsp;rozumí &mdash; průměr <b>6 let ve&nbsp;firmě</b>.</p>
+      </article>
+
+      <article class="w-card reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+        <div class="n">/ 05</div>
+        <h4>Teambuildingy</h4>
+        <p>Společné akce, sportovní dny, letní výjezdy do&nbsp;chalupy, firemní Vánoce, neformální čtvrteční pivo.</p>
+      </article>
+
+      <article class="w-card reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/><path d="M8 14l4-4"/></svg></div>
+        <div class="n">/ 06</div>
+        <h4>Benefity</h4>
+        <p>Multisport karta, příspěvek na&nbsp;stravu <b>160 Kč / den</b>, 5 sick days, 25 dní dovolené, home office, firemní MacBook.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIFE AT PB ===== -->
+<section class="life">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 02 / Život ve firmě</div>
+      <h2>Jak to u&nbsp;nás <span class="red">vypadá.</span></h2>
+      <div class="aside">4 fotky z&nbsp;archivu<br><b>2024 &mdash; 2026</b></div>
+    </div>
+
+    <div class="polaroids">
+      <div class="pol p1">
+        <div class="photo"><span class="ic-p">Kancelář · Karlín</span></div>
+        <div class="cap">Vítkova 32, 4. patro<small>14. dubna 2026</small></div>
+      </div>
+      <div class="pol p2">
+        <div class="photo"><span class="ic-p">Letní výjezd</span></div>
+        <div class="cap">Teambuilding na&nbsp;chalupě<small>Léto 2025</small></div>
+      </div>
+      <div class="pol p3">
+        <div class="photo"><span class="ic-p">Design sprint</span></div>
+        <div class="cap">Sprint review<small>Prosinec 2025</small></div>
+      </div>
+      <div class="pol p4">
+        <div class="photo"><span class="ic-p">Vánoční večírek</span></div>
+        <div class="cap">Firemní Vánoce<small>Prosinec 2025</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW TO APPLY ===== -->
+<section class="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">§ 03 / Jak probíhá nábor</div>
+      <h2>Čtyři kroky od&nbsp;CV k&nbsp;<span class="red">nástupu.</span></h2>
+      <div class="aside">Průměrně<br><b>3 týdny od CV</b></div>
+    </div>
+
+    <div class="h-grid">
+      <article class="hstep reveal">
+        <div class="n-big">0<span class="mk">1</span></div>
+        <div class="lbl-h">Den 1&ndash;2</div>
+        <h4>Pošleš CV</h4>
+        <p>Stačí odkaz na&nbsp;LinkedIn nebo PDF. Portfolio pokud jde o&nbsp;design. Odpovídáme všem do&nbsp;48 hodin.</p>
+      </article>
+      <article class="hstep reveal d1">
+        <div class="n-big">0<span class="mk">2</span></div>
+        <div class="lbl-h">Týden 1</div>
+        <h4>Krátký call</h4>
+        <p>30&nbsp;minut online nebo u&nbsp;kávy v&nbsp;Karlíně. Poznáme se, probereme tvoje cíle a&nbsp;co&nbsp;by tě&nbsp;bavilo.</p>
+      </article>
+      <article class="hstep reveal d2">
+        <div class="n-big">0<span class="mk">3</span></div>
+        <div class="lbl-h">Týden 2</div>
+        <h4>Home task / pohovor</h4>
+        <p>Pro vývojáře malá kódová úloha (2&ndash;4&nbsp;hodiny), pro designéry mini case study. Žádná whiteboard peklo.</p>
+      </article>
+      <article class="hstep reveal d3">
+        <div class="n-big">0<span class="mk">4</span></div>
+        <div class="lbl-h">Týden 3</div>
+        <h4>Nabídka</h4>
+        <p>Do&nbsp;24 hodin po&nbsp;finálním pohovoru dostaneš offer s&nbsp;konkrétní částkou, rolí a&nbsp;termínem nástupu.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TALENT POOL ===== -->
+<section class="talent">
+  <div class="wrap">
+    <div class="talent-card reveal">
+      <div class="left">
+        <div class="lbl-t">§ 04 / Talent pool</div>
+        <h3>Nenašli jste svou <span class="red">pozici?</span></h3>
+        <p>Nevadí &mdash; pošlete nám svůj&nbsp;životopis a&nbsp;my se&nbsp;ozveme, <b>až&nbsp;budeme hledat někoho jako vy</b>. Průměrně otevíráme 8&mdash;12 nových pozic ročně. Všechna CV v&nbsp;talent poolu držíme 12&nbsp;měsíců.</p>
+        <a href="mailto:kariera@praguebest.cz" class="btn"><span class="lbl" data-t="Poslat životopis"><span>Poslat životopis</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+
+      <div class="visual">
+        <div class="cv-stack">
+          <div class="cv-card c1">
+            <div class="cv-head">
+              <div class="cv-av"></div>
+              <div><b>Martin Novák</b><small>Senior Developer</small></div>
+            </div>
+            <div class="skills">
+              <span>Vue</span><span>TS</span><span>Nuxt</span><span>PHP</span>
+            </div>
+          </div>
+          <div class="cv-card c2">
+            <div class="cv-head">
+              <div class="cv-av"></div>
+              <div><b>Petra K.</b><small>UX Designer</small></div>
+            </div>
+            <div class="skills">
+              <span>Figma</span><span>Research</span><span>Usability</span>
+            </div>
+          </div>
+          <div class="cv-card c3">
+            <div class="cv-head">
+              <div class="cv-av"></div>
+              <div><b>Tomáš H.</b><small>Data Analyst</small></div>
+            </div>
+            <div class="skills">
+              <span>SQL</span><span>Python</span><span>Looker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Máte<br><span class="red">dotazy?</span></h2>
+    <p class="sub reveal d1">Tereza vám je zodpoví. Pište na&nbsp;<b>kariera@praguebest.cz</b> nebo volejte +420&nbsp;266 091 373.</p>
+    <div class="ctas reveal d2">
+      <a href="mailto:kariera@praguebest.cz" class="btn"><span class="lbl" data-t="kariera@praguebest.cz"><span>kariera@praguebest.cz</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="o-nas.html" class="btn ghost"><span class="lbl" data-t="O nás více"><span>O nás více</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Produkty</h5>
+        <a href="eshop.html">E-shop na míru <span class="ar">→</span></a>
+        <a href="shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="aplikace.html">Aplikace na míru <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch™ <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:kariera@praguebest.cz">kariera@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420266091373">+420 266 091 373 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

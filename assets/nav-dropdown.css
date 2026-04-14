@@ -1,0 +1,72 @@
+/* ===== NAV DROPDOWNS ===== */
+/* Additive styles — scoped with unique selectors (.has-dd, .dd) to avoid conflicts */
+
+nav.top ul{align-items:center}
+nav.top ul li{display:flex;align-items:center}
+nav.top ul li > a{display:inline-flex;align-items:center;gap:6px;line-height:1}
+nav.top ul li.has-dd{position:relative}
+nav.top ul li.has-dd > a .caret{
+  width:12px;height:12px;stroke:currentColor;stroke-width:2.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .35s cubic-bezier(.22,1,.36,1);opacity:.7;
+}
+nav.top ul li.has-dd:hover > a .caret{transform:rotate(180deg);opacity:1}
+
+nav.top ul li.has-dd .dd{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,-8px);
+  min-width:260px;padding:10px;
+  background:rgba(242,236,224,.92);backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid rgba(10,10,10,.1);border-radius:18px;
+  box-shadow:0 30px 60px -20px rgba(10,10,10,.25),0 10px 30px -10px rgba(10,10,10,.15);
+  display:flex;flex-direction:column;gap:2px;
+  opacity:0;pointer-events:none;visibility:hidden;
+  transition:opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),visibility .35s;
+  z-index:150;
+}
+/* Invisible bridge so cursor can move from link to dropdown without losing hover */
+nav.top ul li.has-dd .dd::before{
+  content:"";position:absolute;top:-12px;left:0;right:0;height:12px;
+}
+nav.top ul li.has-dd:hover .dd,
+nav.top ul li.has-dd:focus-within .dd{
+  opacity:1;pointer-events:auto;visibility:visible;
+  transform:translate(-50%,0);
+}
+
+nav.top ul li.has-dd .dd a{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:12px;
+  font-size:14px;font-weight:500;color:#0a0a0a;letter-spacing:-.005em;
+  white-space:nowrap;transition:background .25s,color .25s,padding .25s;
+  position:relative;
+}
+nav.top ul li.has-dd .dd a::after{display:none !important}
+nav.top ul li.has-dd .dd a:hover{background:rgba(10,10,10,.06);padding-left:18px}
+nav.top ul li.has-dd .dd a .di{
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(10,10,10,.04);border:1px solid rgba(10,10,10,.08);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s cubic-bezier(.22,1,.36,1);flex-shrink:0;
+}
+nav.top ul li.has-dd .dd a:hover .di{background:#0a0a0a;border-color:#0a0a0a}
+nav.top ul li.has-dd .dd a .di svg{
+  width:16px;height:16px;stroke:#0a0a0a;stroke-width:1.7;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s;
+}
+nav.top ul li.has-dd .dd a:hover .di svg{stroke:#f2ece0}
+
+/* Override the existing :hover .t::after text-swap for dropdown trigger links */
+nav.top ul li.has-dd > a .t{display:inline-block}
+nav.top ul li.has-dd > a:hover .t span{transform:none}
+nav.top ul li.has-dd > a:hover .t::after{transform:translateY(100%)}
+
+/* On scrolled nav, keep dropdown BG slightly stronger */
+nav.top.scrolled ul li.has-dd .dd{
+  background:rgba(242,236,224,.96);
+}
+
+/* Mobile: hide dropdowns (nav hidden anyway) */
+@media (max-width:960px){
+  nav.top ul li.has-dd .dd{display:none}
+}

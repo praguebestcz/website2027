@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Blog — Co je u nás nového — PragueBest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== FEATURED POST (dark editorial hero) ===== */
+.feat-wrap{padding:60px 0 100px}
+.feat-post{display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:var(--ink);color:var(--paper);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);position:relative;cursor:none;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.feat-post:hover{transform:translateY(-4px);box-shadow:0 50px 120px -30px rgba(10,10,10,.6),0 0 0 1px rgba(10,10,10,.15)}
+
+.feat-post .visual{position:relative;min-height:520px;overflow:hidden;background:linear-gradient(135deg,#2a0408 0%,#0a0a0a 70%)}
+.feat-post .visual::before{content:"";position:absolute;top:-150px;right:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 60%);filter:blur(40px)}
+.feat-post .visual::after{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+
+.feat-post .trophy-cover{position:relative;z-index:2;padding:60px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.feat-post .trophy-cover .stamp{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid rgba(242,236,224,.25);background:rgba(242,236,224,.04);backdrop-filter:blur(8px);border-radius:999px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,236,224,.75);align-self:flex-start}
+.feat-post .trophy-cover .stamp .d{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px rgba(227,6,19,.7)}
+.feat-post .trophy-cover .big-trophy{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;justify-content:center}
+.feat-post .trophy-cover .big-trophy svg{width:90px;height:90px;stroke:var(--paper);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:20px}
+.feat-post .trophy-cover .big-trophy .year-b{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.feat-post .trophy-cover .big-trophy .title-b{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:.95}
+.feat-post .trophy-cover .big-trophy .title-b .red{color:var(--red)}
+.feat-post .trophy-cover .big-trophy .cat-b{font-family:var(--mono);font-size:11px;color:var(--red);margin-top:8px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.feat-post .trophy-cover .stats-b{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:28px;border-top:1px solid rgba(242,236,224,.15)}
+.feat-post .trophy-cover .stats-b .st{}
+.feat-post .trophy-cover .stats-b .st b{display:block;font-size:22px;font-weight:700;letter-spacing:-.025em;line-height:.9}
+.feat-post .trophy-cover .stats-b .st b .r{color:var(--red)}
+.feat-post .trophy-cover .stats-b .st small{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);margin-top:4px;display:block;letter-spacing:.04em;text-transform:uppercase}
+
+.feat-post .content{padding:60px 60px 60px;display:flex;flex-direction:column;justify-content:space-between}
+.feat-post .content .cat-c{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.feat-post .content .cat-c::before{content:"";width:24px;height:1px;background:var(--red)}
+.feat-post .content h2{font-size:clamp(34px,4vw,60px);font-weight:700;letter-spacing:-.035em;line-height:1;margin-bottom:24px}
+.feat-post .content h2 .red{color:var(--red)}
+.feat-post .content p{font-size:16px;line-height:1.6;color:rgba(242,236,224,.75);margin-bottom:32px;max-width:46ch}
+.feat-post .content .meta-c{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(242,236,224,.15)}
+.feat-post .content .meta-c .date{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.55);letter-spacing:.04em}
+.feat-post .content .meta-c .date b{color:var(--paper);font-weight:500}
+.feat-post .content .meta-c .read{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--paper);letter-spacing:.06em;text-transform:uppercase}
+.feat-post .content .meta-c .read .circ{width:40px;height:40px;border-radius:50%;border:1px solid rgba(242,236,224,.2);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.feat-post:hover .content .meta-c .read .circ{background:var(--red);border-color:var(--red);transform:rotate(-45deg)}
+.feat-post .content .meta-c .read svg{width:14px;height:14px;stroke:var(--paper);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== FILTER BAR ===== */
+.filter{padding:50px 0 10px;border-top:1px solid var(--ink);background:rgba(242,236,224,.6);backdrop-filter:blur(8px);position:sticky;top:80px;z-index:50}
+.filter .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:18px 40px}
+.filter .lb{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.filter .lb::before{content:"";width:20px;height:1px;background:var(--mute)}
+.filter-chips{display:flex;flex-wrap:wrap;gap:6px}
+.fch{padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:500;color:var(--ink);background:transparent;transition:all .3s var(--ease);cursor:none;position:relative}
+.fch:hover{border-color:var(--ink)}
+.fch.on{background:var(--ink);color:var(--paper);border-color:var(--ink);padding-left:26px}
+.fch.on::before{content:"";position:absolute;left:12px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--red);transform:translateY(-50%);box-shadow:0 0 6px rgba(227,6,19,.6)}
+.fch .c{display:inline-block;margin-left:6px;font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:500}
+.fch.on .c{color:rgba(242,236,224,.55)}
+.filter .sort{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.filter .sort b{color:var(--ink);font-weight:600}
+
+/* ===== NEWS GRID ===== */
+.news-list{padding:60px 0 60px}
+.n-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.article{position:relative;border-radius:16px;overflow:hidden;background:var(--paper);border:1px solid var(--line);transition:all .5s var(--ease);cursor:none;display:flex;flex-direction:column}
+.article:hover{border-color:var(--ink);transform:translateY(-4px);box-shadow:0 40px 80px -30px rgba(10,10,10,.15)}
+.article::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.article:hover::before{transform:scaleX(1)}
+
+.article .cover{aspect-ratio:16/10;position:relative;overflow:hidden}
+.article.a1 .cover{background:linear-gradient(135deg,#1a0408,#0a0a0a)}
+.article.a2 .cover{background:linear-gradient(135deg,#2a2f1a,#0a0a0a)}
+.article.a3 .cover{background:linear-gradient(135deg,#1a1f2a,#050810)}
+.article.a4 .cover{background:linear-gradient(135deg,#f4efe0,#c8b890);color:var(--ink)}
+.article.a5 .cover{background:linear-gradient(135deg,#2a1a08,#0a0a0a)}
+.article.a6 .cover{background:linear-gradient(135deg,#3a0810,#0a0a0a)}
+.article.a7 .cover{background:linear-gradient(135deg,#1a3a2a,#051810)}
+.article.a8 .cover{background:linear-gradient(135deg,#2a1a3a,#0a0510)}
+.article.a9 .cover{background:linear-gradient(135deg,#3a2a0a,#0a0705)}
+.article .cover::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 25%,rgba(255,255,255,.15),transparent 60%)}
+.article .cover .num{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.article.a4 .cover .num{color:rgba(10,10,10,.55)}
+.article .cover .ic-cov{position:absolute;bottom:20px;right:24px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.85);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(6px);border-radius:99px}
+.article.a4 .cover .ic-cov{color:rgba(10,10,10,.85);background:rgba(255,255,255,.5);border-color:rgba(10,10,10,.15)}
+.article .cover .big-title{position:absolute;left:24px;right:24px;top:50%;transform:translateY(-50%);font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:.95;color:rgba(255,255,255,.95);text-align:center}
+.article.a4 .cover .big-title{color:rgba(10,10,10,.9)}
+
+.article .body-art{padding:28px 28px 32px;display:flex;flex-direction:column;flex:1}
+.article .body-art .cat-a{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.article .body-art .cat-a::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red)}
+.article .body-art h3{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px;min-height:52px}
+.article .body-art p{font-size:13px;color:var(--mute);line-height:1.6;margin-bottom:22px;flex:1}
+.article .body-art .meta-a{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.02em}
+.article .body-art .meta-a b{color:var(--ink);font-weight:600}
+.article .body-art .meta-a .read-t{display:flex;align-items:center;gap:6px}
+.article .body-art .meta-a .read-t::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--mute)}
+
+/* ===== LOAD MORE ===== */
+.loadmore{padding:60px 0 80px;text-align:center}
+.loadmore .meta-l{margin-bottom:24px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
+.loadmore .meta-l b{color:var(--ink);font-weight:600}
+.loadmore .bar-l{max-width:420px;margin:0 auto 32px;height:3px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.loadmore .bar-l::after{content:"";position:absolute;left:0;top:0;bottom:0;width:27%;background:var(--red);border-radius:2px}
+.loadmore .pag{display:flex;gap:8px;justify-content:center;margin-top:24px}
+.loadmore .pag button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);transition:all .3s var(--ease);cursor:none;display:flex;align-items:center;justify-content:center}
+.loadmore .pag button:hover{border-color:var(--ink)}
+.loadmore .pag button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.loadmore .pag button svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== NEWSLETTER ===== */
+.newsletter{padding:140px 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.newsletter::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.newsletter::after{content:"";position:absolute;top:-100px;right:10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.22),transparent 60%);filter:blur(50px);pointer-events:none}
+.newsletter .wrap{position:relative;z-index:2;text-align:center}
+.newsletter .lbl{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid rgba(242,236,224,.2);background:rgba(242,236,224,.05);border-radius:999px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:32px}
+.newsletter .lbl .d{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.newsletter h2{font-size:clamp(50px,8vw,120px);font-weight:800;letter-spacing:-.05em;line-height:.88;margin-bottom:24px}
+.newsletter h2 .red{color:var(--red)}
+.newsletter p{font-size:17px;color:rgba(242,236,224,.7);max-width:48ch;margin:0 auto 48px;line-height:1.55}
+.newsletter .form-n{max-width:520px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:10px}
+.newsletter .form-n input{padding:20px 24px;background:rgba(242,236,224,.06);border:1px solid rgba(242,236,224,.15);border-radius:999px;font-size:15px;font-weight:500;color:var(--paper);transition:all .3s var(--ease);letter-spacing:-.005em;font-family:var(--sans)}
+.newsletter .form-n input::placeholder{color:rgba(242,236,224,.4)}
+.newsletter .form-n input:focus{outline:none;border-color:var(--red);background:rgba(242,236,224,.1)}
+.newsletter .trust{margin-top:28px;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.45);letter-spacing:.04em;display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.newsletter .trust span::before{content:"✓ ";color:var(--red);font-weight:700}
+
+@media (max-width:1100px){
+  .feat-post{grid-template-columns:1fr}
+  .feat-post .visual{min-height:400px}
+  .feat-post .content,.feat-post .trophy-cover{padding:40px}
+  .filter .wrap{grid-template-columns:1fr;gap:14px;padding:18px 20px}
+  .filter-chips{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .n-grid{grid-template-columns:1fr 1fr}
+  .newsletter .form-n{grid-template-columns:1fr;gap:14px}
+}
+@media (max-width:720px){
+  .n-grid{grid-template-columns:1fr}
+  .feat-post .trophy-cover .big-trophy .title-b{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<nav class="top">
+  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>42 článků · Aktualizováno 2× měsíčně</span>
+    <a href="#newsletter" class="btn sm"><span class="lbl" data-t="Odebírat"><span>Odebírat</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+  </div>
+</nav>
+
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back"><span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>Zpět na úvod</a>
+    <div class="path"><b>Úvod</b> <span>/</span> <b>Blog</b></div>
+  </div>
+</div>
+
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Blog &nbsp;—&nbsp; Co je u nás nového &nbsp;—&nbsp; 42 článků od&nbsp;2020</div>
+    <h1 class="reveal d1">Co je u&nbsp;nás<br><span class="red">nového.</span></h1>
+
+    <div class="below">
+      <p class="lede reveal d2">
+        Ocenění, projekty, noví kolegové &mdash; sledujte, co&nbsp;se v&nbsp;PragueBest děje. <span class="hi">Bez marketingových frází</span>, jen to podstatné.
+      </p>
+      <div class="ctas reveal d3">
+        <a href="#newsletter" class="btn"><span class="lbl" data-t="Odebírat newsletter"><span>Odebírat newsletter</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="kontakt.html" class="btn ghost"><span class="lbl" data-t="Pište nám"><span>Pište nám</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Článků</h6><p>42 v&nbsp;archivu<small>Od ledna 2020</small></p></div>
+      <div class="m"><h6>Kategorie</h6><p>7 témat<small>Ocenění · Projekty · Lidé</small></p></div>
+      <div class="m"><h6>Frekvence</h6><p>2× měsíčně<small>Průměr</small></p></div>
+      <div class="m"><h6>Newsletter</h6><p>3 200 odběratelů<small>Měsíční digest</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED POST ===== -->
+<section class="feat-wrap">
+  <div class="wrap">
+    <a href="#" class="feat-post reveal">
+      <div class="visual">
+        <div class="trophy-cover">
+          <div class="stamp"><span class="d"></span>Ocenění &middot; Top story</div>
+
+          <div class="big-trophy">
+            <svg viewBox="0 0 24 24"><path d="M6 2h12v7a6 6 0 1 1-12 0V2z"/><path d="M4 4h2v3H4a2 2 0 0 1 0-4v1M20 4h-2v3h2a2 2 0 0 0 0-4v1M10 15v3h4v-3M8 22h8"/></svg>
+            <div class="year-b">WebTop100 &middot; 2025</div>
+            <div class="title-b">1. místo <span class="red">E-commerce</span></div>
+            <div class="cat-b">Elnino headless platform</div>
+          </div>
+
+          <div class="stats-b">
+            <div class="st"><b>1<span class="r">.</span> místo</b><small>E-commerce</small></div>
+            <div class="st"><b>17<span class="r">×</span></b><small>Celkem ocenění</small></div>
+            <div class="st"><b>2025</b><small>Ročník</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div>
+          <div class="cat-c">Ocenění &middot; Tiskové zprávy</div>
+          <h2>Vyhráli jsme <span class="red">WebTop100</span> v&nbsp;kategorii E-commerce.</h2>
+          <p>Náš&nbsp;projekt pro&nbsp;Elnino Partners získal první místo v&nbsp;prestižní soutěži WebTop100 &mdash; v&nbsp;kategorii E-commerce. Děkujeme celému týmu za&nbsp;skvělou práci a&nbsp;klientovi za&nbsp;důvěru. Porota ocenila <b>headless architekturu, rychlost a&nbsp;B2B portál</b>.</p>
+        </div>
+        <div class="meta-c">
+          <div class="date">15. ledna <b>2026</b> &middot; 4 min čtení</div>
+          <div class="read">
+            Číst článek
+            <span class="circ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FILTER ===== -->
+<div class="filter">
+  <div class="wrap">
+    <div class="lb">Filtrovat</div>
+    <div class="filter-chips">
+      <button class="fch on">Vše <span class="c">42</span></button>
+      <button class="fch">Ocenění <span class="c">8</span></button>
+      <button class="fch">Projekty <span class="c">14</span></button>
+      <button class="fch">Case study <span class="c">7</span></button>
+      <button class="fch">Produkt <span class="c">6</span></button>
+      <button class="fch">Tým &amp; Kariéra <span class="c">5</span></button>
+      <button class="fch">Konference <span class="c">2</span></button>
+    </div>
+    <div class="sort">Řadit: <b>Nejnovější</b></div>
+  </div>
+</div>
+
+<!-- ===== NEWS GRID ===== -->
+<section class="news-list">
+  <div class="wrap">
+    <div class="n-grid">
+
+      <a class="article a1" href="#">
+        <div class="cover">
+          <div class="num">ART / 041</div>
+          <div class="ic-cov">Projekt</div>
+          <div class="big-title">XYZ<br>Launch</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Projekty</div>
+          <h3>Spustili jsme nový e-shop pro&nbsp;značku XYZ</h3>
+          <p>Po&nbsp;6 měsících intenzivní práce je&nbsp;venku. Přečtěte si, jak&nbsp;jsme výzvu s&nbsp;13&nbsp;jazyky proměnili ve&nbsp;výsledek.</p>
+          <div class="meta-a">
+            <div>10. ledna <b>2026</b></div>
+            <div class="read-t">6 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a2" href="#">
+        <div class="cover">
+          <div class="num">ART / 040</div>
+          <div class="ic-cov">Tým</div>
+          <div class="big-title">Letní<br>výjezd 2025</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Tým &amp; Kariéra</div>
+          <h3>Jak vypadal náš letní teambuilding</h3>
+          <p>37 lidí, 3 dny, jedna chalupa u&nbsp;Lipna. Podívejte se, jak&nbsp;jsme si&nbsp;užili léto a&nbsp;dobili baterky na&nbsp;další projekty.</p>
+          <div class="meta-a">
+            <div>5. ledna <b>2026</b></div>
+            <div class="read-t">3 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a3" href="#">
+        <div class="cover">
+          <div class="num">ART / 039</div>
+          <div class="ic-cov">Produkt</div>
+          <div class="big-title">BDM<br>3.0</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Produkt</div>
+          <h3>Nová verze BigDataManager je&nbsp;venku</h3>
+          <p>Představujeme BigDataManager 3.0 s&nbsp;AI doporučovacím enginem, vylepšeným dashboardem a&nbsp;native Shopify pluginem.</p>
+          <div class="meta-a">
+            <div>20. prosince <b>2025</b></div>
+            <div class="read-t">8 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a4" href="#">
+        <div class="cover">
+          <div class="num">ART / 038</div>
+          <div class="ic-cov">Tým</div>
+          <div class="big-title">Welcome<br>aboard</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Tým &amp; Kariéra</div>
+          <h3>Přivítali jsme 3 nové kolegy</h3>
+          <p>Náš&nbsp;tým se&nbsp;rozrostl o&nbsp;dva designéry a&nbsp;jednoho backend developera. Poznejte Martinu, Petra a&nbsp;Tomáše!</p>
+          <div class="meta-a">
+            <div>15. prosince <b>2025</b></div>
+            <div class="read-t">4 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a5" href="#">
+        <div class="cover">
+          <div class="num">ART / 037</div>
+          <div class="ic-cov">Case study</div>
+          <div class="big-title">B2B<br>portál</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Case study</div>
+          <h3>Jak jsme pomohli velkoobchodu ztrojnásobit objednávky</h3>
+          <p>Redesign B2B portálu pro&nbsp;340 odběratelů, napojení na&nbsp;ERP Abra a&nbsp;personalizované ceníky. Výsledek: <b>3× vyšší online objednávky</b>.</p>
+          <div class="meta-a">
+            <div>1. prosince <b>2025</b></div>
+            <div class="read-t">12 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a6" href="#">
+        <div class="cover">
+          <div class="num">ART / 036</div>
+          <div class="ic-cov">Konference</div>
+          <div class="big-title">WebExpo<br>2025</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Konference</div>
+          <h3>Zúčastnili jsme se konference WebExpo</h3>
+          <p>Naši UX designéři měli přednášku o&nbsp;data-driven designu. Slides, videa a&nbsp;nejzajímavější insights z&nbsp;talků.</p>
+          <div class="meta-a">
+            <div>20. listopadu <b>2025</b></div>
+            <div class="read-t">5 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a7" href="#">
+        <div class="cover">
+          <div class="num">ART / 035</div>
+          <div class="ic-cov">Partneři</div>
+          <div class="big-title">Foxentry<br>partner</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Partneři</div>
+          <h3>Nový partner: Foxentry</h3>
+          <p>Rozšiřujeme portfolio integrací o&nbsp;služby Foxentry pro&nbsp;validaci dat, našeptávání adres a&nbsp;verifikaci telefonních čísel.</p>
+          <div class="meta-a">
+            <div>10. listopadu <b>2025</b></div>
+            <div class="read-t">3 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a8" href="#">
+        <div class="cover">
+          <div class="num">ART / 034</div>
+          <div class="ic-cov">Produkt</div>
+          <div class="big-title">UpSearch<br>50k/den</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Produkt</div>
+          <h3>UpSearch: 5 milionů hledání měsíčně</h3>
+          <p>Náš&nbsp;vyhledávací engine překonal magickou hranici 5&nbsp;milionů vyhledávání za&nbsp;měsíc napříč 100+ e-shopy.</p>
+          <div class="meta-a">
+            <div>1. listopadu <b>2025</b></div>
+            <div class="read-t">4 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="article a9" href="#">
+        <div class="cover">
+          <div class="num">ART / 033</div>
+          <div class="ic-cov">Ocenění</div>
+          <div class="big-title">IEA 2024<br>Stříbro</div>
+        </div>
+        <div class="body-art">
+          <div class="cat-a">Ocenění</div>
+          <h3>IEA 2024: Stříbrná medaile</h3>
+          <p>V&nbsp;soutěži Internet Effectiveness Awards jsme získali stříbro v&nbsp;kategorii Digital Transformation za&nbsp;projekt Bestdrive.</p>
+          <div class="meta-a">
+            <div>15. října <b>2025</b></div>
+            <div class="read-t">6 min čtení</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOAD MORE / PAGINATION ===== -->
+<div class="loadmore">
+  <div class="wrap">
+    <div class="meta-l">Zobrazeno <b>9 z 42</b> článků</div>
+    <div class="bar-l"></div>
+    <div class="pag">
+      <button><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="on">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+      <button><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter" id="newsletter">
+  <div class="wrap">
+    <div class="lbl"><span class="d"></span>Newsletter &middot; Jednou měsíčně</div>
+    <h2 class="reveal">Odebírejte<br><span class="red">novinky.</span></h2>
+    <p class="reveal d1">Jednou měsíčně vám pošleme shrnutí toho nejzajímavějšího &mdash; novinky z&nbsp;projektů, produktové updates, insights z&nbsp;konferencí a&nbsp;trendy v&nbsp;e-commerce.</p>
+
+    <form class="form-n reveal d2" onsubmit="event.preventDefault();alert('Díky za přihlášení!')">
+      <input type="email" placeholder="vas@email.cz" required>
+      <button type="submit" class="btn"><span class="lbl" data-t="Přihlásit"><span>Přihlásit</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></button>
+    </form>
+
+    <div class="trust reveal d3">
+      <span>3 200 odběratelů</span>
+      <span>Bez spamu</span>
+      <span>Odhlášení kdykoliv</span>
+      <span>GDPR ready</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Produkty</h5>
+        <a href="eshop.html">E-shop na míru <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch™ <span class="ar">→</span></a>
+        <a href="bigdata.html">BigDataManager <span class="ar">→</span></a>
+        <a href="aplikace.html">Aplikace na míru <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="blog.html">Blog <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+<script>
+document.querySelectorAll('.fch').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.fch').forEach(x=>x.classList.remove('on'));b.classList.add('on')})});
+</script>
+</body>
+</html>

@@ -215,7 +215,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 .hero .eyebrow .d{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(227,6,19,.7);animation:bpulse 2.4s infinite}
 @keyframes bpulse{0%{box-shadow:0 0 0 0 rgba(227,6,19,.7)}70%{box-shadow:0 0 0 10px rgba(227,6,19,0)}100%{box-shadow:0 0 0 0 rgba(227,6,19,0)}}
 .hero h1{
-  font-size:clamp(44px, 7.8vw, 134px);
+  font-size:clamp(29px,5.1vw,87px);
   font-weight:800;letter-spacing:-.055em;line-height:.88;
 }
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.02em}
@@ -255,7 +255,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 }
 .marquee .track{
   display:flex;gap:80px;animation:roll 40s linear infinite;
-  font-size:52px;font-weight:700;letter-spacing:-.035em;color:var(--ink);
+  font-size:34px;font-weight:700;letter-spacing:-.035em;color:var(--ink);
 }
 .marquee:hover .track{animation-play-state:paused}
 .marquee .track span{display:inline-flex;align-items:center;gap:80px;transition:opacity .3s}
@@ -268,8 +268,8 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 section.sx{padding:100px 0;position:relative}
 .sec-head{display:grid;grid-template-columns:140px 1fr auto;gap:48px;align-items:baseline;padding-bottom:40px;border-bottom:1px solid var(--ink);margin-bottom:50px}
 .sec-head .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.sec-head h2{font-size:clamp(48px,6.5vw,104px);font-weight:700;letter-spacing:-.045em;line-height:.9;max-width:20ch}
-.numbers .sec-head h2{font-size:clamp(36px,4.5vw,72px);white-space:nowrap}
+.sec-head h2{font-size:clamp(31px,4.2vw,68px);font-weight:700;letter-spacing:-.045em;line-height:.9;max-width:20ch}
+.numbers .sec-head h2{font-size:clamp(23px,2.9vw,47px);white-space:nowrap}
 .sec-head h2 .red{color:var(--red)}
 .sec-head .aside{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;line-height:1.8;letter-spacing:.02em}
 .sec-head .aside b{color:var(--ink);font-weight:600}
@@ -277,7 +277,7 @@ section.sx{padding:100px 0;position:relative}
 /* ===================== STATEMENT ===================== */
 .statement{padding:100px 0 70px;position:relative}
 .statement .big{
-  font-size:clamp(38px,5vw,76px);font-weight:500;letter-spacing:-.035em;line-height:1.05;
+  font-size:clamp(25px,3.2vw,49px);font-weight:500;letter-spacing:-.035em;line-height:1.05;
   max-width:24ch;
 }
 .statement .big b{font-weight:700}
@@ -303,7 +303,7 @@ section.sx{padding:100px 0;position:relative}
 .statement .meta .name{font-size:14px;font-weight:600}
 .statement .meta .role{font-size:12px;color:var(--mute);font-family:var(--mono)}
 .statement .meta .yrs{text-align:right;font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
-.statement .meta .yrs b{display:block;font-family:var(--sans);font-size:40px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-top:2px}
+.statement .meta .yrs b{display:block;font-family:var(--sans);font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-top:2px}
 
 /* ===================== SERVICES (expand rows) ===================== */
 .services{border-top:1px solid var(--ink);margin-top:20px}
@@ -314,7 +314,7 @@ section.sx{padding:100px 0;position:relative}
 }
 .srv-row .no{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--mute)}
 .srv-row h3{
-  font-size:58px;font-weight:600;letter-spacing:-.035em;line-height:.95;
+  font-size:38px;font-weight:600;letter-spacing:-.035em;line-height:.95;
   transition:transform .5s var(--ease),color .4s var(--ease);
 }
 .srv-row .tags{display:flex;gap:8px;opacity:0;transform:translateX(-20px);transition:all .5s .1s var(--ease)}
@@ -378,7 +378,7 @@ section.sx{padding:100px 0;position:relative}
 .ncell .idx{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
 .ncell:hover .idx{color:rgba(255,255,255,.7)}
 .ncell .n{
-  font-size:clamp(72px,8vw,130px);font-weight:700;letter-spacing:-.05em;line-height:.9;
+  font-size:clamp(47px,5.2vw,84px);font-weight:700;letter-spacing:-.05em;line-height:.9;
   margin-top:24px;display:flex;align-items:baseline;
 }
 .ncell .n sub{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--mute);margin-left:8px;vertical-align:baseline;letter-spacing:0}
@@ -398,12 +398,12 @@ section.sx{padding:100px 0;position:relative}
 .case-card .tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:rgba(242,236,224,.65);letter-spacing:.08em;text-transform:uppercase}
 .case-card .tag::before{content:"";width:24px;height:1px;background:rgba(242,236,224,.4)}
 .case-card h3{
-  margin-top:40px;font-size:clamp(56px,5.5vw,96px);font-weight:700;letter-spacing:-.045em;line-height:.88;
+  margin-top:40px;font-size:clamp(36px,3.6vw,62px);font-weight:700;letter-spacing:-.045em;line-height:.88;
 }
 .case-card h3 small{display:block;font-size:.28em;font-weight:400;color:rgba(242,236,224,.6);margin-top:12px;letter-spacing:-.01em;line-height:1.3}
 .case-card .desc{margin-top:32px;font-size:16px;line-height:1.6;color:rgba(242,236,224,.75);max-width:44ch}
 .case-card .kpi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(242,236,224,.15)}
-.case-card .kpi .n{font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.case-card .kpi .n{font-size:25px;font-weight:700;letter-spacing:-.03em;line-height:1}
 .case-card .kpi .n .plus{color:var(--red)}
 .case-card .kpi .l{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,236,224,.55);margin-top:6px}
 .case-card .actions{margin-top:44px;display:flex;gap:12px}
@@ -495,7 +495,7 @@ section.sx{padding:100px 0;position:relative}
 
 /* ===================== CTA STRIP ===================== */
 .cta{padding:100px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
-.cta h2{font-size:clamp(40px,7vw,120px);font-weight:800;letter-spacing:-.06em;line-height:.85;white-space:nowrap}
+.cta h2{font-size:clamp(26px,4.5vw,78px);font-weight:800;letter-spacing:-.06em;line-height:.85;white-space:nowrap}
 .cta h2 .red{color:var(--red)}
 .cta .sub{margin-top:32px;font-size:18px;color:var(--mute);max-width:44ch;margin-left:auto;margin-right:auto;line-height:1.55}
 .cta .ctas{margin-top:56px;display:flex;gap:14px;justify-content:center}
@@ -506,7 +506,7 @@ footer{
 }
 footer .wrap{position:relative;z-index:2}
 footer .big{
-  font-size:clamp(40px,7vw,130px);font-weight:800;letter-spacing:-.06em;line-height:.82;
+  font-size:clamp(26px,4.5vw,84px);font-weight:800;letter-spacing:-.06em;line-height:.82;
   margin-bottom:50px;text-align:center;
 }
 footer .big .red{color:var(--red)}
@@ -539,7 +539,7 @@ footer .base .right{text-align:right}
   .sec-head .aside{text-align:left}
   .srv-row{grid-template-columns:60px 1fr 40px;gap:24px}
   .srv-row .tags{display:none}
-  .srv-row h3{font-size:36px}
+  .srv-row h3{font-size:23px}
   .srv-row .panel{grid-template-columns:1fr;gap:20px}
 }
 @media (max-width:720px){
@@ -551,7 +551,7 @@ footer .base .right{text-align:right}
   .hero{padding:100px 0 60px}
   .num-grid,.ref-grid,footer .cols,footer .base{grid-template-columns:1fr}
   .case-card .meta{padding:36px 28px}
-  .case-card h3{font-size:44px}
+  .case-card h3{font-size:29px}
   .sticker{width:90px;height:90px;top:20px;right:20px}
   .marquee .track{font-size:32px;gap:50px}
   .marquee .track span{gap:50px}

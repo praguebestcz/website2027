@@ -118,7 +118,7 @@
 .h-row{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;margin-top:60px;position:relative}
 .h-row::after{content:"";position:absolute;top:40px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--red),var(--red) 50%,transparent 50%);background-size:12px 2px;background-repeat:repeat-x;z-index:0}
 .h-step{text-align:center;position:relative;z-index:1}
-.h-step .circle{width:80px;height:80px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:36px;font-weight:700;letter-spacing:-.035em;color:var(--ink);position:relative}
+.h-step .circle{width:80px;height:80px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:23px;font-weight:700;letter-spacing:-.035em;color:var(--ink);position:relative}
 .h-step .circle::after{content:"";position:absolute;inset:-6px;border:1px solid var(--red);border-radius:50%;opacity:0;transition:opacity .3s}
 .h-step:hover .circle::after{opacity:1}
 .h-step h4{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
@@ -134,7 +134,7 @@
 .r-cell:hover > *{color:var(--paper)}
 .r-cell .n-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
 .r-cell:hover .n-r{color:rgba(242,236,224,.5)}
-.r-cell .v-r{font-size:clamp(64px,7vw,100px);font-weight:700;letter-spacing:-.045em;line-height:.9}
+.r-cell .v-r{font-size:clamp(42px,4.5vw,65px);font-weight:700;letter-spacing:-.045em;line-height:.9}
 .r-cell .v-r .red{color:var(--red)}
 .r-cell .l-r{font-size:14px;font-weight:600;margin-top:14px;letter-spacing:-.01em}
 .r-cell .d-r{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.55;max-width:30ch}

@@ -82,7 +82,7 @@
 .dash-footer b{color:var(--paper);font-weight:500}
 
 /* ===== OFFERINGS (reuse o-grid concept) ===== */
-.offers{padding:140px 0;border-top:1px solid var(--ink)}
+.offers{padding:80px 0;border-top:1px solid var(--ink)}
 .o-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .o-card{padding:44px 40px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
 .o-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
@@ -107,7 +107,7 @@
 .o-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
 
 /* ===== WHY SERVER-SIDE (comparison) ===== */
-.compare{padding:140px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.compare{padding:80px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
 .compare::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
 .c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
 .c-item{padding:40px 32px;background:var(--paper);border:1px solid var(--line);border-radius:18px;transition:all .5s var(--ease)}
@@ -123,7 +123,7 @@
 .c-item:hover .bonus{border-color:rgba(242,236,224,.15)}
 
 /* ===== TOOLS ===== */
-.tools{padding:140px 0;border-top:1px solid var(--ink)}
+.tools{padding:80px 0;border-top:1px solid var(--ink)}
 .t-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
 .t-cell{height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;transition:background .4s var(--ease);position:relative}
 .t-cell:hover{background:var(--paper-2)}

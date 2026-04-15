@@ -197,7 +197,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 .lnk:hover .arr{transform:translateX(4px)}
 
 /* ===================== HERO ===================== */
-.hero{padding:220px 0 140px;position:relative}
+.hero{padding:100px 0 60px;position:relative}
 .hero .blob{
   position:absolute;top:50%;left:50%;width:900px;height:900px;border-radius:50%;
   background:radial-gradient(circle,rgba(227,6,19,.16) 0%,transparent 60%);
@@ -210,7 +210,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
   padding:9px 18px 9px 14px;border:1px solid var(--line);
   background:rgba(255,255,255,.35);backdrop-filter:blur(8px);border-radius:999px;
   font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-  margin-bottom:44px;color:var(--ink);
+  margin-bottom:28px;color:var(--ink);
 }
 .hero .eyebrow .d{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(227,6,19,.7);animation:bpulse 2.4s infinite}
 @keyframes bpulse{0%{box-shadow:0 0 0 0 rgba(227,6,19,.7)}70%{box-shadow:0 0 0 10px rgba(227,6,19,0)}100%{box-shadow:0 0 0 0 rgba(227,6,19,0)}}
@@ -227,7 +227,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
   content:"";position:absolute;right:-.12em;top:.12em;width:.16em;height:.16em;border-radius:50%;background:var(--red);
 }
 .hero .below{
-  margin-top:72px;display:grid;grid-template-columns:minmax(280px,1.4fr) 1fr 1fr;gap:80px;align-items:end;
+  margin-top:48px;display:grid;grid-template-columns:minmax(280px,1.4fr) 1fr 1fr;gap:80px;align-items:end;
 }
 .hero .below .lede{font-size:20px;font-weight:400;line-height:1.45;max-width:46ch;color:var(--ink-3);letter-spacing:-.01em}
 .hero .below .lede b{font-weight:600;color:var(--ink)}
@@ -265,8 +265,8 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 @keyframes roll{to{transform:translateX(-50%)}}
 
 /* ===================== SECTION SHELL ===================== */
-section.sx{padding:160px 0;position:relative}
-.sec-head{display:grid;grid-template-columns:140px 1fr auto;gap:48px;align-items:baseline;padding-bottom:40px;border-bottom:1px solid var(--ink);margin-bottom:80px}
+section.sx{padding:100px 0;position:relative}
+.sec-head{display:grid;grid-template-columns:140px 1fr auto;gap:48px;align-items:baseline;padding-bottom:40px;border-bottom:1px solid var(--ink);margin-bottom:50px}
 .sec-head .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .sec-head h2{font-size:clamp(48px,6.5vw,104px);font-weight:700;letter-spacing:-.045em;line-height:.9;max-width:20ch}
 .numbers .sec-head h2{font-size:clamp(36px,4.5vw,72px);white-space:nowrap}
@@ -275,7 +275,7 @@ section.sx{padding:160px 0;position:relative}
 .sec-head .aside b{color:var(--ink);font-weight:600}
 
 /* ===================== STATEMENT ===================== */
-.statement{padding:180px 0 120px;position:relative}
+.statement{padding:100px 0 70px;position:relative}
 .statement .big{
   font-size:clamp(38px,5vw,76px);font-weight:500;letter-spacing:-.035em;line-height:1.05;
   max-width:24ch;
@@ -291,7 +291,7 @@ section.sx{padding:160px 0;position:relative}
 }
 .statement.on .big .strike::after{transform:scaleX(1)}
 .statement .meta{
-  margin-top:70px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;
+  margin-top:44px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;
   padding-top:28px;border-top:1px solid var(--line);
 }
 .statement .meta .who{display:flex;align-items:center;gap:16px}
@@ -362,7 +362,7 @@ section.sx{padding:160px 0;position:relative}
 .srv-row:hover::before,.srv-row.active::before{transform:scaleX(1)}
 
 /* ===================== NUMBERS ===================== */
-.numbers{padding:180px 0;border-top:1px solid var(--ink)}
+.numbers{padding:100px 0;border-top:1px solid var(--ink)}
 .num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .ncell{
   padding:48px 40px 44px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -473,7 +473,7 @@ section.sx{padding:160px 0;position:relative}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ===================== REFERENCE GRID ===================== */
-.refs{padding:160px 0}
+.refs{padding:100px 0}
 .ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .ref{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:none}
 .ref .img{position:absolute;inset:0;transition:transform .8s var(--ease);will-change:transform}
@@ -494,7 +494,7 @@ section.sx{padding:160px 0;position:relative}
 .ref.r6 .img{background:linear-gradient(135deg,#d8cab0,#7a6848)}
 
 /* ===================== CTA STRIP ===================== */
-.cta{padding:180px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
+.cta{padding:100px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
 .cta h2{font-size:clamp(40px,7vw,120px);font-weight:800;letter-spacing:-.06em;line-height:.85;white-space:nowrap}
 .cta h2 .red{color:var(--red)}
 .cta .sub{margin-top:32px;font-size:18px;color:var(--mute);max-width:44ch;margin-left:auto;margin-right:auto;line-height:1.55}
@@ -507,7 +507,7 @@ footer{
 footer .wrap{position:relative;z-index:2}
 footer .big{
   font-size:clamp(40px,7vw,130px);font-weight:800;letter-spacing:-.06em;line-height:.82;
-  margin-bottom:80px;
+  margin-bottom:50px;text-align:center;
 }
 footer .big .red{color:var(--red)}
 footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-top:48px;border-top:1px solid rgba(242,236,224,.12)}
@@ -548,7 +548,7 @@ footer .base .right{text-align:right}
   nav.top ul{display:none}
   nav.top .meta{display:none}
   .wrap{padding:0 20px}
-  .hero{padding:140px 0 80px}
+  .hero{padding:100px 0 60px}
   .num-grid,.ref-grid,footer .cols,footer .base{grid-template-columns:1fr}
   .case-card .meta{padding:36px 28px}
   .case-card h3{font-size:44px}

@@ -82,7 +82,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 .btn.big .arr svg{width:13px;height:13px}
 
 /* ===================== BREADCRUMB ===================== */
-.crumbs{padding:130px 0 0}
+.crumbs{padding:90px 0 0}
 .crumbs .wrap{display:flex;justify-content:space-between;align-items:center}
 .crumbs .back{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:500;transition:color .3s}
 .crumbs .back .dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
@@ -98,7 +98,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 .title{padding:80px 0 40px;position:relative}
 .title .idx{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:30px;display:flex;align-items:center;gap:14px}
 .title .idx::before{content:"";width:40px;height:1px;background:var(--red)}
-.title h1{font-size:clamp(64px,11vw,160px);font-weight:800;letter-spacing:-.055em;line-height:.86;max-width:16ch}
+.title h1{font-size:clamp(44px,7.8vw,134px);font-weight:800;letter-spacing:-.055em;line-height:.86;max-width:16ch}
 .title h1 .red{color:var(--red)}
 .title .below{margin-top:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:end}
 .title .below .lede{font-size:clamp(20px,2vw,28px);font-weight:400;letter-spacing:-.015em;line-height:1.35;max-width:32ch;color:var(--ink-3)}
@@ -106,7 +106,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 .title .below .lede .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 2px}
 .title .below .ctas{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
 
-.meta-bar{margin-top:70px;padding:32px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.meta-bar{margin-top:44px;padding:32px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
 .meta-bar .m{position:relative}
 .meta-bar .m::before{content:"";position:absolute;left:-20px;top:6px;bottom:6px;width:1px;background:var(--line)}
 .meta-bar .m:first-child::before{display:none}
@@ -122,7 +122,7 @@ nav.top .meta .dot{width:6px;height:6px;border-radius:50%;background:#2bb65d;mar
 .sec-head .aside{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;line-height:1.8}
 .sec-head .aside b{color:var(--ink);font-weight:600}
 
-section.sx{padding:140px 0;position:relative}
+section.sx{padding:80px 0;position:relative}
 
 /* Generic panels used widely */
 .card-base{padding:44px 36px 40px;border:1px solid var(--line);border-radius:18px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
@@ -146,15 +146,15 @@ section.sx{padding:140px 0;position:relative}
 .card-base:hover ul li::before{color:var(--red)}
 
 /* ===================== CTA ===================== */
-.cta{padding:180px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
-.cta h2{font-size:clamp(48px,8vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85}
+.cta{padding:100px 0;text-align:center;position:relative;border-top:1px solid var(--ink)}
+.cta h2{font-size:clamp(44px,7.7vw,134px);font-weight:800;letter-spacing:-.055em;line-height:.85}
 .cta h2 .red{color:var(--red)}
 .cta .sub{margin-top:28px;font-size:17px;color:var(--mute);max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.55}
 .cta .ctas{margin-top:48px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
 /* ===================== FOOTER ===================== */
 footer{background:var(--ink);color:var(--paper);padding:80px 0 40px;position:relative;overflow:hidden}
-footer .big{font-size:clamp(40px,7vw,130px);font-weight:800;letter-spacing:-.06em;line-height:.82;margin-bottom:80px}
+footer .big{font-size:clamp(40px,7vw,130px);font-weight:800;letter-spacing:-.06em;line-height:.82;margin-bottom:50px;text-align:center}
 footer .big .red{color:var(--red)}
 footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-top:48px;border-top:1px solid rgba(242,236,224,.12)}
 footer .cols .about p{font-size:14px;color:rgba(242,236,224,.6);line-height:1.6;max-width:36ch;margin-top:20px}

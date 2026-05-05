@@ -4,9 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>PragueBest — Design. Dev. Data. Since 1999.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#F1ECE0;
@@ -57,7 +54,7 @@ img{display:block;max-width:100%}
 .masthead{display:grid;grid-template-columns:1.3fr 1fr 1.3fr;gap:24px;align-items:end;padding:28px 0 18px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:10px}
 .masthead .meta{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .masthead .meta .k{color:var(--mute)}
-.logo{font-family:var(--serif);font-weight:900;font-size:29px;letter-spacing:-.03em;text-align:center;font-variation-settings:"SOFT" 30,"WONK" 1}
+.logo{font-family:var(--serif);font-weight:900;font-size:44px;letter-spacing:-.03em;text-align:center;font-variation-settings:"SOFT" 30,"WONK" 1}
 .logo em{font-style:italic;font-weight:400;color:var(--accent-2)}
 .masthead .right{text-align:right}
 
@@ -67,7 +64,7 @@ img{display:block;max-width:100%}
 .hero .eyebrow span.sq{width:10px;height:10px;background:var(--ink)}
 .hero h1{
   font-family:var(--serif);
-  font-size:clamp(29px,5.1vw,87px);
+  font-size:clamp(44px,7.8vw,134px);
   line-height:.84;
   letter-spacing:-.045em;
   font-weight:500;
@@ -105,7 +102,7 @@ img{display:block;max-width:100%}
 
 /* Giant number watermark */
 .yearmark{
-  position:absolute;right:-12px;top:8px;font-family:var(--serif);font-size:143px;font-weight:300;
+  position:absolute;right:-12px;top:8px;font-family:var(--serif);font-size:220px;font-weight:300;
   letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(12,12,10,.35);
   font-variation-settings:"opsz" 144,"SOFT" 40;pointer-events:none;user-select:none;
   mix-blend-mode:multiply;
@@ -128,7 +125,7 @@ img{display:block;max-width:100%}
 .stat{padding:34px 22px 28px;border-right:1px solid var(--ink);position:relative;overflow:hidden}
 .stat:last-child{border-right:none}
 .stat:hover{background:var(--accent)}
-.stat .num{font-family:var(--serif);font-size:clamp(36px,3.9vw,62px);line-height:.9;letter-spacing:-.04em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 50,"WONK" 1}
+.stat .num{font-family:var(--serif);font-size:clamp(56px,6vw,96px);line-height:.9;letter-spacing:-.04em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 50,"WONK" 1}
 .stat .num sup{font-size:.38em;vertical-align:top;top:.2em;position:relative;font-weight:400;color:var(--mute)}
 .stat:hover .num sup{color:var(--ink)}
 .stat .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:14px;display:flex;justify-content:space-between;color:var(--mute)}
@@ -137,8 +134,8 @@ img{display:block;max-width:100%}
 
 /* ---------- services section ---------- */
 .section-head{display:grid;grid-template-columns:1fr 2fr 1fr;gap:32px;align-items:end;padding:80px 0 30px}
-.section-head .num{font-family:var(--serif);font-size:78px;line-height:1;font-weight:400;letter-spacing:-.04em;font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;color:var(--ink)}
-.section-head h2{font-family:var(--serif);font-size:42px;line-height:.95;letter-spacing:-.03em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40}
+.section-head .num{font-family:var(--serif);font-size:120px;line-height:1;font-weight:400;letter-spacing:-.04em;font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;color:var(--ink)}
+.section-head h2{font-family:var(--serif);font-size:64px;line-height:.95;letter-spacing:-.03em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40}
 .section-head h2 em{font-style:italic;font-weight:400;color:var(--accent-2)}
 .section-head .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:right;color:var(--mute)}
 
@@ -147,7 +144,7 @@ img{display:block;max-width:100%}
 .srv:hover{background:var(--ink);color:var(--paper)}
 .srv .no{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--mute)}
 .srv:hover .no{color:var(--accent)}
-.srv .title{font-family:var(--serif);font-size:27px;line-height:.98;letter-spacing:-.02em;font-weight:500;font-variation-settings:"opsz" 100,"SOFT" 40}
+.srv .title{font-family:var(--serif);font-size:42px;line-height:.98;letter-spacing:-.02em;font-weight:500;font-variation-settings:"opsz" 100,"SOFT" 40}
 .srv .title em{font-style:italic;font-weight:400}
 .srv .desc{font-family:var(--serif);font-size:16px;line-height:1.45;max-width:46ch;font-variation-settings:"opsz" 14}
 .srv .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -161,10 +158,10 @@ img{display:block;max-width:100%}
 .feature .left{padding:48px 48px 48px 0;border-right:1px solid var(--ink)}
 .feature .tagline{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:22px;display:flex;gap:14px;align-items:center}
 .feature .tagline b{color:var(--ink);border:1px solid var(--ink);padding:3px 9px;border-radius:2px;background:var(--accent)}
-.feature h3{font-family:var(--serif);font-size:48px;line-height:.92;letter-spacing:-.035em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40,"WONK" 1}
+.feature h3{font-family:var(--serif);font-size:74px;line-height:.92;letter-spacing:-.035em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40,"WONK" 1}
 .feature h3 em{font-style:italic;font-weight:400}
 .feature .quote{margin-top:36px;font-family:var(--serif);font-size:20px;line-height:1.4;font-style:italic;font-variation-settings:"opsz" 24,"SOFT" 80;max-width:52ch}
-.feature .quote::before{content:"“";font-size:78px;line-height:0;vertical-align:-0.2em;color:var(--accent-2);margin-right:6px}
+.feature .quote::before{content:"“";font-size:120px;line-height:0;vertical-align:-0.2em;color:var(--accent-2);margin-right:6px}
 .feature .meta{margin-top:32px;display:flex;gap:28px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 .feature .meta span b{display:block;color:var(--ink);font-size:14px;margin-top:4px;font-family:var(--serif);font-weight:500;letter-spacing:-.01em}
 .feature .right{padding:0;position:relative;background:
@@ -180,14 +177,14 @@ img{display:block;max-width:100%}
 .feature .right .block{position:relative;padding:40px;width:100%}
 .feature .right .kpi{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px}
 .feature .right .kpi div{border-top:1px solid rgba(241,236,224,.25);padding-top:14px}
-.feature .right .kpi .num{font-family:var(--serif);font-size:38px;line-height:.9;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40,"WONK" 1}
+.feature .right .kpi .num{font-family:var(--serif);font-size:58px;line-height:.9;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40,"WONK" 1}
 .feature .right .kpi .num em{color:var(--accent);font-style:italic}
 .feature .right .kpi .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(241,236,224,.6);margin-top:8px}
 
 /* ---------- clients marquee ---------- */
 .clients{margin-top:90px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:36px 0;overflow:hidden}
 .clients .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:24px;display:flex;justify-content:space-between}
-.clients .track{display:flex;gap:56px;white-space:nowrap;animation:marquee 50s linear infinite;font-family:var(--serif);font-size:30px;letter-spacing:-.025em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40}
+.clients .track{display:flex;gap:56px;white-space:nowrap;animation:marquee 50s linear infinite;font-family:var(--serif);font-size:46px;letter-spacing:-.025em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 40}
 .clients .track span{display:inline-flex;align-items:center;gap:56px;opacity:.9}
 .clients .track span::after{content:"✦";color:var(--accent-2);font-size:24px}
 .clients .track em{font-style:italic;font-weight:300}
@@ -196,7 +193,7 @@ img{display:block;max-width:100%}
 .manifesto{padding:70px 0;display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start;position:relative}
 .manifesto .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);position:sticky;top:40px}
 .manifesto .label::before{content:"";display:block;width:40px;height:2px;background:var(--ink);margin-bottom:16px}
-.manifesto .body{font-family:var(--serif);font-size:29px;line-height:1.08;letter-spacing:-.02em;font-weight:400;font-variation-settings:"opsz" 72,"SOFT" 30}
+.manifesto .body{font-family:var(--serif);font-size:44px;line-height:1.08;letter-spacing:-.02em;font-weight:400;font-variation-settings:"opsz" 72,"SOFT" 30}
 .manifesto .body p+p{margin-top:22px}
 .manifesto .body em{font-style:italic;color:var(--accent-2)}
 .manifesto .body b{font-weight:500;background:linear-gradient(180deg,transparent 65%,var(--accent) 65% 92%,transparent 92%);padding:0 3px}
@@ -204,7 +201,7 @@ img{display:block;max-width:100%}
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--ink);background:var(--ink);color:var(--paper);margin-top:40px}
 footer .wrap{max-width:1440px;margin:0 auto;padding:48px 28px}
-footer .big{font-family:var(--serif);font-size:clamp(29px,5.1vw,87px);line-height:.85;letter-spacing:-.05em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1}
+footer .big{font-family:var(--serif);font-size:clamp(44px,7.8vw,134px);line-height:.85;letter-spacing:-.05em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1}
 footer .big em{font-style:italic;font-weight:400;color:var(--accent)}
 footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;border-top:1px solid rgba(241,236,224,.2);margin-top:56px;padding-top:28px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 footer .cols h4{color:rgba(241,236,224,.5);font-weight:500;margin-bottom:14px}
@@ -464,6 +461,7 @@ footer .base{display:flex;justify-content:space-between;align-items:center;margi
         <h4>Studio</h4>
         <a href="#">O&nbsp;nás</a>
         <a href="#">Tým</a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
         <a href="#">Kariéra &nbsp;· &nbsp;6 pozic</a>
         <a href="#">Blog</a>
       </div>

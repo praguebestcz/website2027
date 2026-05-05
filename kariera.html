@@ -4,9 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Kariéra — Přidej se k nám — PragueBest</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
@@ -95,7 +92,7 @@
 .talent-card > *{position:relative;z-index:1}
 .talent-card .lbl-t{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:12px}
 .talent-card .lbl-t::before{content:"";width:28px;height:1px;background:var(--red)}
-.talent-card h3{font-size:clamp(23px,2.9vw,42px);font-weight:700;letter-spacing:-.035em;line-height:.95;margin-bottom:20px}
+.talent-card h3{font-size:clamp(36px,4.5vw,64px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:20px}
 .talent-card h3 .red{color:var(--red)}
 .talent-card p{font-size:16px;color:var(--ink-3);line-height:1.6;margin-bottom:32px;max-width:44ch}
 
@@ -117,32 +114,7 @@
 .cv-card .skills span{font-family:var(--mono);font-size:8px;padding:2px 6px;background:var(--paper-2);border:1px solid var(--line);border-radius:99px;color:var(--mute)}
 
 /* ===== PROCESS / HOW TO APPLY ===== */
-.how{padding:80px 0;border-top:1px solid var(--ink)}
 .h-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px}
-.hstep{padding:40px 28px 48px;border-right:1px solid var(--line);position:relative;transition:background .5s var(--ease)}
-.hstep:last-child{border-right:none}
-.hstep::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out)}
-.hstep.reveal.on::before{transform:scaleX(1)}
-.hstep .n-big{font-size:47px;font-weight:700;letter-spacing:-.05em;line-height:.85;color:var(--ink);margin-bottom:20px}
-.hstep .n-big .mk{color:var(--red)}
-.hstep .lbl-h{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
-.hstep h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
-.hstep p{font-size:13px;color:var(--mute);line-height:1.6}
-.hstep:hover{background:var(--paper-2)}
-
-@media (max-width:1100px){
-  .j-row{grid-template-columns:60px 1fr auto;gap:20px;padding:24px 28px}
-  .j-row .meta-j,.j-row .salary{display:none}
-  .w-grid{grid-template-columns:1fr 1fr}
-  .polaroids{grid-template-columns:1fr 1fr}
-  .talent-card{grid-template-columns:1fr;gap:40px;padding:50px 36px}
-  .h-grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:720px){
-  .w-grid,.polaroids,.h-grid{grid-template-columns:1fr}
-  .j-row{grid-template-columns:40px 1fr auto;padding:20px}
-  .j-row h4{font-size:18px}
-}
 </style>
 </head>
 <body>
@@ -152,7 +124,7 @@
 <div class="scroll-progress"></div>
 
 <nav class="top">
-  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+  <a class="logo" href="index.html"><img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
     <ul>
     <li class="has-dd">
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -305,9 +277,9 @@
 <section class="why">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 01 / Proč u nás</div>
+      <div class="idx">Proč u nás</div>
       <h2>Šest věcí, co&nbsp;u&nbsp;nás <span class="red">najdete.</span></h2>
-      <div class="aside">Ne benefity na&nbsp;papíře<br><b>věci, které fakt&nbsp;děláme</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poslat životopis <span class="arr">→</span></a></div>
     </div>
 
     <div class="w-grid">
@@ -360,9 +332,9 @@
 <section class="life">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 02 / Život ve firmě</div>
+      <div class="idx">Život ve firmě</div>
       <h2>Jak to u&nbsp;nás <span class="red">vypadá.</span></h2>
-      <div class="aside">4 fotky z&nbsp;archivu<br><b>2024 &mdash; 2026</b></div>
+      <div class="aside"><a href="o-nas.html" class="lnk">Více o PragueBestu <span class="arr">→</span></a></div>
     </div>
 
     <div class="polaroids">
@@ -390,9 +362,9 @@
 <section class="how">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 03 / Jak probíhá nábor</div>
+      <div class="idx">Jak probíhá nábor</div>
       <h2>Čtyři kroky od&nbsp;CV k&nbsp;<span class="red">nástupu.</span></h2>
-      <div class="aside">Průměrně<br><b>3 týdny od CV</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poslat životopis <span class="arr">→</span></a></div>
     </div>
 
     <div class="h-grid">
@@ -483,10 +455,10 @@
 
 <footer>
   <div class="wrap">
-    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="big">Prague<span class="red">Best</span></div>
     <div class="cols">
       <div class="about">
-        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
         <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
       </div>
       <div>
@@ -501,6 +473,7 @@
         <a href="index.html">Úvod <span class="ar">→</span></a>
         <a href="reference.html">Reference <span class="ar">→</span></a>
         <a href="o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
         <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
       </div>
       <div>
@@ -511,7 +484,7 @@
       </div>
     </div>
     <div class="base">
-      <div>© 2026 PragueBest s.r.o.</div>
+      <div>© 2026 PragueBest s.r.o. <a href="admin.html" style="color:var(--mute);font-family:var(--mono);font-size:10px;text-decoration:none;margin-left:12px;letter-spacing:.04em;opacity:.6">Admin</a></div>
       <div class="clock">
         <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
         <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>

@@ -4,16 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BigDataManager — Prodávejte chytřeji — PragueBest</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
 /* Brand pill */
-.brand-pill{display:inline-flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border:1px solid var(--line);background:rgba(255,255,255,.4);backdrop-filter:blur(10px);border-radius:999px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:28px}
-.brand-pill .bag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--ink);color:var(--paper);border-radius:99px;font-weight:700}
-.brand-pill .bag sup{color:var(--red);font-size:.7em}
 
 /* ===== RECOMMENDER HERO ===== */
 .rec-wrap{padding:60px 0 120px}
@@ -87,7 +81,6 @@
 .rec-footer .signals span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
 
 /* ===== FEATURES ===== */
-.features{padding:80px 0;border-top:1px solid var(--ink)}
 .f-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .f-card{padding:48px 44px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
 .f-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
@@ -112,20 +105,10 @@
 .f-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
 
 /* ===== HOW IT WORKS ===== */
-.how{padding:80px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.how::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.how > .wrap{position:relative;z-index:2}
 .h-row{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;margin-top:60px;position:relative}
 .h-row::after{content:"";position:absolute;top:40px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--red),var(--red) 50%,transparent 50%);background-size:12px 2px;background-repeat:repeat-x;z-index:0}
-.h-step{text-align:center;position:relative;z-index:1}
-.h-step .circle{width:80px;height:80px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:23px;font-weight:700;letter-spacing:-.035em;color:var(--ink);position:relative}
-.h-step .circle::after{content:"";position:absolute;inset:-6px;border:1px solid var(--red);border-radius:50%;opacity:0;transition:opacity .3s}
-.h-step:hover .circle::after{opacity:1}
-.h-step h4{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
-.h-step p{font-size:14px;color:var(--ink-3);line-height:1.6;max-width:32ch;margin:0 auto}
 
 /* ===== RESULTS ===== */
-.results{padding:80px 0;border-top:1px solid var(--ink)}
 .r-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
 .r-cell{padding:48px 36px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:background .5s var(--ease)}
 .r-cell::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(100%);transition:transform .7s var(--ease-out);z-index:0}
@@ -134,7 +117,7 @@
 .r-cell:hover > *{color:var(--paper)}
 .r-cell .n-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
 .r-cell:hover .n-r{color:rgba(242,236,224,.5)}
-.r-cell .v-r{font-size:clamp(42px,4.5vw,65px);font-weight:700;letter-spacing:-.045em;line-height:.9}
+.r-cell .v-r{font-size:clamp(64px,7vw,100px);font-weight:700;letter-spacing:-.045em;line-height:.9}
 .r-cell .v-r .red{color:var(--red)}
 .r-cell .l-r{font-size:14px;font-weight:600;margin-top:14px;letter-spacing:-.01em}
 .r-cell .d-r{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.55;max-width:30ch}
@@ -150,20 +133,6 @@
 .i-cell:hover::before{transform:scaleX(1)}
 .i-cell b{font-size:17px;font-weight:700;letter-spacing:-.015em;color:var(--ink);text-align:center}
 .i-cell small{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-
-@media (max-width:1100px){
-  .rec-body{grid-template-columns:1fr}
-  .rec-body .profile{border-right:none;border-bottom:1px solid rgba(242,236,224,.08)}
-  .f-grid{grid-template-columns:1fr}
-  .h-row{grid-template-columns:1fr;gap:40px}
-  .h-row::after{display:none}
-  .r-grid{grid-template-columns:1fr 1fr}
-  .i-grid{grid-template-columns:1fr 1fr 1fr}
-}
-@media (max-width:720px){
-  .r-grid,.i-grid{grid-template-columns:1fr}
-  .i-cell{height:100px}
-}
 </style>
 </head>
 <body>
@@ -173,7 +142,7 @@
 <div class="scroll-progress"></div>
 
 <nav class="top">
-  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+  <a class="logo" href="index.html"><img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
     <ul>
     <li class="has-dd">
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -215,7 +184,7 @@
 
 <section class="title">
   <div class="wrap">
-    <div class="brand-pill reveal"><span class="bag">BigDataManager<sup>®</sup></span>Produkt PragueBest · Od&nbsp;2019 · 40+ e-shopů</div>
+    <div class="idx reveal">Produkt PragueBest &nbsp;·&nbsp; Od 2019 &nbsp;·&nbsp; 40+ e-shopů</div>
     <h1 class="reveal d1">Prodávejte<br><span class="red">chytřeji.</span></h1>
 
     <div class="below">
@@ -332,9 +301,9 @@
 <section class="features">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 01 / Funkce</div>
+      <div class="idx">Funkce</div>
       <h2>Čtyři věci, které BDM <span class="red">umí.</span></h2>
-      <div class="aside">V základu všechno<br><b>bez dalších licencí</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat demo <span class="arr">→</span></a></div>
     </div>
 
     <div class="f-grid">
@@ -417,9 +386,9 @@
 <section class="how">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 02 / Jak to funguje</div>
+      <div class="idx">Jak to funguje</div>
       <h2>Tři kroky od&nbsp;setupu k&nbsp;<span class="red">prodejům.</span></h2>
-      <div class="aside">Integrace za 2 týdny<br><b>pak už je to automat</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Zahájit projekt <span class="arr">→</span></a></div>
     </div>
 
     <div class="h-row">
@@ -446,9 +415,9 @@
 <section class="results" id="results">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 03 / Výsledky</div>
+      <div class="idx">Výsledky</div>
       <h2>Čísla, která naši klienti <span class="red">reportují.</span></h2>
-      <div class="aside">Průměr ze 40+ klientů<br><b>po 90 dnech provozu</b></div>
+      <div class="aside"><a href="reference.html" class="lnk">Výsledky klientů <span class="arr">→</span></a></div>
     </div>
 
     <div class="r-grid">
@@ -486,9 +455,9 @@
 <section class="integ">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 04 / Integrace</div>
+      <div class="idx">Integrace</div>
       <h2>Napojí se na&nbsp;vaši <span class="red">platformu.</span></h2>
-      <div class="aside">Setup za 2 týdny<br><b>bez zásahu do kódu</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat nasazení <span class="arr">→</span></a></div>
     </div>
 
     <div class="i-grid">
@@ -522,10 +491,10 @@
 
 <footer>
   <div class="wrap">
-    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="big">Prague<span class="red">Best</span></div>
     <div class="cols">
       <div class="about">
-        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
         <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
       </div>
       <div>
@@ -540,6 +509,7 @@
         <a href="index.html">Úvod <span class="ar">→</span></a>
         <a href="reference.html">Reference <span class="ar">→</span></a>
         <a href="o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
         <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
       </div>
       <div>
@@ -550,7 +520,7 @@
       </div>
     </div>
     <div class="base">
-      <div>© 2026 PragueBest s.r.o.</div>
+      <div>© 2026 PragueBest s.r.o. <a href="admin.html" style="color:var(--mute);font-family:var(--mono);font-size:10px;text-decoration:none;margin-left:12px;letter-spacing:.04em;opacity:.6">Admin</a></div>
       <div class="clock">
         <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
         <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>

@@ -4,9 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Data & Analytika — Služby — PragueBest</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
@@ -37,7 +34,7 @@
 .kpi .lbl-k{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
 .kpi .lbl-k .trend{padding:2px 7px;background:rgba(43,182,93,.18);color:#5fcd86;border-radius:99px;font-weight:700;font-size:9px}
 .kpi .lbl-k .trend.down{background:rgba(227,6,19,.18);color:#f58080}
-.kpi .val{font-size:25px;font-weight:700;letter-spacing:-.03em;line-height:.9}
+.kpi .val{font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:.9}
 .kpi .val .red{color:var(--red)}
 .kpi .val sub{font-family:var(--mono);font-size:11px;font-weight:500;color:rgba(242,236,224,.4);letter-spacing:.02em;margin-left:4px;vertical-align:baseline}
 .kpi .delta{margin-top:6px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5)}
@@ -82,34 +79,8 @@
 .dash-footer b{color:var(--paper);font-weight:500}
 
 /* ===== OFFERINGS (reuse o-grid concept) ===== */
-.offers{padding:80px 0;border-top:1px solid var(--ink)}
-.o-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.o-card{padding:44px 40px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;overflow:hidden;transition:all .5s var(--ease)}
-.o-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
-.o-card:hover::before{transform:translateY(0)}
-.o-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
-.o-card:hover > *{color:var(--paper)}
-.o-card:hover{border-color:var(--ink);transform:translateY(-4px)}
-.o-card .head{display:flex;align-items:flex-start;gap:20px;margin-bottom:22px}
-.o-card .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .5s var(--ease)}
-.o-card:hover .ico{background:var(--red)}
-.o-card .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.o-card .head-txt{flex:1;padding-top:4px}
-.o-card .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.o-card:hover .n{color:rgba(242,236,224,.5)}
-.o-card h4{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.o-card p.desc{font-size:14px;color:var(--ink-3);line-height:1.55;margin-bottom:22px}
-.o-card:hover p.desc{color:rgba(242,236,224,.75)}
-.o-card ul{list-style:none;font-family:var(--mono);font-size:13px;color:var(--ink-3);line-height:2}
-.o-card:hover ul{color:rgba(242,236,224,.75)}
-.o-card ul li{display:flex;align-items:center;gap:10px;padding:3px 0;border-bottom:1px dashed var(--line)}
-.o-card:hover ul li{border-color:rgba(242,236,224,.12)}
-.o-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
 
 /* ===== WHY SERVER-SIDE (comparison) ===== */
-.compare{padding:80px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.compare::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
 .c-item{padding:40px 32px;background:var(--paper);border:1px solid var(--line);border-radius:18px;transition:all .5s var(--ease)}
 .c-item:hover{background:var(--ink);color:var(--paper);transform:translateY(-4px)}
 .c-item .ico{width:52px;height:52px;border-radius:14px;background:var(--paper-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:all .4s var(--ease)}
@@ -124,26 +95,12 @@
 
 /* ===== TOOLS ===== */
 .tools{padding:80px 0;border-top:1px solid var(--ink)}
-.t-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
 .t-cell{height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;transition:background .4s var(--ease);position:relative}
 .t-cell:hover{background:var(--paper-2)}
 .t-cell::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
 .t-cell:hover::before{transform:scaleX(1)}
 .t-cell .lg{font-size:18px;font-weight:700;letter-spacing:-.015em;color:var(--ink);text-align:center}
 .t-cell .cat{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-
-@media (max-width:1100px){
-  .dash-grid{grid-template-columns:1fr 1fr}
-  .dash-body{grid-template-columns:1fr}
-  .c-grid,.o-grid{grid-template-columns:1fr 1fr}
-  .t-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:720px){
-  .dash-grid,.c-grid,.o-grid{grid-template-columns:1fr}
-  .t-grid{grid-template-columns:repeat(2,1fr)}
-  .t-cell{height:110px}
-  .t-cell .lg{font-size:14px}
-}
 </style>
 </head>
 <body>
@@ -153,7 +110,7 @@
 <div class="scroll-progress"></div>
 
 <nav class="top">
-  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+  <a class="logo" href="index.html"><img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
     <ul>
     <li class="has-dd">
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -195,7 +152,7 @@
 
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal">Služba § 02 &nbsp;—&nbsp; GA4 · GTM · Server-side · BI &nbsp;—&nbsp; 4 specialisté</div>
+    <div class="idx reveal">GA4 · GTM · Server-side · BI &nbsp;—&nbsp; 4 specialisté</div>
     <h1 class="reveal d1">Rozhodujte<br>na <span class="red">datech.</span></h1>
 
     <div class="below">
@@ -351,9 +308,9 @@
 <section class="offers">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 01 / Co nabízíme</div>
+      <div class="idx">Co nabízíme</div>
       <h2>Čtyři oblasti, ve&nbsp;kterých <span class="red">dodáme.</span></h2>
-      <div class="aside">Od setupu po&nbsp;školení<br><b>celý stack</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat analytiku <span class="arr">→</span></a></div>
     </div>
 
     <div class="o-grid">
@@ -436,9 +393,9 @@
 <section class="compare">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 02 / Proč server-side</div>
+      <div class="idx">Proč server-side</div>
       <h2>Čtyři důvody, proč tracking <span class="red">přesunout na&nbsp;server.</span></h2>
-      <div class="aside">Doporučujeme<br><b>každému e-shopu</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat spolupráci <span class="arr">→</span></a></div>
     </div>
 
     <div class="c-grid">
@@ -477,9 +434,9 @@
 <section class="tools">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 03 / Nástroje</div>
+      <div class="idx">Nástroje</div>
       <h2>Stack, se&nbsp;kterým&nbsp;<span class="red">pracujeme.</span></h2>
-      <div class="aside">Vybíráme podle projektu<br><b>ne podle módy</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat projekt <span class="arr">→</span></a></div>
     </div>
 
     <div class="t-grid">
@@ -512,10 +469,10 @@
 
 <footer>
   <div class="wrap">
-    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="big">Prague<span class="red">Best</span></div>
     <div class="cols">
       <div class="about">
-        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
         <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
       </div>
       <div>
@@ -530,6 +487,7 @@
         <a href="index.html">Úvod <span class="ar">→</span></a>
         <a href="reference.html">Reference <span class="ar">→</span></a>
         <a href="#">Blog <span class="ar">→</span></a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
         <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
       </div>
       <div>
@@ -540,7 +498,7 @@
       </div>
     </div>
     <div class="base">
-      <div>© 2026 PragueBest s.r.o.</div>
+      <div>© 2026 PragueBest s.r.o. <a href="admin.html" style="color:var(--mute);font-family:var(--mono);font-size:10px;text-decoration:none;margin-left:12px;letter-spacing:.04em;opacity:.6">Admin</a></div>
       <div class="clock">
         <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
         <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>

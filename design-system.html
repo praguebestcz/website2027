@@ -1,0 +1,1394 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Design System — PragueBest</title>
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<style>
+/* ===== DESIGN SYSTEM LAYOUT ===== */
+.sg-page{padding:0 0 140px}
+
+.sg-chapter{
+  background:var(--ink);color:var(--paper);
+  padding:18px 0;margin:80px 0 52px;
+}
+.sg-chapter span{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+
+.sg-group{margin-bottom:52px}
+.sg-group-label{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:18px;
+}
+
+/* Swatches */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.swatch{border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.swatch .chip{height:56px}
+.swatch .info{padding:10px 12px;background:var(--paper-2)}
+.swatch .info .name{font-size:12px;font-weight:600}
+.swatch .info .val{font-family:var(--mono);font-size:10px;color:var(--mute);margin-top:2px}
+
+/* Typography */
+.type-rows{display:flex;flex-direction:column}
+.type-row{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
+.type-row .meta{font-family:var(--mono);font-size:10px;color:var(--mute);line-height:1.8}
+.type-row .meta b{color:var(--ink);display:block;font-weight:600;margin-bottom:2px}
+
+/* Demo surfaces */
+.demo{padding:40px;background:var(--paper-2);border-radius:14px;margin-bottom:16px}
+.demo.dark{background:var(--ink)}
+.demo.lined{background:transparent;border:1px solid var(--line);border-radius:14px;padding:36px}
+.demo.ink{background:var(--ink);border-radius:14px;padding:40px}
+.demo-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+
+/* Component grids */
+.sg-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sg-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+/* Stat cells wrapper */
+.num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+
+/* Icons */
+.icon-demo{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:var(--ink);color:var(--paper)}
+.icon-demo svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.icon-demo.red{background:var(--red)}
+.icon-demo.outline{background:transparent;border:1px solid var(--line);color:var(--ink)}
+
+/* Reveal demo */
+.reveal-demo{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rdemo-block{height:72px;background:var(--paper-3);border-radius:8px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--mute);text-align:center;line-height:1.5}
+
+/* Status dots */
+.status-demo{display:flex;flex-direction:column;gap:10px}
+.status-row{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--mute)}
+.sdot{width:7px;height:7px;border-radius:50%}
+.sdot.green{background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2)}
+.sdot.red{background:var(--red);box-shadow:0 0 0 3px rgba(227,6,19,.2)}
+.sdot.yellow{background:#f0a500;box-shadow:0 0 0 3px rgba(240,165,0,.2)}
+
+/* Cursor preview */
+.cursor-preview{display:flex;align-items:center;gap:32px}
+.cursor-preview .item{display:flex;flex-direction:column;align-items:flex-start;gap:8px;font-family:var(--mono);font-size:10px;color:var(--mute)}
+.cursor-preview .dot-preview{width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.cursor-preview .ring-preview{width:36px;height:36px;border-radius:50%;border:1px solid rgba(10,10,10,.35)}
+.cursor-preview .dot-hover{width:4px;height:4px;border-radius:50%;background:#fff;outline:2px solid var(--ink);outline-offset:2px}
+.cursor-preview .ring-hover{width:56px;height:56px;border-radius:50%;border:1px solid var(--ink);background:rgba(10,10,10,.08)}
+
+/* Team grid demo */
+.demo-team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:8px}
+
+/* Fw grid demo */
+.demo-fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+
+/* Stack grid demo */
+.demo-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(242,236,224,.1);border:1px solid rgba(242,236,224,.1);border-radius:16px;overflow:hidden}
+
+/* Stats grid demo */
+.demo-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(242,236,224,.06)}
+
+/* Ref grid demo */
+.demo-ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* S-cell grid demo */
+.scell-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+
+/* H-step grid demo */
+.hstep-demo-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+
+/* T-grid demo */
+.t-grid-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.t-cell{padding:28px 24px;background:var(--paper);display:flex;align-items:center;gap:16px}
+.t-cell .ico-t{width:40px;height:40px;border-radius:10px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.t-cell .ico-t svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.t-cell .label-t{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.t-cell .sub-t{font-family:var(--mono);font-size:10px;color:var(--mute);margin-top:2px;letter-spacing:.04em}
+
+/* Label util */
+.label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border:1px solid var(--line);padding:5px 12px;border-radius:99px;display:inline-block}
+
+/* Red util */
+.red{color:var(--red)}
+
+/* Code snippet */
+code.snip{font-family:var(--mono);font-size:11px;background:var(--paper-3);padding:2px 7px;border-radius:4px;color:var(--ink)}
+
+/* ===== SRV-ROW — styles from shared.css, demo overrides only ===== */
+.sg-srv-wrap{border-top:1px solid var(--line)}
+/* Show panel open in demo (bypass max-height:0) */
+.sg-srv-wrap .srv-row .panel{max-height:none;margin-top:32px}
+/* Show active state in demo */
+.sg-srv-wrap .srv-row{padding:44px 0 60px;background:radial-gradient(ellipse 60% 120% at 50% 50%,rgba(227,6,19,.07) 0%,transparent 65%)}
+.sg-srv-wrap .srv-row h3{color:var(--red)}
+.sg-srv-wrap .srv-row::before{transform:scaleX(1)}
+
+@media(max-width:1100px){
+  .type-row{grid-template-columns:1fr;gap:8px}
+  .sg-card-grid{grid-template-columns:1fr 1fr}
+  .reveal-demo{grid-template-columns:1fr 1fr}
+  .demo-fw-grid{grid-template-columns:1fr}
+  .demo-stack{grid-template-columns:1fr 1fr}
+  .demo-ref-grid{grid-template-columns:1fr 1fr}
+  .scell-grid{grid-template-columns:1fr 1fr}
+  .hstep-demo-grid{grid-template-columns:1fr 1fr}
+  .t-grid-demo{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .sg-card-grid,.reveal-demo,.sg-2col{grid-template-columns:1fr}
+  .num-grid{grid-template-columns:1fr 1fr}
+  .demo-team-grid{grid-template-columns:1fr 1fr}
+  .demo-ref-grid,.scell-grid,.hstep-demo-grid,.t-grid-demo{grid-template-columns:1fr}
+  .demo-stack{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="top">
+  <a class="logo" href="index.html">
+    <img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+  <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="blog.html"><span class="t" data-t="Nowwwinky"><span>Nowwwinky</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <a href="kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="index.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+      Zpět na hlavní stránku
+    </a>
+    <div class="path"><b>Studio</b><span>/</span><b>Design System</b></div>
+  </div>
+</div>
+
+<!-- ===================== CONTENT ===================== -->
+<div class="sg-page">
+
+  <!-- ─── § 01 BARVY ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 01 — Barvy</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">Paper — teplé slonové</div>
+      <div class="color-grid">
+        <div class="swatch"><div class="chip" style="background:#f2ece0"></div><div class="info"><div class="name">--paper</div><div class="val">#f2ece0</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#ebe4d4"></div><div class="info"><div class="name">--paper-2</div><div class="val">#ebe4d4</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#e3dac8"></div><div class="info"><div class="name">--paper-3</div><div class="val">#e3dac8</div></div></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Ink — téměř černá</div>
+      <div class="color-grid">
+        <div class="swatch"><div class="chip" style="background:#0a0a0a"></div><div class="info"><div class="name">--ink</div><div class="val">#0a0a0a</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1a1a1a"></div><div class="info"><div class="name">--ink-2</div><div class="val">#1a1a1a</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#2a2a2a"></div><div class="info"><div class="name">--ink-3</div><div class="val">#2a2a2a</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#6b6862"></div><div class="info"><div class="name">--mute</div><div class="val">#6b6862</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#8a8680"></div><div class="info"><div class="name">--mute-2</div><div class="val">#8a8680</div></div></div>
+        <div class="swatch"><div class="chip" style="background:rgba(10,10,10,.12)"></div><div class="info"><div class="name">--line</div><div class="val">rgba(10,10,10,.12)</div></div></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Red — signální akcent</div>
+      <div class="color-grid">
+        <div class="swatch"><div class="chip" style="background:#e30613"></div><div class="info"><div class="name">--red</div><div class="val">#e30613</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#b8050f"></div><div class="info"><div class="name">--red-2</div><div class="val">#b8050f</div></div></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">CSS proměnné — easing</div>
+      <div class="demo lined" style="font-family:var(--mono);font-size:12px;display:flex;flex-direction:column;gap:12px">
+        <div><span style="color:var(--mute)">--ease:</span> cubic-bezier(.22,1,.36,1)</div>
+        <div><span style="color:var(--mute)">--ease-out:</span> cubic-bezier(.16,1,.3,1)</div>
+        <div><span style="color:var(--mute)">--sans:</span> "Geist", system-ui, -apple-system, sans-serif</div>
+        <div><span style="color:var(--mute)">--mono:</span> "Geist Mono", ui-monospace, monospace</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 02 TYPOGRAFIE ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 02 — Typografie</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">Geist — display &amp; body</div>
+      <div class="type-rows">
+        <div class="type-row">
+          <div class="meta"><b>Hero h1 / 800</b>clamp(44px,7.8vw,134px)<br>ls -.055em · lh .86</div>
+          <div style="font-size:clamp(44px,7.8vw,134px);font-weight:800;letter-spacing:-.055em;line-height:.86">Tvoříme eshopy, weby &amp;&nbsp;<span class="red">aplikace.</span></div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Section h2 / 700</b>clamp(44px,5.5vw,84px)<br>ls -.04em · lh .92</div>
+          <div style="font-size:clamp(44px,5.5vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.92">Co pro vás <span class="red">postavíme.</span></div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>CTA h2 / 800</b>clamp(44px,7.7vw,134px)<br>ls -.055em · lh .85</div>
+          <div style="font-size:clamp(44px,7.7vw,134px);font-weight:800;letter-spacing:-.055em;line-height:.85">Postavme něco <span class="red">skutečného.</span></div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Statement / 500</b>clamp(38px,5vw,76px)<br>ls -.035em · lh 1.05</div>
+          <div style="font-size:clamp(38px,5vw,76px);font-weight:500;letter-spacing:-.035em;line-height:1.05">27 let stavíme <span class="red">weby</span>, které nejsou jen vizitka.</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Team h3 / 700</b>clamp(34px,3.5vw,52px)<br>ls -.03em · lh .95</div>
+          <div style="font-size:clamp(34px,3.5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:.95">Náš <span class="red">tým.</span></div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Case card h3 / 700</b>clamp(56px,5.5vw,96px)<br>ls -.045em · lh .88</div>
+          <div style="font-size:clamp(56px,5.5vw,96px);font-weight:700;letter-spacing:-.045em;line-height:.88">ElNiño<small style="display:block;font-size:.28em;font-weight:400;color:var(--mute);margin-top:10px">E-commerce case study</small></div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Marquee / 700</b>52px · ls -.035em</div>
+          <div style="font-size:52px;font-weight:700;letter-spacing:-.035em;line-height:1">B2B &amp; B2C platformy &nbsp;·&nbsp; Web aplikace</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Heading 3 / 600</b>24px · ls -.02em</div>
+          <div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Headless architektura</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Lede / 400</b>clamp(20px,2vw,28px)<br>ls -.015em · lh 1.35</div>
+          <div style="font-size:clamp(20px,2vw,28px);font-weight:400;letter-spacing:-.015em;line-height:1.35;color:var(--ink-3)">Digitální agentura s&nbsp;<b style="color:var(--ink);font-weight:600">27 lety zkušeností</b> z&nbsp;Karlína.</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Body / 400</b>16px · lh 1.55</div>
+          <div style="font-size:16px;color:var(--ink-3);line-height:1.55">Stavíme e-shopy, webové aplikace a&nbsp;datové nástroje, které reálně posouvají byznys klientů.</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Small / 400</b>13–14px · lh 1.6</div>
+          <div style="font-size:13px;color:var(--mute);line-height:1.6">Prediktivní modely, segmentace zákazníků a automatizace martechu. Realizujeme custom analytická řešení.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Geist Mono — štítky, metadata, hodnoty</div>
+      <div class="type-rows">
+        <div class="type-row">
+          <div class="meta"><b>Label / 500</b>11px · uppercase · ls .08em</div>
+          <div style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)">§ 01 / Sekce &nbsp;·&nbsp; Praha, Karlín &nbsp;·&nbsp; Est. 1999</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Value / 600</b>12–13px · data</div>
+          <div style="font-family:var(--mono);font-size:13px;font-weight:600">150 mld. Kč &nbsp;·&nbsp; 100+ e-shopů &nbsp;·&nbsp; 17× ocenění</div>
+        </div>
+        <div class="type-row">
+          <div class="meta"><b>Display / 700</b>32–40px · big numbers</div>
+          <div style="font-family:var(--mono);font-size:32px;font-weight:700;letter-spacing:-.02em">14:28:39</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Textové efekty</div>
+      <div class="demo lined">
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <div>
+            <div class="sg-group-label" style="margin-bottom:8px">.red — signální akcent</div>
+            <p style="font-size:28px;font-weight:700;letter-spacing:-.03em">Ozvěte se <span class="red">nám.</span></p>
+          </div>
+          <div>
+            <div class="sg-group-label" style="margin-bottom:8px">.hi — highlight pen</div>
+            <p style="font-size:18px;line-height:1.5">Stavíme <span style="background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 2px">chytré vyhledávání UpSearch</span>, které umí prodávat.</p>
+          </div>
+          <div>
+            <div class="sg-group-label" style="margin-bottom:8px">.strike — animated strikethrough</div>
+            <p style="font-size:22px;font-weight:500;letter-spacing:-.02em">Nejsme agentura, která <span style="position:relative;display:inline-block">vyrábí weby<span style="position:absolute;left:-2%;right:-2%;top:52%;height:.08em;background:var(--red);display:block"></span></span>. Stavíme produkty.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 03 TLAČÍTKA ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 03 — Tlačítka &amp; linky</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">Varianty — světlé pozadí</div>
+      <div class="demo">
+        <div class="demo-row" style="gap:24px;flex-wrap:wrap">
+          <div>
+            <div class="sg-group-label" style="margin-bottom:10px">.btn</div>
+            <a href="#" class="btn"><span class="lbl" data-t="Začněme projekt"><span>Začněme projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          </div>
+          <div>
+            <div class="sg-group-label" style="margin-bottom:10px">.btn.ghost</div>
+            <a href="#" class="btn ghost"><span class="lbl" data-t="Více informací"><span>Více informací</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          </div>
+          <div>
+            <div class="sg-group-label" style="margin-bottom:10px">.btn.red</div>
+            <a href="#" class="btn red"><span class="lbl" data-t="Zjistit více"><span>Zjistit více</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          </div>
+          <div>
+            <div class="sg-group-label" style="margin-bottom:10px">.btn.sm</div>
+            <a href="#" class="btn sm"><span class="lbl" data-t="Napište nám"><span>Napište nám</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          </div>
+          <div>
+            <div class="sg-group-label" style="margin-bottom:10px">.btn.big</div>
+            <a href="#" class="btn big"><span class="lbl" data-t="Celá case study"><span>Celá case study</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Varianty — tmavé pozadí</div>
+      <div class="demo dark">
+        <div class="demo-row" style="gap:24px">
+          <a href="#" class="btn"><span class="lbl" data-t="Začněme projekt"><span>Začněme projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          <a href="#" class="btn ghost" style="--fg:var(--paper);--bg:transparent;border-color:rgba(242,236,224,.25)"><span class="lbl" data-t="+420 775 219 999"><span>+420 775 219 999</span></span><span class="arr" style="background:rgba(242,236,224,.12);color:var(--paper)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.lnk — animovaný podtržení link</div>
+      <div class="demo lined">
+        <div class="demo-row" style="gap:40px">
+          <a href="#" class="lnk">Zjistit více <span class="arr">→</span></a>
+          <a href="#" class="lnk">Celá case study <span class="arr">→</span></a>
+          <a href="#" class="lnk">Zobrazit reference <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 04 SEKCE A HLAVIČKY ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 04 — Sekce &amp; hlavičky</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">.sec-head — hlavička sekce (idx / h2 / aside)</div>
+      <div class="demo lined">
+        <div class="sec-head" style="margin-bottom:0;padding-bottom:32px">
+          <div class="idx">§ 01 / Služby</div>
+          <h2>Co pro vás <span class="red">postavíme.</span></h2>
+          <div class="aside">Najeď kurzorem<br><b>pro detail →</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.title — stránkový hero titulek</div>
+      <div class="demo lined" style="overflow:hidden">
+        <div class="title" style="padding:40px 0 20px">
+          <div class="idx">E-commerce — Headless — B2B &amp; B2C</div>
+          <h1>B2B &amp; B2C<br>e-shopy, které <span class="red">prodávají.</span></h1>
+          <div class="below">
+            <div class="lede">Stavíme headless e-shopy pro <b>střední a velké e-commercy</b>, které potřebují víc, než šablona nabídne.</div>
+            <div class="ctas">
+              <a href="#" class="btn"><span class="lbl" data-t="Začněme projekt"><span>Začněme projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.meta-bar — statistický pás pod hero</div>
+      <div class="demo lined">
+        <div class="meta-bar" style="margin-top:0">
+          <div class="m"><h6>Klientů</h6><p>180+<small>aktivních projektů</small></p></div>
+          <div class="m"><h6>Obrat klientů</h6><p>150 mld. Kč<small>zpracováno</small></p></div>
+          <div class="m"><h6>Tým</h6><p>37 specialistů<small>Praha, Karlín</small></p></div>
+          <div class="m"><h6>Ocenění</h6><p>17×<small>WebTop100 &amp; další</small></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.label — mono chip štítek</div>
+      <div class="demo lined">
+        <div class="demo-row">
+          <span class="label">Kategorie</span>
+          <span class="label"><b>E-commerce</b> · Headless · B2B</span>
+          <span class="label">§ 03 / Case study</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.brand-pill — produktový identifikační pill</div>
+      <div class="demo lined">
+        <div class="brand-pill">
+          <span class="bag">PragueBest</span>
+          E-commerce Solutions
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.crumbs — breadcrumb navigace</div>
+      <div class="demo lined">
+        <div class="crumbs" style="padding-top:0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <a href="#" class="back">
+              <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+              Zpět na přehled
+            </a>
+            <div class="path"><b>Studio</b><span>/</span><b>Design System</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 05 KARTY ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 05 — Karty</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">.card-base — ink wipe hover (služby)</div>
+      <div class="sg-card-grid">
+        <div class="card-base">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+          <div class="n">01 / E-commerce</div>
+          <h4>B2B &amp; B2C e-shopy</h4>
+          <p>Custom platformy s headless architekturou, napojením na ERP, WMS a PIM.</p>
+          <ul><li>Headless frontend (Nuxt, Next)</li><li>PIM / ERP / WMS integrace</li><li>Servis 24/7</li></ul>
+        </div>
+        <div class="card-base">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></div>
+          <div class="n">02 / Produkt</div>
+          <h4>UpSearch™</h4>
+          <p>Vlastní inteligentní vyhledávání s tolerancí překlepů a learn-to-rank algoritmem.</p>
+          <ul><li>Fulltext &lt; 50 ms</li><li>Překlepy, synonyma</li><li>REST API &amp; widget</li></ul>
+        </div>
+        <div class="card-base">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+          <div class="n">03 / Data</div>
+          <h4>Big Data &amp; Analytics</h4>
+          <p>Prediktivní modely, segmentace zákazníků a automatizace martechu.</p>
+          <ul><li>Predikce poptávky a churn</li><li>Cross-sell / up-sell engine</li><li>Cross-channel reporty</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.o-card + .o-grid — offer karty (2 sloupce)</div>
+      <div class="o-grid">
+        <div class="o-card">
+          <div class="head">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+            <div class="head-txt">
+              <div class="n">01 / headless</div>
+              <h4>Custom e-shop</h4>
+            </div>
+          </div>
+          <p class="desc">Pro střední a velké e-commercy, kteří potřebují víc, než šablona nabídne.</p>
+          <ul>
+            <li>Nuxt.js / Next.js frontend</li>
+            <li>Hybris / Shopify Plus backend</li>
+            <li>Výkon &lt; 1 s Time to Interactive</li>
+          </ul>
+        </div>
+        <div class="o-card">
+          <div class="head">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="head-txt">
+              <div class="n">02 / B2B portal</div>
+              <h4>Weby &amp; portály</h4>
+            </div>
+          </div>
+          <p class="desc">Moderní weby a B2B portály, které posílí online přítomnost a generují leady.</p>
+          <ul>
+            <li>Headless CMS integrace</li>
+            <li>Lead gen &amp; marketingová automatizace</li>
+            <li>Core Web Vitals 95+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.srv-row — services accordion — shared.css (otevřená položka, 2-sloupcový panel)</div>
+      <div class="sg-srv-wrap">
+        <article class="srv-row">
+          <div class="no">01 / 04</div>
+          <h3>B2B &amp; B2C e-shopy</h3>
+          <div class="tags"><span>Headless</span><span>PIM</span><span>ERP</span></div>
+          <div class="icon-slot"><svg viewBox="0 0 24 24"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+          <div class="panel">
+            <div>
+              <p class="desc">Custom platformy s&nbsp;<b>headless architekturou</b>, napojením na ERP, WMS, PIM a&nbsp;marketplaces.</p>
+              <a href="eshop.html" class="btn big"><span class="lbl" data-t="Více o produktu"><span>Více o produktu</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+            </div>
+            <ul class="list">
+              <li><span>Analýza &amp; design system</span><b>✓</b></li>
+              <li><span>Headless frontend (Nuxt, Next)</span><b>✓</b></li>
+              <li><span>PIM / ERP / WMS integrace</span><b>✓</b></li>
+              <li><span>Servis 24/7</span><b>✓</b></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.ncell — stat buňky s red wipe hover (numbers sekce)</div>
+      <div class="num-grid">
+        <div class="ncell">
+          <div class="idx">/ 01</div>
+          <div class="n">1999<sub></sub></div>
+          <div class="l">Rok založení</div>
+          <div class="d">Čtvrtstoletí řemesla. Za tu dobu jsme se čtyřikrát přestěhovali — v Karlíně se nám líbí.</div>
+        </div>
+        <div class="ncell">
+          <div class="idx">/ 02</div>
+          <div class="n">150<sub>mld. Kč</sub></div>
+          <div class="l">Obrat klientů</div>
+          <div class="d">Transakce zpracované přes e-shopy, které jsme postavili.</div>
+        </div>
+        <div class="ncell">
+          <div class="idx">/ 03</div>
+          <div class="n">100<sub>+ projektů</sub></div>
+          <div class="l">Dodaných projektů</div>
+          <div class="d">Od malých B2C obchodů po mezinárodní B2B platformy se 13 jazykovými mutacemi.</div>
+        </div>
+        <div class="ncell">
+          <div class="idx">/ 04</div>
+          <div class="n">17<sub>× ocenění</sub></div>
+          <div class="l">WebTop100 &amp; další</div>
+          <div class="d">Pravidelně vyhráváme v odborných soutěžích — WebTop100, ShopRoku, IEA.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.s-cell — stat buňky s ink wipe hover (služby)</div>
+      <div class="scell-grid">
+        <div class="s-cell">
+          <div class="nb">/ 01 — výkon</div>
+          <div class="vl">99<span class="r">+</span><sub>Lighthouse</sub></div>
+          <div class="lb">Performance skóre</div>
+          <div class="dc">Každý projekt optimalizujeme pro Core Web Vitals a sub-2s Time to Interactive.</div>
+        </div>
+        <div class="s-cell">
+          <div class="nb">/ 02 — zkušenosti</div>
+          <div class="vl">27<sub>let</sub></div>
+          <div class="lb">Na trhu</div>
+          <div class="dc">Digitální agentura s nejdelší nepřerušenou historií v Česku.</div>
+        </div>
+        <div class="s-cell">
+          <div class="nb">/ 03 — klienti</div>
+          <div class="vl">180<span class="r">+</span></div>
+          <div class="lb">Aktivních projektů</div>
+          <div class="dc">Portfolio zahrnuje e-shopy, portály, datové nástroje i mobilní aplikace.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Ikony — inline SVG 24×24, stroke 1.8, no fill</div>
+      <div class="demo lined">
+        <div class="demo-row" style="gap:10px">
+          <div class="icon-demo"><svg viewBox="0 0 24 24"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+          <div class="icon-demo"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></div>
+          <div class="icon-demo"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+          <div class="icon-demo"><svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <div class="icon-demo"><svg viewBox="0 0 24 24"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></div>
+          <div class="icon-demo"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></div>
+          <div class="icon-demo red"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+          <div class="icon-demo outline"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 06 MARQUEE ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 06 — Marquee</span></div></div>
+  <div class="sg-group" style="margin-bottom:0">
+    <div class="wrap" style="margin-bottom:16px"><div class="sg-group-label">.marquee + .track — animovaný textový pás</div></div>
+    <div class="marquee">
+      <div class="track">
+        <span>B2B &amp; B2C platformy</span>
+        <span>Web aplikace na míru</span>
+        <span>Headless e-commerce</span>
+        <span>Data &amp; Analytics</span>
+        <span>UX Research &amp; Design</span>
+        <span>B2B &amp; B2C platformy</span>
+        <span>Web aplikace na míru</span>
+        <span>Headless e-commerce</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 07 KROKY PROCESU ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 07 — Process Steps</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">.pstep — process step s red border top (6 kroků)</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)">
+        <div class="pstep reveal on">
+          <div class="lb"><span class="ai-tag">AI</span> 01 / Discovery</div>
+          <div class="n-big">01<span class="mk">.</span></div>
+          <h4>Analýza &amp; audit</h4>
+          <p>Mapujeme byznys cíle, technický dluh a konkurenční prostředí.</p>
+        </div>
+        <div class="pstep reveal on d1">
+          <div class="lb">02 / Strategy</div>
+          <div class="n-big">02<span class="mk">.</span></div>
+          <h4>Strategie &amp; IA</h4>
+          <p>Definujeme architekturu, user journeys a klíčové KPI.</p>
+        </div>
+        <div class="pstep reveal on d2">
+          <div class="lb">03 / Design</div>
+          <div class="n-big">03<span class="mk">.</span></div>
+          <h4>UX &amp; UI Design</h4>
+          <p>Prototypy, testování a pixel-perfect Figma handoff.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.hstep — how step (větší varianta)</div>
+      <div class="hstep-demo-grid">
+        <div class="hstep reveal on">
+          <div class="lbl-h">01 / Konzultace</div>
+          <div class="n-big">01<span class="mk">.</span></div>
+          <h4>Bezplatná konzultace</h4>
+          <p>Sejdeme se (online nebo v Karlíně) a proberu váš projekt, cíle a rozpočet.</p>
+        </div>
+        <div class="hstep reveal on d1">
+          <div class="lbl-h">02 / Nabídka</div>
+          <div class="n-big">02<span class="mk">.</span></div>
+          <h4>Návrh řešení</h4>
+          <p>Do týdne dostanete detailní nabídku s harmonogramem a fixní cenou.</p>
+        </div>
+        <div class="hstep reveal on d2">
+          <div class="lbl-h">03 / Start</div>
+          <div class="n-big">03<span class="mk">.</span></div>
+          <h4>Kick-off &amp; spuštění</h4>
+          <p>Spustíme projekt, pravidelně reportujeme a doručíme v termínu.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.step — 5-krokový proces (kontakt &amp; kariera)</div>
+      <div class="steps">
+        <div class="step on">
+          <div class="n-lbl">Krok <span class="dur">1–3 dny</span></div>
+          <div class="big-n">01<span class="mk">.</span></div>
+          <h4>Ozvete se</h4>
+          <p>Vyplňte formulář nebo napište email. Odpovídáme do 24 h.</p>
+        </div>
+        <div class="step on">
+          <div class="n-lbl">Krok <span class="dur">1 týden</span></div>
+          <div class="big-n">02<span class="mk">.</span></div>
+          <h4>Discovery call</h4>
+          <p>Online nebo osobně v Karlíně — probíráme projekt a cíle.</p>
+        </div>
+        <div class="step on">
+          <div class="n-lbl">Krok <span class="dur">3–5 dní</span></div>
+          <div class="big-n">03<span class="mk">.</span></div>
+          <h4>Nabídka</h4>
+          <p>Detailní propozice s harmonogramem a fixní cenou.</p>
+        </div>
+        <div class="step on">
+          <div class="n-lbl">Krok <span class="dur">1 den</span></div>
+          <div class="big-n">04<span class="mk">.</span></div>
+          <h4>Smlouva</h4>
+          <p>Jasná smlouva, žádný fine print, kickoff platba.</p>
+        </div>
+        <div class="step on">
+          <div class="n-lbl">Průběžně</div>
+          <div class="big-n">05<span class="mk">.</span></div>
+          <h4>Realizace</h4>
+          <p>Agile sprint, pravidelný reporting, launch.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 08 PRICING ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 08 — Pricing &amp; Plans</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.plan + .price-grid — ceník (featured varianta s tmavým pozadím)</div>
+      <div class="price-grid">
+        <div class="plan">
+          <div class="nb">01 / základní</div>
+          <div class="plan-name">Starter</div>
+          <div class="d">Pro menší e-shopy a weby, které začínají svou digitální cestu.</div>
+          <div class="price"><span class="from">od</span>280 000<sub>Kč</sub></div>
+          <div class="unit">jednorázová investice</div>
+          <ul>
+            <li>Headless frontend do 30 stran</li>
+            <li>Shopify / WooCommerce backend</li>
+            <li>Základní SEO optimalizace</li>
+            <li>3 měsíce support v ceně</li>
+          </ul>
+          <div class="cta-p"><a href="#" class="btn ghost" style="width:100%;justify-content:center"><span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a></div>
+        </div>
+        <div class="plan featured">
+          <div class="flag">Nejoblíbenější</div>
+          <div class="nb">02 / enterprise</div>
+          <div class="plan-name">Growth</div>
+          <div class="d">Pro střední a velké e-commercy se specifickými požadavky.</div>
+          <div class="price"><span class="from">od</span>680 000<sub>Kč</sub></div>
+          <div class="unit">jednorázová investice</div>
+          <ul>
+            <li>Headless architektura bez omezení</li>
+            <li>ERP / WMS / PIM integrace</li>
+            <li>Performance &lt; 1 s TTI</li>
+            <li>12 měsíců support &amp; monitoring</li>
+            <li>Dedikovaný projektový manažer</li>
+          </ul>
+          <div class="cta-p"><a href="#" class="btn red" style="width:100%;justify-content:center"><span class="lbl" data-t="Začněme projekt"><span>Začněme projekt</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a></div>
+        </div>
+        <div class="plan">
+          <div class="nb">03 / retainer</div>
+          <div class="plan-name">Provoz</div>
+          <div class="d">Průběžná péče o váš projekt — servis, bezpečnost, rozvoj.</div>
+          <div class="price"><span class="from">od</span>28 000<sub>Kč/m</sub></div>
+          <div class="unit">měsíční paušál</div>
+          <ul>
+            <li>Monitoring 24/7 (uptime, výkon)</li>
+            <li>Bezpečnostní záplaty &amp; aktualizace</li>
+            <li>10 hodin rozvoje měsíčně</li>
+            <li>Prioritní SLA do 4 hodin</li>
+          </ul>
+          <div class="cta-p"><a href="#" class="btn ghost" style="width:100%;justify-content:center"><span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 09 STATS ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 09 — Stats &amp; Data</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">.stats-strip — horizontální datový pás</div>
+      <div class="stats-strip">
+        <div class="s"><div class="n">27<span class="red">+</span></div><div class="l">Roků praxe</div></div>
+        <div class="s"><div class="n">180<sub>klientů</sub></div><div class="l">Aktivních projektů</div></div>
+        <div class="s"><div class="n">150<sub>mld.</sub></div><div class="l">Obrat klientů (Kč)</div></div>
+        <div class="s"><div class="n">100<span class="red">+</span></div><div class="l">E-shopů</div></div>
+        <div class="s"><div class="n">17<span class="red">×</span></div><div class="l">Ocenění</div></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.results + .stats-grid — sekce výsledků (tmavé pozadí)</div>
+    </div>
+  </div>
+
+  <!-- results live demo — full width -->
+  <section class="results">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="idx">§ 05 / Výsledky</div>
+        <h2>Čísla, která <span style="color:var(--red)">mluví za nás.</span></h2>
+        <div class="aside">Výsledky<br><b>klientů →</b></div>
+      </div>
+      <div class="stats-grid">
+        <div class="s-cell">
+          <div class="nb">/ revenue</div>
+          <div class="vl">+43<span class="r">%</span></div>
+          <div class="lb">Průměrný růst obratu</div>
+          <div class="dc">Měřeno v prvním roce po spuštění nové platformy.</div>
+        </div>
+        <div class="s-cell">
+          <div class="nb">/ conversion</div>
+          <div class="vl">+2.8<span class="r">×</span></div>
+          <div class="lb">Konverzní poměr</div>
+          <div class="dc">Průměrné zlepšení CR po redesignu a A/B testování.</div>
+        </div>
+        <div class="s-cell">
+          <div class="nb">/ performance</div>
+          <div class="vl">99<span class="r">+</span></div>
+          <div class="lb">Lighthouse skóre</div>
+          <div class="dc">Každý projekt cílíme na Core Web Vitals &lt; 2,5 s LCP.</div>
+        </div>
+        <div class="s-cell">
+          <div class="nb">/ uptime</div>
+          <div class="vl">99.9<span class="r">%</span></div>
+          <div class="lb">Dostupnost systémů</div>
+          <div class="dc">Monitoring 24/7 s SLA a automatickým failoverem.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── § 10 TEAM ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 10 — Team</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.team-sub-head + .team-nums — tým blok</div>
+      <div class="demo lined">
+        <div class="team-sub-head">
+          <div class="idx-t">§ 04 / tým</div>
+          <h3>Specialisté, kteří <span class="red">výsledky doručí.</span></h3>
+          <div class="count-t">Celkem<br><b>37 lidí</b></div>
+        </div>
+        <div class="team-nums">
+          <div class="tn"><div class="n">14<span class="red">+</span></div><div class="l">Vývojářů</div></div>
+          <div class="tn"><div class="n">8</div><div class="l">UX/UI designérů</div></div>
+          <div class="tn"><div class="n">7</div><div class="l">Data specialistů</div></div>
+          <div class="tn"><div class="n">8</div><div class="l">Projektových manažerů</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 11 HOW IT WORKS ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 11 — How It Works</span></div></div>
+
+  <!-- how live demo — full width -->
+  <section class="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="idx">§ 06 / jak to funguje</div>
+        <h2>Tři kroky ke <span class="red">spuštěnému projektu.</span></h2>
+        <div class="aside">Bez zbytečné<br><b>byrokracie →</b></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px">
+        <div class="h-step">
+          <div class="circle">1</div>
+          <h4>Konzultace zdarma</h4>
+          <p>Sejdeme se online nebo v Karlíně. Posoudíme projekt, cíle a reálný rozpočet.</p>
+        </div>
+        <div class="h-step">
+          <div class="circle">2</div>
+          <h4>Návrh &amp; nabídka</h4>
+          <p>Do týdne dostanete detailní propozici s harmonogramem a fixní cenou. Bez překvapení.</p>
+        </div>
+        <div class="h-step">
+          <div class="circle">3</div>
+          <h4>Realizace &amp; launch</h4>
+          <p>Pracujeme v agilních sprintech. Průběžně reportujeme a doručíme v termínu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── § 12 TESTIMONIAL ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 12 — Testimonial</span></div></div>
+
+  <!-- testi live demo — full width -->
+  <section class="testi">
+    <div class="q">"PragueBest nám během <span class="hi">šesti měsíců</span> zdvojnásobili konverzní poměr a zkrátili TTI na pod 900 ms."</div>
+    <div class="who">
+      <div class="av"></div>
+      <div class="tx">
+        <b>Martin Novák</b>
+        <small>CEO, ElNiño Fashion</small>
+      </div>
+    </div>
+    <div class="years">Spolupráce trvá <b>6 let</b></div>
+  </section>
+
+  <!-- ─── § 13 STATEMENT ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 13 — Statement / Quote</span></div></div>
+
+  <!-- statement live demo — full width -->
+  <section class="statement on">
+    <div class="wrap">
+      <div class="big">Nejsme agentura, která <span class="strike">vyrábí weby</span>. Stavíme <b>produkty</b>, které <span class="red">prodávají.</span></div>
+      <div class="meta">
+        <div class="who">
+          <div class="avatar"></div>
+          <div>
+            <div class="name">Ondřej Kolář</div>
+            <div class="role">CEO &amp; Founder, PragueBest</div>
+          </div>
+        </div>
+        <div></div>
+        <div class="yrs">Na trhu od roku<b>1999</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── § 14 CASE CARD ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 14 — Case Card</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.case-card + .mock + .sticker — velká feature karta projektu</div>
+    </div>
+  </div>
+
+  <!-- case-card live demo — full width padded -->
+  <div style="padding:0 40px;max-width:1480px;margin:0 auto">
+    <div class="case-card">
+      <div class="meta">
+        <div>
+          <div class="tag">E-commerce · Headless</div>
+          <h3>ElNiño<small>Fashion e-shop — Czech Republic</small></h3>
+          <p class="desc">Headless Shopify Plus e-shop s vlastním Next.js frontendem. Výsledek: +61 % GMV za první rok.</p>
+          <div class="kpi">
+            <div><div class="n">+61<span class="plus">%</span></div><div class="l">GMV rok 1</div></div>
+            <div><div class="n">2.8<span class="plus">×</span></div><div class="l">Konverzní poměr</div></div>
+            <div><div class="n">0.9<span class="plus">s</span></div><div class="l">Time to Interactive</div></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="elnino.html" class="btn"><span class="lbl" data-t="Celá case study"><span>Celá case study</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        </div>
+      </div>
+      <div class="viz">
+        <div class="sticker">
+          <svg viewBox="0 0 200 200"><path id="sc" d="M 100,100 m -75,0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/><text><textPath href="#sc">Case Study · ElNiño · 2024 · PragueBest ·&nbsp;</textPath></text></svg>
+          <div class="inner"><b>+61%</b>GMV</div>
+        </div>
+        <div class="mock">
+          <div class="chrome">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url">elnino.cz/kolekce/podzim-2024</div>
+          </div>
+          <div class="topbar2">
+            <div class="br">ElNiño</div>
+            <div class="lnks">
+              <span class="on">Ženy</span><span>Muži</span><span>Děti</span><span>Sale</span>
+            </div>
+            <div class="cart">3</div>
+          </div>
+          <div class="banner">
+            <div>
+              <h4>Podzimní<br>kolekce</h4>
+              <p>Nové kousky právě dorazily</p>
+              <span class="minibtn">Nakupovat →</span>
+            </div>
+            <div class="pic"></div>
+          </div>
+          <div class="subh">Doporučujeme<small>Pro tebe</small></div>
+          <div class="prods">
+            <div class="p"><div class="ph"></div><b>Bunda</b><small>3 490 Kč</small></div>
+            <div class="p"><div class="ph"></div><b>Mikina</b><small>1 890 Kč</small></div>
+            <div class="p"><div class="ph"></div><b>Kalhoty</b><small>2 290 Kč</small></div>
+            <div class="p"><div class="ph"></div><b>Tričko</b><small>890 Kč</small></div>
+          </div>
+        </div>
+        <div class="badge b1"><div class="d"></div>Shopify Plus</div>
+        <div class="badge b2"><div class="d"></div>Next.js · Headless</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 15 REFERENCE GRID ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 15 — Reference Grid</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.ref-grid + .ref — mřížka referencí s hover efektem</div>
+      <div class="ref-grid">
+        <div class="ref r1">
+          <div class="img"></div>
+          <div class="meta">
+            <div>
+              <h4>ElNiño Fashion</h4>
+              <div class="cat">E-commerce · Headless</div>
+            </div>
+            <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="ref r2">
+          <div class="img"></div>
+          <div class="meta">
+            <div>
+              <h4>BigDataManager</h4>
+              <div class="cat">SaaS · Data platform</div>
+            </div>
+            <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="ref r3">
+          <div class="img"></div>
+          <div class="meta">
+            <div>
+              <h4>UpSearch™</h4>
+              <div class="cat">Produkt · Vyhledávání</div>
+            </div>
+            <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 15b LOGO GRID ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 15b — Logo Grid</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.lgrid + .lcell — mřížka klientů s hover red-underline efektem</div>
+      <div class="lgrid">
+        <div class="lcell">ELNINO</div>
+        <div class="lcell">BESTDRIVE</div>
+        <div class="lcell">ALBI</div>
+        <div class="lcell">HYUNDAI</div>
+        <div class="lcell">BUSHMAN</div>
+        <div class="lcell">KONSEPTI</div>
+        <div class="lcell">TRAVEL FREE</div>
+        <div class="lcell">STAMPOL</div>
+        <div class="lcell">EKOSPORT</div>
+        <div class="lcell">ARMED</div>
+        <div class="lcell">KOFOLA</div>
+        <div class="lcell">+ 160</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 16 TECH STACK ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 16 — Tech Stack</span></div></div>
+
+  <!-- stack live demo — full width -->
+  <section class="stack">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="idx">§ 07 / technologie</div>
+        <h2 style="color:var(--paper)">Stack, který <span class="red">doručuje.</span></h2>
+        <div class="aside" style="color:rgba(242,236,224,.5)">Moderní<br><b style="color:var(--paper)">a prověřený →</b></div>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-col">
+          <div class="lbl-g">Frontend</div>
+          <h4>Klientská vrstva</h4>
+          <ul>
+            <li>Next.js 14</li>
+            <li>Nuxt 3</li>
+            <li>React 18</li>
+            <li>TypeScript</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <div class="lbl-g">Backend</div>
+          <h4>Serverová vrstva</h4>
+          <ul>
+            <li>Node.js / Fastify</li>
+            <li>Python / FastAPI</li>
+            <li>PostgreSQL</li>
+            <li>Redis</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <div class="lbl-g">Commerce</div>
+          <h4>E-commerce core</h4>
+          <ul>
+            <li>Shopify Plus</li>
+            <li>Hybris / SAP CX</li>
+            <li>Medusa.js</li>
+            <li>Custom headless</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <div class="lbl-g">Infrastructure</div>
+          <h4>Cloud &amp; DevOps</h4>
+          <ul>
+            <li>AWS / Vercel / CF</li>
+            <li>Docker + Kubernetes</li>
+            <li>GitHub Actions CI/CD</li>
+            <li>Monitoring &amp; alerts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── § 17 FOR WHOM ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 17 — For Whom</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.fw-col — pro koho sekce (2 sloupce)</div>
+      <div class="demo-fw-grid">
+        <div class="fw-col">
+          <div class="lbl">Pro B2C</div>
+          <h3>E-shopy, které <span class="red">rostou.</span></h3>
+          <p>Stavíme headless e-commerce pro módní, lifestyle a spotřební značky, které <b>potřebují rychlost, design a výkon</b> zároveň.</p>
+          <ul>
+            <li>Headless Shopify / Medusa</li>
+            <li>A/B testování a personalizace</li>
+            <li>Integrace s ERP a marketingem</li>
+          </ul>
+        </div>
+        <div class="fw-col">
+          <div class="lbl">Pro B2B</div>
+          <h3>Portály, které <span class="red">generují leady.</span></h3>
+          <p>Navrhujeme B2B portály a obchodní platformy pro průmyslové firmy, distributory a <b>SaaS startupy</b>.</p>
+          <ul>
+            <li>Self-service zákaznické portály</li>
+            <li>Cenové konfigurátory</li>
+            <li>Lead gen automatizace</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 18 TECH GRID ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 18 — Tech Grid</span></div></div>
+  <div class="wrap">
+    <div class="sg-group">
+      <div class="sg-group-label">.t-grid — mřížka technologií / modulů</div>
+      <div class="t-grid-demo">
+        <div class="t-cell">
+          <div class="ico-t"><svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <div><div class="label-t">Next.js 14</div><div class="sub-t">frontend</div></div>
+        </div>
+        <div class="t-cell">
+          <div class="ico-t"><svg viewBox="0 0 24 24"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+          <div><div class="label-t">Shopify Plus</div><div class="sub-t">commerce</div></div>
+        </div>
+        <div class="t-cell">
+          <div class="ico-t"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+          <div><div class="label-t">BigQuery</div><div class="sub-t">analytics</div></div>
+        </div>
+        <div class="t-cell">
+          <div class="ico-t"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></div>
+          <div><div class="label-t">PostgreSQL</div><div class="sub-t">database</div></div>
+        </div>
+        <div class="t-cell">
+          <div class="ico-t"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></div>
+          <div><div class="label-t">UpSearch™</div><div class="sub-t">search</div></div>
+        </div>
+        <div class="t-cell">
+          <div class="ico-t"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></div>
+          <div><div class="label-t">Cloudflare</div><div class="sub-t">cdn &amp; security</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── § 19 FILTER & PAGINATION ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 19 — Filter Chips &amp; Pagination</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">.filter-chips — filtrovací tagy pro blog &amp; reference</div>
+      <div class="demo lined">
+        <div class="filter-chips">
+          <button class="btn sm" style="--bg:var(--ink);--fg:var(--paper)"><span class="lbl" data-t="Vše"><span>Vše</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></button>
+          <button class="btn sm ghost"><span class="lbl" data-t="E-commerce"><span>E-commerce</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></button>
+          <button class="btn sm ghost"><span class="lbl" data-t="Design"><span>Design</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></button>
+          <button class="btn sm ghost"><span class="lbl" data-t="BigData"><span>BigData</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></button>
+          <button class="btn sm ghost"><span class="lbl" data-t="Kariéra"><span>Kariéra</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.loadmore — načíst více s progress barem a paginací</div>
+      <div class="loadmore" style="padding:40px 0">
+        <div class="meta-l">Zobrazeno <b>8</b> z <b>24</b> článků</div>
+        <div class="bar-l"></div>
+        <a href="#" class="btn"><span class="lbl" data-t="Načíst další"><span>Načíst další</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <div class="pag">
+          <button class="on">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 20 EFEKTY A ANIMACE ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 20 — Animace &amp; efekty</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">.reveal — scroll fade + slide up (IntersectionObserver)</div>
+      <div class="demo lined">
+        <div class="reveal-demo">
+          <div class="rdemo-block reveal on">.reveal</div>
+          <div class="rdemo-block reveal on d1">.d1 · 80ms</div>
+          <div class="rdemo-block reveal on d2">.d2 · 160ms</div>
+          <div class="rdemo-block reveal on d3">.d3 · 240ms</div>
+        </div>
+        <p style="font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:16px">Přidej <code class="snip">.reveal</code> na element. JS přidá <code class="snip">.on</code> při vstupu do viewportu. Delay přes <code class="snip">.d1–.d4</code>.</p>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Text-swap hover — nav &amp; tlačítka</div>
+      <div class="demo lined">
+        <div class="demo-row" style="gap:40px;align-items:flex-start">
+          <div>
+            <div class="sg-group-label" style="margin-bottom:8px">Nav link</div>
+            <a href="#" style="position:relative;padding:10px 0;display:inline-block;font-size:14px;font-weight:500">
+              <span class="t" data-t="Reference"><span>Reference</span></span>
+            </a>
+          </div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--mute);line-height:2">
+            <code class="snip">&lt;span class="t" data-t="Label"&gt;&lt;span&gt;Label&lt;/span&gt;&lt;/span&gt;</code><br>
+            Text v <code class="snip">data-t</code> musí být shodný se <code class="snip">&lt;span&gt;</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Custom cursor — .cursor + .cursor-ring</div>
+      <div class="demo lined">
+        <div class="cursor-preview">
+          <div class="item"><div class="dot-preview"></div>.cursor · default</div>
+          <div class="item"><div class="dot-hover"></div>.cursor · hover</div>
+          <div class="item"><div class="ring-preview"></div>.cursor-ring · default</div>
+          <div class="item"><div class="ring-hover"></div>.cursor-ring · hover</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Logo pulse + halo animace</div>
+      <div class="demo lined">
+        <div class="demo-row" style="gap:32px;align-items:center">
+          <a class="logo" href="#" style="position:relative">
+            <img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--mute)">@keyframes breath · 3.2s · pulse + halo radial gradient</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Status indikátory</div>
+      <div class="demo lined">
+        <div class="status-demo">
+          <div class="status-row"><div class="sdot green"></div>Přijímáme projekty Q3/26</div>
+          <div class="status-row"><div class="sdot yellow"></div>Kapacita Q3 obsazena z 80 %</div>
+          <div class="status-row"><div class="sdot red"></div>Nepřijímáme nové klienty</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">.scroll-progress — červený progress bar nahoře</div>
+      <div class="demo lined">
+        <div style="position:relative;height:4px;background:var(--line);border-radius:2px;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;height:100%;width:65%;background:var(--red);border-radius:2px;box-shadow:0 0 8px rgba(227,6,19,.5)"></div>
+        </div>
+        <p style="font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:12px">Fixed top · 2px výška · CSS custom property <code class="snip">--p: 65%</code> setována přes JS</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── § 21 CTA ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 21 — CTA sekce</span></div></div>
+  <div class="wrap">
+    <div class="demo lined" style="padding:0">
+      <section class="cta" style="border-top:none">
+        <div class="wrap">
+          <h2 class="reveal on">Postavme něco <span class="red">skutečného.</span></h2>
+          <p class="sub reveal on d1">Napište nám — ozveme se do&nbsp;24 hodin s&nbsp;prvním odhadem.</p>
+          <div class="ctas reveal on d2">
+            <a href="kontakt.html" class="btn"><span class="lbl" data-t="Napište nám"><span>Napište nám</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+            <a href="tel:+420775219999" class="btn ghost"><span class="lbl" data-t="+420 775 219 999"><span>+420 775 219 999</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ─── § 22 FOOTER ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 22 — Footer</span></div></div>
+  <div class="wrap" style="margin-bottom:40px">
+    <div class="sg-group">
+      <div class="sg-group-label">footer — tmavé pozadí, velký text, grid navigace, clock</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--mute);line-height:2">
+        <div><code class="snip">footer .big</code> — clamp(40px,7vw,130px) · 800 · ls -.06em</div>
+        <div><code class="snip">footer .cols</code> — grid 1.5fr 1fr 1fr 1fr</div>
+        <div><code class="snip">footer .base</code> — grid 1fr auto 1fr · mono clock + coords</div>
+        <div><code class="snip">#clk</code> — Prague time updated každou sekundu přes <code class="snip">shared.js</code></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /sg-page -->
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
+        <a href="weby.html">Weby &amp; aplikace <span class="ar">→</span></a>
+        <a href="bigdata.html">Big Data <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch™ <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="o-nas.html">O&nbsp;nás <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="blog.html">Blog <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o. <a href="admin.html" style="color:var(--mute);font-family:var(--mono);font-size:10px;text-decoration:none;margin-left:12px;letter-spacing:.04em;opacity:.6">Admin</a></div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+</body>
+</html>

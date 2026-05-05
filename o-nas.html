@@ -4,9 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>O nás — PragueBest</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
@@ -18,7 +15,7 @@
 .manifesto-card > *{position:relative;z-index:2}
 .manifesto-card .lbl{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:40px;display:flex;align-items:center;gap:14px}
 .manifesto-card .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
-.manifesto-card h3{font-size:clamp(23px,2.9vw,47px);font-weight:500;letter-spacing:-.03em;line-height:1.1;max-width:28ch;margin-bottom:40px}
+.manifesto-card h3{font-size:clamp(36px,4.5vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.1;max-width:28ch;margin-bottom:40px}
 .manifesto-card h3 b{font-weight:700}
 .manifesto-card h3 .red{color:var(--red)}
 .manifesto-card h3 .strike{position:relative;display:inline-block}
@@ -42,7 +39,7 @@
 .v-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
 .v-card:hover > *{color:var(--paper)}
 .v-card .big-n{font-family:var(--mono);font-size:13px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:30px;display:flex;justify-content:space-between;align-items:baseline}
-.v-card .big-n .n{font-family:var(--sans);font-size:36px;font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:.85;text-transform:none}
+.v-card .big-n .n{font-family:var(--sans);font-size:56px;font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:.85;text-transform:none}
 .v-card:hover .big-n .n{color:var(--paper)}
 .v-card h3{font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1.1;margin-bottom:16px}
 .v-card p{font-size:15px;color:var(--ink-3);line-height:1.6;margin-bottom:22px}
@@ -51,7 +48,6 @@
 .v-card:hover .q{color:rgba(242,236,224,.55);border-color:rgba(242,236,224,.2)}
 
 /* ===== TEAM ===== */
-.team{padding:80px 0;border-top:1px solid var(--ink)}
 .leadership{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:50px}
 .leader{position:relative;border-radius:20px;overflow:hidden;background:var(--paper);border:1px solid var(--line);transition:all .5s var(--ease)}
 .leader:hover{border-color:var(--ink);transform:translateY(-4px)}
@@ -69,12 +65,6 @@
 .leader .bio{font-size:13px;color:var(--ink-3);line-height:1.55;padding-top:14px;border-top:1px solid var(--line);min-height:52px}
 
 /* Team grid (8 members) */
-.team-sub-head{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline;margin-bottom:36px;padding-bottom:22px;border-bottom:1px solid var(--line)}
-.team-sub-head .idx-t{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
-.team-sub-head h3{font-size:clamp(22px,2.3vw,34px);font-weight:700;letter-spacing:-.03em;line-height:.95}
-.team-sub-head h3 .red{color:var(--red)}
-.team-sub-head .count-t{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-align:right}
-.team-sub-head .count-t b{color:var(--ink);font-weight:600}
 
 .tm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:40px}
 .tm{padding:28px 26px 30px;background:var(--paper);transition:background .4s var(--ease);position:relative}
@@ -97,12 +87,6 @@
 .tm .bio-tm{font-size:12px;color:var(--ink-3);line-height:1.5}
 
 /* Team stats row */
-.team-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:40px;padding-top:40px}
-.team-nums .tn{padding-right:32px;border-right:1px solid var(--line)}
-.team-nums .tn:last-child{border-right:none}
-.team-nums .tn .n{font-size:31px;font-weight:700;letter-spacing:-.035em;line-height:.9}
-.team-nums .tn .n .red{color:var(--red)}
-.team-nums .tn .l{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-top:8px}
 
 /* ===== AWARDS ===== */
 .awards{padding:80px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
@@ -153,40 +137,6 @@
 
 /* ===== PROCESS ===== */
 .process{padding:80px 0;border-top:1px solid var(--ink)}
-.p-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:60px}
-.pstep{padding:36px 22px 40px;border-right:1px solid var(--line);position:relative;transition:background .5s var(--ease)}
-.pstep:last-child{border-right:none}
-.pstep::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out)}
-.pstep.reveal.on::before{transform:scaleX(1)}
-.pstep .n-big{font-size:42px;font-weight:700;letter-spacing:-.04em;line-height:.85;color:var(--ink);margin-bottom:16px}
-.pstep .n-big .mk{color:var(--red)}
-.pstep h4{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.2;margin-bottom:10px}
-.pstep p{font-size:12px;color:var(--mute);line-height:1.55}
-.pstep:hover{background:var(--paper-2)}
-
-@media (max-width:1100px){
-  .manifesto-card{padding:60px 44px 44px}
-  .v-grid{grid-template-columns:1fr}
-  .leadership{grid-template-columns:1fr 1fr}
-  .tm-grid{grid-template-columns:1fr 1fr}
-  .team-nums{grid-template-columns:1fr 1fr;gap:28px 0}
-  .team-nums .tn{border-right:none;padding-right:0}
-  .a-grid{grid-template-columns:1fr 1fr}
-  .tech-partners{grid-template-columns:1fr 1fr}
-  .ip-grid{grid-template-columns:1fr}
-  .p-grid{grid-template-columns:1fr 1fr 1fr}
-  .comp-info{grid-template-columns:1fr}
-  .manifesto-card .sig{grid-template-columns:1fr;gap:20px}
-  .manifesto-card .sig .year{text-align:left}
-  .team-sub-head{grid-template-columns:1fr;gap:10px}
-  .team-sub-head .count-t{text-align:left}
-}
-@media (max-width:720px){
-  .leadership,.tm-grid,.a-grid,.tech-partners,.p-grid{grid-template-columns:1fr}
-  .team-nums{grid-template-columns:1fr}
-  .manifesto-card{padding:40px 24px 28px}
-  .manifesto-card h3{font-size:30px}
-}
 </style>
 </head>
 <body>
@@ -196,7 +146,7 @@
 <div class="scroll-progress"></div>
 
 <nav class="top">
-  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+  <a class="logo" href="index.html"><img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
     <ul>
     <li class="has-dd">
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -286,9 +236,9 @@
 <section class="values">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 02 / Proč právě my</div>
+      <div class="idx">Proč právě my</div>
       <h2>Tři důvody, proč s&nbsp;námi spolupracovat <span class="red">roky.</span></h2>
-      <div class="aside">Průměrný klient<br><b>u nás zůstává 5+ let</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Začít spolupráci <span class="arr">→</span></a></div>
     </div>
 
     <div class="v-grid">
@@ -320,9 +270,9 @@
 <section class="team">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 03 / Tým</div>
+      <div class="idx">Tým</div>
       <h2>Lidé, se kterými budete <span class="red">spolupracovat.</span></h2>
-      <div class="aside">Za každým projektem<br><b>stojí konkrétní tváře</b></div>
+      <div class="aside"><a href="kariera.html" class="lnk">Přidat se k týmu <span class="arr">→</span></a></div>
     </div>
 
     <!-- Leadership -->
@@ -475,9 +425,9 @@
 <section class="awards">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 04 / Ocenění</div>
+      <div class="idx">Ocenění</div>
       <h2>Naše práce získala uznání v&nbsp;prestižních <span class="red">soutěžích.</span></h2>
-      <div class="aside">17 ocenění<br><b>za 10 let</b></div>
+      <div class="aside"><a href="reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
     </div>
 
     <div class="a-grid">
@@ -580,9 +530,9 @@
 <section class="partners">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 05 / Partneři</div>
+      <div class="idx">Partneři</div>
       <h2>Spolupracujeme s&nbsp;těmi <span class="red">nejlepšími.</span></h2>
-      <div class="aside">Certifikovaní partneři<br><b>+ desítky integrací</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat projekt <span class="arr">→</span></a></div>
     </div>
 
     <!-- Certified tech partners -->
@@ -660,9 +610,9 @@
 <section class="process">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 06 / Spolupráce</div>
+      <div class="idx">Spolupráce</div>
       <h2>Jak spolupráce <span class="red">funguje.</span></h2>
-      <div class="aside">Šest kroků<br><b>od seznámení k&nbsp;rozvoji</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Napsat nám <span class="arr">→</span></a></div>
     </div>
 
     <div class="p-grid">
@@ -713,10 +663,10 @@
 
 <footer>
   <div class="wrap">
-    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="big">Prague<span class="red">Best</span></div>
     <div class="cols">
       <div class="about">
-        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
         <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
       </div>
       <div>
@@ -732,6 +682,7 @@
         <a href="reference.html">Reference <span class="ar">→</span></a>
         <a href="o-nas.html">O nás <span class="ar">→</span></a>
         <a href="sluzby.html">Služby <span class="ar">→</span></a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Kontakt</h5>
@@ -741,7 +692,7 @@
       </div>
     </div>
     <div class="base">
-      <div>© 2026 PragueBest s.r.o.</div>
+      <div>© 2026 PragueBest s.r.o. <a href="admin.html" style="color:var(--mute);font-family:var(--mono);font-size:10px;text-decoration:none;margin-left:12px;letter-spacing:.04em;opacity:.6">Admin</a></div>
       <div class="clock">
         <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
         <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>

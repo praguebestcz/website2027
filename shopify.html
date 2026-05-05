@@ -4,17 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Shopify — Rychle do&nbsp;světa — PragueBest</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
-:root{
-  --shop:#008060;
-  --shop-light:#95bf47;
-}
-
 /* ===== SHOPIFY PARTNER BADGE in title ===== */
 .partner-pill{display:inline-flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border:1px solid var(--line);background:rgba(255,255,255,.4);backdrop-filter:blur(10px);border-radius:999px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:28px}
 .partner-pill .bag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--shop);color:#fff;border-radius:99px;font-weight:700}
@@ -119,9 +111,6 @@
 .s-card ul li::before{content:"✓";color:var(--red);font-weight:700;font-size:14px}
 
 /* ===== COMPARISON ===== */
-.compare{padding:80px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.compare::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;position:relative;z-index:2}
 .c-col{padding:52px 44px;background:var(--paper);border:1px solid var(--line);border-radius:20px;position:relative}
 .c-col.yes{border-color:var(--red);border-width:2px}
 .c-col.yes::before{content:"✓ Doporučujeme";position:absolute;top:-14px;left:32px;padding:6px 14px;background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:99px}
@@ -142,17 +131,6 @@
 
 /* ===== PROCESS (6 steps) ===== */
 .process{padding:80px 0;border-top:1px solid var(--ink)}
-.p-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:60px}
-.pstep{padding:36px 20px 40px;border-right:1px solid var(--line);position:relative;transition:background .5s var(--ease)}
-.pstep:last-child{border-right:none}
-.pstep::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease-out)}
-.pstep.reveal.on::before{transform:scaleX(1)}
-.pstep .n-big{font-size:42px;font-weight:700;letter-spacing:-.04em;line-height:.85;color:var(--ink);margin-bottom:16px}
-.pstep .n-big .mk{color:var(--red)}
-.pstep .lb{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;font-weight:700}
-.pstep h4{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.2;margin-bottom:10px}
-.pstep p{font-size:12px;color:var(--mute);line-height:1.55}
-.pstep:hover{background:var(--paper-2)}
 
 /* ===== INTEGRATIONS ===== */
 .integ{padding:80px 0;border-top:1px solid var(--ink)}
@@ -171,29 +149,6 @@
 .i-cat .brands div::before{content:"—";position:absolute;left:0;color:var(--red)}
 
 /* ===== PRICING ===== */
-.pricing{padding:80px 0;border-top:1px solid var(--ink)}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-.plan{padding:44px 40px 40px;border:1px solid var(--line);border-radius:20px;background:var(--paper);position:relative;transition:all .5s var(--ease);display:flex;flex-direction:column}
-.plan:hover{transform:translateY(-4px);border-color:var(--ink)}
-.plan.featured{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 40px 80px -30px rgba(10,10,10,.35)}
-.plan.featured .nb,.plan.featured .d,.plan.featured ul li{color:rgba(242,236,224,.7)}
-.plan.featured ul li::before{background:var(--red)}
-.plan.featured .plan-name,.plan.featured .price{color:var(--paper)}
-.plan .flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);padding:6px 14px;background:var(--red);color:#fff;border:1px solid var(--red);border-radius:999px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.plan .nb{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
-.plan .plan-name{font-size:32px;font-weight:700;letter-spacing:-.025em;margin-bottom:6px}
-.plan .d{font-size:13px;color:var(--mute);margin-bottom:28px;line-height:1.5;min-height:44px}
-.plan .price{font-size:32px;font-weight:700;letter-spacing:-.04em;line-height:.95}
-.plan .price .from{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--mute);margin-right:10px;letter-spacing:.02em}
-.plan .price sub{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--mute);letter-spacing:.02em;margin-left:6px;vertical-align:baseline}
-.plan.featured .price sub,.plan.featured .price .from{color:rgba(242,236,224,.55)}
-.plan .unit{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-top:4px;margin-bottom:32px}
-.plan.featured .unit{color:rgba(242,236,224,.55)}
-.plan ul{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:10px;flex:1}
-.plan ul li{font-size:14px;color:var(--ink-3);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
-.plan ul li::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--ink);flex-shrink:0;margin-top:4px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2ece0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");background-repeat:no-repeat;background-position:center;background-size:8px}
-.plan.featured ul li{color:rgba(242,236,224,.85)}
-.plan .cta-p{margin-top:auto}
 
 /* ===== SHOPIFY CARE ===== */
 .care{padding:80px 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
@@ -205,7 +160,7 @@
 .care-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
 .care-grid .left .lbl-cr{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:12px}
 .care-grid .left .lbl-cr::before{content:"";width:28px;height:1px;background:var(--red)}
-.care-grid .left h3{font-size:clamp(25px,2.9vw,42px);font-weight:700;letter-spacing:-.035em;line-height:.95;margin-bottom:22px}
+.care-grid .left h3{font-size:clamp(38px,4.5vw,64px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:22px}
 .care-grid .left h3 .red{color:var(--red)}
 .care-grid .left p{font-size:16px;color:rgba(242,236,224,.7);line-height:1.6;max-width:48ch;margin-bottom:32px}
 .care-grid .left p b{color:var(--paper);font-weight:600}
@@ -221,37 +176,6 @@
 /* ===== STATS ===== */
 .stats-shop{padding:80px 0;border-top:1px solid var(--ink)}
 .s-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.s-cell{padding:48px 32px 44px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:background .5s var(--ease)}
-.s-cell::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(100%);transition:transform .7s var(--ease-out);z-index:0}
-.s-cell:hover::before{transform:translateY(0)}
-.s-cell > *{position:relative;z-index:1;transition:color .5s var(--ease)}
-.s-cell:hover > *{color:var(--paper)}
-.s-cell .nb{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px}
-.s-cell:hover .nb{color:rgba(242,236,224,.5)}
-.s-cell .vl{font-size:clamp(39px,4.2vw,61px);font-weight:700;letter-spacing:-.045em;line-height:.9}
-.s-cell .vl .r{color:var(--red)}
-.s-cell .vl sub{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--mute);letter-spacing:.02em;margin-left:4px;vertical-align:baseline}
-.s-cell:hover .vl sub{color:rgba(242,236,224,.5)}
-.s-cell .lb{font-size:14px;font-weight:600;margin-top:12px;letter-spacing:-.01em}
-.s-cell .dc{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.55;max-width:32ch}
-.s-cell:hover .dc{color:rgba(242,236,224,.7)}
-
-@media (max-width:1100px){
-  .admin-sidebar{display:none}
-  .admin-main .kpi-row,.chart-row{grid-template-columns:1fr 1fr}
-  .admin-main .chart-row{grid-template-columns:1fr}
-  .why-grid,.s-grid,.c-grid,.care-grid,.price-grid,.s-row{grid-template-columns:1fr;gap:30px}
-  .why-grid,.s-grid{grid-template-columns:1fr 1fr}
-  .i-wrap{grid-template-columns:1fr 1fr}
-  .p-grid{grid-template-columns:1fr 1fr 1fr}
-}
-@media (max-width:720px){
-  .why-grid,.s-grid,.i-wrap,.p-grid{grid-template-columns:1fr}
-  .admin-main{padding:16px 14px}
-  .admin-main .kpi-row{grid-template-columns:1fr 1fr}
-  .admin-main .orders .row-o{grid-template-columns:1fr auto;gap:8px}
-  .admin-main .orders .row-o .cust,.admin-main .orders .row-o .ship{display:none}
-}
 </style>
 </head>
 <body>
@@ -261,7 +185,7 @@
 <div class="scroll-progress"></div>
 
 <nav class="top">
-  <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+  <a class="logo" href="index.html"><img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
     <ul>
     <li class="has-dd">
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -504,9 +428,9 @@
 <section class="why">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 01 / Proč Shopify</div>
+      <div class="idx">Proč Shopify</div>
       <h2>Tři důvody, proč dává <span class="red">smysl.</span></h2>
-      <div class="aside">Pro značky, co&nbsp;chtějí<br><b>rychle a&nbsp;globálně</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat Shopify <span class="arr">→</span></a></div>
     </div>
 
     <div class="why-grid">
@@ -538,9 +462,9 @@
 <section class="services">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 02 / Co nabízíme</div>
+      <div class="idx">Co nabízíme</div>
       <h2>Tři typy projektů, co&nbsp;pro&nbsp;vás <span class="red">děláme.</span></h2>
-      <div class="aside">Od greenfieldu<br><b>po enterprise migraci</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat projekt <span class="arr">→</span></a></div>
     </div>
 
     <div class="s-grid">
@@ -596,9 +520,9 @@
 <section class="compare">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 03 / Kdy Shopify</div>
+      <div class="idx">Kdy Shopify</div>
       <h2>Kdy dává smysl a&nbsp;kdy raději <span class="red">e-shop na&nbsp;míru.</span></h2>
-      <div class="aside">Upřímné srovnání<br><b>bez marketingu</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat Shopify Plus <span class="arr">→</span></a></div>
     </div>
 
     <div class="c-grid">
@@ -637,9 +561,9 @@
 <section class="process">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 04 / Proces</div>
+      <div class="idx">Proces</div>
       <h2>Šest kroků od&nbsp;kickoffu k&nbsp;<span class="red">launchi.</span></h2>
-      <div class="aside">2 &mdash; 12 týdnů<br><b>podle rozsahu</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Zahájit projekt <span class="arr">→</span></a></div>
     </div>
 
     <div class="p-grid">
@@ -687,9 +611,9 @@
 <section class="integ">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 05 / Integrace</div>
+      <div class="idx">Integrace</div>
       <h2>Napojíme vše, co&nbsp;<span class="red">potřebujete.</span></h2>
-      <div class="aside">Kompletní český<br><b>i mezinárodní stack</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat integraci <span class="arr">→</span></a></div>
     </div>
 
     <div class="i-wrap">
@@ -764,9 +688,9 @@
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 06 / Ceník</div>
+      <div class="idx">Ceník</div>
       <h2>Tři balíčky, transparentní <span class="red">ceny.</span></h2>
-      <div class="aside">Bez DPH<br><b>bez překvapení</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Vybrat plán <span class="arr">→</span></a></div>
     </div>
 
     <div class="price-grid">
@@ -838,9 +762,9 @@
 <section class="care">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 07 / Shopify Care</div>
+      <div class="idx">Shopify Care</div>
       <h2>Po launchi se postaráme <span class="red">dál.</span></h2>
-      <div class="aside">Měsíční retainer<br><b>od 15 000 Kč</b></div>
+      <div class="aside"><a href="kontakt.html" class="lnk">Poptat retainer <span class="arr">→</span></a></div>
     </div>
 
     <div class="care-grid">
@@ -891,9 +815,9 @@
 <section class="stats-shop">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">§ 08 / Čísla</div>
+      <div class="idx">Čísla</div>
       <h2>Proč nám věřit <span class="red">Shopify projekt.</span></h2>
-      <div class="aside">Data k&nbsp;04/2026<br><b>auditované</b></div>
+      <div class="aside"><a href="reference.html" class="lnk">Výsledky klientů <span class="arr">→</span></a></div>
     </div>
 
     <div class="s-row">
@@ -938,10 +862,10 @@
 
 <footer>
   <div class="wrap">
-    <div class="big">Prague<span class="red">Best</span><sup style="font-size:.25em;vertical-align:super;color:var(--mute);font-weight:500">®</sup></div>
+    <div class="big">Prague<span class="red">Best</span></div>
     <div class="cols">
       <div class="about">
-        <a class="logo" href="index.html"><span class="mark"></span><span class="name"><b>PragueBest</b><sup>®</sup></span></a>
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
         <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
       </div>
       <div>
@@ -956,6 +880,7 @@
         <a href="index.html">Úvod <span class="ar">→</span></a>
         <a href="reference.html">Reference <span class="ar">→</span></a>
         <a href="sluzby.html">Služby <span class="ar">→</span></a>
+        <a href="design-system.html">Design System <span class="ar">→</span></a>
         <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
       </div>
       <div>

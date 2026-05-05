@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Reference · PragueBest</title>
+<script src="assets/data/references.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0b0b;--paper:#f5f0e8;--line:#e0d9ce;--mute:#9a9590;
+  --red:#e30613;--sidebar:#0f0f0f;--sidebar-w:280px;
+  --sans:'Geist',system-ui,sans-serif;--mono:'GeistMono','JetBrains Mono',monospace;
+}
+html{height:100%}
+body{
+  font-family:var(--sans);background:var(--paper);color:var(--ink);
+  display:grid;grid-template-columns:var(--sidebar-w) 1fr;
+  grid-template-rows:56px 1fr;min-height:100vh;
+}
+
+/* ── Topbar ────────────────────────────────────────────── */
+.topbar{
+  grid-column:1/-1;background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-bottom:1px solid #222;position:sticky;top:0;z-index:100;
+}
+.topbar .brand{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.topbar .brand span{display:inline-block;padding:3px 8px;background:var(--red);border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.topbar .actions{display:flex;gap:10px}
+.btn-export{
+  display:flex;align-items:center;gap:8px;padding:8px 18px;
+  background:var(--red);color:#fff;border:none;border-radius:8px;
+  font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;
+  transition:opacity .2s;
+}
+.btn-export:hover{opacity:.85}
+.btn-export svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.btn-preview{
+  display:flex;align-items:center;gap:8px;padding:8px 16px;
+  background:transparent;color:rgba(255,255,255,.65);border:1px solid #333;border-radius:8px;
+  font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .2s;
+}
+.btn-preview:hover{border-color:#555;color:#fff}
+
+/* ── Sidebar ───────────────────────────────────────────── */
+.sidebar{
+  background:var(--sidebar);color:#fff;
+  display:flex;flex-direction:column;
+  border-right:1px solid #1e1e1e;overflow-y:auto;
+  position:sticky;top:56px;height:calc(100vh - 56px);
+}
+.sidebar-head{
+  padding:20px 16px 12px;border-bottom:1px solid #1e1e1e;
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);display:flex;justify-content:space-between;align-items:center;
+}
+.ref-list{list-style:none;flex:1;overflow-y:auto;padding:8px 0}
+.ref-item{
+  display:flex;align-items:center;gap:10px;padding:11px 16px;
+  cursor:pointer;transition:background .15s;border-left:3px solid transparent;
+  font-size:14px;font-weight:500;color:rgba(255,255,255,.7);
+}
+.ref-item:hover{background:rgba(255,255,255,.06);color:#fff}
+.ref-item.active{background:rgba(255,255,255,.08);color:#fff;border-left-color:var(--red)}
+.ref-item .num{
+  font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.25);
+  min-width:18px;text-align:right;
+}
+.ref-item .order{
+  margin-left:auto;display:flex;gap:2px;opacity:0;transition:opacity .15s;
+}
+.ref-item:hover .order{opacity:1}
+.ref-item .order button{
+  background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);
+  width:22px;height:22px;border-radius:4px;cursor:pointer;font-size:11px;
+  display:flex;align-items:center;justify-content:center;transition:background .15s;
+}
+.ref-item .order button:hover{background:rgba(255,255,255,.2);color:#fff}
+.ref-item .order button:disabled{opacity:.2;cursor:default}
+.sidebar-foot{padding:12px 16px;border-top:1px solid #1e1e1e}
+.btn-add{
+  width:100%;padding:10px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.15);
+  color:rgba(255,255,255,.55);border-radius:8px;font-family:var(--sans);font-size:13px;
+  cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-add:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}
+
+/* ── Editor ────────────────────────────────────────────── */
+.editor{overflow-y:auto;padding:32px 40px 80px}
+.editor-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line);
+}
+.editor-head h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.editor-head .id{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:4px}
+.danger-zone{display:flex;gap:8px}
+.btn-del{
+  padding:8px 14px;background:transparent;border:1px solid #f0bcc0;color:#c0293a;
+  border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+}
+.btn-del:hover{background:#ffeef0;border-color:#c0293a}
+.btn-del svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── Form ──────────────────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-grid.cols3{grid-template-columns:1fr 1fr 1fr}
+.form-full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.field input,.field textarea,.field select{
+  padding:10px 14px;background:#fff;border:1px solid var(--line);border-radius:8px;
+  font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;
+  transition:border-color .15s;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--ink)}
+.field input.readonly{background:#f0ece4;color:var(--mute);cursor:default}
+.field textarea{resize:vertical;min-height:80px;line-height:1.5}
+.field .hint{font-size:11px;color:var(--mute);margin-top:2px}
+
+/* ── Tags ──────────────────────────────────────────────── */
+.tags-grid{display:flex;flex-wrap:wrap;gap:8px}
+.tag-cb{display:none}
+.tag-lb{
+  padding:6px 14px;border:1px solid var(--line);border-radius:999px;
+  font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;
+  font-family:var(--mono);letter-spacing:.04em;
+}
+.tag-cb:checked+.tag-lb{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* ── BG picker ─────────────────────────────────────────── */
+
+/* ── KPIs ──────────────────────────────────────────────── */
+.kpi-list{display:flex;flex-direction:column;gap:10px}
+.kpi-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px 10px;align-items:start}
+.kpi-row input,.kpi-row textarea{padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;font-family:var(--sans);font-size:13px;color:var(--ink);outline:none;transition:border-color .15s;width:100%}
+.kpi-row textarea{resize:vertical;min-height:60px;font-size:12px}
+.kpi-row .kpi-bottom{grid-column:1/3;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi-row input:focus{border-color:var(--ink)}
+.kpi-row .preview{font-size:11px;color:var(--mute)}
+.btn-kpi-del{
+  width:32px;height:32px;border:1px solid #f0bcc0;background:transparent;
+  color:#c0293a;border-radius:6px;cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;
+}
+.btn-kpi-del:hover{background:#ffeef0}
+.btn-kpi-add{
+  display:flex;align-items:center;gap:8px;padding:9px 16px;
+  background:transparent;border:1px dashed var(--line);border-radius:8px;
+  font-family:var(--sans);font-size:13px;color:var(--mute);cursor:pointer;
+  transition:all .2s;align-self:flex-start;margin-top:4px;
+}
+.btn-kpi-add:hover{border-color:#999;color:var(--ink)}
+
+/* ── Thumb upload ──────────────────────────────────────── */
+.thumb-wrap{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start}
+.thumb-drop{
+  width:200px;height:140px;border:2px dashed var(--line);border-radius:12px;
+  cursor:pointer;position:relative;overflow:hidden;transition:all .2s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;color:var(--mute);font-size:12px;text-align:center;padding:12px;
+  background:#fff;
+}
+.thumb-drop:hover{border-color:#999;color:var(--ink)}
+.thumb-drop.has-img{border-style:solid;border-color:var(--line)}
+.thumb-drop img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;display:none;
+}
+.thumb-drop.has-img img{display:block}
+.thumb-drop.has-img .thumb-hint{display:none}
+.thumb-drop svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.4}
+.thumb-drop .thumb-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.5);
+  display:none;align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;color:#fff;
+}
+.thumb-drop.has-img:hover .thumb-overlay{display:flex}
+.thumb-actions{display:flex;flex-direction:column;gap:10px}
+.btn-thumb-remove{
+  padding:7px 12px;background:transparent;border:1px solid #f0bcc0;color:#c0293a;
+  border-radius:6px;font-family:var(--sans);font-size:12px;cursor:pointer;
+  transition:all .2s;align-self:flex-start;
+}
+.btn-thumb-remove:hover{background:#ffeef0}
+
+/* ── Section title ─────────────────────────────────────── */
+.section-title{
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mute);margin:28px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line);
+}
+
+/* ── Empty state ───────────────────────────────────────── */
+.empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:12px;color:var(--mute);text-align:center;
+}
+.empty h3{font-size:18px;color:var(--ink)}
+.empty p{font-size:14px;max-width:28ch;line-height:1.6}
+
+/* ── Preview modal ─────────────────────────────────────── */
+.modal-bg{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;
+  align-items:center;justify-content:center;
+}
+.modal-bg.open{display:flex}
+.modal{
+  background:#0f0f0f;border-radius:12px;width:min(720px,90vw);max-height:80vh;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 20px;border-bottom:1px solid #222;
+}
+.modal-head h3{font-size:15px;font-weight:600;color:#fff}
+.modal-close{
+  background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;
+  cursor:pointer;padding:4px 8px;border-radius:4px;transition:color .15s;
+}
+.modal-close:hover{color:#fff}
+.modal pre{
+  padding:20px;overflow-y:auto;flex:1;
+  font-family:var(--mono);font-size:12px;color:#a8e6b8;line-height:1.6;
+}
+.modal-foot{padding:12px 20px;border-top:1px solid #222;display:flex;justify-content:flex-end;gap:10px}
+.btn-copy{
+  padding:8px 18px;background:rgba(255,255,255,.08);border:1px solid #333;
+  color:#fff;border-radius:8px;font-family:var(--sans);font-size:13px;cursor:pointer;
+  transition:all .2s;
+}
+.btn-copy:hover{background:rgba(255,255,255,.15)}
+.btn-copy.copied{background:rgba(40,200,80,.15);border-color:rgba(40,200,80,.3);color:#4ecb71}
+
+/* ── Toast ─────────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:10px 20px;border-radius:8px;
+  font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:300;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2);border-radius:3px}
+.sidebar ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+
+/* ── Featured toggle ─────────────────────────────────────── */
+.featured-toggle{
+  display:flex;align-items:center;gap:16px;padding:18px 20px;
+  border:1px solid var(--line);border-radius:12px;cursor:pointer;
+  background:#fff;transition:all .2s;margin-bottom:20px;user-select:none;
+}
+.featured-toggle:hover{border-color:#bbb;background:#faf8f4}
+.featured-toggle.is-featured{border-color:#e8c84a;background:#fffbea}
+.featured-icon{width:36px;height:36px;border-radius:8px;background:var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.featured-icon svg{width:18px;height:18px;stroke:#999;transition:stroke .2s}
+.is-featured .featured-icon{background:#e8c84a}
+.is-featured .featured-icon svg{stroke:#7a6000}
+.featured-label{flex:1}
+.featured-label strong{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+.featured-label span{font-size:11px;color:var(--mute);margin-top:2px;display:block}
+.featured-check{width:24px;height:24px;border-radius:6px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#7a6000;background:transparent;transition:all .2s}
+.is-featured .featured-check{background:#e8c84a;border-color:#e8c84a}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo-PB-white.svg" alt="PragueBest" height="28" width="120">
+    <span>Admin</span>
+    <span style="color:rgba(255,255,255,.35);font-weight:400;font-size:12px">Reference databáze</span>
+  </div>
+  <div class="actions">
+    <button class="btn-preview" onclick="openPreview()">
+      <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Náhled JS
+    </button>
+    <button class="btn-export" onclick="exportFile()">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Stáhnout references.js
+    </button>
+  </div>
+</header>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-head">
+    <span>Reference</span>
+    <span id="ref-count">0</span>
+  </div>
+  <ul class="ref-list" id="ref-list"></ul>
+  <div class="sidebar-foot">
+    <button class="btn-add" onclick="addRef()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Přidat referenci
+    </button>
+  </div>
+</aside>
+
+<!-- Editor -->
+<main class="editor" id="editor">
+  <div class="empty">
+    <h3>Vyberte referenci</h3>
+    <p>Klikněte na referenci v levém panelu pro úpravu.</p>
+  </div>
+</main>
+
+<!-- Preview modal -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>references.js — náhled</h3>
+      <button class="modal-close" onclick="closePreview()">×</button>
+    </div>
+    <pre id="preview-code"></pre>
+    <div class="modal-foot">
+      <button class="btn-copy" id="copy-btn" onclick="copyCode()">Kopírovat do schránky</button>
+      <button class="btn-export" onclick="exportFile()">Stáhnout soubor</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Data & state ─────────────────────────────────────────
+let data = JSON.parse(JSON.stringify(window.REFS || []));
+let activeIdx = null;
+
+const ALL_TAGS = ['eshop','b2b','b2c','retail','webapp','auto','fashion','food'];
+
+
+// ── Sidebar ──────────────────────────────────────────────
+function renderSidebar() {
+  const list = document.getElementById('ref-list');
+  const count = document.getElementById('ref-count');
+  count.textContent = data.length;
+  list.innerHTML = data.map((ref, i) => {
+    const active = i === activeIdx ? ' active' : '';
+    return `<li class="ref-item${active}" onclick="selectRef(${i})">
+      <span class="num">${ref.num || String(i+1).padStart(2,'0')}</span>
+      <span>${ref.name || '(bez názvu)'}${ref.featured ? ' <span style="color:#e8c84a;font-size:11px">★</span>' : ''}</span>
+      <span class="order">
+        <button onclick="moveRef(event,${i},-1)" ${i===0?'disabled':''} title="Nahoru">↑</button>
+        <button onclick="moveRef(event,${i},1)"  ${i===data.length-1?'disabled':''} title="Dolů">↓</button>
+      </span>
+    </li>`;
+  }).join('');
+}
+
+function selectRef(idx) {
+  activeIdx = idx;
+  renderSidebar();
+  renderEditor();
+}
+
+function moveRef(e, idx, dir) {
+  e.stopPropagation();
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= data.length) return;
+  [data[idx], data[newIdx]] = [data[newIdx], data[idx]];
+  activeIdx = newIdx;
+  renderSidebar();
+  renderEditor();
+}
+
+function addRef() {
+  data.push({
+    id: 'nova-reference',
+    name: 'Nová reference',
+    sup: '',
+    headline: '',
+    category: 'E-shop',
+    year: new Date().getFullYear().toString(),
+    tags: ['eshop'],
+      href: '#',
+    cat: '',
+    kpis: [{ label: '', value: '' }]
+  });
+  selectRef(data.length - 1);
+}
+
+// ── Editor ───────────────────────────────────────────────
+function renderEditor() {
+  const el = document.getElementById('editor');
+  if (activeIdx === null || !data[activeIdx]) {
+    el.innerHTML = `<div class="empty"><h3>Vyberte referenci</h3><p>Klikněte na referenci v levém panelu.</p></div>`;
+    return;
+  }
+  const ref = data[activeIdx];
+
+  // Tags checkboxes
+  const tagsHtml = ALL_TAGS.map(t => `
+    <input type="checkbox" class="tag-cb" id="tag-${t}" value="${t}" ${ref.tags.includes(t)?'checked':''} onchange="updateTags()">
+    <label class="tag-lb" for="tag-${t}">${t}</label>
+  `).join('');
+
+  // BG picker
+
+  // KPIs
+  const kpisHtml = ref.kpis.map((k, i) => `
+    <div class="kpi-row">
+      <input type="text" value="${esc(k.label)}" placeholder="Krátký popis (karty)"
+        oninput="updateKpi(${i},'label',this.value)">
+      <input type="text" value="${esc(k.value)}" placeholder='Hodnota (HTML ok, +214%)'
+        oninput="updateKpi(${i},'value',this.value)">
+      <button class="btn-kpi-del" onclick="removeKpi(${i})" title="Odstranit" style="align-self:start;margin-top:1px">×</button>
+      <div class="kpi-bottom">
+        <input type="text" value="${esc(k.title||'')}" placeholder="Nadpis (detail stránka)"
+          oninput="updateKpi(${i},'title',this.value)">
+        <textarea placeholder="Popis (detail stránka)" oninput="updateKpi(${i},'desc',this.value)">${esc(k.desc||'')}</textarea>
+      </div>
+    </div>
+  `).join('');
+
+  el.innerHTML = `
+    <div class="editor-head">
+      <div>
+        <h2>${ref.name || '(bez názvu)'}</h2>
+        <div class="id">ID: ${ref.id} &nbsp;·&nbsp; Složka: assets/reference/${ref.id}/</div>
+      </div>
+      <div class="danger-zone">
+        <button class="btn-del" onclick="deleteRef()">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+          Smazat
+        </button>
+      </div>
+    </div>
+
+    <div class="featured-toggle${ref.featured ? ' is-featured' : ''}" id="featured-toggle" onclick="setFeatured()">
+      <div class="featured-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="featured-label">
+        <strong>Vybraný projekt</strong>
+        <span>Tento projekt se zobrazí jako hlavní case study na homepage</span>
+      </div>
+      <div class="featured-check">${ref.featured ? '✓' : ''}</div>
+    </div>
+
+    <div class="section-title">Základní informace</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>ID <span style="font-weight:400;color:#bbb">(slug, nelze měnit po nasazení)</span></label>
+        <input type="text" value="${esc(ref.id)}" oninput="update('id',this.value)" placeholder="napr-firma">
+      </div>
+      <div class="field" style="grid-column:2">
+        <label>Název</label>
+        <input type="text" value="${esc(ref.name)}" oninput="update('name',this.value);updateSidebar()" placeholder="Název firmy">
+      </div>
+      <div class="field">
+        <label>Kategorie / štítek karty</label>
+        <input type="text" value="${esc(ref.category)}" oninput="update('category',this.value)" placeholder="Case Study 026">
+      </div>
+      <div class="field">
+        <label>Rok</label>
+        <input type="text" value="${esc(ref.year)}" oninput="update('year',this.value)" placeholder="2025">
+      </div>
+      <div class="field">
+        <label>URL stránky (href)</label>
+        <input type="text" value="${esc(ref.href)}" oninput="update('href',this.value)" placeholder="elnino.html nebo #">
+      </div>
+    </div>
+
+    <div class="section-title">Texty</div>
+    <div class="form-grid">
+      <div class="field form-full">
+        <label>Headline (perex karty, HTML ok)</label>
+        <textarea oninput="update('headline',this.value)" placeholder="Krátký popis projektu...">${esc(ref.headline)}</textarea>
+      </div>
+      <div class="field form-full">
+        <label>Záložka — krátký popis pro ref-grid na homepage</label>
+        <input type="text" value="${esc(ref.cat)}" oninput="update('cat',this.value)" placeholder="E-commerce · Headless · 13 zemí">
+      </div>
+      <div class="field">
+        <label>Doména (zobrazí se v adresním řádku mocku)</label>
+        <input type="text" value="${esc(ref.domain||'')}" oninput="update('domain',this.value)" placeholder="elnino.cz">
+        <span class="hint">Pouze pro featured case study na homepage</span>
+      </div>
+    </div>
+
+    <div class="section-title">Screenshot mocku <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">— zobrazuje se v browser mock okně na homepage</span></div>
+    <input type="file" id="mock-file" accept="image/*" style="display:none" onchange="handleMock(this)">
+    <div class="thumb-wrap">
+      <div class="thumb-drop ${ref.mockImg ? 'has-img' : ''}" id="mock-drop" onclick="document.getElementById('mock-file').click()">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="thumb-hint" style="font-size:11px;line-height:1.5">Klikněte pro<br>nahrání obrázku</span>
+        <img id="mock-preview" src="${esc(ref.mockImg||'')}" alt="">
+        <div class="thumb-overlay">Změnit obrázek</div>
+      </div>
+      <div class="thumb-actions">
+        <div class="field">
+          <label>Cesta k souboru</label>
+          <input type="text" id="mock-path" value="${esc(ref.mockImg||'')}" oninput="update('mockImg',this.value)" placeholder="assets/reference/${esc(ref.id)}/mock.png">
+          <span class="hint">Uložte soubor ručně do: <code style="background:#f0ece4;padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px">assets/reference/${esc(ref.id)}/</code></span>
+        </div>
+        ${ref.mockImg ? `<button class="btn-thumb-remove" onclick="removeMock()">Odebrat obrázek</button>` : ''}
+      </div>
+    </div>
+
+    <div class="section-title">Náhledový obrázek <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">— zobrazuje se místo gradientu v kartě na homepage</span></div>
+    <input type="file" id="thumb-file" accept="image/*" style="display:none" onchange="handleThumb(this)">
+    <div class="thumb-wrap">
+      <div class="thumb-drop ${ref.thumb ? 'has-img' : ''}" id="thumb-drop" onclick="document.getElementById('thumb-file').click()">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="thumb-hint" style="font-size:11px;line-height:1.5">Klikněte pro<br>nahrání obrázku</span>
+        <img id="thumb-preview" src="${esc(ref.thumb||'')}" alt="">
+        <div class="thumb-overlay">Změnit obrázek</div>
+      </div>
+      <div class="thumb-actions">
+        <div class="field">
+          <label>Cesta k souboru</label>
+          <input type="text" id="thumb-path" value="${esc(ref.thumb||'')}" oninput="update('thumb',this.value)" placeholder="assets/reference/${esc(ref.id)}/thumb.jpg">
+          <span class="hint">Uložte soubor ručně do: <code style="background:#f0ece4;padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px">assets/reference/${esc(ref.id)}/</code></span>
+        </div>
+        ${ref.thumb ? `<button class="btn-thumb-remove" onclick="removeThumb()">Odebrat obrázek</button>` : ''}
+      </div>
+    </div>
+
+    <div class="section-title">Filtrovací tagy</div>
+    <div class="tags-grid">${tagsHtml}</div>
+
+
+    <div class="section-title">KPI metriky</div>
+    <div class="kpi-list" id="kpi-list">
+      ${kpisHtml}
+    </div>
+    <button class="btn-kpi-add" onclick="addKpi()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Přidat KPI
+    </button>
+  `;
+}
+
+// ── Update helpers ───────────────────────────────────────
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function update(key, val) {
+  if (activeIdx === null) return;
+  data[activeIdx][key] = val;
+}
+
+
+function setFeatured() {
+  if (activeIdx === null) return;
+  // unset all, set current
+  data.forEach((r, i) => { r.featured = (i === activeIdx); });
+  renderSidebar();
+  renderEditor();
+  toast(`"${data[activeIdx].name}" nastaven jako vybraný projekt`);
+}
+
+function updateSidebar() {
+  // re-render just the active item name without full sidebar rebuild
+  renderSidebar();
+}
+
+function updateTags() {
+  if (activeIdx === null) return;
+  data[activeIdx].tags = ALL_TAGS.filter(t => {
+    const cb = document.getElementById('tag-'+t);
+    return cb && cb.checked;
+  });
+}
+
+
+function updateKpi(i, key, val) {
+  if (activeIdx === null) return;
+  data[activeIdx].kpis[i][key] = val;
+}
+
+function addKpi() {
+  if (activeIdx === null) return;
+  data[activeIdx].kpis.push({ label: '', value: '', title: '', desc: '' });
+  // append without full re-render
+  const list = document.getElementById('kpi-list');
+  const i = data[activeIdx].kpis.length - 1;
+  const row = document.createElement('div');
+  row.className = 'kpi-row';
+  row.innerHTML = `
+    <input type="text" value="" placeholder="Krátký popis (karty)" oninput="updateKpi(${i},'label',this.value)">
+    <input type="text" value="" placeholder='Hodnota' oninput="updateKpi(${i},'value',this.value)">
+    <button class="btn-kpi-del" onclick="removeKpi(${i})" title="Odstranit" style="align-self:start;margin-top:1px">×</button>
+    <div class="kpi-bottom">
+      <input type="text" value="" placeholder="Nadpis (detail stránka)" oninput="updateKpi(${i},'title',this.value)">
+      <textarea placeholder="Popis (detail stránka)" oninput="updateKpi(${i},'desc',this.value)"></textarea>
+    </div>
+  `;
+  list.appendChild(row);
+  row.querySelector('input').focus();
+}
+
+function handleThumb(input) {
+  const file = input.files[0];
+  if (!file || activeIdx === null) return;
+  const ref = data[activeIdx];
+  const ext = file.name.split('.').pop().toLowerCase();
+  const path = `assets/reference/${ref.id}/thumb.${ext}`;
+
+  // Preview locally
+  const url = URL.createObjectURL(file);
+  const drop = document.getElementById('thumb-drop');
+  const img  = document.getElementById('thumb-preview');
+  img.src = url;
+  drop.classList.add('has-img');
+
+  // Update data & path field
+  update('thumb', path);
+  const pathEl = document.getElementById('thumb-path');
+  if (pathEl) pathEl.value = path;
+
+  // Instruct user to save file
+  toast(`Uložte soubor jako: ${path}`);
+  input.value = '';
+}
+
+function removeThumb() {
+  if (activeIdx === null) return;
+  update('thumb', '');
+  renderEditor();
+}
+
+function handleMock(input) {
+  const file = input.files[0];
+  if (!file || activeIdx === null) return;
+  const ref = data[activeIdx];
+  const ext = file.name.split('.').pop().toLowerCase();
+  const path = `assets/reference/${ref.id}/mock.${ext}`;
+
+  const url = URL.createObjectURL(file);
+  const drop = document.getElementById('mock-drop');
+  const img  = document.getElementById('mock-preview');
+  img.src = url;
+  drop.classList.add('has-img');
+
+  update('mockImg', path);
+  const pathEl = document.getElementById('mock-path');
+  if (pathEl) pathEl.value = path;
+
+  toast(`Uložte soubor jako: ${path}`);
+  input.value = '';
+}
+
+function removeMock() {
+  if (activeIdx === null) return;
+  update('mockImg', '');
+  renderEditor();
+}
+
+function removeKpi(i) {
+  if (activeIdx === null) return;
+  data[activeIdx].kpis.splice(i, 1);
+  renderEditor(); // re-render for correct indices
+}
+
+function deleteRef() {
+  if (activeIdx === null) return;
+  const name = data[activeIdx].name;
+  if (!confirm(`Opravdu smazat "${name}"?`)) return;
+  data.splice(activeIdx, 1);
+  activeIdx = data.length > 0 ? Math.min(activeIdx, data.length-1) : null;
+  renderSidebar();
+  renderEditor();
+  toast(`"${name}" odstraněno`);
+}
+
+// ── Export ───────────────────────────────────────────────
+function safeStr(s) {
+  // Escape newlines and single quotes for JS string literals
+  return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\r?\n/g,' ').trim();
+}
+
+function generateJS() {
+  const lines = [];
+  lines.push('/**');
+  lines.push(' * PragueBest — Case Studies databáze');
+  lines.push(' * Jediný zdroj pravdy pro všechny reference na webu.');
+  lines.push(' *');
+  lines.push(' * Přidání nové reference: přidej objekt do pole REFS.');
+  lines.push(' * Úprava: změň data zde — promítne se na reference.html i index.html.');
+  lines.push(' *');
+  lines.push(' * Složky s médii: assets/reference/<id>/');
+  lines.push(' */');
+  lines.push('');
+  lines.push('window.REFS = [');
+  data.forEach((ref, i) => {
+    const last = i === data.length - 1;
+    lines.push('');
+    lines.push(`  /* ─── ${i+1}. ${ref.name} ${'─'.repeat(Math.max(0,44-ref.name.length))} */`);
+    lines.push('  {');
+    lines.push(`    num:      '${safeStr(ref.num||String(i+1).padStart(2,'0'))}',`);
+    if (ref.featured) lines.push(`    featured: true,`);
+    lines.push(`    id:       '${safeStr(ref.id)}',`);
+    lines.push(`    name:     '${safeStr(ref.name)}',`);
+    lines.push(`    headline: '${safeStr(ref.headline)}',`);
+    lines.push(`    category: '${safeStr(ref.category)}',`);
+    lines.push(`    year:     '${safeStr(ref.year)}',`);
+    lines.push(`    tags:     ${JSON.stringify(ref.tags)},`);
+    lines.push(`    href:     '${safeStr(ref.href)}',`);
+    if (ref.domain)  lines.push(`    domain:   '${safeStr(ref.domain)}',`);
+    if (ref.mockImg) lines.push(`    mockImg:  '${safeStr(ref.mockImg)}',`);
+    if (ref.thumb)   lines.push(`    thumb:    '${safeStr(ref.thumb)}',`);
+    lines.push(`    cat:      '${safeStr(ref.cat)}',`);
+    lines.push(`    kpis: [`);
+    ref.kpis.forEach(k => {
+      const kLine = [`label: '${safeStr(k.label)}'`, `value: '${safeStr(k.value)}'`];
+      if (k.title) kLine.push(`title: '${safeStr(k.title)}'`);
+      if (k.desc)  kLine.push(`desc: '${safeStr(k.desc)}'`);
+      lines.push(`      { ${kLine.join(', ')} },`);
+    });
+    lines.push(`    ]`);
+    lines.push(`  }${last ? '' : ','}`);
+  });
+  lines.push('');
+  lines.push('];');
+  return lines.join('\n');
+}
+
+function exportFile() {
+  const js = generateJS();
+  const blob = new Blob([js], { type: 'text/javascript;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'references.js'; a.click();
+  URL.revokeObjectURL(url);
+  toast('references.js stažen — přesuň ho do assets/data/');
+}
+
+// ── Preview modal ────────────────────────────────────────
+function openPreview() {
+  document.getElementById('preview-code').textContent = generateJS();
+  document.getElementById('modal').classList.add('open');
+}
+function closePreview() {
+  document.getElementById('modal').classList.remove('open');
+}
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closePreview();
+});
+
+function copyCode() {
+  navigator.clipboard.writeText(generateJS()).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Zkopírováno ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Kopírovat do schránky'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── Toast ─────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// ── Init ──────────────────────────────────────────────────
+renderSidebar();
+if (data.length > 0) selectRef(0);
+</script>
+</body>
+</html>

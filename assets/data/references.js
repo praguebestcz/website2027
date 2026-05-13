@@ -13,8 +13,8 @@ window.REFS = [
   /* ─── 1. El Nino ───────────────────────────────────── */
   {
     num:      '01',
-    id:       'elnino',
     featured: true,
+    id:       'elnino',
     name:     'El Nino',
     headline: 'Evropská síť parfumerií potřebovala sjednotit 13 národních e-shopů, napojit ERP Abra, Heureku, Zásilkovnu a vlastní UpSearch. Výsledek: jedna codebase, lokální ceny a měny, rychlost pod vteřinu.',
     category: 'Parfumerský zázrak',
@@ -23,7 +23,7 @@ window.REFS = [
     href:     'elnino.html',
     domain:   'elnino.cz',
     mockImg:  'assets/elnino-web-small.png',
-    thumb:    'assets/reference/elnino/thumb.jpg',
+    thumb:    'assets/reference/elnino/thumb.png',
     cat:      'E-commerce · Headless · 13 zemí',
     kpis: [
       { label: 'Konverze B2B', value: '<span class="red">+</span>214%', title: 'Konverze v B2B sekci', desc: 'Velkoobchodní zákazníci nově vidí ceny podle své role a historie objednávek. Průměrná velikost košíku se ztrojnásobila.' },
@@ -43,6 +43,9 @@ window.REFS = [
     year:     '2024',
     tags:     ["eshop","b2c","retail"],
     href:     '#',
+    domain:   'fotoskoda.cz',
+    mockImg:  'assets/reference/fotoskoda/mock.png',
+    thumb:    'assets/reference/fotoskoda/thumb.png',
     cat:      'E-commerce · B2C · ERP',
     kpis: [
       { label: 'SKU', value: '48k' },
@@ -60,6 +63,9 @@ window.REFS = [
     year:     '2024',
     tags:     ["webapp","auto"],
     href:     '#',
+    domain:   'hyundai.cz',
+    mockImg:  'assets/reference/hyundai/mock.png',
+    thumb:    'assets/reference/hyundai/thumb.png',
     cat:      'Web aplikace · Automotive',
     kpis: [
       { label: 'Dealerů', value: '52' },
@@ -77,6 +83,9 @@ window.REFS = [
     year:     '2024',
     tags:     ["eshop","b2c","retail"],
     href:     '#',
+    domain:   'albi.cz',
+    mockImg:  'assets/reference/albi/mock.png',
+    thumb:    'assets/reference/albi/thumb.png',
     cat:      'E-commerce · Omnichannel',
     kpis: [
       { label: 'Online obrat', value: '<span class="red">+</span>156%' },
@@ -95,6 +104,9 @@ window.REFS = [
     year:     '2023',
     tags:     ["eshop","b2b","b2c","retail"],
     href:     '#',
+    domain:   'harfasport.cz',
+    mockImg:  'assets/reference/harfasport/mock.png',
+    thumb:    'assets/reference/harfasport/thumb.png',
     cat:      'E-commerce · Sport · B2B',
     kpis: [
       { label: 'SKU', value: '60k' },
@@ -112,6 +124,9 @@ window.REFS = [
     year:     '2023',
     tags:     ["eshop","b2b","retail"],
     href:     '#',
+    domain:   'konsepti.cz',
+    mockImg:  'assets/reference/konsepti/mock.png',
+    thumb:    'assets/reference/konsepti/thumb.png',
     cat:      'B2B · Design · PIM',
     kpis: [
       { label: 'Role', value: '8' },
@@ -129,6 +144,9 @@ window.REFS = [
     year:     '2023',
     tags:     ["eshop","b2c","retail"],
     href:     '#',
+    domain:   'sparkys.cz',
+    mockImg:  'assets/reference/sparkys/mock.png',
+    thumb:    'assets/reference/sparkys/thumb.png',
     cat:      'E-commerce · Retail · Hračky',
     kpis: [
       { label: 'Prodejen', value: '90' },
@@ -146,6 +164,9 @@ window.REFS = [
     year:     '2022',
     tags:     ["eshop","b2c","retail"],
     href:     '#',
+    domain:   'bambule.cz',
+    mockImg:  'assets/reference/bambule/mock.png',
+    thumb:    'assets/reference/bambule/thumb.png',
     cat:      'E-commerce · Retail · Omnichannel',
     kpis: [
       { label: 'Členů věr. prog.', value: '180k' },

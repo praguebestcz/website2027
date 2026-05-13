@@ -475,7 +475,7 @@ body.cursor-red .cursor-ring{border-color:var(--red);background:rgba(227,6,19,.1
 /* === REF GRID === */
 .refs{padding:100px 0}
 .ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.ref{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:none}
+.ref{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:none;isolation:isolate}
 .ref .img{position:absolute;inset:0;transition:transform .8s var(--ease);will-change:transform}
 .ref:hover .img{transform:scale(1.06)}
 .ref .meta{position:absolute;left:0;right:0;bottom:0;padding:24px 28px;color:#fff;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
@@ -647,11 +647,15 @@ body.cursor-red .cursor-ring{border-color:var(--red);background:rgba(227,6,19,.1
 
 /* === LOGO GRID === */
 .logos{padding:80px 0}
-.lgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.lgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden}
 .lcell{height:130px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--mute);transition:all .4s var(--ease);position:relative}
+.lcell:nth-child(6n){border-right:none}
+.lcell:nth-last-child(-n+6){border-bottom:none}
 .lcell:hover{color:var(--ink);background:var(--paper-2)}
 .lcell img{display:block;width:auto;filter:brightness(0);opacity:.7;transition:opacity .4s var(--ease);pointer-events:none}
 .lcell:hover img{opacity:1}
+.lcell--more{font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--ink);cursor:default}
+.lcell--more::before{display:none}
 .lcell::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
 .lcell:hover::before{transform:scaleX(1)}
 

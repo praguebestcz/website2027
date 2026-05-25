@@ -164,6 +164,7 @@
 </style>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
+<script src="assets/quarter.js"></script>
 </head>
 <body>
 
@@ -202,7 +203,7 @@
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
     <a href="kontakt.html" class="btn sm">
       <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
@@ -271,7 +272,7 @@
 <section class="board">
   <div class="wrap">
     <div class="board-wrap reveal">
-      <span class="badge b1"><span class="d"></span>Volná kapacita Q3/26</span>
+      <span class="badge b1"><span class="d"></span>Volná kapacita <span class="next-q">Q3/26</span></span>
       <span class="badge b2"><span class="d"></span>37 specialistů v týmu</span>
 
       <div class="board-card">
@@ -742,10 +743,6 @@
   setInterval(tick,1000);tick();
 
   document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
   });
 
   // Discipline rows: click to expand

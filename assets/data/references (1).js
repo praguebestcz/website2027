@@ -14,7 +14,7 @@ window.REFS = [
   {
     id:       'elnino',
     name:     'El Nino',
-    sup:      '®',
+    sup:      '',
     headline: 'Evropská síť parfumerií potřebovala sjednotit 13 národních e-shopů, napojit ERP Abra, Heureku, Zásilkovnu a vlastní UpSearch. Výsledek: jedna codebase, lokální ceny a měny, rychlost pod vteřinu.
 
 ',
@@ -71,7 +71,7 @@ window.REFS = [
   {
     id:       'albi',
     name:     'Albi',
-    sup:      '®',
+    sup:      '',
     headline: 'Omnichannel e-shop propojující 120 poboček v&nbsp;CZ&nbsp;&amp;&nbsp;SK.',
     category: 'Case Study 025',
     year:     '2024',

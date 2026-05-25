@@ -24,6 +24,7 @@ window.REFS = [
     domain:   'elnino.cz',
     mockImg:  'assets/elnino-web-small.png',
     thumb:    'assets/reference/elnino/thumb.png',
+    badge:    { show: true, text: 'WT100', year: '2025' },
     cat:      'E-commerce · Headless · 13 zemí',
     kpis: [
       { label: 'Konverze B2B', value: '<span class="red">+</span>214%', title: 'Konverze v B2B sekci', desc: 'Velkoobchodní zákazníci nově vidí ceny podle své role a historie objednávek. Průměrná velikost košíku se ztrojnásobila.' },
@@ -46,6 +47,7 @@ window.REFS = [
     domain:   'fotoskoda.cz',
     mockImg:  'assets/reference/fotoskoda/mock.png',
     thumb:    'assets/reference/fotoskoda/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'E-commerce · B2C · ERP',
     kpis: [
       { label: 'SKU', value: '48k' },
@@ -66,6 +68,7 @@ window.REFS = [
     domain:   'hyundai.cz',
     mockImg:  'assets/reference/hyundai/mock.png',
     thumb:    'assets/reference/hyundai/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'Web aplikace · Automotive',
     kpis: [
       { label: 'Dealerů', value: '52' },
@@ -86,6 +89,7 @@ window.REFS = [
     domain:   'albi.cz',
     mockImg:  'assets/reference/albi/mock.png',
     thumb:    'assets/reference/albi/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'E-commerce · Omnichannel',
     kpis: [
       { label: 'Online obrat', value: '<span class="red">+</span>156%' },
@@ -107,6 +111,7 @@ window.REFS = [
     domain:   'harfasport.cz',
     mockImg:  'assets/reference/harfasport/mock.png',
     thumb:    'assets/reference/harfasport/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'E-commerce · Sport · B2B',
     kpis: [
       { label: 'SKU', value: '60k' },
@@ -127,6 +132,7 @@ window.REFS = [
     domain:   'konsepti.cz',
     mockImg:  'assets/reference/konsepti/mock.png',
     thumb:    'assets/reference/konsepti/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'B2B · Design · PIM',
     kpis: [
       { label: 'Role', value: '8' },
@@ -147,6 +153,7 @@ window.REFS = [
     domain:   'sparkys.cz',
     mockImg:  'assets/reference/sparkys/mock.png',
     thumb:    'assets/reference/sparkys/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'E-commerce · Retail · Hračky',
     kpis: [
       { label: 'Prodejen', value: '90' },
@@ -167,6 +174,7 @@ window.REFS = [
     domain:   'bambule.cz',
     mockImg:  'assets/reference/bambule/mock.png',
     thumb:    'assets/reference/bambule/thumb.png',
+    badge:    { show: false, text: 'WT100' },
     cat:      'E-commerce · Retail · Omnichannel',
     kpis: [
       { label: 'Členů věr. prog.', value: '180k' },

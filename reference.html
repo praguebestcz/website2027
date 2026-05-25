@@ -90,6 +90,7 @@
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <script src="assets/data/references.js"></script>
+<script src="assets/quarter.js"></script>
 </head>
 <body>
 
@@ -128,7 +129,7 @@
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
     <a href="kontakt.html" class="btn sm">
       <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
@@ -243,7 +244,7 @@
     <div class="lgrid">
       <div class="lcell"><img src="assets/loga/elnino.svg" alt="El Nino" height="20"></div>
       <div class="lcell"><img src="assets/loga/fotoskoda.svg" alt="FotoŠkoda" height="37"></div>
-      <div class="lcell"><img src="assets/loga/hyundai.svg" alt="Hyundai" height="38"></div>
+      <div class="lcell"><img src="assets/loga/hyundai_v2.svg" alt="Hyundai" height="46"></div>
       <div class="lcell"><img src="assets/loga/albi.svg" alt="Albi" height="30"></div>
       <div class="lcell"><img src="assets/loga/harfasport.svg" alt="Harfa Sport" height="35"></div>
       <div class="lcell"><img src="assets/loga/bambule.svg" alt="Bambule" height="39"></div>
@@ -252,12 +253,13 @@
       <div class="lcell"><img src="assets/loga/bambule.svg" alt="Bambule" height="39"></div>
       <div class="lcell"><img src="assets/loga/fotoskoda.svg" alt="FotoŠkoda" height="37"></div>
       <div class="lcell"><img src="assets/loga/elnino.svg" alt="El Nino" height="20"></div>
-      <div class="lcell"><img src="assets/loga/hyundai.svg" alt="Hyundai" height="38"></div>
+      <div class="lcell"><img src="assets/loga/hyundai_v2.svg" alt="Hyundai" height="46"></div>
       <div class="lcell"><img src="assets/loga/fotoskoda.svg" alt="FotoŠkoda" height="37"></div>
-      <div class="lcell"><img src="assets/loga/hyundai.svg" alt="Hyundai" height="38"></div>
+      <div class="lcell"><img src="assets/loga/hyundai_v2.svg" alt="Hyundai" height="46"></div>
       <div class="lcell"><img src="assets/loga/elnino.svg" alt="El Nino" height="20"></div>
       <div class="lcell"><img src="assets/loga/harfasport.svg" alt="Harfa Sport" height="35"></div>
       <div class="lcell"><img src="assets/loga/bambule.svg" alt="Bambule" height="39"></div>
+      <div class="lcell"><img src="assets/loga/generalli.svg" alt="Generali" height="22"></div>
       <div class="lcell" style="font-size:22px;font-weight:800;letter-spacing:-.03em;color:var(--ink)">+100</div>
     </div>
     </div>
@@ -296,7 +298,7 @@
         <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
         <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
         <a href="#">Big Data <span class="ar">→</span></a>
-        <a href="#">UpSearch™ <span class="ar">→</span></a>
+        <a href="#">UpSearch <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Studio</h5>
@@ -345,7 +347,31 @@
     const vizClass = hasThumb ? 'viz has-thumb' : 'viz';
     const vizBg    = hasThumb ? `<div class="viz-bg" style="background-image:url('${ref.thumb}')"></div>` : '';
 
+    const wtBadge = (ref.badge && ref.badge.show) ? (() => {
+      const b = ref.badge;
+      const uid = ref.id;
+      const year = b.year || ref.year || '2025';
+      return `<div class="wt-badge">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="60" fill="#E30613"/>
+          <defs>
+            <path id="wt-top-${uid}" d="M 11,60 A 49,49 0 1,1 109,60"/>
+            <path id="wt-bot-${uid}" d="M 15,60 A 45,45 0 0,0 105,60"/>
+          </defs>
+          <text font-size="7.2" font-weight="600" fill="rgba(255,255,255,.78)" letter-spacing="2.4" font-family="monospace">
+            <textPath href="#wt-top-${uid}" startOffset="50%" text-anchor="middle">· WEBTOP100 · VÍTĚZ ${year} ·</textPath>
+          </text>
+          <text font-size="7.2" font-weight="600" fill="rgba(255,255,255,.78)" letter-spacing="2.8" font-family="monospace">
+            <textPath href="#wt-bot-${uid}" startOffset="50%" text-anchor="middle">· CASE STUDY ·</textPath>
+          </text>
+          <text x="60" y="56" text-anchor="middle" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.72)" letter-spacing="3" font-family="monospace">VÍTĚZ</text>
+          <text x="60" y="76" text-anchor="middle" font-size="26" font-weight="900" fill="white" letter-spacing="-0.5" font-family="sans-serif">${b.text}</text>
+        </svg>
+      </div>`;
+    })() : '';
+
     return `<article class="case-card reveal" data-tags="${ref.tags.join(' ')}">
+      ${wtBadge}
       <div class="meta">
         <div>
           <div class="tag">${ref.category}</div>
@@ -434,10 +460,6 @@
   setInterval(tick,1000);tick();
 
   document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
   });
 
   // Filter logic — karty jsou už v DOM (renderovány synchrónně výše)

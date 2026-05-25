@@ -36,6 +36,15 @@
 .hero h1 .word{display:inline-block;transform:translateY(110%);will-change:transform}
 .hero h1 .word.on{transform:translateY(0);transition:transform 1.1s var(--ease-out)}
 .hero h1 .red{color:var(--red);position:relative;display:inline-block}
+
+/* Rotující slovo */
+.hero h1 .rot-wrap{display:inline-block;overflow:hidden;vertical-align:bottom;line-height:.9}
+.hero h1 .rot-word{
+  display:inline-block;color:var(--red);
+  transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .35s ease;
+}
+.hero h1 .rot-word.exit{transform:translateY(-110%);opacity:0}
+.hero h1 .rot-word.enter{transform:translateY(110%);opacity:0;transition:none}
 .hero .below{
   margin-top:48px;display:grid;grid-template-columns:minmax(280px,1.4fr) 1fr 1fr;gap:80px;align-items:end;
 }
@@ -104,6 +113,7 @@ footer .wrap{position:relative;z-index:2}
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <script src="assets/data/references.js"></script>
+<script src="assets/quarter.js"></script>
 </head>
 <body>
 
@@ -143,7 +153,7 @@ footer .wrap{position:relative;z-index:2}
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
     <a href="#" class="btn sm">
       <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
@@ -155,31 +165,32 @@ footer .wrap{position:relative;z-index:2}
 <section class="hero">
   <div class="blob"></div>
   <div class="wrap">
-    <div class="eyebrow reveal">Spojujeme design, vývoj a&nbsp;data</div>
+    <div class="eyebrow reveal">Spojujeme design, vývoj, data a AI</div>
 
     <h1>
-      <span class="ln"><span class="word">Tvoříme eshopy, weby&nbsp;a&nbsp;aplikace,</span></span>
-      <span class="ln"><span class="word">které umí <span class="red">prodávat.</span></span></span>
+      <span class="ln"><span class="word">Tvoříme eshopy, weby</span></span>
+      <span class="ln"><span class="word">a aplikace, které umí</span></span>
+      <span class="ln"><span class="word"><span class="rot-wrap"><span class="rot-word">prodávat</span></span></span></span>
     </h1>
 
     <div class="below">
       <p class="lede reveal d1">
-        Digitální agentura s&nbsp;<b>27 lety zkušeností</b>. Stavíme
-        <span class="hi">e-shopy, webové aplikace a&nbsp;datové nástroje</span>,
-        které reálně posouvají byznys klientů &mdash; od analýzy po provoz 24/7.
+        Digitální agentura s&nbsp;<b>27 lety zkušeností</b>. Stavíme e-shopy a&nbsp;webové aplikace,
+        se&nbsp;kterými klienti rostou &mdash; a&nbsp;s AI dnes umíme MVP doručit za&nbsp;týdny, ne&nbsp;měsíce.
+        Od&nbsp;analýzy přes vývoj až&nbsp;po provoz 24/7.
       </p>
       <div class="data reveal d2">
         <div class="row"><span>Klientů</span><b>180+</b></div>
         <div class="row"><span>Obrat zpracovaný</span><b>150 mld. Kč</b></div>
-        <div class="row"><span>Tým</span><b>37 specialistů</b></div>
+        <div class="row"><span>Délka spolupráce</span><b>8+ let v průměru</b></div>
         <div class="row"><span>Ocenění</span><b>17× WebTop100</b></div>
       </div>
       <div class="ctas reveal d3">
-        <a href="#" class="btn">
-          <span class="lbl" data-t="Začněme projekt"><span>Začněme projekt</span></span>
+        <a href="kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
           <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </a>
-        <a href="#" class="btn ghost">
+        <a href="reference.html" class="btn ghost">
           <span class="lbl" data-t="Prohlédnout reference"><span>Prohlédnout reference</span></span>
           <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </a>
@@ -190,20 +201,24 @@ footer .wrap{position:relative;z-index:2}
 </section>
 
 <!-- ===================== MARQUEE ===================== -->
-<div class="marquee" aria-hidden="true">
+<div class="marquee">
   <div class="track">
-    <span>Headless e-commerce</span>
-    <span>Vlastní UpSearch™</span>
-    <span>B2B &amp; B2C platformy</span>
-    <span>Big Data &amp; personalizace</span>
-    <span>Web aplikace na míru</span>
-    <span>PIM &amp; ERP integrace</span>
-    <span>Headless e-commerce</span>
-    <span>Vlastní UpSearch™</span>
-    <span>B2B &amp; B2C platformy</span>
-    <span>Big Data &amp; personalizace</span>
-    <span>Web aplikace na míru</span>
-    <span>PIM &amp; ERP integrace</span>
+    <a href="eshop.html">Headless e-commerce</a>
+    <a href="eshop.html">Shopify implementace</a>
+    <a href="eshop.html">PIM &amp; ERP integrace</a>
+    <a href="weby.html">Korporátní weby &amp; portály</a>
+    <a href="weby.html">ePublisher CMS</a>
+    <a href="aplikace.html">AI-driven MVP za 2 týdny</a>
+    <a href="bigdata.html">BigDataManager personalizace</a>
+    <a href="upsearch.html">UpSearch vyhledávač</a>
+    <a href="eshop.html">Headless e-commerce</a>
+    <a href="eshop.html">Shopify implementace</a>
+    <a href="eshop.html">PIM &amp; ERP integrace</a>
+    <a href="weby.html">Korporátní weby &amp; portály</a>
+    <a href="weby.html">ePublisher CMS</a>
+    <a href="aplikace.html">AI-driven MVP za 2 týdny</a>
+    <a href="bigdata.html">BigDataManager personalizace</a>
+    <a href="upsearch.html">UpSearch vyhledávač</a>
   </div>
 </div>
 
@@ -214,14 +229,14 @@ footer .wrap{position:relative;z-index:2}
       <div class="lcell"><img src="assets/loga/fotoskoda.svg" alt="Foto Škoda" height="37"></div>
       <div class="lcell"><img src="assets/loga/harfasport.svg" alt="Harfa Sport" height="35"></div>
       <div class="lcell"><img src="assets/loga/bambule.svg" alt="Bambule" height="39"></div>
-      <div class="lcell"><img src="assets/loga/hyundai.svg" alt="Hyundai" height="38"></div>
+      <div class="lcell"><img src="assets/loga/hyundai_v2.svg" alt="Hyundai" height="46"></div>
       <div class="lcell"><img src="assets/loga/albi.svg" alt="Albi" height="30"></div>
       <div class="lcell"><img src="assets/loga/elnino.svg" alt="ElNiño" height="20"></div>
-      <div class="lcell"><img src="assets/loga/elnino.svg" alt="ElNiño" height="20"></div>
-      <div class="lcell"><img src="assets/loga/albi.svg" alt="Albi" height="30"></div>
-      <div class="lcell"><img src="assets/loga/hyundai.svg" alt="Hyundai" height="38"></div>
-      <div class="lcell"><img src="assets/loga/bambule.svg" alt="Bambule" height="39"></div>
-      <div class="lcell"><img src="assets/loga/harfasport.svg" alt="Harfa Sport" height="35"></div>
+      <div class="lcell"><img src="assets/loga/sparkys.svg" alt="Sparkys" height="27"></div>
+      <div class="lcell"><img src="assets/loga/generalli.svg" alt="Generali" height="22"></div>
+      <div class="lcell"><img src="assets/loga/bal.svg" alt="BAL" height="34"></div>
+      <div class="lcell"><img src="assets/loga/dpp.svg" alt="DPP" height="34"></div>
+      <div class="lcell"><img src="assets/loga/mkluzkoviny.svg" alt="MK Lužkoviny" height="34"></div>
       <div class="lcell lcell--more">+115</div>
     </div>
   </div>
@@ -299,7 +314,7 @@ footer .wrap{position:relative;z-index:2}
 
       <article class="srv-row">
         <div class="no">04 / 04</div>
-        <h3>UpSearch™ vyhledávač</h3>
+        <h3>UpSearch vyhledávač</h3>
         <div class="tags"><span>Own product</span><span>NLP</span><span>LTR</span></div>
         <div class="icon-slot"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15 15l5 5"/></svg></div>
         <div class="panel">
@@ -344,7 +359,7 @@ footer .wrap{position:relative;z-index:2}
       </div>
       <div class="ncell reveal d2">
         <div class="idx">/ 03</div>
-        <div class="n" data-count="100">0<sub>+ e-shopů</sub></div>
+        <div class="n" data-count="1000">0<sub>+ projektů</sub></div>
         <div class="l">Dodaných projektů</div>
         <div class="d">Od malých B2C obchodů po mezinárodní B2B platformy se 13&nbsp;jazykovými mutacemi.</div>
       </div>
@@ -419,7 +434,7 @@ footer .wrap{position:relative;z-index:2}
         <a href="#">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
         <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
         <a href="#">Big Data <span class="ar">→</span></a>
-        <a href="#">UpSearch™ <span class="ar">→</span></a>
+        <a href="#">UpSearch <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Studio</h5>
@@ -560,6 +575,24 @@ footer .wrap{position:relative;z-index:2}
     });
   },200);
 
+  // ======== Rotating word ========
+  (()=>{
+    const WORDS = ['prodávat','škálovat','myslet','vydělávat','vyhrávat','růst'];
+    let idx = 0;
+    const el = document.querySelector('.hero h1 .rot-word');
+    if (!el) return;
+    setInterval(()=>{
+      el.classList.add('exit');
+      setTimeout(()=>{
+        idx = (idx + 1) % WORDS.length;
+        el.textContent = WORDS[idx];
+        el.classList.remove('exit');
+        el.classList.add('enter');
+        requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.remove('enter')));
+      }, 380);
+    }, 2600);
+  })();
+
   // ======== Blob parallax ========
   const blob=document.querySelector('.hero .blob');
   window.addEventListener('mousemove',e=>{
@@ -597,13 +630,14 @@ footer .wrap{position:relative;z-index:2}
       const target=parseInt(el.dataset.count,10);
       const dur=1600,start=performance.now();
       const sub=el.querySelector('sub')?.outerHTML||'';
+      const fmt=n=>n>=1000?Math.floor(n/1000)+' '+String(n%1000).padStart(3,'0'):String(n);
       function tick(now){
         const t=Math.min((now-start)/dur,1);
         const eased=1-Math.pow(1-t,3);
         const val=Math.floor(target*eased);
-        el.innerHTML=val+sub;
+        el.innerHTML=fmt(val)+sub;
         if(t<1)requestAnimationFrame(tick);
-        else el.innerHTML=target+sub;
+        else el.innerHTML=fmt(target)+sub;
       }
       requestAnimationFrame(tick);
       cio.unobserve(el);
@@ -622,15 +656,6 @@ footer .wrap{position:relative;z-index:2}
 
   // ======== Magnetic buttons ========
   document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{
-      if(!rect)return;
-      const x=e.clientX-rect.left-rect.width/2;
-      const y=e.clientY-rect.top-rect.height/2;
-      b.style.transform=`translate(${x*.18}px,${y*.22}px)`;
-    });
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
   });
 })();
 </script>

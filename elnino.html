@@ -254,6 +254,7 @@
 <script src="assets/data/references.js"></script>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
+<script src="assets/quarter.js"></script>
 </head>
 <body>
 
@@ -292,7 +293,7 @@
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
     <a href="#" class="btn sm">
       <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
@@ -441,7 +442,7 @@
       <article class="pillar reveal d2">
         <div class="ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15 15l5 5"/></svg></div>
         <div class="n">Pilíř / 03</div>
-        <h4>UpSearch™</h4>
+        <h4>UpSearch</h4>
         <p>Vlastní vyhledávání s&nbsp;tolerancí překlepů ve&nbsp;13&nbsp;jazycích, kontextovým řazením a&nbsp;learn-to-rank modelem na&nbsp;historických objednávkách.</p>
       </article>
     </div>
@@ -602,7 +603,7 @@
         <a href="#">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
         <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
         <a href="#">Big Data <span class="ar">→</span></a>
-        <a href="#">UpSearch™ <span class="ar">→</span></a>
+        <a href="#">UpSearch <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Studio</h5>
@@ -652,10 +653,6 @@
   setInterval(tick,1000);tick();
 
   document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
   });
 })();
 
@@ -672,7 +669,7 @@
   const idxEl = document.getElementById('cs-category');
   if (idxEl) idxEl.textContent = ref.category;
 
-  // h1 — name (keep ® sup)
+  // h1 — name (keep  sup)
   const h1 = document.getElementById('cs-name');
   if (h1) h1.textContent = ref.name;
 

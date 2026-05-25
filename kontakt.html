@@ -243,6 +243,7 @@ form{display:grid;gap:14px}
 </style>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
+<script src="assets/quarter.js"></script>
 </head>
 <body>
 
@@ -281,7 +282,7 @@ form{display:grid;gap:14px}
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>Přijímáme projekty Q3/26</span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
     <a href="#form" class="btn sm">
       <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
@@ -429,7 +430,7 @@ form{display:grid;gap:14px}
           <button type="button" class="chip">Webová aplikace</button>
           <button type="button" class="chip">Redesign / rozvoj</button>
           <button type="button" class="chip">Big Data &amp; analytika</button>
-          <button type="button" class="chip">UpSearch™</button>
+          <button type="button" class="chip">UpSearch</button>
           <button type="button" class="chip">Ještě nevím</button>
         </div>
 
@@ -629,7 +630,7 @@ form{display:grid;gap:14px}
         </svg>
 
         <div class="overlay">
-          <span class="k">PragueBest®</span>
+          <span class="k">PragueBest</span>
           <b>Vítkova 32</b>
           186 00 Praha 8, Karlín<br>
           <span style="color:var(--mute)">50.0913° N &nbsp;·&nbsp; 14.4525° E</span>
@@ -751,7 +752,7 @@ form{display:grid;gap:14px}
         <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
         <a href="#">Weby &amp; aplikace <span class="ar">→</span></a>
         <a href="#">Big Data <span class="ar">→</span></a>
-        <a href="#">UpSearch™ <span class="ar">→</span></a>
+        <a href="#">UpSearch <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Studio</h5>
@@ -801,10 +802,6 @@ form{display:grid;gap:14px}
   setInterval(tick,1000);tick();
 
   document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
   });
 
   // Copy to clipboard

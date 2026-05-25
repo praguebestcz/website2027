@@ -247,6 +247,38 @@ body{
 ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2);border-radius:3px}
 .sidebar ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
 
+/* ── Badge toggle ────────────────────────────────────────── */
+.badge-section{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:20px;
+}
+.badge-header{
+  display:flex;align-items:center;gap:14px;padding:16px 20px;
+  cursor:pointer;user-select:none;background:#fff;transition:background .15s;
+}
+.badge-header:hover{background:#faf8f4}
+.badge-header.is-on{background:#fff8f8;border-bottom:1px solid #fde0e0}
+.badge-icon{
+  width:36px;height:36px;border-radius:8px;background:var(--line);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;
+  font-size:14px;font-weight:900;color:#999;letter-spacing:-.02em;
+}
+.badge-header.is-on .badge-icon{background:var(--red);color:#fff}
+.badge-label{flex:1}
+.badge-label strong{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+.badge-label span{font-size:11px;color:var(--mute);margin-top:2px;display:block}
+.badge-switch{
+  width:38px;height:22px;border-radius:99px;background:var(--line);
+  position:relative;transition:background .2s;flex-shrink:0;
+}
+.badge-switch::after{
+  content:"";position:absolute;top:3px;left:3px;
+  width:16px;height:16px;border-radius:50%;background:#fff;
+  transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);
+}
+.badge-header.is-on .badge-switch{background:var(--red)}
+.badge-header.is-on .badge-switch::after{transform:translateX(16px)}
+.badge-fields{padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#fff}
+
 /* ── Featured toggle ─────────────────────────────────────── */
 .featured-toggle{
   display:flex;align-items:center;gap:16px;padding:18px 20px;
@@ -444,6 +476,28 @@ function renderEditor() {
       <div class="featured-check">${ref.featured ? '✓' : ''}</div>
     </div>
 
+    <div class="badge-section">
+      <div class="badge-header${ref.badge && ref.badge.show ? ' is-on' : ''}" id="badge-header" onclick="toggleBadge()">
+        <div class="badge-icon">WT</div>
+        <div class="badge-label">
+          <strong>Badge — ocenění / štítek</strong>
+          <span>Kruhový odznak zobrazený na case study kartě (např. WT100, TOP 10…)</span>
+        </div>
+        <div class="badge-switch"></div>
+      </div>
+      ${ref.badge && ref.badge.show ? `
+      <div class="badge-fields" id="badge-fields">
+        <div class="field">
+          <label>Text odznaku</label>
+          <input type="text" value="${esc(ref.badge.text||'WT100')}" oninput="updateBadge('text',this.value)" placeholder="WT100">
+        </div>
+        <div class="field">
+          <label>Rok</label>
+          <input type="text" value="${esc(ref.badge.year||ref.year||'2025')}" oninput="updateBadge('year',this.value)" placeholder="2025">
+        </div>
+      </div>` : ''}
+    </div>
+
     <div class="section-title">Základní informace</div>
     <div class="form-grid">
       <div class="field">
@@ -561,6 +615,44 @@ function setFeatured() {
 function updateSidebar() {
   // re-render just the active item name without full sidebar rebuild
   renderSidebar();
+}
+
+function toggleBadge() {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  const isOn = ref.badge && ref.badge.show;
+  ref.badge = { show: !isOn, text: (ref.badge && ref.badge.text) || 'WT100', year: (ref.badge && ref.badge.year) || ref.year || '2025' };
+  const header = document.getElementById('badge-header');
+  if (!header) return;
+  header.classList.toggle('is-on', ref.badge.show);
+  // Toggle fields
+  let fields = document.getElementById('badge-fields');
+  if (ref.badge.show) {
+    if (!fields) {
+      fields = document.createElement('div');
+      fields.className = 'badge-fields';
+      fields.id = 'badge-fields';
+      fields.innerHTML = `
+        <div class="field">
+          <label>Text odznaku</label>
+          <input type="text" value="${esc(ref.badge.text)}" oninput="updateBadge('text',this.value)" placeholder="WT100">
+        </div>
+        <div class="field">
+          <label>Rok</label>
+          <input type="text" value="${esc(ref.badge.year)}" oninput="updateBadge('year',this.value)" placeholder="2025">
+        </div>`;
+      header.parentElement.appendChild(fields);
+    }
+  } else {
+    if (fields) fields.remove();
+  }
+  toast(ref.badge.show ? 'Badge zapnut' : 'Badge vypnut');
+}
+
+function updateBadge(key, val) {
+  if (activeIdx === null) return;
+  if (!data[activeIdx].badge) data[activeIdx].badge = { show: true, text: 'WT100', year: '2025' };
+  data[activeIdx].badge[key] = val;
 }
 
 function updateTags() {
@@ -708,6 +800,7 @@ function generateJS() {
     if (ref.domain)  lines.push(`    domain:   '${safeStr(ref.domain)}',`);
     if (ref.mockImg) lines.push(`    mockImg:  '${safeStr(ref.mockImg)}',`);
     if (ref.thumb)   lines.push(`    thumb:    '${safeStr(ref.thumb)}',`);
+    if (ref.badge)   lines.push(`    badge:    { show: ${ref.badge.show ? 'true' : 'false'}, text: '${safeStr(ref.badge.text||'WT100')}', year: '${safeStr(ref.badge.year||ref.year||'2025')}' },`);
     lines.push(`    cat:      '${safeStr(ref.cat)}',`);
     lines.push(`    kpis: [`);
     ref.kpis.forEach(k => {

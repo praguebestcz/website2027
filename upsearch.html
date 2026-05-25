@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>UpSearch™ — Chytré vyhledávání pro e-shopy</title>
+<title>UpSearch — Chytré vyhledávání pro e-shopy</title>
 <style>
 .hero{padding:170px 0 120px;position:relative;text-align:center;overflow:hidden}
 .hero .blob{position:absolute;left:50%;top:45%;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.14),transparent 60%);transform:translate(-50%,-50%);filter:blur(50px);z-index:0;pointer-events:none}
@@ -737,7 +737,7 @@
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
-    <div class="big">UpSearch<span class="red">®</span></div>
+    <div class="big">UpSearch<span class="red"></span></div>
     <div class="cols">
       <div class="about">
         <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
@@ -765,7 +765,7 @@
       </div>
     </div>
     <div class="base">
-      <div>© 2026 PragueBest s.r.o. &nbsp;·&nbsp; UpSearch® je registrovaná ochranná známka</div>
+      <div>© 2026 PragueBest s.r.o. &nbsp;·&nbsp; UpSearch je registrovaná ochranná známka</div>
       <div class="clock">
         <span><span class="k">UPTIME</span><b>99,97%</b></span>
         <span><span class="k">RESPONSE</span><b>38ms</b></span>
@@ -794,10 +794,6 @@
   document.querySelectorAll('.reveal,.prob,.feat').forEach(el=>io.observe(el));
 
   document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
   });
 
   // ====== Demo search auto-type animation ======

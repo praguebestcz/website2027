@@ -3,11 +3,69 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>E-shopy na míru — PragueBest</title>
+<title>E-commerce: e-shopy na míru, B2B i Shopify | PragueBest</title>
+<meta name="description" content="E-shopy na míru pro B2C i B2B, Shopify pro rychlý start nebo expanzi. 100+ projektů, vlastní PIM, UpSearch, BigDataManager. 27 let v e-commerce." />
+<meta name="keywords" content="e-shop na míru, e-commerce, B2B e-shop, B2C e-shop, headless commerce, Shopify, Shopify Plus, Shopify partner, custom e-shop, e-commerce agentura, PIM, UpSearch, BigDataManager, Karlín, Praha, PragueBest" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/eshop" />
+<meta property="og:title" content="E-commerce: e-shopy na míru, B2B i Shopify | PragueBest" />
+<meta property="og:description" content="E-shopy na míru pro B2C i B2B, Shopify pro rychlý start nebo expanzi. 100+ projektů, vlastní PIM, UpSearch, BigDataManager. 27 let v e-commerce." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-eshop.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="E-commerce: e-shopy na míru, B2B i Shopify | PragueBest" />
+<meta name="twitter:description" content="E-shopy na míru pro B2C i B2B, Shopify pro rychlý start nebo expanzi. 100+ projektů, vlastní PIM, UpSearch, BigDataManager. 27 let v e-commerce." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-eshop.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "Co umíme", "item": "https://praguebest.cz/co-umime" },
+    { "@type": "ListItem", "position": 3, "name": "E-shopy" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "E-commerce řešení od PragueBest",
+  "description": "E-shopy na míru pro B2C i B2B, Shopify pro rychlý start nebo expanzi. Tři cesty k e-shopu.",
+  "url": "https://praguebest.cz/eshop",
+  "isPartOf": { "@type": "WebSite", "name": "PragueBest", "url": "https://praguebest.cz" },
+  "hasPart": [
+    { "@type": "WebPage", "name": "B2C E-shop na míru", "url": "https://praguebest.cz/eshop/b2c-na-miru" },
+    { "@type": "WebPage", "name": "B2B E-shop na míru", "url": "https://praguebest.cz/eshop/b2b-na-miru" },
+    { "@type": "WebPage", "name": "Shopify e-shopy", "url": "https://praguebest.cz/eshop/shopify" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "E-commerce Development",
+  "name": "E-shopy na míru a Shopify",
+  "provider": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "areaServed": ["CZ", "SK", "EU"],
+  "description": "E-shopy na míru pro B2C i B2B, Shopify pro rychlý start nebo expanzi. 27 let v e-commerce, 100+ realizovaných projektů.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "E-commerce řešení",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "B2C E-shop na míru" }},
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "B2B E-shop na míru" }},
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shopify e-shopy a Shopify Plus" }},
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PIM systém pro správu produktových dat" }}
+    ]
+  }
+}
+</script>
 <style>
-/* Browser collage — base styles now in shared.css */
-/* Page-specific overrides for eshop mockup content: */
-/* Main desktop mock */
+/* ===================== BROWSER COLLAGE MOCKUPS ===================== */
 .m1 .bmock .hero{padding:44px 40px;background:linear-gradient(135deg,#1a0408,#3a0810);color:#fff;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
 .m1 .bmock .hero::after{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.45),transparent 60%);filter:blur(20px)}
 .m1 .bmock .hero h4{font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:.95;position:relative;z-index:2}
@@ -21,8 +79,6 @@
 .m1 .bmock .grid .ph::after{content:"";position:absolute;inset:14px;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.7),transparent 60%);border-radius:50%}
 .m1 .bmock .grid b{font-size:10px;color:#333;display:block;font-weight:600}
 .m1 .bmock .grid small{font-size:10px;color:var(--red);font-weight:700;display:block;margin-top:4px}
-
-/* Small left — category page */
 .m2 .bmock .nav{padding:14px 16px;font-size:11px;font-weight:800;letter-spacing:-.02em;border-bottom:1px solid #f0ebe0}
 .m2 .bmock .fi{padding:12px 16px;background:#f6f0e0;font-family:var(--mono);font-size:9px;color:#666;display:flex;gap:10px;flex-wrap:wrap}
 .m2 .bmock .fi span{padding:4px 8px;background:#fff;border-radius:20px;border:1px solid #e0d8c0}
@@ -33,8 +89,6 @@
 .m2 .bmock .list .row .tx b{font-size:10px;font-weight:600;color:#333;display:block}
 .m2 .bmock .list .row .tx small{font-size:9px;color:#999;display:block;margin-top:2px}
 .m2 .bmock .list .row .tx .pr{font-size:11px;color:var(--red);font-weight:800;margin-top:4px;display:block}
-
-/* Small right — checkout */
 .m3 .bmock .hd{padding:14px 16px;background:#f6f0e0;font-size:10px;font-weight:800;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:center}
 .m3 .bmock .hd small{color:var(--red);font-size:9px;font-weight:700}
 .m3 .bmock .body{padding:14px 16px;background:#fff}
@@ -48,82 +102,57 @@
 .m3 .bmock .tot b{color:var(--red)}
 .m3 .bmock .pay{padding:10px 16px;background:var(--red);color:#fff;text-align:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 
-/* Floating badges */
-
-/* ===================== SECTION HEAD ===================== */
-
-/* ===================== FOR WHOM ===================== */
-.fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
-
-/* ===================== FEATURES GRID ===================== */
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
-.feat{
-  padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;
-  transition:background .5s var(--ease);
+/* ===================== ROUTE CARDS ===================== */
+.routes{padding:80px 0;border-top:1px solid var(--ink)}
+.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.route-card{
+  padding:52px 44px 48px;border:1px solid var(--line);border-radius:20px;background:var(--paper);
+  display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;
+  transition:all .5s var(--ease);text-decoration:none;color:var(--ink);
 }
-.feat::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
-.feat:hover::before{transform:translateY(0)}
-.feat > *{position:relative;z-index:1;transition:color .5s var(--ease)}
-.feat:hover > *{color:var(--paper)}
-.feat .ico{
-  width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);
-  display:flex;align-items:center;justify-content:center;margin-bottom:32px;
-  transition:all .5s var(--ease);
-}
-.feat:hover .ico{background:var(--red);color:#fff}
-.feat .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.feat .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-.feat:hover .n{color:rgba(242,236,224,.5)}
-.feat h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
-.feat p{font-size:14px;color:var(--ink-3);line-height:1.6}
-.feat:hover p{color:rgba(242,236,224,.75)}
+.route-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.route-card:hover::before{transform:translateY(0)}
+.route-card:hover{border-color:var(--ink);transform:translateY(-4px)}
+.route-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.route-card:hover > *{color:var(--paper)}
+.route-card .rc-tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:20px;transition:color .5s var(--ease)}
+.route-card:hover .rc-tag{color:rgba(227,6,19,.7)}
+.route-card h3{font-size:clamp(28px,2.5vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px}
+.route-card p{font-size:15px;color:var(--ink-3);line-height:1.6;margin-bottom:28px}
+.route-card:hover p{color:rgba(242,236,224,.75)}
+.route-card .rc-meta{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:auto;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;transition:all .5s var(--ease)}
+.route-card:hover .rc-meta{color:rgba(242,236,224,.5);border-top-color:rgba(242,236,224,.15)}
+.route-card .rc-arr{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .5s var(--ease)}
+.route-card:hover .rc-arr{background:var(--red);border-color:var(--red)}
+.route-card .rc-arr svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .5s var(--ease)}
+.route-card:hover .rc-arr svg{stroke:#fff}
 
-/* ===================== TECH STACK ===================== */
-.stack .sec-head h2,.stack .sec-head .idx{color:var(--paper)}
-.stack-item{
-  padding:40px 24px 32px;border-right:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);
-  position:relative;transition:background .4s var(--ease);text-align:center;
-}
-.stack-item:hover{background:rgba(242,236,224,.05)}
-.stack-item .lg{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--paper);margin-bottom:6px}
-.stack-item .cat{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.06em;text-transform:uppercase}
-.stack-item::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
-.stack-item:hover::before{transform:scaleX(1)}
+/* ===================== PRINCIPLES ===================== */
+.principles{padding:80px 0;border-top:1px solid var(--ink);background:var(--ink)}
+.principles .sec-head h2{color:var(--paper)}
+.principles .sec-head .idx{color:rgba(242,236,224,.4)}
+.prc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(242,236,224,.12);margin-top:48px}
+.prc{padding:40px 32px 36px;border-right:1px solid rgba(242,236,224,.12);position:relative}
+.prc:last-child{border-right:none}
+.prc .n{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.prc h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--paper);margin-bottom:12px}
+.prc p{font-size:14px;color:rgba(242,236,224,.6);line-height:1.6}
 
-/* ===================== MODULES ===================== */
-.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
-.mod{
-  display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;
-  padding:28px 32px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
-  position:relative;transition:background .4s var(--ease),padding .4s var(--ease);
-}
-.mod:nth-child(2n){border-right:none}
-.mod::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out)}
-.mod:hover::before{transform:scaleY(1)}
-.mod:hover{background:var(--paper-2);padding-left:40px}
-.mod .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em}
-.mod h5{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
-.mod p{font-size:13px;color:var(--mute);line-height:1.5;max-width:42ch}
-.mod .plus{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
-.mod .plus svg{width:12px;height:12px;stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.mod:hover .plus{background:var(--red);border-color:var(--red)}
-.mod:hover .plus svg{stroke:#fff}
+/* ===================== PIM BLOCK ===================== */
+.pim-block{padding:80px 0;border-top:1px solid var(--ink)}
+.pim-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pim-inner .left .eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.pim-inner .left .eyebrow::before{content:"";width:24px;height:1px;background:var(--red)}
+.pim-inner .left h2{font-size:clamp(36px,3.5vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-bottom:20px}
+.pim-inner .left p{font-size:16px;color:var(--ink-3);line-height:1.65;margin-bottom:28px}
+.pim-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.pim-stat .val{font-size:32px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.pim-stat .lbl{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
 
-/* ===================== PROCESS ===================== */
-.process{padding:80px 0;border-top:1px solid var(--ink)}
-.step .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:10px}
-.step .n b{color:var(--red);font-weight:700}
-.step .dur{margin-left:auto;color:var(--mute);font-weight:500}
-.step ul{list-style:none;margin-top:18px;font-size:12px;font-family:var(--mono);color:var(--ink-3);line-height:1.9}
-.step ul li{padding-left:14px;position:relative}
-.step ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
-
-/* ===================== REFERENCE STRIP ===================== */
+/* ===================== MINI-REFERENCES ===================== */
 .ref .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
 .ref .kpi{display:flex;gap:24px;margin-top:16px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.02em}
 .ref .kpi b{color:#fff;font-weight:700;display:block;font-family:var(--sans);font-size:16px;letter-spacing:-.01em}
-
-/* Decorative logo on ref card */
 .ref .brandmark{position:absolute;top:28px;left:30px;font-family:var(--sans);font-size:22px;font-weight:900;color:rgba(255,255,255,.9);letter-spacing:-.02em;z-index:3;text-transform:uppercase}
 .ref.r3 .brandmark{color:rgba(10,10,10,.85)}
 .ref.r3 .meta{color:var(--ink)}
@@ -132,65 +161,15 @@
 .ref.r3 .kpi{color:var(--mute)}
 .ref.r3 .kpi b{color:var(--ink)}
 
-/* ===================== FAQ ===================== */
-.faq{padding:100px 0;border-top:1px solid var(--ink)}
-.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
-.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
-.qa:hover{background:var(--paper-2)}
-.qa summary{
-  padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;
-  cursor:none;list-style:none;position:relative;
+@media(max-width:1024px){
+  .route-grid,.prc-grid{grid-template-columns:repeat(2,1fr)}
+  .pim-inner{grid-template-columns:1fr;gap:40px}
 }
-.qa summary::-webkit-details-marker{display:none}
-.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
-.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
-.qa:hover summary h5{transform:translateX(6px)}
-.qa summary .tog{
-  width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
-  display:flex;align-items:center;justify-content:center;position:relative;
-  transition:all .4s var(--ease);
+@media(max-width:700px){
+  .route-grid{grid-template-columns:1fr}
+  .prc-grid{grid-template-columns:1fr 1fr}
+  .pim-stats{grid-template-columns:repeat(2,1fr)}
 }
-.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
-.qa summary .tog::before{width:14px;height:1.5px}
-.qa summary .tog::after{width:1.5px;height:14px}
-.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
-.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
-.qa[open] summary .tog::after{transform:scaleY(0)}
-.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
-.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
-.qa .answer p + p{margin-top:12px}
-.qa .answer b{color:var(--ink);font-weight:600}
-
-/* ===================== INVESTMENT ===================== */
-.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
-.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
-.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
-.inv-grid .left h3 .red{color:var(--red)}
-.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
-.inv-grid .left p + p{margin-top:16px}
-.inv-grid .left p b{color:var(--ink);font-weight:600}
-.inv-grid .right{display:grid;gap:16px}
-.price{
-  padding:36px 40px;border:1px solid var(--line);border-radius:16px;background:var(--paper);
-  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
-  transition:all .5s var(--ease);
-}
-.price:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateX(-4px)}
-.price .lbl-p{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-.price:hover .lbl-p{color:rgba(242,236,224,.5)}
-.price h4{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:6px 0 6px}
-.price small{font-size:13px;color:var(--mute);max-width:32ch;display:block}
-.price:hover small{color:rgba(242,236,224,.6)}
-.price .val{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1;text-align:right}
-.price .val sub{display:block;font-size:11px;font-weight:500;color:var(--mute);font-family:var(--mono);margin-top:4px;letter-spacing:.02em}
-.price:hover .val sub{color:rgba(242,236,224,.6)}
-
-/* ===================== CTA ===================== */
-
-/* ===================== FOOTER ===================== */
 </style>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
@@ -234,7 +213,7 @@
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q4/26</span></span>
     <a href="#" class="btn sm">
       <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
@@ -250,7 +229,7 @@
       Zpět na úvod
     </a>
     <div class="path">
-      <b>Úvod</b> <span>/</span> Co umíme <span>/</span> <b>E-shopy na míru</b>
+      <b>Úvod</b> <span>/</span> Co umíme <span>/</span> <b>E-shopy</b>
     </div>
   </div>
 </div>
@@ -258,43 +237,22 @@
 <!-- ===================== TITLE ===================== -->
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal">B2B &amp; B2C &nbsp;—&nbsp; Headless commerce</div>
-    <h1 class="reveal d1">E-shopy<br>na <span class="red">míru.</span></h1>
+    <div class="idx reveal">B2C na míru &nbsp;·&nbsp; B2B na míru &nbsp;·&nbsp; Shopify</div>
+    <h1 class="reveal d1">E-shopy, které<br>rostou s&nbsp;<span class="red">vámi.</span></h1>
 
     <div class="below">
       <p class="lede reveal d2">
-        Stavíme e-shopy, které zvládnou <b>Black Friday bez škytání</b>,
-        <span class="hi">napojí cokoliv</span> a&nbsp;vypadají jak z&nbsp;budoucnosti. Žádné šablony.
-        Žádné kompromisy v&nbsp;rychlosti.
+        Custom platformy pro velké projekty, krabicová řešení pro rychlý start. <b>27 let zkušeností v&nbsp;e-commerce</b>, 100+ realizovaných e-shopů.
       </p>
       <div class="ctas reveal d3">
-        <a href="#" class="btn">
-          <span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span>
+        <a href="kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
           <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </a>
-        <a href="#refs" class="btn ghost">
-          <span class="lbl" data-t="Vidět příklady"><span>Vidět příklady</span></span>
+        <a href="tel:+420774219988" class="btn ghost">
+          <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
           <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </a>
-      </div>
-    </div>
-
-    <div class="meta-bar reveal d4">
-      <div class="m">
-        <h6>Co dostanete</h6>
-        <p>Custom e-shop<small>Design, kód i&nbsp;provoz</small></p>
-      </div>
-      <div class="m">
-        <h6>Doba realizace</h6>
-        <p>4 &mdash; 12 měsíců<small>Podle rozsahu</small></p>
-      </div>
-      <div class="m">
-        <h6>Technologie</h6>
-        <p>Nuxt, Next, PHP<small>Headless architektura</small></p>
-      </div>
-      <div class="m">
-        <h6>Investice od</h6>
-        <p>1,2 mil. Kč<small>Orientačně</small></p>
       </div>
     </div>
   </div>
@@ -304,8 +262,6 @@
 <section class="collage">
   <div class="wrap">
     <div class="col-wrap reveal">
-
-      <!-- Main desktop -->
       <div class="card m1">
         <div class="bmock">
           <div class="chrome">
@@ -315,8 +271,6 @@
           <img src="assets/reference/harfasport/mock.png" alt="Harfa Sport" style="width:100%;display:block;object-fit:cover">
         </div>
       </div>
-
-      <!-- Left small -->
       <div class="card m2">
         <div class="bmock">
           <div class="chrome">
@@ -326,8 +280,6 @@
           <img src="assets/reference/fotoskoda/mock.png" alt="FotoŠkoda" style="width:100%;display:block;object-fit:cover">
         </div>
       </div>
-
-      <!-- Right small -->
       <div class="card m3">
         <div class="bmock">
           <div class="chrome">
@@ -337,313 +289,109 @@
           <img src="assets/elnino-web-small.png" alt="El Nino" style="width:100%;display:block;object-fit:cover">
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ===================== FOR WHOM ===================== -->
-<section class="forwhom">
+<!-- ===================== ROUTE CARDS ===================== -->
+<section class="routes">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Pro koho</div>
-      <h2>Pro koho stavíme a&nbsp;pro koho <span class="red">ne.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Poptat e-shop <span class="arr">→</span></a></div>
+      <div class="idx">Tři cesty</div>
+      <h2>Vyberte cestu, která <span class="red">sedí vám.</span></h2>
+      <div class="aside"><a href="kontakt.html" class="lnk">Potřebujete poradit? <span class="arr">→</span></a></div>
     </div>
 
-    <div class="fw-grid">
-      <div class="fw-col">
-        <div class="lbl">Ideální zadání</div>
-        <h3>Ambiciózní značky, které potřebují více než šablonu.</h3>
-        <p>E-shopy, <b>které potřebují víc, než zvládne Shopify nebo Shoptet</b> &mdash; komplexní produktový katalog, vlastní ceníky, napojení na ERP, B2B role nebo mezinárodní expanze.</p>
-        <p>Nejlépe nám funguje spolupráce se značkami, které prodávají na více trzích, mají sklad se 10&nbsp;000+ položkami nebo dlouhodobý vztah se svými&nbsp;zákazníky.</p>
-        <ul>
-          <li>Roční obrat 50&nbsp;mil.&nbsp;Kč a&nbsp;výše</li>
-          <li>B2B i B2C kombinace</li>
-          <li>Vlastní sklad, výroba nebo velkoobchod</li>
-          <li>Plán na&nbsp;5+ let dopředu</li>
-          <li>Potřeba integrací na&nbsp;firemní systémy</li>
-        </ul>
-      </div>
+    <div class="route-grid">
+      <a href="eshop/b2c-na-miru.html" class="route-card reveal">
+        <div class="rc-tag">B2C na míru</div>
+        <h3>E-shop s&nbsp;vlastní tváří.</h3>
+        <p>Custom B2C platformy s&nbsp;plnou kontrolou nad designem, rychlostí pod 1&nbsp;sekundu a&nbsp;integrací na cokoliv, co&nbsp;potřebujete. Headless architektura.</p>
+        <div class="rc-meta">
+          <span>od 750 000&nbsp;Kč · 4–12 měs.</span>
+          <span class="rc-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
 
-      <div class="fw-col">
-        <div class="lbl">Nejsme vhodní</div>
-        <h3>Malým obchodům, co&nbsp;potřebují rychle odstartovat.</h3>
-        <p>Pokud začínáte s&nbsp;e-shopem, potřebujete jej spustit za&nbsp;2&nbsp;týdny a&nbsp;zatím neřešíte integrace, <b>doporučíme vám Shoptet nebo&nbsp;Shopify</b> &mdash; a&nbsp;vrátíme se za&nbsp;rok, až&nbsp;vyrostete.</p>
-        <p>Custom řešení dává smysl teprve, když šablonové obchody přestávají stačit. Pak pojďme mluvit &mdash; ale ne dřív. Nechceme vám prodávat něco, co&nbsp;ještě nepotřebujete.</p>
-        <ul style="opacity:.7">
-          <li style="color:var(--mute)">První e-shop bez jasné strategie</li>
-          <li style="color:var(--mute)">Rozpočet pod&nbsp;500&nbsp;tis.&nbsp;Kč</li>
-          <li style="color:var(--mute)">Spěcháte na&nbsp;launch za&nbsp;měsíc</li>
-          <li style="color:var(--mute)">Katalog pod 500 produktů</li>
-          <li style="color:var(--mute)">Nepotřebujete integrace</li>
-        </ul>
-      </div>
+      <a href="eshop/b2b-na-miru.html" class="route-card reveal d1">
+        <div class="rc-tag">B2B na míru</div>
+        <h3>E-shop pro firmy, co&nbsp;prodávají firmám.</h3>
+        <p>Custom B2B platformy s&nbsp;vlastní logikou rolí, ceníků a&nbsp;procesů. EDI, ERP integrace, schvalovací workflow, API pro procurement systémy zákazníků.</p>
+        <div class="rc-meta">
+          <span>od 1 000 000&nbsp;Kč · 3–18 měs.</span>
+          <span class="rc-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <a href="eshop/shopify.html" class="route-card reveal d2">
+        <div class="rc-tag">Shopify</div>
+        <h3>Spusťte e-shop za&nbsp;týdny, ne&nbsp;měsíce.</h3>
+        <p>Shopify e-shopy za 4–8 týdnů od 89&nbsp;000&nbsp;Kč. Migrace bez ztráty SEO, Shopify Plus pro enterprise, mezinárodní expanze. 27 let e-commerce zkušeností.</p>
+        <div class="rc-meta">
+          <span>od 89 000&nbsp;Kč · 4–12 týdnů</span>
+          <span class="rc-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===================== FEATURES ===================== -->
-<section class="features">
+<!-- ===================== PRINCIPLES ===================== -->
+<section class="principles">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Výhody</div>
-      <h2>Co dostanete, když nám <span class="red">řeknete&nbsp;ano.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Poptat e-shop <span class="arr">→</span></a></div>
+      <div class="idx">Proč PragueBest</div>
+      <h2>Proč nás klienti <span class="red">volí znovu.</span></h2>
     </div>
 
-    <div class="feat-grid">
-      <article class="feat reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+    <div class="prc-grid">
+      <div class="prc reveal">
         <div class="n">/ 01</div>
-        <h4>Headless architektura</h4>
-        <p>Frontend a&nbsp;backend oddělené &mdash; rychlý web, flexibilní redesigny, budoucí migrace bez&nbsp;bolesti.</p>
-      </article>
-
-      <article class="feat reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h4>27 let v&nbsp;e-commerce</h4>
+        <p>Nejsme agentura, která se přebarvila. E-shopy stavíme od roku 1999 &mdash; ještě dřív, než vznikl Shoptet nebo Heureka.</p>
+      </div>
+      <div class="prc reveal d1">
         <div class="n">/ 02</div>
-        <h4>Rychlost pod&nbsp;1&nbsp;sekundu</h4>
-        <p>LCP pod 1&nbsp;sekundu na&nbsp;mobilu. Lighthouse 95+. Rychlost je priorita číslo jedna &mdash; ne marketingový bonus.</p>
-      </article>
-
-      <article class="feat reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></div>
+        <h4>Vlastní technologie v&nbsp;ceně</h4>
+        <p>PIM, UpSearch a&nbsp;BigDataManager. Co u jiných platíte přes API za desítky tisíc měsíčně, u&nbsp;nás dostanete v&nbsp;ceně projektu.</p>
+      </div>
+      <div class="prc reveal d2">
         <div class="n">/ 03</div>
-        <h4>PIM na&nbsp;katalog</h4>
-        <p>Centrální správa produktů, překladů, obrázků a&nbsp;variant. Změna ceny je na&nbsp;všech trzích okamžitě.</p>
-      </article>
-
-      <article class="feat reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></svg></div>
+        <h4>Fixní rozpočet po&nbsp;discovery</h4>
+        <p>Po&nbsp;discovery fázi vám předáme fixní rozpočet, který držíme. Žádné překvapení na&nbsp;faktuře za&nbsp;změny, o&nbsp;kterých jste nevěděli.</p>
+      </div>
+      <div class="prc reveal d3">
         <div class="n">/ 04</div>
-        <h4>ERP &amp; WMS integrace</h4>
-        <p>Propojíme váš e-shop s&nbsp;Abra, Pohoda, Helios, SAP nebo jakýmkoliv jiným systémem &mdash; ceny, sklad, objednávky v&nbsp;reálném čase.</p>
-      </article>
-
-      <article class="feat reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
-        <div class="n">/ 05</div>
-        <h4>B2B režim bez&nbsp;kompromisů</h4>
-        <p>Role, ceníky dle zákazníka, schvalovací workflow, hromadné objednávky, API&nbsp;přístup. Všechno co&nbsp;velkoobchod skutečně potřebuje.</p>
-      </article>
-
-      <article class="feat reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15 15l5 5"/></svg></div>
-        <div class="n">/ 06</div>
-        <h4>UpSearch v&nbsp;ceně</h4>
-        <p>Naše vlastní vyhledávání s&nbsp;tolerancí překlepů, synonymy a&nbsp;skloňováním. 90&nbsp;% uživatelů najde to, co&nbsp;hledá.</p>
-      </article>
-
-      <article class="feat reveal">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 8-6-4-6 4 2-8-6-4h7z"/></svg></div>
-        <div class="n">/ 07</div>
-        <h4>Personalizace na&nbsp;datech</h4>
-        <p>Doporučení produktů, cross-sell, segmentace zákazníků. Z&nbsp;Big Data týmu &mdash; ne z&nbsp;pluginu za&nbsp;5&nbsp;dolarů měsíčně.</p>
-      </article>
-
-      <article class="feat reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/><path d="M12 7v5l3 3"/></svg></div>
-        <div class="n">/ 08</div>
-        <h4>Provoz 24/7</h4>
-        <p>Monitoring, on-call tým, SLA 99,9&nbsp;%. Když něco padne v&nbsp;neděli ve&nbsp;2 ráno, někdo od&nbsp;nás zvedne telefon.</p>
-      </article>
-
-      <article class="feat reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div class="n">/ 09</div>
-        <h4>Český tým v&nbsp;Karlíně</h4>
-        <p>Žádný outsourcing do&nbsp;Vietnamu. Všichni sedíme v&nbsp;kanceláři na&nbsp;Vítkově &mdash; můžete přijít na&nbsp;kávu a&nbsp;probrat projekt osobně.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== STACK ===================== -->
-<section class="stack">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="idx">Stack</div>
-      <h2>Technologie, kterým <span class="red">rozumíme.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Poptat projekt <span class="arr">→</span></a></div>
-    </div>
-
-    <div class="stack-grid">
-      <div class="stack-item"><div class="lg">Nuxt 3</div><div class="cat">Frontend</div></div>
-      <div class="stack-item"><div class="lg">Next.js</div><div class="cat">Frontend</div></div>
-      <div class="stack-item"><div class="lg">Vue 3</div><div class="cat">Frontend</div></div>
-      <div class="stack-item"><div class="lg">React 19</div><div class="cat">Frontend</div></div>
-      <div class="stack-item"><div class="lg">TypeScript</div><div class="cat">Language</div></div>
-      <div class="stack-item"><div class="lg">GraphQL</div><div class="cat">API</div></div>
-
-      <div class="stack-item"><div class="lg">PHP 8</div><div class="cat">Backend</div></div>
-      <div class="stack-item"><div class="lg">Node.js</div><div class="cat">Backend</div></div>
-      <div class="stack-item"><div class="lg">Laravel</div><div class="cat">Framework</div></div>
-      <div class="stack-item"><div class="lg">PostgreSQL</div><div class="cat">Database</div></div>
-      <div class="stack-item"><div class="lg">Redis</div><div class="cat">Cache</div></div>
-      <div class="stack-item"><div class="lg">Elastic</div><div class="cat">Search</div></div>
-
-      <div class="stack-item"><div class="lg">Abra ERP</div><div class="cat">Integrace</div></div>
-      <div class="stack-item"><div class="lg">Pohoda</div><div class="cat">Integrace</div></div>
-      <div class="stack-item"><div class="lg">SAP</div><div class="cat">Integrace</div></div>
-      <div class="stack-item"><div class="lg">Docker</div><div class="cat">DevOps</div></div>
-      <div class="stack-item"><div class="lg">Kubernetes</div><div class="cat">DevOps</div></div>
-      <div class="stack-item"><div class="lg">AWS / GCP</div><div class="cat">Cloud</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== MODULES ===================== -->
-<section class="modules">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="idx">Moduly</div>
-      <h2>Hotové moduly, co&nbsp;šetří <span class="red">stovky hodin.</span></h2>
-      <div class="aside"><a href="upsearch.html" class="lnk">Více o UpSearch <span class="arr">→</span></a></div>
-    </div>
-
-    <div class="mod-grid">
-      <a href="#" class="mod">
-        <div class="n">01</div>
-        <div><h5>UpSearch vyhledávání</h5><p>Fulltext s&nbsp;tolerancí překlepů, synonymy, skloňováním v&nbsp;13 jazycích.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">02</div>
-        <div><h5>B2B role &amp;&nbsp;ceníky</h5><p>Hierarchické role, vlastní ceníky a&nbsp;schvalovací workflow pro velkoobchod.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">03</div>
-        <div><h5>PIM katalog</h5><p>Správa produktů, překladů a&nbsp;variant. Export do&nbsp;Heureky, Google Shopping, Zbozi.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">04</div>
-        <div><h5>Multi-currency &amp; multi-lang</h5><p>13 jazyků, lokalizované ceny, měny, daně, platební metody a&nbsp;dopravci.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">05</div>
-        <div><h5>Personalizační engine</h5><p>Doporučení, cross-sell, slow movers, retention kampaně na&nbsp;základě Big&nbsp;Data modelů.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">06</div>
-        <div><h5>Věrnostní program</h5><p>Body, levely, exkluzivní nabídky, referral program. Integrovatelné s&nbsp;offline pobočkami.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">07</div>
-        <div><h5>Feed manager</h5><p>Automatický export do&nbsp;Heureky, Zbozi, Google Shopping, Facebook, TikTok. Pravidla per produkt.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">08</div>
-        <div><h5>Return management</h5><p>Samoobslužné vracení, výměny, refundy. Napojeno na&nbsp;reverse logistiku Zásilkovny a&nbsp;PPL.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">09</div>
-        <div><h5>Headless CMS</h5><p>Pro landing pages, blog, kampaně. Editor, který nepotřebuje školení &mdash; WYSIWYG na&nbsp;komponentách.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-      <a href="#" class="mod">
-        <div class="n">10</div>
-        <div><h5>Objednávkový workflow</h5><p>Stavy, notifikace, SLA, eskalace, automatické přesměrování na&nbsp;sklady podle zóny doručení.</p></div>
-        <div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PROCESS ===================== -->
-<section class="process">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="idx">Proces</div>
-      <h2>Jak u&nbsp;nás <span class="red">pracujeme.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Zahájit projekt <span class="arr">→</span></a></div>
-    </div>
-
-    <div class="steps">
-      <div class="step">
-        <div class="n"><b>/ 01</b>Discovery<span class="dur">3&ndash;6 týdnů</span></div>
-        <h4>Analýza, výzkum, strategie</h4>
-        <p>Ponoříme se do&nbsp;vašeho byznysu, trhu a&nbsp;uživatelů. Výstupem je dokument, který&nbsp;říká, co&nbsp;stavíme a&nbsp;proč.</p>
-        <ul>
-          <li>Tech &amp; UX audit stávajícího řešení</li>
-          <li>Zákaznická interview (n=15+)</li>
-          <li>Competitive analysis</li>
-          <li>Product backlog + roadmap</li>
-        </ul>
-      </div>
-      <div class="step">
-        <div class="n"><b>/ 02</b>Design<span class="dur">6&ndash;12 týdnů</span></div>
-        <h4>Design system a&nbsp;prototypy</h4>
-        <p>Navrhneme design system v&nbsp;tokenech, postavíme interaktivní prototyp a&nbsp;otestujeme jej na&nbsp;skutečných zákaznících.</p>
-        <ul>
-          <li>Figma design system</li>
-          <li>80&ndash;150 klíčových obrazovek</li>
-          <li>Usability testing (n=20+)</li>
-          <li>Accessibility WCAG 2.2 AA</li>
-        </ul>
-      </div>
-      <div class="step">
-        <div class="n"><b>/ 03</b>Build<span class="dur">12&ndash;32 týdnů</span></div>
-        <h4>Vývoj v&nbsp;dvoutýdenních sprintech</h4>
-        <p>Scrum, code review, CI/CD s&nbsp;feature flagy. Každý sprint = demo &amp; funkční verze, kterou můžete testovat.</p>
-        <ul>
-          <li>TypeScript, automatické testy</li>
-          <li>CI/CD s&nbsp;feature flagy</li>
-          <li>Integrace na&nbsp;systémy</li>
-          <li>Performance monitoring</li>
-        </ul>
-      </div>
-      <div class="step">
-        <div class="n"><b>/ 04</b>Launch<span class="dur">3&ndash;6 týdnů</span></div>
-        <h4>Migrace, launch, provoz</h4>
-        <p>Postupná migrace dat, soft launch, hot-fix sprint a&nbsp;předání do&nbsp;plného provozu. Pak už jen rozvoj a&nbsp;servis.</p>
-        <ul>
-          <li>Migrace produktů, zákazníků, objednávek</li>
-          <li>SEO redirects a&nbsp;301 mapa</li>
-          <li>Soft launch na&nbsp;10&nbsp;% traffic</li>
-          <li>Full launch + hot-fix sprint</li>
-        </ul>
+        <h4>Tým v&nbsp;Karlíně, ne&nbsp;outsourcing</h4>
+        <p>Všichni sedíme na&nbsp;Vítkově. Žádné předávání do&nbsp;jiného týmu po&nbsp;launchi. Ten samý tým, co&nbsp;projekt postavil, ho&nbsp;i&nbsp;rozvíjí.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== REFERENCE STRIP ===================== -->
-<section class="refs" id="refs">
+<!-- ===================== MINI-REFERENCES ===================== -->
+<section class="refs">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Příklady</div>
+      <div class="idx">Reference</div>
       <h2>Ukázky toho, co&nbsp;jsme <span class="red">postavili.</span></h2>
       <div class="aside"><a href="reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
     </div>
 
-    <div class="ref-grid" id="eshop-refs"></div>
+    <div class="ref-grid" id="eshop-hub-refs"></div>
     <script>
     (()=>{
-      const container = document.getElementById('eshop-refs');
-      const all = window.REFS || [];
-      const ids = ['elnino','fotoskoda','hyundai'];
-      const refs = ids.map(id => all.find(r => r.id === id)).filter(Boolean);
-      if (!refs.length) return;
+      const grid = document.getElementById('eshop-hub-refs');
+      const refs = window.REFS || [];
+      const ids = ['fotoskoda','elnino','hyundai'];
       const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
-      container.innerHTML = refs.map((ref, i) => {
-        const imgStyle = ref.thumb ? `background-image:url('${ref.thumb}');background-size:cover;background-position:center` : '';
+      if (!grid || !refs.length) return;
+      const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
+      grid.innerHTML = picks.map((ref, i) => {
+        const imgStyle = ref.thumb ? `style="background-image:url('${ref.thumb}');background-size:cover;background-position:center"` : '';
         return `<a class="ref r${i+1}" href="${ref.href}">
-          <div class="img" style="${imgStyle}"></div>
-          <div class="go">${arr}</div>
-          <div class="meta">
-            <div>
-              <h4>${ref.name}</h4>
-              <div class="cat">${ref.cat}</div>
-            </div>
-          </div>
+          <div class="img" ${imgStyle}></div>
+          <div class="meta"><div><h4>${ref.name}</h4><div class="cat">${ref.cat}</div></div><div class="go">${arr}</div></div>
         </a>`;
       }).join('');
     })();
@@ -651,125 +399,22 @@
   </div>
 </section>
 
-<!-- ===================== FAQ ===================== -->
-<section class="faq">
-  <div class="wrap-sm">
-    <div class="sec-head" style="grid-template-columns:1fr">
-      <div class="idx">FAQ</div>
-      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
-    </div>
-
-    <div class="faq-grid">
-      <details class="qa">
-        <summary>
-          <span class="n">/ 01</span>
-          <h5>Jak dlouho trvá postavit e-shop na&nbsp;míru?</h5>
-          <span class="tog"></span>
-        </summary>
-        <div class="answer">
-          <p>Průměrně <b>6&mdash;9 měsíců</b> od&nbsp;kickoffu k&nbsp;ostrému launchi. Složité B2B projekty s&nbsp;více&nbsp;trhy nebo integracemi na&nbsp;více ERP systémů mohou trvat 10&mdash;12 měsíců. Malé projekty bez komplikovaných integrací zvládneme za&nbsp;4 měsíce.</p>
-          <p>Neslibujeme termíny, které nemůžeme dodržet. Po&nbsp;discovery fázi vám dáme přesný odhad a&nbsp;držíme se&nbsp;ho.</p>
-        </div>
-      </details>
-
-      <details class="qa">
-        <summary>
-          <span class="n">/ 02</span>
-          <h5>Kolik to stojí?</h5>
-          <span class="tog"></span>
-        </summary>
-        <div class="answer">
-          <p>Custom e-shopy začínají od&nbsp;<b>1,2 milionu Kč</b> za&nbsp;relativně jednoduchý projekt bez exotických integrací. Průměrný střední projekt se pohybuje mezi <b>2&mdash;4 miliony Kč</b>. Mezinárodní B2B platformy s&nbsp;ERP napojením a&nbsp;více trhy běží v&nbsp;rozsahu 5&mdash;15 milionů.</p>
-          <p>Do&nbsp;ceny vždy vstupuje discovery, design, vývoj, testování, migrace a&nbsp;první měsíc provozu. Po&nbsp;launchi běžně účtujeme servis &amp; rozvoj v&nbsp;modelu retainer 80&mdash;300 tis. měsíčně.</p>
-        </div>
-      </details>
-
-      <details class="qa">
-        <summary>
-          <span class="n">/ 03</span>
-          <h5>Postavíte nám e-shop na&nbsp;Shoptetu nebo Shopify?</h5>
-          <span class="tog"></span>
-        </summary>
-        <div class="answer">
-          <p>Ne, zaměřujeme se na&nbsp;custom řešení. Pokud hledáte Shoptet nebo Shopify, <b>doporučíme vám konkrétní partnery</b>, kterým věříme &mdash; je v&nbsp;Česku spousta výborných studií, které to dělají lépe než my bychom to dělali.</p>
-          <p>Custom e-shop dává smysl teprve tehdy, když šablonové obchody přestávají stačit. Pokud si nejste jistí, napište &mdash; upřímně vám řekneme, jestli jste u&nbsp;nás správně.</p>
-        </div>
-      </details>
-
-      <details class="qa">
-        <summary>
-          <span class="n">/ 04</span>
-          <h5>Co se děje po&nbsp;launchi? Platíme extra za&nbsp;úpravy?</h5>
-          <span class="tog"></span>
-        </summary>
-        <div class="answer">
-          <p>Po&nbsp;launchi přechází projekt do&nbsp;fáze <b>rozvoje &amp; servisu</b>. Máme dedikovaný tým, který sedí v&nbsp;Karlíně a&nbsp;zná váš projekt od&nbsp;začátku &mdash; takže vás nepředáváme do&nbsp;jiného týmu. Drobné úpravy řešíme v&nbsp;rámci retaineru, větší změny jako samostatné sprinty.</p>
-          <p>Monitoring, bezpečnostní aktualizace a&nbsp;on-call jsou v&nbsp;retaineru vždy zahrnuté. SLA 99,9&nbsp;%, odezva na&nbsp;kritické incidenty do&nbsp;30&nbsp;minut, 24/7.</p>
-        </div>
-      </details>
-
-      <details class="qa">
-        <summary>
-          <span class="n">/ 05</span>
-          <h5>Jaké máte zkušenosti s&nbsp;naším typem byznysu?</h5>
-          <span class="tog"></span>
-        </summary>
-        <div class="answer">
-          <p>Za&nbsp;27 let jsme postavili přes 100 e-shopů &mdash; od&nbsp;módy, kosmetiky a&nbsp;parfumerie přes velkoobchody, automotive, zdravotnické pomůcky, bytové vybavení až&nbsp;po&nbsp;potravinové e-shopy. Skoro jistě jsme někdy dělali něco podobného.</p>
-          <p>Rádi vám ukážeme konkrétní case study z&nbsp;vašeho segmentu. Stačí napsat, o&nbsp;jaký byznys jde &mdash; vybereme relevantní příklady.</p>
-        </div>
-      </details>
-
-      <details class="qa">
-        <summary>
-          <span class="n">/ 06</span>
-          <h5>Co když během projektu zjistíme, že potřebujeme něco jiného?</h5>
-          <span class="tog"></span>
-        </summary>
-        <div class="answer">
-          <p>To se děje &mdash; každý větší projekt prochází změnami rozsahu. Pracujeme agilně v&nbsp;dvoutýdenních sprintech, takže změny dokážeme absorbovat bez&nbsp;toho, aby se&nbsp;rozpad celý harmonogram.</p>
-          <p>Pokud je změna velká, otevřeně řekneme, co&nbsp;to znamená pro&nbsp;termín a&nbsp;rozpočet &mdash; a&nbsp;společně rozhodneme, co&nbsp;s&nbsp;tím. <b>Nikdy vám nepředáme fakturu za&nbsp;změny, o&nbsp;kterých jste nevěděli.</b></p>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== INVESTMENT ===================== -->
-<section class="invest">
+<!-- ===================== PIM BLOCK ===================== -->
+<section class="pim-block">
   <div class="wrap">
-    <div class="inv-grid">
+    <div class="pim-inner">
       <div class="left reveal">
-        <div class="lbl">§ 08 / Investice</div>
-        <h3>Vztahy dlouhodobé, ceny <span class="red">poctivé.</span></h3>
-        <p>Nejsme nejlevnější na&nbsp;trhu a&nbsp;ani se&nbsp;o&nbsp;to nesnažíme. Stavíme e-shopy, které <b>klientům slouží 5&mdash;10 let</b> &mdash; a&nbsp;to se&nbsp;neděje za&nbsp;cenu šablony.</p>
-        <p>Zároveň vám nikdy nenaúčtujeme něco, o&nbsp;čem jste nevěděli. Po&nbsp;discovery fázi vám předáme <b>fixní rozpočet</b>, který držíme. Pokud se&nbsp;rozsah změní, domluvíme se otevřeně.</p>
-        <p>Průměrný projekt se&nbsp;nám vrací <b>v&nbsp;horizontu 12&mdash;18 měsíců</b> na&nbsp;navýšení konverze, snížení provozních nákladů a&nbsp;otevření nových trhů.</p>
+        <div class="eyebrow">Bonus napříč všemi cestami</div>
+        <h2>Produktová data pod&nbsp;<span class="red">kontrolou.</span></h2>
+        <p>Spravujete tisíce produktů na více trzích? Náš PIM centralizuje katalog napříč e-shopem, marketingem, feedy (Heureka, Google Shopping, Amazon) i překlady. S&nbsp;pomocí AI dnes automaticky generujeme popisky a&nbsp;doplňujeme parametry.</p>
+        <a href="eshop/pim.html" class="lnk">Více o PIM <span class="arr">→</span></a>
       </div>
-      <div class="right">
-        <div class="price reveal">
-          <div>
-            <div class="lbl-p">Starter</div>
-            <h4>Custom B2C e-shop</h4>
-            <small>Jeden trh, jeden jazyk, standardní integrace, katalog do&nbsp;5&nbsp;000 SKU.</small>
-          </div>
-          <div class="val">1,2 mil.<sub>od · Kč bez DPH</sub></div>
-        </div>
-        <div class="price reveal d1">
-          <div>
-            <div class="lbl-p">Standard</div>
-            <h4>B2B &amp; B2C platforma</h4>
-            <small>Multi-role, ceníky, ERP napojení, PIM, 2&mdash;3 jazyky, katalog do&nbsp;50&nbsp;000 SKU.</small>
-          </div>
-          <div class="val">3,5 mil.<sub>od · Kč bez DPH</sub></div>
-        </div>
-        <div class="price reveal d2">
-          <div>
-            <div class="lbl-p">Enterprise</div>
-            <h4>Mezinárodní platforma</h4>
-            <small>10+ trhů, lokální ERP, PIM, personalizace, Big Data, 24/7 provoz s&nbsp;SLA.</small>
-          </div>
-          <div class="val">8 mil.+<sub>od · Kč bez DPH</sub></div>
+      <div class="right reveal d1">
+        <div class="pim-stats">
+          <div class="pim-stat"><div class="val">100+</div><div class="lbl">nasazení</div></div>
+          <div class="pim-stat"><div class="val">300+</div><div class="lbl">hotových modulů</div></div>
+          <div class="pim-stat"><div class="val">100+</div><div class="lbl">integrací</div></div>
+          <div class="pim-stat"><div class="val">15 let</div><div class="lbl">zkušeností</div></div>
         </div>
       </div>
     </div>
@@ -779,15 +424,15 @@
 <!-- ===================== CTA ===================== -->
 <section class="cta">
   <div class="wrap">
-    <h2 class="reveal">Máte projekt?<br><span class="red">Pojďme do toho.</span></h2>
-    <p class="sub reveal d1">Napište nám &mdash; ozveme se do&nbsp;24 hodin s&nbsp;prvním odhadem a&nbsp;návrhem kickoff schůzky.</p>
+    <h2 class="reveal">Nejste si jistí,<br><span class="red">která cesta je pro vás?</span></h2>
+    <p class="sub reveal d1">Pojďme si nezávazně probrat váš projekt &mdash; pomůžeme s&nbsp;výběrem mezi custom a&nbsp;Shopify.</p>
     <div class="ctas reveal d2">
-      <a href="#" class="btn">
-        <span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span>
+      <a href="kontakt.html" class="btn">
+        <span class="lbl" data-t="Domluvit konzultaci"><span>Domluvit konzultaci</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a href="#" class="btn ghost">
-        <span class="lbl" data-t="+420 775 219 999"><span>+420 775 219 999</span></span>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
     </div>
@@ -806,22 +451,22 @@
       <div>
         <h5>Služby</h5>
         <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
-        <a href="#">Weby &amp; portály <span class="ar">→</span></a>
-        <a href="#">Big Data <span class="ar">→</span></a>
-        <a href="#">UpSearch <span class="ar">→</span></a>
+        <a href="weby.html">Weby &amp; portály <span class="ar">→</span></a>
+        <a href="bigdata.html">Big Data <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Studio</h5>
         <a href="index.html">Úvod <span class="ar">→</span></a>
-        <a href="#">Reference <span class="ar">→</span></a>
-        <a href="#">Blog <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="blog.html">Blog <span class="ar">→</span></a>
         <a href="design-system.html">Design System <span class="ar">→</span></a>
-        <a href="#">Kariéra · 6 pozic <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Kontakt</h5>
         <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
-        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
         <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
       </div>
     </div>
@@ -842,7 +487,7 @@
   let mx=0,my=0,rx=0,ry=0;
   window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
   (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
-  document.querySelectorAll('a,button,.feat,.price,.mod,.qa summary,.ref,.col-wrap .card').forEach(el=>{
+  document.querySelectorAll('a,button,.route-card,.prc,.ref').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
   });
@@ -856,18 +501,6 @@
 
   function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
   setInterval(tick,1000);tick();
-
-  document.querySelectorAll('.btn').forEach(b=>{
-  });
-
-  // Close other FAQ items when one opens (optional)
-  document.querySelectorAll('.qa').forEach(q=>{
-    q.addEventListener('toggle',()=>{
-      if(q.open){
-        document.querySelectorAll('.qa').forEach(o=>{if(o!==q)o.removeAttribute('open')});
-      }
-    });
-  });
 })();
 </script>
 </body>

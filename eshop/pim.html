@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PIM — Product Information Management | PragueBest</title>
+<meta name="description" content="Vlastní PIM platforma pro správu produktových dat napříč e-shopem, feedy, překlady i marketplaces. 15 let vývoje, 100+ nasazení, 300+ modulů. AI obohacení dat." />
+<meta name="keywords" content="PIM, product information management, produktová data, multi-channel publishing, AI obohacení produktů, ERP integrace katalog, Heureka feed, Zboží.cz, marketplace, vícejazyčný katalog, PragueBest PIM, Karlín, Praha" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/eshop/pim" />
+<meta property="og:title" content="PIM — Jeden katalog. Všechny kanály. | PragueBest" />
+<meta property="og:description" content="Vlastní PIM platforma pro správu produktových dat napříč e-shopem, feedy, překlady i marketplaces. 15 let vývoje, 100+ nasazení. AI generuje popisky přes noc." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-pim.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PIM — Jeden katalog. Všechny kanály. | PragueBest" />
+<meta name="twitter:description" content="Vlastní PIM platforma pro správu produktových dat napříč e-shopem, feedy, překlady i marketplaces. 15 let vývoje, 100+ nasazení. AI generuje popisky přes noc." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-pim.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "Co umíme", "item": "https://praguebest.cz/co-umime" },
+    { "@type": "ListItem", "position": 3, "name": "E-shopy", "item": "https://praguebest.cz/eshop" },
+    { "@type": "ListItem", "position": 4, "name": "PIM" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PIM od PragueBest",
+  "applicationCategory": "Product Information Management",
+  "operatingSystem": "Web",
+  "description": "Vlastní PIM platforma pro správu produktových dat. Multi-channel publishing, AI obohacení, 100+ integrací. 15 let vývoje.",
+  "provider": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CZK",
+    "lowPrice": "250000",
+    "highPrice": "5000000",
+    "description": "Od 250 000 Kč (jednodušší nasazení), střední projekt 500k–2M Kč, enterprise 2–5M Kč."
+  }
+}
+</script>
+<style>
+/* ===================== EXPLAINER ===================== */
+.explainer{padding:80px 0;border-top:1px solid var(--ink)}
+.expl-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.expl-flow{background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:44px 40px;font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.expl-flow .fl-row{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.expl-flow .fl-row:last-child{border-bottom:none}
+.expl-flow .fl-in{display:flex;flex-direction:column;gap:4px;min-width:120px}
+.expl-flow .fl-in span{padding:4px 10px;background:var(--paper);border:1px solid var(--line);border-radius:6px;font-size:11px;color:var(--mute)}
+.expl-flow .fl-arrow{color:var(--red);font-size:20px;font-weight:700;flex-shrink:0}
+.expl-flow .fl-pim{padding:10px 16px;background:var(--ink);color:var(--paper);border-radius:10px;font-weight:700;font-size:13px;letter-spacing:-.01em;text-align:center;min-width:100px;flex-shrink:0}
+.expl-flow .fl-out{display:flex;flex-direction:column;gap:4px;min-width:120px}
+.expl-flow .fl-out span{padding:4px 10px;background:var(--paper);border:1px solid var(--line);border-radius:6px;font-size:11px;color:var(--mute)}
+
+/* ===================== MODULES GRID (12) ===================== */
+.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
+.mod{display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;padding:28px 32px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);position:relative;transition:background .4s var(--ease),padding .4s var(--ease)}
+.mod:nth-child(2n){border-right:none}
+.mod::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out)}
+.mod:hover::before{transform:scaleY(1)}
+.mod:hover{background:var(--paper-2);padding-left:40px}
+.mod .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em}
+.mod h5{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.mod p{font-size:13px;color:var(--mute);line-height:1.5;max-width:42ch}
+.mod .plus{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.mod .plus svg{width:12px;height:12px;stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mod:hover .plus{background:var(--red);border-color:var(--red)}
+.mod:hover .plus svg{stroke:#fff}
+
+/* ===================== FOR WHOM ===================== */
+.fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+.fw-col{padding:56px 52px}
+.fw-col:first-child{border-right:1px solid var(--ink)}
+.fw-col .lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+.fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
+.fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
+.fw-col ul{list-style:none;margin-top:16px}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
+.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+
+/* ===================== INTEGRATIONS GRID ===================== */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
+.int-card{padding:32px 28px;background:var(--paper);transition:background .4s var(--ease)}
+.int-card:hover{background:var(--paper-2)}
+.int-card .in{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.int-card h5{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.int-card p{font-size:12px;color:var(--mute);line-height:1.6}
+
+/* ===================== AI SECTION ===================== */
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.ai-card{padding:40px 36px;background:var(--paper);transition:background .4s var(--ease)}
+.ai-card:hover{background:var(--paper-2)}
+.ai-card .ai-n{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.ai-card h5{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;line-height:1.2}
+.ai-card p{font-size:14px;color:var(--ink-3);line-height:1.6}
+
+/* ===================== STATS BAND ===================== */
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.stat-item{padding:52px 44px;border-right:1px solid var(--ink);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-item .val{font-size:clamp(48px,6vw,80px);font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.stat-item .val span{color:var(--red)}
+.stat-item .lbl{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+
+/* ===================== FAQ ===================== */
+.faq{padding:100px 0;border-top:1px solid var(--ink)}
+.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
+.qa:hover{background:var(--paper-2)}
+.qa summary{padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;cursor:none;list-style:none;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
+.qa:hover summary h5{transform:translateX(6px)}
+.qa summary .tog{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s var(--ease)}
+.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
+.qa summary .tog::before{width:14px;height:1.5px}
+.qa summary .tog::after{width:1.5px;height:14px}
+.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
+.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
+.qa[open] summary .tog::after{transform:scaleY(0)}
+.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
+.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
+.qa .answer p+p{margin-top:12px}
+.qa .answer b{color:var(--ink);font-weight:600}
+.qa .answer a{color:var(--red)}
+
+/* ===================== INVESTMENT ===================== */
+.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:2}
+.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
+.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
+.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
+.inv-grid .left p+p{margin-top:16px}
+.inv-grid .left p b{color:var(--ink);font-weight:600}
+.inv-grid .right{display:grid;gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.range-row{padding:40px 44px;border-bottom:1px solid var(--line);background:var(--paper);transition:background .4s var(--ease)}
+.range-row:last-child{border-bottom:none}
+.range-row:hover{background:var(--ink);color:var(--paper)}
+.range-row .lbl-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;transition:color .4s}
+.range-row:hover .lbl-r{color:rgba(242,236,224,.5)}
+.range-row .val-r{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+.range-row small{font-size:13px;color:var(--mute);max-width:44ch;display:block;line-height:1.5;transition:color .4s}
+.range-row:hover small{color:rgba(242,236,224,.6)}
+.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
+.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
+.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+
+@media(max-width:1024px){
+  .expl-grid{grid-template-columns:1fr}
+  .mod-grid{grid-template-columns:1fr}
+  .ai-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+  .inv-grid{grid-template-columns:1fr;gap:40px}
+  .fw-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .mod{grid-template-columns:60px 1fr auto}
+  .ai-grid{grid-template-columns:1fr}
+  .stats-band{grid-template-columns:1fr 1fr}
+  .stat-item{padding:32px 24px}
+  .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
+  .qa .answer{padding:0 16px 24px 56px}
+}
+</style>
+<link rel="stylesheet" href="../assets/shared.css">
+<link rel="stylesheet" href="../assets/nav-dropdown.css">
+<script src="../assets/data/references.js"></script>
+<script src="../assets/quarter.js"></script>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="top">
+  <a class="logo" href="../index.html"><img src="../assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+  <ul>
+    <li class="has-dd">
+      <a href="../eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="../eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="../weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby &amp; portály</a>
+        <a href="../aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace &amp; AI vývoj</a>
+      </div>
+    </li>
+    <li><a href="../reference.html">Case Studies</a></li>
+    <li><a href="../o-nas.html">O nás</a></li>
+    <li><a href="../kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q4/26</span></span>
+    <a href="../kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="../eshop.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na E-shopy
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> E-shopy <span>/</span> <b>PIM</b>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Multi-channel publishing &nbsp;·&nbsp; AI obohacení &nbsp;·&nbsp; 100+ integrací</div>
+    <h1 class="reveal d1">Jeden katalog. <span class="red">Všechny kanály.</span></h1>
+    <div class="below">
+      <p class="lede reveal d2">Centralizujte katalog produktů a publikujte ho do e-shopu, marketingových feedů, marketplaces i tiskovin. <b>Multi-language, AI obohacení, deep ERP integrace</b> — 15 let zkušeností.</p>
+      <div class="ctas reveal d3">
+        <a href="../kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="#refs" class="btn ghost">
+          <span class="lbl" data-t="Vidět demo"><span>Vidět demo</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLAINER -->
+<section class="explainer">
+  <div class="wrap">
+    <div class="expl-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:32px">
+          <div class="idx">Co PIM dělá</div>
+          <h2>Jeden katalog, <span class="red">mnoho kanálů.</span></h2>
+        </div>
+        <p style="font-size:17px;color:var(--ink-3);line-height:1.7;margin-bottom:20px">PIM je centrální databáze vašich produktových dat. Místo aby váš tým ručně přepisoval parametry do e-shopu, marketplaces, feedů a B2B portálu, edituje je jednou v PIMu — a my je publikujeme všude.</p>
+        <p style="font-size:17px;color:var(--ink-3);line-height:1.7;margin-bottom:20px">Do PIMu tečou data z ERP (ceny, sklad), od dodavatelů (technické parametry), od content týmu (popisky, foto) a překladatelů. Z PIMu pak data putují do e-shopu, mobilní aplikace, marketplaces, srovnávačů, B2B portálu i tiskového katalogu — vše konzistentně, s validací a workflow.</p>
+        <p style="font-size:17px;color:var(--ink-3);line-height:1.7">S pomocí AI dnes navíc automaticky generujeme popisky, doplňujeme chybějící parametry a kategorizujeme produkty. Co dříve trvalo content týmu týdny, dnes proběhne přes noc.</p>
+      </div>
+      <div class="expl-flow reveal">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px">Data flow</div>
+        <div class="fl-row">
+          <div class="fl-in">
+            <span>ERP / sklad</span>
+            <span>Dodavatelé</span>
+            <span>Content tým</span>
+            <span>Překladatelé</span>
+          </div>
+          <div class="fl-arrow">→</div>
+          <div class="fl-pim">PIM<br><small style="font-weight:400;font-size:10px;opacity:.6">+ workflow<br>+ AI</small></div>
+          <div class="fl-arrow">→</div>
+          <div class="fl-out">
+            <span>E-shop</span>
+            <span>Mobilní app</span>
+            <span>Marketplaces</span>
+            <span>Srovnávače</span>
+            <span>B2B portál</span>
+            <span>Tiskový katalog</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES — 12 modulů -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Moduly</div>
+      <h2>Dvanáct věcí, co&nbsp;PIM dělá <span class="red">za vás.</span></h2>
+    </div>
+    <div class="mod-grid">
+      <div class="mod"><div class="n">01</div><div><h5>Centrální produktový katalog</h5><p>Hierarchie kategorií, produkty, varianty, sety/bundles. Tisíce SKU v jedné databázi.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">02</div><div><h5>Flexibilní atributy</h5><p>Vlastní attribute types (text, číslo, výběr, multi-select, file). Attribute groups a family-based catalogs.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">03</div><div><h5>Multi-language a multi-market</h5><p>Překlady, lokální varianty produktů, market-specific ceny a atributy. CZ/SK/DE/PL/EN nativně.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">04</div><div><h5>Media library</h5><p>Produktové fotografie, videa, 360° rotace, dokumenty. AI tagging pro automatické pojmenování.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">05</div><div><h5>Workflow a role</h5><p>Návrh → kontrola → schválení → publikace. Role pro editora, korektora, content managera, marketingu.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">06</div><div><h5>Completeness &amp; quality</h5><p>Vizuální tracking „Tento produkt je z 78 % hotový", quality gates, validační pravidla per kanál.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">07</div><div><h5>AI obohacení</h5><p>Automatické generování popisků, doplňování chybějících parametrů, kategorizace produktů přes AI.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">08</div><div><h5>Import &amp; Export</h5><p>CSV/XML import, ERP sync, dodavatelské feedy, masová úprava (bulk edit) tisíců produktů najednou.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">09</div><div><h5>Publishing &amp; feeds</h5><p>Pre-built feedy pro Heureka, Zboží.cz, Google Shopping, Amazon, Mall Marketplace, Allegro.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">10</div><div><h5>API &amp; headless</h5><p>REST API pro e-shop frontend, mobilní app, B2B portál. Webhooks pro real-time synchronizaci.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">11</div><div><h5>Versioning &amp; audit</h5><p>Kompletní historie změn každého produktu, rollback, audit log pro compliance a kontrolu.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">12</div><div><h5>Reporting &amp; analytika</h5><p>Dashboardy completeness katalogu, performance content týmu, channel sync status, error monitoring.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="forwhom" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Pro koho</div>
+      <h2>Pro koho PIM je a&nbsp;pro koho <span class="red">ne.</span></h2>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-col">
+        <div class="lbl">Ideální zadání</div>
+        <h3>Když Excel a admin e-shopu přestávají stačit.</h3>
+        <p>PIM dává smysl, jakmile složitost produktových dat překročí kapacitu vašeho týmu. Když je rychlejší stavět systém než ručně přepisovat.</p>
+        <ul>
+          <li>5 000+ SKU v katalogu</li>
+          <li>Publikace na 3+ kanálů (e-shop + marketplaces + feedy + B2B portál)</li>
+          <li>2+ jazyků v katalogu</li>
+          <li>Content tým 3+ lidí s rolemi</li>
+          <li>Roční změny v katalogu 1 000+ produktů</li>
+          <li>ERP, sklad nebo dodavatelské feedy, ze kterých táhnete data</li>
+        </ul>
+      </div>
+      <div class="fw-col">
+        <div class="lbl">Nejsme vhodní</div>
+        <h3>Když Excel a admin e-shopu pořád stačí.</h3>
+        <p>Pod určitou hranicí katalogu a komplexity je PIM zbytečný overhead. Excel + admin e-shopu vás bude stát víc úsilí, ale méně peněz.</p>
+        <ul style="opacity:.7">
+          <li style="color:var(--mute)">Pod 500 SKU v katalogu</li>
+          <li style="color:var(--mute)">Jeden kanál, jeden jazyk</li>
+          <li style="color:var(--mute)">Tým 1–2 lidí spravuje katalog</li>
+          <li style="color:var(--mute)">Žádné integrace na ERP nebo dodavatelské feedy</li>
+          <li style="color:var(--mute)">Nemáte ambici růst nad současný rozsah</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRACE — 7 kategorií -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Integrace</div>
+      <h2>Integrace, na&nbsp;které jste <span class="red">zvyklí.</span></h2>
+    </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">PIM stojí uprostřed vašeho data flow — táhne data ze zdrojových systémů (ERP, dodavatelé) a publikuje je do cílových kanálů (e-shopy, marketplaces, feedy). Pokrýváme všechny běžné CZ/SK/EU systémy.</p>
+    <div class="int-grid">
+      <div class="int-card"><div class="in">/ 01</div><h5>ERP &amp; datové zdroje</h5><p>Pohoda · Money · Helios · Abra · K2 · SAP · Microsoft Dynamics · Comarch</p></div>
+      <div class="int-card"><div class="in">/ 02</div><h5>Dodavatelské feedy</h5><p>XML / CSV / API od výrobců · GS1 · Eldat · ICEcat</p></div>
+      <div class="int-card"><div class="in">/ 03</div><h5>E-commerce platformy</h5><p>Mastershop · Shopify · Magento · WooCommerce · custom storefronts (Next, Nuxt)</p></div>
+      <div class="int-card"><div class="in">/ 04</div><h5>Marketplaces &amp; srovnávače</h5><p>Heureka · Zboží.cz · Google Shopping · Amazon · Mall Marketplace · Allegro · eBay</p></div>
+      <div class="int-card"><div class="in">/ 05</div><h5>Translation &amp; content</h5><p>DeepL · Memsource · Phrase · Lokalise · vlastní translation workflow</p></div>
+      <div class="int-card"><div class="in">/ 06</div><h5>AI services</h5><p>OpenAI · Anthropic · Azure AI · vlastní LLM pipeline pro obohacení</p></div>
+      <div class="int-card"><div class="in">/ 07</div><h5>API &amp; headless</h5><p>REST API · GraphQL · Webhooks · pro frontends, mobile apps, B2B portály</p></div>
+      <div class="int-card" style="background:var(--paper-2)"><div class="in">Více</div><h5>Plný seznam integrací</h5><p>PIM integruje se vším, kde tečou produktová data. Napíšeme custom konektor pro váš specifický systém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI ENRICHMENT -->
+<section style="padding:80px 0;border-top:1px solid var(--ink);background:var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx" style="color:rgba(242,236,224,.5)">AI</div>
+      <h2 style="color:var(--paper)">AI dělá většinu práce <span class="red">za vás.</span></h2>
+      <p class="lede" style="color:rgba(242,236,224,.6);font-size:15px;max-width:58ch;margin-top:12px">Co dříve trvalo content týmu týdny, dnes proběhne přes noc. AI v PIMu od PragueBest negeneruje generický text — učí se na vašich produktech, vaší terminologii, vašem brand voice. Výsledek si vždy schválí editor, ale 80 % práce je hotových automaticky.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card"><div class="ai-n">/ 01</div><h5>Generování popisků</h5><p>Z parametrů a kategorií vytvoří brand-aligned popisek. Krátký, dlouhý, SEO-friendly varianta. Trénované na vašich stávajících popiscích.</p></div>
+      <div class="ai-card"><div class="ai-n">/ 02</div><h5>Doplňování parametrů</h5><p>Z dodavatelských feedů a obrázků doplní chybějící atributy — rozměry, materiál, barva, kompatibilita.</p></div>
+      <div class="ai-card"><div class="ai-n">/ 03</div><h5>Kategorizace produktů</h5><p>Automatické zařazení nového produktu do kategorií + tagy. Sníží práci nákupčímu o 80 % při importu nového sortimentu.</p></div>
+      <div class="ai-card"><div class="ai-n">/ 04</div><h5>Překlad obsahu</h5><p>Multi-language překlad s podporou produktové terminologie. CZ → SK/DE/PL/EN ve stejné kvalitě jako lidský překladatel.</p></div>
+      <div class="ai-card"><div class="ai-n">/ 05</div><h5>Image tagging &amp; alt text</h5><p>Z fotografie produktu vygeneruje alt text pro SEO, dominant colors, tagy pro vyhledávání.</p></div>
+      <div class="ai-card"><div class="ai-n">/ 06</div><h5>SEO meta generování</h5><p>Title, description, OG tags pro každý produkt automaticky. Optimalizováno pro Google + Heureka + Zboží.cz.</p></div>
+    </div>
+    <p style="font-family:var(--mono);font-size:13px;color:rgba(242,236,224,.5);margin-top:32px;text-align:center"><span style="color:var(--red)">ROI:</span> Průměrný klient zkracuje čas na publikování nového produktu z 2 hodin na 15 minut. AI dělá draft, content tým ho jen schvaluje a doladí.</p>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band reveal">
+  <div class="stat-item"><div class="val">100<span>+</span></div><div class="lbl">nasazení</div></div>
+  <div class="stat-item"><div class="val">300<span>+</span></div><div class="lbl">hotových modulů</div></div>
+  <div class="stat-item"><div class="val">100<span>+</span></div><div class="lbl">integrací</div></div>
+  <div class="stat-item"><div class="val">15<span class="red"> let</span></div><div class="lbl">vývoje</div></div>
+</div>
+
+<!-- REFERENCES -->
+<section class="refs" id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Klienti</div>
+      <h2>Klienti, kteří PIM <span class="red">používají.</span></h2>
+    </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:62ch;margin-bottom:48px">PIM je páteří e-commerce projektů, které jsme za 15 let postavili. Stejné platformy, které vidíte v referencích B2C i B2B detail stránek, běží s naším PIMem v jádře.</p>
+    <div class="ref-grid" id="pim-refs"></div>
+    <script>
+    (()=>{
+      const grid = document.getElementById('pim-refs');
+      const refs = window.REFS || [];
+      const ids = ['fotoskoda','albi','elnino'];
+      const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
+      if (!grid || !refs.length) return;
+      const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
+      grid.innerHTML = picks.map((ref, i) => {
+        const imgStyle = ref.thumb ? `style="background-image:url('../${ref.thumb}');background-size:cover;background-position:center"` : '';
+        return `<a class="ref r${i+1}" href="../${ref.href}">
+          <div class="img" ${imgStyle}></div>
+          <div class="meta"><div><h4>${ref.name}</h4><div class="cat">${ref.cat}</div></div><div class="go">${arr}</div></div>
+        </a>`;
+      }).join('');
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap-sm">
+    <div class="sec-head" style="grid-template-columns:1fr">
+      <div class="idx">FAQ</div>
+      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
+    </div>
+    <div class="faq-grid">
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Kdy je čas na PIM?</h5><span class="tog"></span></summary><div class="answer"><p>PIM dává smysl, jakmile vás ruční správa katalogu stojí víc času než stavba systému. Typické signály: <b>5 000+ SKU, 3+ kanály publikování, 2+ jazyky, content tým 3+ lidí, roční changes 1 000+ produktů</b>.</p><p>Pokud máte pod tyto hranice, admin e-shopu vám zatím stačí.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Kolik to stojí?</h5><span class="tog"></span></summary><div class="answer"><p>PIM od PragueBest začíná od <b>250 000 Kč</b> za jednodušší nasazení (do 5 000 SKU, 1–2 kanály). Průměrný střední projekt <b>500 000 — 2 000 000 Kč</b>. Enterprise s multi-market, multi-language, custom AI a komplexními integracemi <b>2 — 5 mio Kč</b>.</p><p>Po launchi účtujeme retainer 20 — 120 tis. měsíčně — monitoring, nové kanály, AI model updates, nové funkce. Pokud stavíme i e-shop, je PIM efektivnější zahrnout do celkového projektu.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Můžeme PIM používat na&nbsp;e-shopu, který jste nestavěli vy?</h5><span class="tog"></span></summary><div class="answer"><p>Ano. PIM je platforma-agnostic — umí publikovat data do jakéhokoliv e-shopu přes API. Máme reálné nasazení nad Shopify, Magento, Mastershop i custom platformami od jiných agentur.</p><p>Při onboardingu spravíme napojení na váš stávající e-shop přes REST API nebo webhooks. Stávající admin přestanete používat, vše půjde z PIMu.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Jak funguje AI obohacení — je to spolehlivé?</h5><span class="tog"></span></summary><div class="answer"><p>AI v PIMu <b>negeneruje generický text</b>. Trénujeme model na vašich stávajících popiscích, terminologii a brand voice — výsledek mluví jako vaše firma.</p><p>Editor vždy schvaluje AI návrh, takže kontrolu máte vy. Klienti reportují <b>80 % efektivity AI</b> při generování popisků — 4 z 5 návrhů jsou použitelné s drobnou úpravou, 1 z 5 jde rovnou do produkce.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Můžete migrovat z&nbsp;Akeneo, Pimcore nebo jiného PIMu?</h5><span class="tog"></span></summary><div class="answer"><p>Ano, migrace je standardní součást projektů. Přebíráme: produktové struktury (katalog, atributy, kategorie, varianty, rodiny), media library (obrázky, videa, dokumenty), překlady napříč jazyky, workflow nastavení a uživatelské role, historii a versioning.</p><p>Typicky <b>4 — 12 týdnů</b> podle rozsahu. Před migrací uděláme discovery audit — namapujeme datový model a workflow zdrojového PIMu.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Co s&nbsp;daty po&nbsp;skončení smlouvy?</h5><span class="tog"></span></summary><div class="answer"><p><b>Vaše data jsou vaše.</b> Nikdy jiných. Po skončení smlouvy poskytneme: plný export všech produktů, atributů, médií, překladů ve standardních formátech (XML, CSV, JSON) · migrační support pro přechod na jiné řešení (do 30 dní) · read-only přístup do PIMu po dobu migrace (do 90 dní).</p><p>Nikdy vás nenecháme bez vašich dat — to je naše dlouholeté pravidlo.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Hostujeme PIM u&nbsp;vás, nebo si ho vezmeme na&nbsp;vlastní cloud?</h5><span class="tog"></span></summary><div class="answer"><p>Nabízíme obě varianty. <b>Managed hosting</b> na naší infrastruktuře (Private cloud / GCP) — vše máme pod kontrolou, SLA 99,9 %, on-call 24/7. <b>On-premise nebo vlastní cloud</b> — deployujeme na vaší AWS, Azure nebo GCP infrastruktuře, vy spravujete.</p><p>Doporučujeme managed hosting — máme roky zkušeností s provozem PIMu a problémy řeší náš tým, ne váš IT. Na větší enterprise instalace on-premise rádi dodáme podmínky.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="invest">
+  <div class="wrap">
+    <div class="inv-grid">
+      <div class="left reveal">
+        <div class="lbl">§ 08 / Investice</div>
+        <h3>Vztahy dlouhodobé, ceny <span class="red">poctivé.</span></h3>
+        <p>Nejsme nejlevnější na trhu. PIM je <b>dlouhodobá platforma</b> — stavíme ji tak, aby sloužila 5–10 let a rostla s vaším katalogem.</p>
+        <p>Po discovery fázi vám předáme <b>fixní rozpočet</b>, který držíme. Průměrný klient zkracuje čas na publikování nového produktu z 2 hodin na 15 minut.</p>
+        <div class="cross-sell">
+          <p>PIM klient potřebuje i silný e-shop. Stavíme obojí:</p>
+          <a href="b2c-na-miru.html">B2C E-shop na míru →</a>
+          <a href="b2b-na-miru.html">B2B E-shop na míru →</a>
+        </div>
+      </div>
+      <div class="right">
+        <div class="range-row reveal">
+          <div class="lbl-r">Standardní nasazení</div>
+          <div class="val-r">od 250 000 Kč</div>
+          <small>Do 5 000 SKU, 1–2 kanály, základní multi-language, standardní ERP integrace.</small>
+        </div>
+        <div class="range-row reveal d1">
+          <div class="lbl-r">Střední projekt</div>
+          <div class="val-r">500 tis. — 2 mil. Kč</div>
+          <small>Multi-channel publishing, 3+ jazyků, AI obohacení, komplexní workflow, více ERP/feed integrací.</small>
+        </div>
+        <div class="range-row reveal d2">
+          <div class="lbl-r">Enterprise</div>
+          <div class="val-r">2 — 5 mil. Kč</div>
+          <small>Multi-market, multi-language, custom AI pipeline, 10+ kanálů, globální deployment.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Jeden katalog.<br><span class="red">Všechny kanály.</span></h2>
+    <p class="sub reveal d1">Napište nám — ozveme se do 24 hodin s prvním odhadem a návrhem schůzky nebo demo.</p>
+    <div class="ctas reveal d2">
+      <a href="../kontakt.html" class="btn">
+        <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="../index.html"><img src="../assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
+        <p>Digitální agentura z Karlína. Od roku 1999 stavíme e-shopy, weby a aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>E-shopy</h5>
+        <a href="../eshop.html">Přehled e-shopů <span class="ar">→</span></a>
+        <a href="b2c-na-miru.html">B2C na míru <span class="ar">→</span></a>
+        <a href="b2b-na-miru.html">B2B na míru <span class="ar">→</span></a>
+        <a href="shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="pim.html">PIM <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="../index.html">Úvod <span class="ar">→</span></a>
+        <a href="../reference.html">Reference <span class="ar">→</span></a>
+        <a href="../o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="../kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock"><span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span></div>
+      <div class="right">Vyrobeno s láskou v Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.mod,.ai-card,.range-row,.qa summary,.ref').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+  document.querySelectorAll('.qa').forEach(q=>{q.addEventListener('toggle',()=>{if(q.open){document.querySelectorAll('.qa').forEach(o=>{if(o!==q)o.removeAttribute('open')})}})});
+})();
+</script>
+</body>
+</html>

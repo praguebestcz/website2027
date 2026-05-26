@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>B2B E-shop na míru — Custom platforma | PragueBest</title>
+<meta name="description" content="Custom B2B platformy s vlastní logikou rolí, ceníků a workflow. EDI, ERP integrace, API pro procurement. Pro projekty od 1 milionu Kč. 27 let v e-commerce." />
+<meta name="keywords" content="B2B e-shop na míru, B2B platforma, custom B2B, velkoobchod e-shop, distributor e-shop, B2B portál, EDI, EDIFACT, role a ceníky, schvalovací workflow, ERP integrace, procurement, Pohoda, Helios, SAP, Karlín, Praha, PragueBest" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/eshop/b2b-na-miru" />
+<meta property="og:title" content="B2B E-shop na míru — Custom platforma | PragueBest" />
+<meta property="og:description" content="Custom B2B platformy s vlastní logikou rolí, ceníků a workflow. EDI, ERP integrace, API pro procurement. Pro projekty od 1 milionu Kč. 27 let v e-commerce." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-b2b.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="B2B E-shop na míru — Custom platforma | PragueBest" />
+<meta name="twitter:description" content="Custom B2B platformy s vlastní logikou rolí, ceníků a workflow. EDI, ERP integrace, API pro procurement. Pro projekty od 1 milionu Kč. 27 let v e-commerce." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-b2b.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "Co umíme", "item": "https://praguebest.cz/co-umime" },
+    { "@type": "ListItem", "position": 3, "name": "E-shopy", "item": "https://praguebest.cz/eshop" },
+    { "@type": "ListItem", "position": 4, "name": "B2B na míru" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Custom B2B E-commerce Development",
+  "name": "B2B E-shop na míru — Custom platforma",
+  "provider": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "areaServed": ["CZ", "SK", "EU"],
+  "description": "Custom B2B platformy s vlastní logikou rolí, ceníků a workflow. EDI, ERP integrace, API pro procurement. 27 let v e-commerce, 100+ realizovaných projektů.",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CZK",
+    "lowPrice": "1000000",
+    "highPrice": "20000000",
+    "description": "Custom B2B projekty od 1 milionu Kč. Většina mezi 2–8 mio Kč. Enterprise platformy s EDI, multi-warehouse a globální expanzí 15+ mio Kč."
+  }
+}
+</script>
+<style>
+/* ===================== FOR WHOM ===================== */
+.fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+.fw-col{padding:56px 52px}
+.fw-col:first-child{border-right:1px solid var(--ink)}
+.fw-col .lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+.fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
+.fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
+.fw-col ul{list-style:none;margin-top:16px}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
+.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+
+/* ===================== FEATURES GRID (12 výhod) ===================== */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.feat{padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.feat::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.feat:hover::before{transform:translateY(0)}
+.feat > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.feat:hover > *{color:var(--paper)}
+.feat .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:32px;transition:all .5s var(--ease)}
+.feat:hover .ico{background:var(--red);color:#fff}
+.feat .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.feat .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.feat:hover .n{color:rgba(242,236,224,.5)}
+.feat h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.feat p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.feat:hover p{color:rgba(242,236,224,.75)}
+
+/* ===================== B2B FUNCTIONS 9 CATEGORIES ===================== */
+.b2b-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.b2b-cat{padding:40px 36px;background:var(--paper);transition:background .4s var(--ease)}
+.b2b-cat:hover{background:var(--paper-2)}
+.b2b-cat .cat-n{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.b2b-cat h5{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:16px;line-height:1.2}
+.b2b-cat ul{list-style:none}
+.b2b-cat ul li{font-size:13px;color:var(--ink-3);padding:6px 0;border-bottom:1px solid var(--line);padding-left:14px;position:relative;line-height:1.5}
+.b2b-cat ul li::before{content:"—";position:absolute;left:0;color:var(--mute);font-size:11px}
+.b2b-cat ul li:last-child{border-bottom:none}
+
+/* ===================== TECH STACK ===================== */
+.stack .sec-head h2,.stack .sec-head .idx{color:var(--paper)}
+.stack-item{padding:40px 24px 32px;border-right:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);position:relative;transition:background .4s var(--ease);text-align:center}
+.stack-item:hover{background:rgba(242,236,224,.05)}
+.stack-item .lg{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--paper);margin-bottom:6px}
+.stack-item .cat{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.06em;text-transform:uppercase}
+.stack-item::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.stack-item:hover::before{transform:scaleX(1)}
+
+/* ===================== INTEGRATIONS GRID ===================== */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
+.int-card{padding:32px 28px;background:var(--paper);transition:background .4s var(--ease)}
+.int-card:hover{background:var(--paper-2)}
+.int-card .in{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.int-card h5{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.int-card p{font-size:12px;color:var(--mute);line-height:1.6}
+
+/* ===================== FAQ ===================== */
+.faq{padding:100px 0;border-top:1px solid var(--ink)}
+.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
+.qa:hover{background:var(--paper-2)}
+.qa summary{padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;cursor:none;list-style:none;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
+.qa:hover summary h5{transform:translateX(6px)}
+.qa summary .tog{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s var(--ease)}
+.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
+.qa summary .tog::before{width:14px;height:1.5px}
+.qa summary .tog::after{width:1.5px;height:14px}
+.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
+.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
+.qa[open] summary .tog::after{transform:scaleY(0)}
+.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
+.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
+.qa .answer p+p{margin-top:12px}
+.qa .answer b{color:var(--ink);font-weight:600}
+.qa .answer a{color:var(--red)}
+
+/* ===================== INVESTMENT ===================== */
+.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:2}
+.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
+.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
+.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
+.inv-grid .left p+p{margin-top:16px}
+.inv-grid .left p b{color:var(--ink);font-weight:600}
+.inv-grid .right{display:grid;gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.range-row{padding:40px 44px;border-bottom:1px solid var(--line);background:var(--paper);transition:background .4s var(--ease)}
+.range-row:last-child{border-bottom:none}
+.range-row:hover{background:var(--ink);color:var(--paper)}
+.range-row .lbl-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;transition:color .4s}
+.range-row:hover .lbl-r{color:rgba(242,236,224,.5)}
+.range-row .val-r{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+.range-row small{font-size:13px;color:var(--mute);max-width:44ch;display:block;line-height:1.5;transition:color .4s}
+.range-row:hover small{color:rgba(242,236,224,.6)}
+.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
+.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
+.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+
+@media(max-width:1024px){
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .b2b-cats{grid-template-columns:repeat(2,1fr)}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+  .inv-grid{grid-template-columns:1fr;gap:40px}
+  .fw-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .feat-grid{grid-template-columns:1fr}
+  .b2b-cats{grid-template-columns:1fr}
+  .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
+  .qa .answer{padding:0 16px 24px 56px}
+}
+</style>
+<link rel="stylesheet" href="../assets/shared.css">
+<link rel="stylesheet" href="../assets/nav-dropdown.css">
+<script src="../assets/data/references.js"></script>
+<script src="../assets/quarter.js"></script>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="top">
+  <a class="logo" href="../index.html"><img src="../assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+  <ul>
+    <li class="has-dd">
+      <a href="../eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="../eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="../weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby &amp; portály</a>
+        <a href="../aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace &amp; AI vývoj</a>
+      </div>
+    </li>
+    <li><a href="../reference.html">Case Studies</a></li>
+    <li><a href="../o-nas.html">O nás</a></li>
+    <li><a href="../kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q4/26</span></span>
+    <a href="../kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="../eshop.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na E-shopy
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> E-shopy <span>/</span> <b>B2B na míru</b>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Role &nbsp;·&nbsp; Cenové hladiny &nbsp;·&nbsp; ERP integrace</div>
+    <h1 class="reveal d1">E-shop pro firmy,&nbsp;<span class="red">co prodávají firmám.</span></h1>
+    <div class="below">
+      <p class="lede reveal d2">Pro velkoobchody, distributory a firmy s vlastní sítí partnerů. Stavíme B2B platformy s&nbsp;<b>vlastní logikou rolí, ceníků a procesů</b> — a s funkcemi, které B2B nákupčí používají denně.</p>
+      <div class="ctas reveal d3">
+        <a href="../kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="#refs" class="btn ghost">
+          <span class="lbl" data-t="Naše B2B portály"><span>Naše B2B portály</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Co dostanete</h6><p>Custom B2B platforma<small>Design, kód, integrace, provoz</small></p></div>
+      <div class="m"><h6>Doba realizace</h6><p>3 — 18 měsíců<small>Podle rozsahu</small></p></div>
+      <div class="m"><h6>Technologie</h6><p>Headless · Symfony · API<small>PHP / Vue / React / Node</small></p></div>
+      <div class="m"><h6>Investice od</h6><p>1 000 000 Kč<small>Orientačně</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLAGE -->
+<section class="collage">
+  <div class="wrap">
+    <div class="col-wrap reveal">
+      <div class="card m1">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">albi.cz — B2B portál</div></div>
+          <img src="../assets/reference/albi/mock.png" alt="Albi B2B" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+      <div class="card m2">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">sparkys.cz — velkoobchod</div></div>
+          <img src="../assets/reference/sparkys/mock.png" alt="Sparkys B2B" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+      <div class="card m3">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">elnino.cz — B2B sekce</div></div>
+          <img src="../assets/reference/elnino/mock.png" alt="El Nino B2B" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="forwhom" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Pro koho</div>
+      <h2>Pro koho stavíme a&nbsp;pro koho <span class="red">ne.</span></h2>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-col">
+        <div class="lbl">Ideální zadání</div>
+        <h3>Velkoobchody a distributory, kterým běžné platformy nestačí.</h3>
+        <p>Stavíme platformy, kde nákupčí denně řeší opakované objednávky, kontrolu rozpočtů a synchronizaci s ERP — a kde každý zákazník vidí své vlastní ceníky, role a workflow.</p>
+        <ul>
+          <li>50+ B2B zákazníků s vlastními ceníky a rolemi</li>
+          <li>Roční obrat 50 mil. Kč+ z B2B kanálu</li>
+          <li>ERP, sklad nebo procurement systémy k napojení</li>
+          <li>Plán na 5+ let — partnerství, ne jednorázový projekt</li>
+          <li>Mezinárodní expanze (multi-language, multi-currency, EDI)</li>
+        </ul>
+      </div>
+      <div class="fw-col">
+        <div class="lbl">Nejsme vhodní</div>
+        <h3>Pro „B2C s pár slevovými hladinami".</h3>
+        <p>Pokud potřebujete jen B2C e-shop s několika rolemi a slevovými skupinami, podívejte se na naši <a href="b2c-na-miru.html" style="color:var(--red)">nabídku B2C na míru →</a> — bude vhodnější a levnější.</p>
+        <p>Custom B2B platforma dává smysl od momentu, kdy ručně spravovat objednávky a ceníky bere víc hodin než stavět systém.</p>
+        <ul style="opacity:.7">
+          <li style="color:var(--mute)">Pod 10 B2B zákazníků</li>
+          <li style="color:var(--mute)">Rozpočet pod 700 tis. Kč</li>
+          <li style="color:var(--mute)">Spěcháte na launch za 2 měsíce</li>
+          <li style="color:var(--mute)">Nepotřebujete žádné integrace na ERP/WMS/procurement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES — 12 výhod -->
+<section class="features" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Výhody</div>
+      <h2>Co dostanete, když nám <span class="red">řeknete ano.</span></h2>
+    </div>
+    <div class="feat-grid">
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="n">/ 01</div><h4>Vlastní role a hierarchie účtů</h4><p>Admin / nákupčí / schvalovatel / účetní / prohlížeč. Nastavíte role přesně podle vaší organizace. Multi-user účty pro firmy s pobočkami.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="n">/ 02</div><h4>Cenové hladiny per zákazník</h4><p>Každý zákazník vidí svůj vlastní ceník — podle objemu, segmentu nebo individuální dohody. Změna ceny okamžitě napříč všemi nákupčími klienta.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="n">/ 03</div><h4>Schvalovací workflow</h4><p>Víceúrovňové schvalování objednávek — zaměstnanec vytvoří, nadřízený schválí. Konfigurovatelná pravidla (např. nad 10 000 Kč automaticky ke schválení).</p></article>
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="n">/ 04</div><h4>Quick Order — CSV &amp; EAN skener</h4><p>B2B nákupčí objednává 50–500 položek najednou. CSV import pro pravidelné objednávky, mobilní EAN skener pro skladového pracovníka přímo na prodejně.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><div class="n">/ 05</div><h4>Opakovaná objednávka jedním kliknutím</h4><p>B2B zákazníci opakují 60—80 % objednávek. Tlačítko „Objednat znovu" zkrátí proces z minut na sekundy.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="n">/ 06</div><h4>Odstupňované ceny (Bulk pricing)</h4><p>Transparentní tabulka cen podle množství přímo na produktu. Zákazník vidí, kolik ušetří při větším odběru — průměrná objednávka roste o 10–20 %.</p></article>
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></div><div class="n">/ 07</div><h4>ERP &amp; WMS integrace</h4><p>Pohoda, Money, Helios, Abra, K2, SAP, Microsoft Dynamics, Comarch — napojíme váš e-shop tam, kde máte data. Ceny, sklad, objednávky v reálném čase.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="n">/ 08</div><h4>API pro procurement systémy</h4><p>Velcí zákazníci si napojí svůj ERP/POS přímo na vaši platformu. Objednávky tečou automaticky, bez ručního přepisování.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><div class="n">/ 09</div><h4>EDI s retailovými řetězci</h4><p>EDIFACT, XML — splníte požadavky velkých řetězců, kteří EDI vyžadují jako podmínku spolupráce. Eliminace ručního zpracování.</p></article>
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="n">/ 10</div><h4>Self-service reporting</h4><p>Zákazník vidí svoje nákupy v dashboardu — grafy po měsících, top kategorie, srovnání s rokem. Export do PDF/Excel pro interní reporting.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="n">/ 11</div><h4>Personalizovaný dashboard po přihlášení</h4><p>Po přihlášení místo generické homepage: stav objednávek, oblíbené produkty, doporučení podle historie, akce pro daný segment.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="n">/ 12</div><h4>Onboarding pro nové partnery</h4><p>Samoobslužná registrace s automatickým ověřením IČO přes ARES. Interaktivní průvodce funkcemi e-shopu. Rychlejší získávání nových partnerů.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- B2B FUNCTIONS — 27 funkcí v 9 kategoriích -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Funkce</div>
+      <h2>Co B2B platforma od&nbsp;PragueBest <span class="red">skutečně umí.</span></h2>
+      <p class="lede" style="font-size:16px;color:var(--ink-3);max-width:62ch;margin-top:16px">Stavíme platformy z reálných potřeb B2B nákupčích. Tady je devět oblastí, ve kterých si B2B custom platforma od nás zaslouží své jméno.</p>
+    </div>
+    <div class="b2b-cats">
+      <div class="b2b-cat"><div class="cat-n">/ 01</div><h5>Objednávkový proces</h5><ul><li>Quick Order — CSV import, EAN skener mobilem přímo z prodejny</li><li>Uložené nákupní seznamy — pojmenované, sdílitelné mezi podúčty firmy</li><li>Opakovaná objednávka jedním kliknutím — B2B zákazníci opakují 60–80 % objednávek</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 02</div><h5>Cenotvorba a katalog</h5><ul><li>Cenové hladiny per zákazník — vlastní ceník pro každého, podle objemu, segmentu nebo dohody</li><li>Odstupňované ceny (Bulk pricing) — transparentní tabulka úspor podle množství přímo u produktu</li><li>B2B porovnání produktů — RRP vs nákupní cena, minimální objednací množství, rozměry balení</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 03</div><h5>Workflow a schvalování</h5><ul><li>Schvalovací workflow objednávek — víceúrovňové, konfigurovatelné limity (nad 10k Kč ke schválení)</li><li>Multi-user role — admin / nákupčí / schvalovatel / účetní / prohlížeč</li><li>Rozpočty a limity nákupu — měsíční/kvartální stropy s notifikací, volitelné zablokování</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 04</div><h5>Personalizace</h5><ul><li>Personalizovaný dashboard — místo generické homepage stav objednávek, doporučení, segmentové akce</li><li>Wishlist &amp; oblíbené produkty — s notifikací při zlevnění nebo naskladnění</li><li>Recently Viewed — historie napříč sessions, sezónní připomenutí</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 05</div><h5>Komunikace a notifikace</h5><ul><li>Notifikační centrum — real-time alerts, preference kanálu (email / push / v aplikaci)</li><li>Real-time tracking zásilek — vizuální timeline, API dopravců, Foxdeli integrace</li><li>Transakční emaily — automatické při každé změně stavu objednávky</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 06</div><h5>Reporting a analytika</h5><ul><li>Self-service reporting pro nákupčí — grafy nákupů, top kategorie, srovnání rok-na-rok, export PDF/Excel</li><li>Dashboard obchodního zástupce — přehled klientů s metrikami, identifikace neaktivních</li><li>Export dat pro ERP zákazníka — ISDOC, XML, CSV pro automatický import</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 07</div><h5>Integrace a automatizace</h5><ul><li>ERP &amp; WMS — Pohoda, Money, Helios, Abra, K2, SAP, Microsoft Dynamics, Comarch</li><li>API pro procurement — REST endpoints pro napojení zákaznických ERP/POS systémů</li><li>EDI s retailovými řetězci — EDIFACT, XML, automatická výměna dokumentů s velkými partnery</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 08</div><h5>Mobil &amp; UX</h5><ul><li>Mobile-first design — všechny B2B funkce plně dostupné na mobilu</li><li>EAN skener přímo z prodejny — naskenuj a přidej do košíku, propojeno s Quick Order</li><li>PWA (Progressive Web App) — offline přístup k ceníku, push notifikace, „app on home screen"</li></ul></div>
+      <div class="b2b-cat"><div class="cat-n">/ 09</div><h5>Growth a retence</h5><ul><li>Onboarding pro nové partnery — ARES validace IČO, interaktivní průvodce funkcemi</li><li>Sváteční a sezónní doporučení — propojené s kalendářem (Vánoce, Velikonoce, zpátky do školy)</li><li>Segment-aware UX — 3 módy portálu podle velikosti zákazníka (mikro / business / enterprise)</li></ul></div>
+    </div>
+    <p style="font-size:13px;color:var(--mute);margin-top:24px;max-width:72ch">Tento přehled vychází z naší reálné B2B implementace — 47 funkcí v 9 kategoriích pro velkoobchod, distribuci a retailové sítě. Plný katalog funkcí pro váš projekt sestavíme v discovery fázi.</p>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="stack" style="padding:80px 0;background:var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Stack</div>
+      <h2>Technologie, kterým <span class="red">rozumíme.</span></h2>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-item"><div class="lg">Vue</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">React</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">TypeScript</div><div class="cat">Language</div></div>
+      <div class="stack-item"><div class="lg">Nuxt</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">Next.js</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">Tailwind CSS</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">PHP / Symfony</div><div class="cat">Backend</div></div>
+      <div class="stack-item"><div class="lg">Node.js</div><div class="cat">Backend</div></div>
+      <div class="stack-item"><div class="lg">Python / FastAPI</div><div class="cat">Backend</div></div>
+      <div class="stack-item"><div class="lg">PostgreSQL</div><div class="cat">Database</div></div>
+      <div class="stack-item"><div class="lg">MySQL</div><div class="cat">Database</div></div>
+      <div class="stack-item"><div class="lg">Redis</div><div class="cat">Cache</div></div>
+      <div class="stack-item"><div class="lg">Elasticsearch</div><div class="cat">Search</div></div>
+      <div class="stack-item"><div class="lg">Docker</div><div class="cat">DevOps</div></div>
+      <div class="stack-item"><div class="lg">Kubernetes</div><div class="cat">DevOps</div></div>
+      <div class="stack-item"><div class="lg">Private cloud</div><div class="cat">Cloud</div></div>
+      <div class="stack-item"><div class="lg">GCP</div><div class="cat">Cloud</div></div>
+      <div class="stack-item"><div class="lg">Vercel</div><div class="cat">Cloud</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRACE — 8 kategorií -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Integrace</div>
+      <h2>Integrace, na&nbsp;které jste <span class="red">zvyklí.</span></h2>
+    </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">Napojíme váš B2B e-shop na cokoliv, co potřebujete. B2B vyžaduje hlubší integration stack než B2C — proto navíc EDI a procurement.</p>
+    <div class="int-grid">
+      <div class="int-card"><div class="in">/ 01</div><h5>ERP &amp; účetnictví</h5><p>Pohoda · Money · Helios · Abra · K2 · SAP · Microsoft Dynamics · Comarch</p></div>
+      <div class="int-card"><div class="in">/ 02</div><h5>Sklady &amp; WMS</h5><p>Logsys · Vienna · SAP EWM · Manhattan · vlastní WMS</p></div>
+      <div class="int-card"><div class="in">/ 03</div><h5>Platební brány &amp; fakturace</h5><p>GoPay · ComGate · Stripe + faktury, splatnost, kreditní limity</p></div>
+      <div class="int-card"><div class="in">/ 04</div><h5>Dopravci &amp; logistika</h5><p>Zásilkovna · PPL · DPD · GLS · InPost · DHL · UPS</p></div>
+      <div class="int-card"><div class="in">/ 05</div><h5>CRM &amp; marketing</h5><p>HubSpot · Salesforce · Pipedrive · Microsoft Dynamics CRM · SmartEmailing</p></div>
+      <div class="int-card"><div class="in">/ 06</div><h5>B2B marketplace</h5><p>Amazon Business · Alibaba · Mercateo · Mall Marketplace · Allegro B2B</p></div>
+      <div class="int-card"><div class="in">/ 07</div><h5>EDI &amp; procurement</h5><p>EDIFACT · ANSI X12 · AS2 · SAP Ariba · Coupa · Jaggaer · MS Dynamics 365 SCM</p></div>
+      <div class="int-card"><div class="in">/ 08</div><h5>Analytika &amp; podpora</h5><p>GA4 · Hotjar · Microsoft Clarity · Zendesk · Daktela · Smartsupp</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Proces</div>
+      <h2>Jak u&nbsp;nás <span class="red">pracujeme.</span></h2>
+    </div>
+    <div class="steps steps-6">
+      <div class="step reveal">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">01<span class="mk">.</span></div>
+        <h4>Discovery</h4>
+        <p class="dur">3–8 týdnů</p>
+        <p>Hluboká analýza B2B procesů, mapování rolí a workflow, ERP audit, persony nákupčích.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">02<span class="mk">.</span></div>
+        <h4>Design</h4>
+        <p class="dur">6–14 týdnů</p>
+        <p>Design system pro multi-role UX, 80–150 obrazovek včetně admin/schvalovacích flows, usability testing s reálnými B2B nákupčími.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">03<span class="mk">.</span></div>
+        <h4>Build</h4>
+        <p class="dur">12–40 týdnů</p>
+        <p>Komplexní business logika, role-based access control, ERP/WMS integrace, EDI implementace.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">04<span class="mk">.</span></div>
+        <h4>Testování</h4>
+        <p class="dur">4–8 týdnů</p>
+        <p>QA + UAT s reálnými B2B nákupčími napříč rolemi, EDI testování s partnery, performance testy.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">05<span class="mk">.</span></div>
+        <h4>Launch</h4>
+        <p class="dur">3–6 týdnů</p>
+        <p>Migrace zákazníků, partnerů, ceníků, EDI smluv. Soft launch na vybrané segmenty, hot-fix sprint.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">06<span class="mk">.</span></div>
+        <h4>Provoz &amp; rozvoj</h4>
+        <p class="dur">Trvale</p>
+        <p>Maintenance, SLA 99,9 %, on-call 24/7, retainer pro rozvoj, dlouhodobé partnerství.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="refs" id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Příklady</div>
+      <h2>Ukázky toho, co&nbsp;jsme <span class="red">postavili.</span></h2>
+      <div class="aside"><a href="../reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
+    </div>
+    <div class="ref-grid" id="b2b-refs"></div>
+    <script>
+    (()=>{
+      const grid = document.getElementById('b2b-refs');
+      const refs = window.REFS || [];
+      const ids = ['albi','sparkys','elnino'];
+      const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
+      if (!grid || !refs.length) return;
+      const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
+      grid.innerHTML = picks.map((ref, i) => {
+        const imgStyle = ref.thumb ? `style="background-image:url('../${ref.thumb}');background-size:cover;background-position:center"` : '';
+        return `<a class="ref r${i+1}" href="../${ref.href}">
+          <div class="img" ${imgStyle}></div>
+          <div class="meta"><div><h4>${ref.name}</h4><div class="cat">${ref.cat}</div></div><div class="go">${arr}</div></div>
+        </a>`;
+      }).join('');
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap-sm">
+    <div class="sec-head" style="grid-template-columns:1fr">
+      <div class="idx">FAQ</div>
+      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
+    </div>
+    <div class="faq-grid">
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Jak dlouho trvá postavit B2B platformu?</h5><span class="tog"></span></summary><div class="answer"><p>Průměrně <b>9—15 měsíců</b> od kickoffu k ostrému launchi. Jednodušší B2B s 1–2 integracemi a omezenou rolovou strukturou zvládneme za 3—6 měsíců. Komplexní platformy s EDI, multi-warehouse a mezinárodní expanzí mohou trvat 12—18 měsíců.</p><p>Po discovery fázi vám dáme přesný odhad a držíme se ho.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Kolik to stojí?</h5><span class="tog"></span></summary><div class="answer"><p>Custom B2B platformy začínají od <b>1 000 000 Kč</b> za jednodušší projekt s jedním segmentem zákazníků. Průměrný střední projekt se pohybuje mezi <b>2,5—5 miliony Kč</b>. Komplexní enterprise platformy s EDI, multi-warehouse a globální expanzí běží od 6 milionů Kč výše.</p><p>Po launchi účtujeme servis v retaineru 50—500 tis. měsíčně (podle komplexity EDI a integrací).</p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Postavíte nám to na&nbsp;Shopify B2B / Shopify Plus?</h5><span class="tog"></span></summary><div class="answer"><p>Custom B2B platformy stavíme my. Pro Shopify B2B / Shopify Plus máme <a href="shopify.html">samostatnou nabídku →</a> — Shopify Plus má slušné B2B funkce a může být rychlejší cesta pro některé projekty.</p><p>Volba mezi custom a Shopify Plus závisí na komplexitě: pokud potřebujete vlastní schvalovací workflow napříč 5+ rolemi, EDI s retailovými řetězci nebo hluboké API integrace na procurement — jděte custom. Pokud vystačíte s víceúrovňovou cenotvorbou a wholesale channel — Shopify Plus.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Co se děje po&nbsp;launchi? Platíme extra za&nbsp;úpravy?</h5><span class="tog"></span></summary><div class="answer"><p>Po launchi přechází projekt do fáze <b>rozvoje &amp; servisu</b>. Máme dedikovaný tým, který sedí v Karlíně a zná váš projekt od začátku.</p><p>Drobné úpravy řešíme v rámci retaineru, větší změny jako samostatné sprinty. Monitoring, bezpečnostní aktualizace, EDI údržba a on-call jsou v retaineru vždy zahrnuté. SLA 99,9 %, odezva na kritické incidenty do 30 minut, 24/7.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Jaké máte zkušenosti s&nbsp;naším typem byznysu?</h5><span class="tog"></span></summary><div class="answer"><p>Za 27 let jsme postavili B2B platformy pro velkoobchod s hračkami, knihami, dárky a kosmetikou, distribuci automotive dílů, FMCG distribuci, retailové sítě s vlastním wholesale kanálem, B2B služby pro pojišťovny a další.</p><p>Skoro jistě jsme někdy dělali něco podobného. Rádi vám ukážeme konkrétní case study z vašeho segmentu — stačí napsat, o jaký byznys jde.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Můžete napojit EDI s&nbsp;velkými retailovými řetězci?</h5><span class="tog"></span></summary><div class="answer"><p>Ano. Podporujeme <b>EDIFACT, ANSI X12 a AS2 transport</b>. Implementace EDI s novým partnerem typicky 4—8 týdnů na napojení a testování. Spravujeme i SFTP-based exchange pro partnery preferující jednodušší formáty.</p><p>EDI je často podmínka spolupráce s velkými řetězci — bez něj nemůžete dodávat. Po launchi spravujeme i mapování dokumentů s novými partnery v rámci retaineru.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Napojíte se na&nbsp;náš stávající ERP?</h5><span class="tog"></span></summary><div class="answer"><p>Ano. Máme proven integrace s <b>Pohoda, Money, Helios, Abra, K2, SAP, Microsoft Dynamics a Comarch</b>. Pro méně běžné ERP postavíme custom REST API connector.</p><p>Integrace typicky 2—6 týdnů, podle počtu entit (produkty, ceníky, sklady, objednávky, faktury) a režimu (real-time vs. batch). V discovery fázi mapujeme přesný scope synchronizace.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 08</span><h5>Můžete migrovat ze&nbsp;stávající B2B platformy?</h5><span class="tog"></span></summary><div class="answer"><p>Ano, migrace je standardní součást našich projektů. Přebíráme produkty, ceníky per zákazník, role, zákaznickou databázi, historii objednávek, fakturační data i EDI smlouvy s partnery.</p><p>Soft launch po segmentech (nejdříve menší zákazníci, postupně velké klíčové) minimalizuje riziko výpadku tržeb. SEO redirects pro indexované B2B produktové stránky.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="invest">
+  <div class="wrap">
+    <div class="inv-grid">
+      <div class="left reveal">
+        <div class="lbl">§ 08 / Investice</div>
+        <h3>Vztahy dlouhodobé, ceny <span class="red">poctivé.</span></h3>
+        <p>Nejsme nejlevnější na trhu a ani se o to nesnažíme. B2B platformy slouží klientům <b>7—12 let</b> — a to se neděje za cenu šablony.</p>
+        <p>Zároveň vám nikdy nenaúčtujeme něco, o čem jste nevěděli. Po discovery fázi vám předáme <b>fixní rozpočet</b>, který držíme.</p>
+        <p>Průměrný B2B projekt se nám vrací <b>v horizontu 18—24 měsíců</b> na úspoře v administrativě nákupčích, automatizaci procesů a otevření nových obchodních partnerů.</p>
+        <div class="cross-sell">
+          <p>Potřebujete spíše B2C e-shop pro koncové zákazníky?</p>
+          <a href="b2c-na-miru.html">B2C E-shop na míru →</a>
+          <p>Vystačíte si s Shopify B2B / Plus pro rychlejší launch?</p>
+          <a href="shopify.html">Shopify e-shopy →</a>
+        </div>
+      </div>
+      <div class="right">
+        <div class="range-row reveal">
+          <div class="lbl-r">Entry</div>
+          <div class="val-r">od 1 000 000 Kč</div>
+          <small>Jednodušší projekt s jedním segmentem zákazníků, standardní role, základní integrace.</small>
+        </div>
+        <div class="range-row reveal d1">
+          <div class="lbl-r">Střední projekt</div>
+          <div class="val-r">2—8 milionů Kč</div>
+          <small>Většina B2B projektů — multi-segment, ERP integrace, EDI s 1–3 partnery, komplexní rolová struktura.</small>
+        </div>
+        <div class="range-row reveal d2">
+          <div class="lbl-r">Enterprise platforma</div>
+          <div class="val-r">15 mil. Kč+</div>
+          <small>EDI s více retailovými řetězci, multi-warehouse, globální expanze, full procurement automation.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Posuňte svoji B2B platformu<br><span class="red">o úroveň výš.</span></h2>
+    <p class="sub reveal d1">Napište nám — ozveme se do 24 hodin s prvním odhadem a návrhem schůzky.</p>
+    <div class="ctas reveal d2">
+      <a href="../kontakt.html" class="btn">
+        <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="../index.html"><img src="../assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
+        <p>Digitální agentura z Karlína. Od roku 1999 stavíme e-shopy, weby a aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>E-shopy</h5>
+        <a href="../eshop.html">Přehled e-shopů <span class="ar">→</span></a>
+        <a href="b2c-na-miru.html">B2C na míru <span class="ar">→</span></a>
+        <a href="b2b-na-miru.html">B2B na míru <span class="ar">→</span></a>
+        <a href="shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="pim.html">PIM <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="../index.html">Úvod <span class="ar">→</span></a>
+        <a href="../reference.html">Reference <span class="ar">→</span></a>
+        <a href="../o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="../kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock"><span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span></div>
+      <div class="right">Vyrobeno s láskou v Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.feat,.range-row,.b2b-cat,.qa summary,.ref').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+  document.querySelectorAll('.qa').forEach(q=>{q.addEventListener('toggle',()=>{if(q.open){document.querySelectorAll('.qa').forEach(o=>{if(o!==q)o.removeAttribute('open')})}})});
+})();
+</script>
+</body>
+</html>

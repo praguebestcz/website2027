@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>B2C E-shop na míru — Headless commerce | PragueBest</title>
+<meta name="description" content="Custom B2C e-shopy s headless architekturou, výkonem pod 1 sekundu a integrací na ERP, PIM, marketing tools. Pro projekty od 750 000 Kč. 100+ realizací." />
+<meta name="keywords" content="B2C e-shop na míru, custom e-shop, headless commerce, headless e-shop, B2C platforma, e-shop bez šablony, vývoj e-shopu, e-commerce agentura, ERP integrace, PIM, UpSearch, BigDataManager, Vue, React, Nuxt, Next, Karlín, Praha, PragueBest" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/eshop/b2c-na-miru" />
+<meta property="og:title" content="B2C E-shop na míru — Headless commerce | PragueBest" />
+<meta property="og:description" content="Custom B2C e-shopy s headless architekturou, výkonem pod 1 sekundu a integrací na ERP, PIM, marketing tools. Pro projekty od 750 000 Kč. 100+ realizací." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-b2c.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="B2C E-shop na míru — Headless commerce | PragueBest" />
+<meta name="twitter:description" content="Custom B2C e-shopy s headless architekturou, výkonem pod 1 sekundu a integrací na ERP, PIM, marketing tools. Pro projekty od 750 000 Kč. 100+ realizací." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-b2c.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "Co umíme", "item": "https://praguebest.cz/co-umime" },
+    { "@type": "ListItem", "position": 3, "name": "E-shopy", "item": "https://praguebest.cz/eshop" },
+    { "@type": "ListItem", "position": 4, "name": "B2C na míru" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Custom B2C E-commerce Development",
+  "name": "B2C E-shop na míru — Headless commerce",
+  "provider": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "areaServed": ["CZ", "SK", "EU"],
+  "description": "Custom B2C e-shopy s headless architekturou, výkonem pod 1 sekundu a integrací na ERP, PIM, marketing tools. 100+ realizovaných projektů, 27 let v e-commerce.",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CZK",
+    "lowPrice": "750000",
+    "highPrice": "15000000",
+    "description": "Starter od 750k, Growth od 1,5 mio, Enterprise od 4 mio Kč"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "B2C E-shop tiery",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Starter B2C — 1 trh, do 5k SKU" }, "price": "750000", "priceCurrency": "CZK" },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Growth B2C — 1-3 trhy, ERP, PIM, do 50k SKU" }, "price": "1500000", "priceCurrency": "CZK" },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enterprise B2C — 10+ trhů, Big Data, SLA" }, "price": "4000000", "priceCurrency": "CZK" }
+    ]
+  }
+}
+</script>
+<style>
+/* ===================== BROWSER COLLAGE ===================== */
+.m1 .bmock .hero{padding:44px 40px;background:linear-gradient(135deg,#1a0408,#3a0810);color:#fff;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.m1 .bmock .hero::after{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.45),transparent 60%);filter:blur(20px)}
+.m1 .bmock .hero h4{font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:.95;position:relative;z-index:2}
+.m1 .bmock .hero small{display:block;font-size:10px;color:rgba(255,255,255,.6);margin-top:10px;max-width:28ch;line-height:1.5;position:relative;z-index:2}
+.m1 .bmock .hero .mb{margin-top:16px;display:inline-block;font-size:10px;font-weight:700;padding:9px 16px;background:var(--red);color:#fff;border-radius:99px;letter-spacing:.06em;text-transform:uppercase;position:relative;z-index:2}
+.m1 .bmock .hero .pic{width:130px;height:160px;border-radius:10px;background:linear-gradient(135deg,#c8c2b0,#484236);box-shadow:0 16px 32px -8px rgba(0,0,0,.6);position:relative;z-index:2}
+.m1 .bmock .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 40px 28px;background:#fff}
+.m1 .bmock .grid .ph{aspect-ratio:1;background:linear-gradient(135deg,#f4efe0,#d6cdb6);border-radius:6px;margin-bottom:8px}
+.m1 .bmock .grid b{font-size:10px;color:#333;display:block;font-weight:600}
+.m1 .bmock .grid small{font-size:10px;color:var(--red);font-weight:700;display:block;margin-top:4px}
+.m2 .bmock .nav{padding:14px 16px;font-size:11px;font-weight:800;letter-spacing:-.02em;border-bottom:1px solid #f0ebe0}
+.m2 .bmock .fi{padding:12px 16px;background:#f6f0e0;font-family:var(--mono);font-size:9px;color:#666;display:flex;gap:10px;flex-wrap:wrap}
+.m2 .bmock .fi span{padding:4px 8px;background:#fff;border-radius:20px;border:1px solid #e0d8c0}
+.m2 .bmock .fi span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.m2 .bmock .list{padding:14px 16px}
+.m2 .bmock .list .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0ebe0}
+.m2 .bmock .list .row .ph{width:46px;height:46px;background:linear-gradient(135deg,#f0e8d0,#c8bfa0);border-radius:5px;flex-shrink:0}
+.m2 .bmock .list .row .tx b{font-size:10px;font-weight:600;color:#333;display:block}
+.m2 .bmock .list .row .tx small{font-size:9px;color:#999;display:block;margin-top:2px}
+.m2 .bmock .list .row .tx .pr{font-size:11px;color:var(--red);font-weight:800;margin-top:4px;display:block}
+.m3 .bmock .hd{padding:14px 16px;background:#f6f0e0;font-size:10px;font-weight:800;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:center}
+.m3 .bmock .hd small{color:var(--red);font-size:9px;font-weight:700}
+.m3 .bmock .body{padding:14px 16px;background:#fff}
+.m3 .bmock .body .item{display:flex;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed #e8e2d2}
+.m3 .bmock .body .item .ph{width:36px;height:36px;background:linear-gradient(135deg,#e8dfc8,#a89878);border-radius:4px;flex-shrink:0}
+.m3 .bmock .body .item .tx b{font-size:9px;display:block;font-weight:600}
+.m3 .bmock .body .item .tx small{font-size:8px;color:#999}
+.m3 .bmock .body .item .pr{font-size:10px;color:var(--red);font-weight:800}
+.m3 .bmock .tot{padding:12px 16px;background:#0a0a0a;color:#fff;display:flex;justify-content:space-between;font-size:11px;font-weight:700}
+.m3 .bmock .tot b{color:var(--red)}
+.m3 .bmock .pay{padding:10px 16px;background:var(--red);color:#fff;text-align:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+/* ===================== FOR WHOM ===================== */
+.fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+.fw-col{padding:56px 52px}
+.fw-col:first-child{border-right:1px solid var(--ink)}
+.fw-col .lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+.fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
+.fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
+.fw-col ul{list-style:none;margin-top:16px}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
+.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+
+/* ===================== FEATURES GRID ===================== */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.feat{padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.feat::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.feat:hover::before{transform:translateY(0)}
+.feat > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.feat:hover > *{color:var(--paper)}
+.feat .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:32px;transition:all .5s var(--ease)}
+.feat:hover .ico{background:var(--red);color:#fff}
+.feat .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.feat .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.feat:hover .n{color:rgba(242,236,224,.5)}
+.feat h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.feat p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.feat:hover p{color:rgba(242,236,224,.75)}
+
+/* ===================== MODULES ===================== */
+.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
+.mod{display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;padding:28px 32px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);position:relative;transition:background .4s var(--ease),padding .4s var(--ease)}
+.mod:nth-child(2n){border-right:none}
+.mod::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out)}
+.mod:hover::before{transform:scaleY(1)}
+.mod:hover{background:var(--paper-2);padding-left:40px}
+.mod .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em}
+.mod h5{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.mod p{font-size:13px;color:var(--mute);line-height:1.5;max-width:42ch}
+.mod .plus{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.mod .plus svg{width:12px;height:12px;stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mod:hover .plus{background:var(--red);border-color:var(--red)}
+.mod:hover .plus svg{stroke:#fff}
+
+/* ===================== TECH STACK ===================== */
+.stack .sec-head h2,.stack .sec-head .idx{color:var(--paper)}
+.stack-item{padding:40px 24px 32px;border-right:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);position:relative;transition:background .4s var(--ease);text-align:center}
+.stack-item:hover{background:rgba(242,236,224,.05)}
+.stack-item .lg{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--paper);margin-bottom:6px}
+.stack-item .cat{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.06em;text-transform:uppercase}
+.stack-item::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.stack-item:hover::before{transform:scaleX(1)}
+
+/* ===================== INTEGRATIONS GRID ===================== */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
+.int-card{padding:32px 28px;background:var(--paper);transition:background .4s var(--ease)}
+.int-card:hover{background:var(--paper-2)}
+.int-card .in{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.int-card h5{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.int-card p{font-size:12px;color:var(--mute);line-height:1.6}
+
+/* ===================== FAQ ===================== */
+.faq{padding:100px 0;border-top:1px solid var(--ink)}
+.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
+.qa:hover{background:var(--paper-2)}
+.qa summary{padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;cursor:none;list-style:none;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
+.qa:hover summary h5{transform:translateX(6px)}
+.qa summary .tog{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s var(--ease)}
+.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
+.qa summary .tog::before{width:14px;height:1.5px}
+.qa summary .tog::after{width:1.5px;height:14px}
+.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
+.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
+.qa[open] summary .tog::after{transform:scaleY(0)}
+.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
+.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
+.qa .answer p+p{margin-top:12px}
+.qa .answer b{color:var(--ink);font-weight:600}
+.qa .answer a{color:var(--red)}
+
+/* ===================== INVESTMENT ===================== */
+.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
+.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
+.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
+.inv-grid .left p+p{margin-top:16px}
+.inv-grid .left p b{color:var(--ink);font-weight:600}
+.inv-grid .right{display:grid;gap:16px}
+.price{padding:36px 40px;border:1px solid var(--line);border-radius:16px;background:var(--paper);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;transition:all .5s var(--ease)}
+.price:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateX(-4px)}
+.price .lbl-p{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.price:hover .lbl-p{color:rgba(242,236,224,.5)}
+.price h4{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:6px 0 6px}
+.price small{font-size:13px;color:var(--mute);max-width:32ch;display:block}
+.price:hover small{color:rgba(242,236,224,.6)}
+.price .val{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1;text-align:right}
+.price .val sub{display:block;font-size:11px;font-weight:500;color:var(--mute);font-family:var(--mono);margin-top:4px;letter-spacing:.02em}
+.price:hover .val sub{color:rgba(242,236,224,.6)}
+.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
+.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
+.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+
+@media(max-width:1024px){
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+  .inv-grid{grid-template-columns:1fr;gap:40px}
+  .fw-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .feat-grid{grid-template-columns:1fr}
+  .mod-grid{grid-template-columns:1fr}
+  .mod{grid-template-columns:60px 1fr auto}
+  .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
+  .qa .answer{padding:0 16px 24px 56px}
+}
+</style>
+<link rel="stylesheet" href="../assets/shared.css">
+<link rel="stylesheet" href="../assets/nav-dropdown.css">
+<script src="../assets/data/references.js"></script>
+<script src="../assets/quarter.js"></script>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="top">
+  <a class="logo" href="../index.html"><img src="../assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+  <ul>
+    <li class="has-dd">
+      <a href="../eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="../eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="../weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby &amp; portály</a>
+        <a href="../aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace &amp; AI vývoj</a>
+      </div>
+    </li>
+    <li><a href="../reference.html">Case Studies</a></li>
+    <li><a href="../o-nas.html">O nás</a></li>
+    <li><a href="../kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q4/26</span></span>
+    <a href="../kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="../eshop.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na E-shopy
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> E-shopy <span>/</span> <b>B2C na míru</b>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Headless &nbsp;·&nbsp; Multi-channel &nbsp;·&nbsp; Performance</div>
+    <h1 class="reveal d1">E-shop s&nbsp;<span class="red">vlastní tváří.</span></h1>
+    <div class="below">
+      <p class="lede reveal d2">Když šablona přestává stačit. Custom B2C e-shopy s&nbsp;<b>plnou kontrolou nad designem</b>, rychlostí pod 1&nbsp;sekundu a&nbsp;integrací na cokoliv, co&nbsp;potřebujete.</p>
+      <div class="ctas reveal d3">
+        <a href="../kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="#refs" class="btn ghost">
+          <span class="lbl" data-t="Naše B2C e-shopy"><span>Naše B2C e-shopy</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Co dostanete</h6><p>Custom B2C e-shop<small>Design, kód, provoz</small></p></div>
+      <div class="m"><h6>Doba realizace</h6><p>4 — 12 měsíců<small>Podle rozsahu</small></p></div>
+      <div class="m"><h6>Technologie</h6><p>Headless (Vue/React)<small>Nuxt · Next · PHP · TS</small></p></div>
+      <div class="m"><h6>Investice od</h6><p>750 000 Kč<small>Orientačně</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLAGE -->
+<section class="collage">
+  <div class="wrap">
+    <div class="col-wrap reveal">
+      <div class="card m1">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">harfasport.cz</div></div>
+          <img src="../assets/reference/harfasport/mock.png" alt="Harfa Sport" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+      <div class="card m2">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">fotoskoda.cz</div></div>
+          <img src="../assets/reference/fotoskoda/mock.png" alt="FotoŠkoda" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+      <div class="card m3">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">elnino.cz</div></div>
+          <img src="../assets/elnino-web-small.png" alt="El Nino" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="forwhom" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Pro koho</div>
+      <h2>Pro koho stavíme a&nbsp;pro koho <span class="red">ne.</span></h2>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-col">
+        <div class="lbl">Ideální zadání</div>
+        <h3>Ambiciózní e-shopy, které potřebují více než šablonu.</h3>
+        <p>E-shopy, které potřebují víc, než zvládne Shopify nebo Shoptet — komplexní produktový katalog, vlastní design, napojení na&nbsp;ERP, mezinárodní expanze.</p>
+        <p>Nejlépe nám funguje spolupráce s&nbsp;e-shopy, které prodávají na&nbsp;více trzích, mají sklad s&nbsp;10&nbsp;000+ položkami nebo dlouhodobý vztah se&nbsp;svými zákazníky.</p>
+        <ul>
+          <li>Roční obrat 50 mil. Kč a výše</li>
+          <li>Vlastní brand a katalog s 1 000+ produkty</li>
+          <li>Plán na mezinárodní expanzi (multi-language, multi-currency)</li>
+          <li>Plán na 5+ let dopředu</li>
+          <li>Potřeba integrací na firemní systémy</li>
+        </ul>
+      </div>
+      <div class="fw-col">
+        <div class="lbl">Nejsme vhodní</div>
+        <h3>Malým obchodům, co potřebují rychle odstartovat.</h3>
+        <p>Pokud chcete rychlý launch s&nbsp;transparentní cenou a&nbsp;zatím neřešíte komplexní integrace, podívejte se na&nbsp;naši <a href="shopify.html" style="color:var(--red)">Shopify nabídku →</a> — postavíme vám e-shop na&nbsp;ověřené platformě za&nbsp;4–8 týdnů od&nbsp;89&nbsp;000&nbsp;Kč.</p>
+        <p>Custom B2C dává smysl teprve, když šablonové obchody přestávají stačit.</p>
+        <ul style="opacity:.7">
+          <li style="color:var(--mute)">První e-shop bez jasné strategie</li>
+          <li style="color:var(--mute)">Rozpočet pod 500 tis. Kč</li>
+          <li style="color:var(--mute)">Spěcháte na launch za měsíc</li>
+          <li style="color:var(--mute)">Katalog pod 500 produktů</li>
+          <li style="color:var(--mute)">Nepotřebujete integrace</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES — 12 výhod -->
+<section class="features" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Výhody</div>
+      <h2>Co dostanete, když nám <span class="red">řeknete ano.</span></h2>
+    </div>
+    <div class="feat-grid">
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div class="n">/ 01</div><h4>Headless architektura</h4><p>Frontend a backend oddělené — rychlý web, flexibilní redesigny, budoucí migrace bez bolesti.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="n">/ 02</div><h4>Rychlost pod 1 sekundu</h4><p>LCP pod 1 sekundu na mobilu. Lighthouse 95+. Rychlost je priorita číslo jedna.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></div><div class="n">/ 03</div><h4>PIM na katalog</h4><p>Centrální správa produktů, překladů, obrázků a variant. Změna ceny je na všech trzích okamžitě.</p></article>
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></svg></div><div class="n">/ 04</div><h4>ERP &amp; WMS integrace</h4><p>Propojíme váš e-shop s Abra, Pohoda, Helios, SAP nebo jakýmkoliv jiným systémem — v reálném čase.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 10a9 9 0 1 0 0 2.05M12 3v9l4 4"/></svg></div><div class="n">/ 05</div><h4>Multi-channel publishing</h4><p>Feed manager pro Heureku, Google Shopping, Zboží, Facebook, TikTok. Automatická synchronizace cen a zásob.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg></div><div class="n">/ 06</div><h4>Konverzní optimalizace</h4><p>A/B testing infrastruktura, heatmapy, funnely, server-side tracking. Rozhodujeme na datech.</p></article>
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg></div><div class="n">/ 07</div><h4>Mezinárodní expanze</h4><p>13 jazyků, lokalizované ceny, měny, daně, platební metody a dopravci. Vstup na nový trh za týdny.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="n">/ 08</div><h4>Marketing tools integrace</h4><p>Klaviyo, Mailchimp, Meta Pixel, GA4, server-side tracking. Napojené tam, kde dělají největší rozdíl.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15 15l5 5"/></svg></div><div class="n">/ 09</div><h4>UpSearch v&nbsp;ceně</h4><p>Naše vlastní vyhledávání s tolerancí překlepů, synonymy a skloňováním. 90 % uživatelů najde, co hledá.</p></article>
+      <article class="feat reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 8-6-4-6 4 2-8-6-4h7z"/></svg></div><div class="n">/ 10</div><h4>Personalizace na&nbsp;datech</h4><p>Doporučení produktů, cross-sell, segmentace zákazníků. Z Big Data týmu — ne z pluginu za 5 dolarů.</p></article>
+      <article class="feat reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/><path d="M12 7v5l3 3"/></svg></div><div class="n">/ 11</div><h4>Provoz 24/7</h4><p>Monitoring, on-call tým, SLA 99,9 %. Když něco padne v neděli ve 2 ráno, někdo od nás zvedne telefon.</p></article>
+      <article class="feat reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="n">/ 12</div><h4>Český tým v&nbsp;Karlíně</h4><p>Žádný outsourcing do Vietnamu. Všichni sedíme v kanceláři na Vítkově — přijďte na kávu.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES — 14 modulů -->
+<section class="modules" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Moduly</div>
+      <h2>Hotové moduly, co&nbsp;šetří <span class="red">stovky hodin.</span></h2>
+      <div class="aside"><a href="../upsearch.html" class="lnk">Více o UpSearch <span class="arr">→</span></a></div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod"><div class="n">01</div><div><h5>UpSearch vyhledávání</h5><p>Fulltext s tolerancí překlepů, synonymy, skloňováním v 13 jazycích.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">02</div><div><h5>PIM katalog</h5><p>Správa produktů, překladů a variant. Export do Heureky, Google Shopping, Zboží.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">03</div><div><h5>Multi-currency &amp; multi-lang</h5><p>13 jazyků, lokalizované ceny, měny, daně, platební metody a dopravci.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">04</div><div><h5>Personalizační engine</h5><p>Doporučení, cross-sell, slow movers, retention kampaně na základě Big Data modelů.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">05</div><div><h5>Věrnostní program</h5><p>Body, levely, exkluzivní nabídky, referral program. Integrovatelné s offline pobočkami.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">06</div><div><h5>Feed manager</h5><p>Automatický export do Heureky, Zboží, Google Shopping, Facebook, TikTok. Pravidla per produkt.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">07</div><div><h5>Return management</h5><p>Samoobslužné vracení, výměny, refundy. Napojeno na reverse logistiku Zásilkovny a PPL.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">08</div><div><h5>Headless CMS</h5><p>Pro landing pages, blog, kampaně. Editor, který nepotřebuje školení — WYSIWYG na komponentách.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">09</div><div><h5>Objednávkový workflow</h5><p>Stavy, notifikace, SLA, eskalace, automatické přesměrování na sklady podle zóny doručení.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">10</div><div><h5>Reviews &amp; ratings</h5><p>Hodnocení produktů, fotky od zákazníků, moderace, schema.org pro Google Rich Snippets.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">11</div><div><h5>Subscription / recurring orders</h5><p>Předplatné, opakované doručování, retence kampaně.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">12</div><div><h5>Wishlist &amp; abandoned cart</h5><p>Označování oblíbených, notifikace při zlevnění, email sekvence pro opuštěný košík.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">13</div><div><h5>Gift cards &amp; vouchers</h5><p>Dárkové poukazy elektronické i tištěné, integrace na pokladny offline poboček.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+      <div class="mod"><div class="n">14</div><div><h5>Coupons &amp; promotions engine</h5><p>Slevové kódy, akce, časové kampaně, segmentace zákazníků, A/B testing kampaní.</p></div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="stack" style="padding:80px 0;background:var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Stack</div>
+      <h2>Technologie, kterým <span class="red">rozumíme.</span></h2>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-item"><div class="lg">Vue</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">React</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">TypeScript</div><div class="cat">Language</div></div>
+      <div class="stack-item"><div class="lg">Nuxt</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">Next.js</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">Tailwind CSS</div><div class="cat">Frontend</div></div>
+      <div class="stack-item"><div class="lg">PHP / Symfony</div><div class="cat">Backend</div></div>
+      <div class="stack-item"><div class="lg">Node.js</div><div class="cat">Backend</div></div>
+      <div class="stack-item"><div class="lg">Python / FastAPI</div><div class="cat">Backend</div></div>
+      <div class="stack-item"><div class="lg">PostgreSQL</div><div class="cat">Database</div></div>
+      <div class="stack-item"><div class="lg">MySQL</div><div class="cat">Database</div></div>
+      <div class="stack-item"><div class="lg">Redis</div><div class="cat">Cache</div></div>
+      <div class="stack-item"><div class="lg">Elasticsearch</div><div class="cat">Search</div></div>
+      <div class="stack-item"><div class="lg">Docker</div><div class="cat">DevOps</div></div>
+      <div class="stack-item"><div class="lg">Kubernetes</div><div class="cat">DevOps</div></div>
+      <div class="stack-item"><div class="lg">Private cloud</div><div class="cat">Cloud</div></div>
+      <div class="stack-item"><div class="lg">GCP</div><div class="cat">Cloud</div></div>
+      <div class="stack-item"><div class="lg">Vercel</div><div class="cat">Cloud</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRACE -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Integrace</div>
+      <h2>Integrace, na&nbsp;které jste <span class="red">zvyklí.</span></h2>
+    </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">Napojíme váš e-shop na cokoliv, co potřebujete. Tady je přehled hlavních kategorií.</p>
+    <div class="int-grid">
+      <div class="int-card"><div class="in">/ 01</div><h5>ERP &amp; účetnictví</h5><p>Pohoda · Money · Helios · Abra · K2 · SAP · Microsoft Dynamics · Comarch</p></div>
+      <div class="int-card"><div class="in">/ 02</div><h5>Sklady &amp; WMS</h5><p>Logsys · Vienna Advantage · SAP EWM · vlastní WMS</p></div>
+      <div class="int-card"><div class="in">/ 03</div><h5>Platební brány</h5><p>GoPay · ComGate · Stripe · PayU · Adyen · Klarna · Przelewy24</p></div>
+      <div class="int-card"><div class="in">/ 04</div><h5>Dopravci &amp; logistika</h5><p>Zásilkovna · PPL · DPD · Česká pošta · GLS · InPost · DHL · UPS</p></div>
+      <div class="int-card"><div class="in">/ 05</div><h5>Marketing &amp; CRM</h5><p>HubSpot · Salesforce · Klaviyo · Mailchimp · SmartEmailing · Ecomail</p></div>
+      <div class="int-card"><div class="in">/ 06</div><h5>Marketplace &amp; srovnávače</h5><p>Heureka · Zboží · Glami · Mall · Allegro · Amazon · Google Shopping · TikTok Shop</p></div>
+      <div class="int-card"><div class="in">/ 07</div><h5>Analytika &amp; podpora</h5><p>GA4 · Hotjar · Microsoft Clarity · Zendesk · Daktela · Smartsupp</p></div>
+      <div class="int-card" style="background:var(--paper-2)"><div class="in">Více</div><h5>Kompletní seznam</h5><p>110+ integrací CZ/SK/PL/EU. Napíšeme vám na míru, pokud hledáte specifický systém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Proces</div>
+      <h2>Jak u&nbsp;nás <span class="red">pracujeme.</span></h2>
+    </div>
+    <div class="steps steps-6">
+      <div class="step reveal">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">01<span class="mk">.</span></div>
+        <h4>Discovery</h4>
+        <p class="dur">3–6 týdnů</p>
+        <p>Analýza, výzkum, strategie. Tech &amp; UX audit, zákaznická interview (n=15+), competitive analysis, product backlog.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">02<span class="mk">.</span></div>
+        <h4>Design</h4>
+        <p class="dur">6–12 týdnů</p>
+        <p>Design system v tokenech, 80–150 klíčových obrazovek, usability testing (n=20+), WCAG 2.2 AA.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">03<span class="mk">.</span></div>
+        <h4>Build</h4>
+        <p class="dur">12–32 týdnů</p>
+        <p>Agilní sprinty, TypeScript, automatické testy, CI/CD s feature flagy, integrace na systémy.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">04<span class="mk">.</span></div>
+        <h4>Testování</h4>
+        <p class="dur">4–6 týdnů</p>
+        <p>QA testy, UAT s reálnými uživateli, bezpečnostní audit, performance testy.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">05<span class="mk">.</span></div>
+        <h4>Launch</h4>
+        <p class="dur">3–6 týdnů</p>
+        <p>Migrace produktů, zákazníků, objednávek, SEO redirects, soft launch na 10 % traffic, full launch + hot-fix sprint.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">06<span class="mk">.</span></div>
+        <h4>Provoz &amp; rozvoj</h4>
+        <p class="dur">Trvale</p>
+        <p>Maintenance, monitoring, SLA 99,9 %, on-call 24/7, retainer 80–300 tis. Kč/měs, dlouhodobý rozvoj.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="refs" id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Příklady</div>
+      <h2>Ukázky toho, co&nbsp;jsme <span class="red">postavili.</span></h2>
+      <div class="aside"><a href="../reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
+    </div>
+    <div class="ref-grid" id="b2c-refs"></div>
+    <script>
+    (()=>{
+      const grid = document.getElementById('b2c-refs');
+      const refs = window.REFS || [];
+      const ids = ['elnino','fotoskoda','harfasport'];
+      const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
+      if (!grid || !refs.length) return;
+      const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
+      grid.innerHTML = picks.map((ref, i) => {
+        const imgStyle = ref.thumb ? `style="background-image:url('../${ref.thumb}');background-size:cover;background-position:center"` : '';
+        return `<a class="ref r${i+1}" href="../${ref.href}">
+          <div class="img" ${imgStyle}></div>
+          <div class="meta"><div><h4>${ref.name}</h4><div class="cat">${ref.cat}</div></div><div class="go">${arr}</div></div>
+        </a>`;
+      }).join('');
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap-sm">
+    <div class="sec-head" style="grid-template-columns:1fr">
+      <div class="idx">FAQ</div>
+      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
+    </div>
+    <div class="faq-grid">
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Jak dlouho trvá postavit e-shop na&nbsp;míru?</h5><span class="tog"></span></summary><div class="answer"><p>Průměrně <b>6—9 měsíců</b> od kickoffu k ostrému launchi. Složité projekty s více trhy nebo integracemi mohou trvat 10—12 měsíců. Jednodušší projekty bez exotických integrací zvládneme za 4 měsíce.</p><p>Po discovery fázi vám dáme přesný odhad a držíme se ho.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Kolik to stojí?</h5><span class="tog"></span></summary><div class="answer"><p>Custom B2C e-shopy začínají od <b>750 000 Kč</b> za jednoduchý projekt bez exotických integrací. Průměrný střední projekt se pohybuje mezi <b>1,5—3 miliony Kč</b>. Mezinárodní platformy s ERP napojením a více trhy běží od 4 milionů Kč výše.</p><p>Do ceny vždy vstupuje discovery, design, vývoj, testování, migrace a první měsíc provozu. Po launchi účtujeme servis v retaineru 80—300 tis. měsíčně.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Postavíte nám e-shop na&nbsp;Shoptetu nebo Shopify?</h5><span class="tog"></span></summary><div class="answer"><p>Custom B2C e-shopy stavíme my. Pro Shopify máme <a href="shopify.html">samostatnou nabídku →</a> — postavíme vám e-shop za 4–8 týdnů od 89 000 Kč na ověřené platformě.</p><p>Pro Shoptet doporučíme partnery, kterým věříme — je v Česku spousta výborných studií.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Co se děje po&nbsp;launchi? Platíme extra za&nbsp;úpravy?</h5><span class="tog"></span></summary><div class="answer"><p>Po launchi přechází projekt do fáze <b>rozvoje &amp; servisu</b>. Máme dedikovaný tým, který sedí v Karlíně a zná váš projekt od začátku — nepředáváme vás do jiného týmu.</p><p>Drobné úpravy řešíme v rámci retaineru, větší změny jako samostatné sprinty. Monitoring, bezpečnostní aktualizace a on-call jsou v retaineru vždy zahrnuté. SLA 99,9 %, odezva na kritické incidenty do 30 minut, 24/7.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Jaké máte zkušenosti s&nbsp;naším typem byznysu?</h5><span class="tog"></span></summary><div class="answer"><p>Za 27 let jsme postavili přes 100 e-shopů — od módy, kosmetiky a parfumerie přes velkoobchody, automotive, zdravotnické pomůcky, bytové vybavení až po potravinové e-shopy. Skoro jistě jsme někdy dělali něco podobného.</p><p>Rádi vám ukážeme konkrétní case study z vašeho segmentu. Stačí napsat, o jaký byznys jde.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Co když během projektu zjistíme, že potřebujeme něco jiného?</h5><span class="tog"></span></summary><div class="answer"><p>To se děje — každý větší projekt prochází změnami rozsahu. Pracujeme agilně v dvoutýdenních sprintech, takže změny dokážeme absorbovat bez toho, aby se rozpadl celý harmonogram.</p><p>Pokud je změna velká, otevřeně řekneme, co to znamená pro termín a rozpočet. <b>Nikdy vám nepředáme fakturu za změny, o kterých jste nevěděli.</b></p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Můžete migrovat náš stávající e-shop ze&nbsp;Shoptetu/Shopify/WooCommerce?</h5><span class="tog"></span></summary><div class="answer"><p>Ano, migrace je standardní součást našich projektů. Přebíráme produktový katalog, historii objednávek, zákaznické účty, fakturační data i SEO pozice (301 redirecty, sitemap, schema.org).</p><p>Soft launch na 10 % traffic minimalizuje riziko výpadků prodejů během migrace.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="invest">
+  <div class="wrap">
+    <div class="inv-grid">
+      <div class="left reveal">
+        <div class="lbl">§ 08 / Investice</div>
+        <h3>Vztahy dlouhodobé, ceny <span class="red">poctivé.</span></h3>
+        <p>Nejsme nejlevnější na trhu a ani se o to nesnažíme. Stavíme e-shopy, které <b>klientům slouží 5—10 let</b> — a to se neděje za cenu šablony.</p>
+        <p>Zároveň vám nikdy nenaúčtujeme něco, o čem jste nevěděli. Po discovery fázi vám předáme <b>fixní rozpočet</b>, který držíme.</p>
+        <p>Průměrný projekt se nám vrací <b>v horizontu 12—18 měsíců</b> na navýšení konverze, snížení provozních nákladů a otevření nových trhů.</p>
+        <div class="cross-sell">
+          <p>Potřebujete spíše B2B platformu pro velkoobchody nebo distributory?</p>
+          <a href="b2b-na-miru.html">B2B E-shop na míru →</a>
+          <p>Hledáte rychlý launch za 4–8 týdnů na ověřené platformě?</p>
+          <a href="shopify.html">Shopify e-shopy →</a>
+        </div>
+      </div>
+      <div class="right">
+        <div class="price reveal">
+          <div><div class="lbl-p">Starter B2C</div><h4>Custom B2C e-shop</h4><small>Jeden trh, jeden jazyk, standardní integrace, katalog do 5 000 SKU.</small></div>
+          <div class="val">750 tis.<sub>od · Kč bez DPH</sub></div>
+        </div>
+        <div class="price reveal d1">
+          <div><div class="lbl-p">Growth B2C</div><h4>Vícejazyčná platforma</h4><small>1—3 trhy, ERP napojení, PIM, multi-currency, katalog do 50 000 SKU.</small></div>
+          <div class="val">1,5 mil.<sub>od · Kč bez DPH</sub></div>
+        </div>
+        <div class="price reveal d2">
+          <div><div class="lbl-p">Enterprise B2C</div><h4>Mezinárodní platforma</h4><small>10+ trhů, lokální ERP, PIM, personalizace, Big Data, 24/7 provoz se SLA.</small></div>
+          <div class="val">4 mil.+<sub>od · Kč bez DPH</sub></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Posuňte svůj e-shop<br><span class="red">o úroveň výš.</span></h2>
+    <p class="sub reveal d1">Napište nám — ozveme se do 24 hodin s prvním odhadem a návrhem schůzky.</p>
+    <div class="ctas reveal d2">
+      <a href="../kontakt.html" class="btn">
+        <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="../index.html"><img src="../assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
+        <p>Digitální agentura z Karlína. Od roku 1999 stavíme e-shopy, weby a aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>E-shopy</h5>
+        <a href="../eshop.html">Přehled e-shopů <span class="ar">→</span></a>
+        <a href="b2c-na-miru.html">B2C na míru <span class="ar">→</span></a>
+        <a href="b2b-na-miru.html">B2B na míru <span class="ar">→</span></a>
+        <a href="shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="pim.html">PIM <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="../index.html">Úvod <span class="ar">→</span></a>
+        <a href="../reference.html">Reference <span class="ar">→</span></a>
+        <a href="../o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="../kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock"><span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span></div>
+      <div class="right">Vyrobeno s láskou v Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.feat,.price,.mod,.qa summary,.ref').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+  document.querySelectorAll('.qa').forEach(q=>{q.addEventListener('toggle',()=>{if(q.open){document.querySelectorAll('.qa').forEach(o=>{if(o!==q)o.removeAttribute('open')})}})});
+})();
+</script>
+</body>
+</html>

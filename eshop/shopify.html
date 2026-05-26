@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Shopify e-shopy a Shopify Plus — Spuštění za týdny | PragueBest</title>
+<meta name="description" content="Shopify e-shopy za 4-8 týdnů. Migrace ze Shoptetu, WooCommerce, Magento. Shopify Plus pro enterprise. 27 let v e-commerce. Od 89 000 Kč." />
+<meta name="keywords" content="Shopify, Shopify e-shop, Shopify Plus, Shopify migrace, migrace ze Shoptetu, migrace z WooCommerce, migrace z Magento, e-shop za týden, Liquid, Hydrogen, headless Shopify, Shopify Praha, custom Shopify, Karlín, PragueBest" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/eshop/shopify" />
+<meta property="og:title" content="Shopify e-shopy a Shopify Plus — Spuštění za týdny | PragueBest" />
+<meta property="og:description" content="Shopify e-shopy za 4-8 týdnů. Migrace ze Shoptetu, WooCommerce, Magento. Shopify Plus pro enterprise. 27 let v e-commerce. Od 89 000 Kč." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-shopify.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Shopify e-shopy a Shopify Plus — Spuštění za týdny | PragueBest" />
+<meta name="twitter:description" content="Shopify e-shopy za 4-8 týdnů. Migrace ze Shoptetu, WooCommerce, Magento. Shopify Plus pro enterprise. 27 let v e-commerce. Od 89 000 Kč." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-shopify.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "Co umíme", "item": "https://praguebest.cz/co-umime" },
+    { "@type": "ListItem", "position": 3, "name": "E-shopy", "item": "https://praguebest.cz/eshop" },
+    { "@type": "ListItem", "position": 4, "name": "Shopify" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Shopify E-commerce Development",
+  "name": "Shopify e-shopy a Shopify Plus",
+  "provider": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "areaServed": ["CZ", "SK", "EU"],
+  "description": "Shopify e-shopy za 4-8 týdnů. Migrace ze Shoptetu, WooCommerce, Magento. Shopify Plus pro enterprise. 27 let v e-commerce.",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CZK",
+    "lowPrice": "89000",
+    "highPrice": "2000000",
+    "description": "Setup od 89 000 Kč (nový e-shop), od 149 000 Kč (migrace), od 500 000 Kč (Shopify Plus). Plus měsíční Shopify subscription."
+  }
+}
+</script>
+<style>
+/* ===================== FOR WHOM ===================== */
+.fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+.fw-col{padding:56px 52px}
+.fw-col:first-child{border-right:1px solid var(--ink)}
+.fw-col .lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+.fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
+.fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
+.fw-col ul{list-style:none;margin-top:16px}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
+.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+
+/* ===================== SERVICE PACKAGES ===================== */
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.pkg{padding:52px 44px;background:var(--paper);display:flex;flex-direction:column;gap:0}
+.pkg:hover{background:var(--paper-2)}
+.pkg-n{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.pkg h4{font-size:26px;font-weight:700;letter-spacing:-.025em;margin-bottom:16px;line-height:1.15}
+.pkg .lead{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:24px}
+.pkg ul{list-style:none;flex:1}
+.pkg ul li{font-size:13px;color:var(--ink-3);padding:7px 0;border-bottom:1px solid var(--line);padding-left:16px;position:relative;line-height:1.5}
+.pkg ul li::before{content:"—";position:absolute;left:0;color:var(--mute);font-size:11px}
+.pkg ul li:last-child{border-bottom:none}
+.pkg .for{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.pkg .for b{display:block;color:var(--ink);font-size:13px;margin-top:4px}
+.pkg .price-tag{font-size:30px;font-weight:800;letter-spacing:-.03em;margin-top:16px}
+.pkg .price-tag sub{font-size:12px;font-weight:500;color:var(--mute);font-family:var(--mono);display:block;margin-top:2px;letter-spacing:.02em}
+
+/* ===================== TECH STACK ===================== */
+.stack .sec-head h2,.stack .sec-head .idx{color:var(--paper)}
+.stack-item{padding:40px 24px 32px;border-right:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);position:relative;transition:background .4s var(--ease);text-align:center}
+.stack-item:hover{background:rgba(242,236,224,.05)}
+.stack-item .lg{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--paper);margin-bottom:6px}
+.stack-item .cat{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.06em;text-transform:uppercase}
+.stack-item::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.stack-item:hover::before{transform:scaleX(1)}
+
+/* ===================== INTEGRATIONS GRID ===================== */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
+.int-card{padding:32px 28px;background:var(--paper);transition:background .4s var(--ease)}
+.int-card:hover{background:var(--paper-2)}
+.int-card .in{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.int-card h5{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.int-card p{font-size:12px;color:var(--mute);line-height:1.6}
+
+/* ===================== FAQ ===================== */
+.faq{padding:100px 0;border-top:1px solid var(--ink)}
+.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
+.qa:hover{background:var(--paper-2)}
+.qa summary{padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;cursor:none;list-style:none;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
+.qa:hover summary h5{transform:translateX(6px)}
+.qa summary .tog{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s var(--ease)}
+.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
+.qa summary .tog::before{width:14px;height:1.5px}
+.qa summary .tog::after{width:1.5px;height:14px}
+.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
+.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
+.qa[open] summary .tog::after{transform:scaleY(0)}
+.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
+.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
+.qa .answer p+p{margin-top:12px}
+.qa .answer b{color:var(--ink);font-weight:600}
+.qa .answer a{color:var(--red)}
+
+/* ===================== INVESTMENT TABLE ===================== */
+.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
+.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:2}
+.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
+.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
+.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
+.inv-grid .left p+p{margin-top:16px}
+.inv-grid .left p b{color:var(--ink);font-weight:600}
+.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
+.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
+.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+.price-table{border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.pt-head{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;padding:16px 24px;background:var(--ink);font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;gap:16px}
+.pt-row{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--paper);gap:16px;align-items:center;transition:background .3s}
+.pt-row:last-child{border-bottom:none}
+.pt-row:hover{background:var(--paper-2)}
+.pt-row b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.pt-row span{font-size:13px;color:var(--ink-3)}
+.pt-row .pv{font-size:15px;font-weight:700;color:var(--ink)}
+.pt-row .sub-note{font-size:11px;color:var(--mute);font-family:var(--mono);display:block;margin-top:2px}
+
+@media(max-width:1024px){
+  .pkg-grid{grid-template-columns:1fr}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+  .inv-grid{grid-template-columns:1fr;gap:40px}
+  .fw-grid{grid-template-columns:1fr}
+  .pt-head{grid-template-columns:1fr 1fr}
+  .pt-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
+  .qa .answer{padding:0 16px 24px 56px}
+  .pt-head,.pt-row{grid-template-columns:1fr}
+}
+</style>
+<link rel="stylesheet" href="../assets/shared.css">
+<link rel="stylesheet" href="../assets/nav-dropdown.css">
+<script src="../assets/data/references.js"></script>
+<script src="../assets/quarter.js"></script>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="top">
+  <a class="logo" href="../index.html"><img src="../assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+  <ul>
+    <li class="has-dd">
+      <a href="../eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="../eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="../weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby &amp; portály</a>
+        <a href="../aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace &amp; AI vývoj</a>
+      </div>
+    </li>
+    <li><a href="../reference.html">Case Studies</a></li>
+    <li><a href="../o-nas.html">O nás</a></li>
+    <li><a href="../kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q4/26</span></span>
+    <a href="../kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="../eshop.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na E-shopy
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> E-shopy <span>/</span> <b>Shopify</b>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal">Shopify &nbsp;·&nbsp; Shopify Plus &nbsp;·&nbsp; Migrace</div>
+    <h1 class="reveal d1">Spusťte e-shop za&nbsp;<span class="red">týdny, ne měsíce.</span></h1>
+    <div class="below">
+      <p class="lede reveal d2">Postavíme vám Shopify e-shop za 4–8 týdnů. Migrace bez výpadku, Shopify Plus pro enterprise, mezinárodní expanze. <b>27 let e-commerce zkušeností</b> — víme, co Shopify umí a co ne.</p>
+      <div class="ctas reveal d3">
+        <a href="../kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="#refs" class="btn ghost">
+          <span class="lbl" data-t="Naše Shopify projekty"><span>Naše Shopify projekty</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <div class="meta-bar reveal d4">
+      <div class="m"><h6>Co dostanete</h6><p>Shopify e-shop nebo Plus<small>Design, setup, migrace, provoz</small></p></div>
+      <div class="m"><h6>Doba realizace</h6><p>4 — 12 týdnů<small>Podle rozsahu</small></p></div>
+      <div class="m"><h6>Technologie</h6><p>Liquid · Hydrogen · Apps<small>Shopify ekosystém + měsíční plán</small></p></div>
+      <div class="m"><h6>Investice od</h6><p>89 000 Kč<small>Orientačně (bez Shopify subscription)</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLAGE -->
+<section class="collage">
+  <div class="wrap">
+    <div class="col-wrap reveal">
+      <div class="card m1">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">funkids.cz — Shopify</div></div>
+          <img src="../assets/reference/sparkys/mock.png" alt="Shopify e-shop" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+      <div class="card m2">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">bambule.cz — Shopify</div></div>
+          <img src="../assets/reference/bambule/mock.png" alt="Shopify e-shop 2" style="width:100%;display:block;object-fit:cover" onerror="this.style.background='linear-gradient(135deg,#f0ebe0,#d6cdb6)';this.removeAttribute('src')">
+        </div>
+      </div>
+      <div class="card m3">
+        <div class="bmock">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">harfasport.cz — Shopify Plus</div></div>
+          <img src="../assets/reference/harfasport/mock.png" alt="Shopify Plus" style="width:100%;display:block;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="forwhom" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Pro koho</div>
+      <h2>Pro koho Shopify je a&nbsp;pro koho <span class="red">ne.</span></h2>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-col">
+        <div class="lbl">Ideální zadání</div>
+        <h3>Pro projekty, kde rozhoduje rychlost a&nbsp;jistota.</h3>
+        <p>Postavíme vám Shopify e-shop, který funguje od prvního dne. Standardizovaný e-commerce flow, ověřená platforma, ekosystém 10 000+ aplikací. Žádné měsíce vývoje na něco, co Shopify už umí.</p>
+        <ul>
+          <li>Roční obrat 5 — 200 mil. Kč</li>
+          <li>Sortiment do 5 000 SKU</li>
+          <li>Potřebujete launch za 4 — 8 týdnů</li>
+          <li>Mezinárodní expanze (Shopify zvládá multi-currency / multi-language nativně)</li>
+          <li>Standardní e-commerce procesy bez exotické business logiky</li>
+        </ul>
+      </div>
+      <div class="fw-col">
+        <div class="lbl">Nejsme vhodní</div>
+        <h3>Pro projekty, kde rozhoduje hloubka.</h3>
+        <p>Custom dává smysl, když Shopify není dost flexibilní. Pokud potřebujete:</p>
+        <p>— Komplexní B2B platformu s rolemi, EDI a procurement → <a href="b2b-na-miru.html" style="color:var(--red)">B2B na míru</a><br>
+        — Plnou kontrolu nad designem a unique brand experience → <a href="b2c-na-miru.html" style="color:var(--red)">B2C na míru</a><br>
+        — Hluboké integrace na legacy systémy mimo Shopify ekosystém → custom</p>
+        <ul style="opacity:.7">
+          <li style="color:var(--mute)">5 000+ SKU s komplexními variantami</li>
+          <li style="color:var(--mute)">Custom business logika (konfigurátor produktu apod.)</li>
+          <li style="color:var(--mute)">EDI s velkými retailovými řetězci</li>
+          <li style="color:var(--mute)">Hluboké napojení na legacy ERP/CRM</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE PACKAGES — 3 cesty -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Balíčky</div>
+      <h2>Tři cesty k&nbsp;Shopify <span class="red">e-shopu.</span></h2>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="pkg-n">/ 01</div>
+        <h4>Nový Shopify e-shop</h4>
+        <p class="lead">Postavíme vám Shopify e-shop od konceptu ke spuštění za 4 — 8 týdnů. Design, setup, integrace, obsah, launch — vše v jednom balíčku.</p>
+        <ul>
+          <li>Brand-aligned design v Shopify Liquid (Online Store 2.0)</li>
+          <li>Setup produktů, kategorií, dopravců, platebních bran</li>
+          <li>Základní integrace — GA4, Heureka, transakční emaily, fakturace</li>
+          <li>Onboarding týmu + dokumentace pro vlastní správu</li>
+        </ul>
+        <div class="for">Pro koho:<b>Nový e-shop bez stávající platformy. Rychlý start. Standardizovaný flow.</b></div>
+        <div class="price-tag">od 89 000 Kč<sub>4 — 8 týdnů · Kč bez DPH</sub></div>
+      </div>
+      <div class="pkg">
+        <div class="pkg-n">/ 02</div>
+        <h4>Migrace na Shopify</h4>
+        <p class="lead">Přejdeme vás ze Shoptetu, WooCommerce, Magento, PrestaShop nebo custom platformy na Shopify. Bez ztráty SEO, dat ani zákazníků.</p>
+        <ul>
+          <li>Migrace produktů, kategorií, zákazníků, historie objednávek</li>
+          <li>301 redirects pro SEO continuity (zachování pozic v Google)</li>
+          <li>Volitelný redesign v Shopify Liquid</li>
+          <li>Soft launch s test traffic + hot-fix sprint po ostrém přepnutí</li>
+        </ul>
+        <div class="for">Pro koho:<b>Máte e-shop na jiné platformě, který přerostl, je drahý nebo nefunguje. Chcete Shopify ekosystém.</b></div>
+        <div class="price-tag">od 149 000 Kč<sub>4 — 10 týdnů · typicky 200 — 500 tis.</sub></div>
+      </div>
+      <div class="pkg">
+        <div class="pkg-n">/ 03</div>
+        <h4>Shopify Plus</h4>
+        <p class="lead">Pro projekty, které potřebují víc — automatizace přes Shopify Flow, B2B funkce, multi-store, custom checkout, headless Hydrogen.</p>
+        <ul>
+          <li>Shopify Flow — workflow automatizace (objednávky, zásoby, marketing)</li>
+          <li>B2B funkce — cenové hladiny, wholesale catalog, NET-30 platby</li>
+          <li>Multi-store / multi-language deployment</li>
+          <li>Headless Hydrogen pro performance (volitelné, React-based)</li>
+          <li>Custom apps pro specifické business potřeby</li>
+        </ul>
+        <div class="for">Pro koho:<b>Roční obrat 50+ mil. Kč, mezinárodní expanze, automatizace, B2B kanál.</b></div>
+        <div class="price-tag">od 500 000 Kč<sub>8 — 16 týdnů · + Shopify Plus subscription</sub></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK — Shopify specific -->
+<section class="stack" style="padding:80px 0;background:var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Stack</div>
+      <h2>Technologie, kterým <span class="red">rozumíme.</span></h2>
+      <p class="lede" style="color:rgba(242,236,224,.6);font-size:15px;max-width:55ch;margin-top:12px">Stavíme na standardním Shopify stacku plus custom rozšířeních. Liquid pro storefront, Hydrogen pro headless, Apps pro funkce a integrace.</p>
+    </div>
+    <div class="stack-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stack-item"><div class="lg">Shopify Liquid</div><div class="cat">Storefront (OS 2.0)</div></div>
+      <div class="stack-item"><div class="lg">Hydrogen</div><div class="cat">Headless · React</div></div>
+      <div class="stack-item"><div class="lg">Oxygen</div><div class="cat">Hosting</div></div>
+      <div class="stack-item"><div class="lg">Shopify App Store</div><div class="cat">10 000+ apps</div></div>
+      <div class="stack-item"><div class="lg">Custom apps</div><div class="cat">Node.js · Ruby</div></div>
+      <div class="stack-item"><div class="lg">Storefront API</div><div class="cat">APIs</div></div>
+      <div class="stack-item"><div class="lg">Admin API</div><div class="cat">APIs</div></div>
+      <div class="stack-item"><div class="lg">Shopify CLI</div><div class="cat">Tooling</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRACE — 7 kategorií -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Integrace</div>
+      <h2>Integrace, na&nbsp;které jste <span class="red">zvyklí.</span></h2>
+    </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">Shopify má rozsáhlý ekosystém apps a integrací pro většinu české i mezinárodní reality.</p>
+    <div class="int-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="int-card"><div class="in">/ 01</div><h5>ERP &amp; účetnictví</h5><p>Pohoda · SAP · MS Dynamics · Money apps · Xero · QuickBooks</p></div>
+      <div class="int-card"><div class="in">/ 02</div><h5>Sklady &amp; fulfillment</h5><p>Shopify Fulfillment Network · Shopify Shipping · ShipStation · vlastní WMS apps</p></div>
+      <div class="int-card"><div class="in">/ 03</div><h5>Platební brány</h5><p>Shopify Payments · GoPay · ComGate · Stripe · PayPal · Klarna · Twisto</p></div>
+      <div class="int-card"><div class="in">/ 04</div><h5>Dopravci &amp; logistika</h5><p>Zásilkovna · PPL · DPD · GLS · DHL · UPS (přes apps)</p></div>
+      <div class="int-card"><div class="in">/ 05</div><h5>Marketing &amp; email</h5><p>Klaviyo · Shopify Email · Mailchimp · Omnisend · SmartEmailing</p></div>
+      <div class="int-card"><div class="in">/ 06</div><h5>Marketplace &amp; srovnávače</h5><p>Shopify Markets · Heureka · Zboží.cz · Google Shopping · Amazon · eBay</p></div>
+      <div class="int-card"><div class="in">/ 07</div><h5>Analytika &amp; podpora</h5><p>GA4 · Shopify Analytics · Hotjar · Gorgias · Zendesk · Smartsupp</p></div>
+      <div class="int-card" style="background:var(--paper-2)"><div class="in">Více</div><h5>Celý Shopify ekosystém</h5><p>10 000+ aplikací v Shopify App Store. Napíšeme custom app, pokud nestačí hotové řešení.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Proces</div>
+      <h2>Jak u&nbsp;nás <span class="red">pracujeme.</span></h2>
+      <p class="lede" style="font-size:15px;color:var(--ink-3);max-width:52ch;margin-top:12px">Shopify projekty jdou rychleji než custom — Shopify ekosystém dělá většinu těžké práce.</p>
+    </div>
+    <div class="steps steps-6">
+      <div class="step reveal">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">01<span class="mk">.</span></div>
+        <h4>Discovery</h4>
+        <p class="dur">1 — 2 týdny</p>
+        <p>Workshop, výběr Shopify tieru (Basic / Shopify / Advanced / Plus), audit existující platformy (u migrace).</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">02<span class="mk">.</span></div>
+        <h4>Design</h4>
+        <p class="dur">1 — 3 týdny</p>
+        <p>Brand-aligned design v Shopify Liquid, customizace existující theme nebo custom theme.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">03<span class="mk">.</span></div>
+        <h4>Build</h4>
+        <p class="dur">2 — 6 týdnů</p>
+        <p>Setup produktů, kategorií, dopravců, plateb, integrace, content migration.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">04<span class="mk">.</span></div>
+        <h4>Testování</h4>
+        <p class="dur">1 — 2 týdny</p>
+        <p>QA, performance, payment flow, SEO redirects (u migrace), staging review.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">05<span class="mk">.</span></div>
+        <h4>Launch</h4>
+        <p class="dur">1 týden</p>
+        <p>Cutover na Shopify CDN, monitoring, hot-fix sprint.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze</div>
+        <div class="big-n">06<span class="mk">.</span></div>
+        <h4>Provoz &amp; rozvoj</h4>
+        <p class="dur">Trvale</p>
+        <p>Maintenance, monthly updates, app upgrades, sezónní promo support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="refs" id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Příklady</div>
+      <h2>Ukázky toho, co&nbsp;jsme <span class="red">postavili.</span></h2>
+      <div class="aside"><a href="../reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
+    </div>
+    <div class="ref-grid" id="shopify-refs"></div>
+    <script>
+    (()=>{
+      const grid = document.getElementById('shopify-refs');
+      const refs = window.REFS || [];
+      const ids = ['sparkys','bambule','harfasport'];
+      const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
+      if (!grid || !refs.length) return;
+      const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
+      grid.innerHTML = picks.map((ref, i) => {
+        const imgStyle = ref.thumb ? `style="background-image:url('../${ref.thumb}');background-size:cover;background-position:center"` : '';
+        return `<a class="ref r${i+1}" href="../${ref.href}">
+          <div class="img" ${imgStyle}></div>
+          <div class="meta"><div><h4>${ref.name}</h4><div class="cat">${ref.cat}</div></div><div class="go">${arr}</div></div>
+        </a>`;
+      }).join('');
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap-sm">
+    <div class="sec-head" style="grid-template-columns:1fr">
+      <div class="idx">FAQ</div>
+      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
+    </div>
+    <div class="faq-grid">
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Proč Shopify, proč ne custom?</h5><span class="tog"></span></summary><div class="answer"><p>Shopify dává smysl, když chcete <b>rychlost, jistotu a ověřený ekosystém</b>. Custom dává smysl, když potřebujete vlastní business logiku, hluboké integrace na legacy systémy nebo unique brand experience.</p><p>Jednoduché pravidlo: pokud Shopify (nebo Shopify Plus) umí 80 %+ toho, co potřebujete → jděte Shopify. Pokud ne → jděte custom. V discovery konzultaci to zhodnotíme s vámi konkrétně.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Co je Shopify Plus a kdy ho potřebujeme?</h5><span class="tog"></span></summary><div class="answer"><p>Shopify Plus je enterprise tier Shopify. Stojí <b>2 300+ USD/měs</b> (vs. základní Shopify 39 USD/měs), ale nabízí: Shopify Flow (workflow automatizace), B2B funkce (cenové hladiny, NET-30 platby, wholesale catalog), Multi-store (více brandů pod jedním účtem), Custom checkout (v základním Shopify uzamčený) a vyšší API limity a SLA.</p><p>Plus se vyplatí od ročního obratu cca <b>50+ mil. Kč</b> nebo když potřebujete konkrétní enterprise funkce.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Kolik to celé stojí?</h5><span class="tog"></span></summary><div class="answer"><p>Naše práce začíná od <b>89 000 Kč</b> (nový e-shop), od <b>149 000 Kč</b> (migrace), od <b>500 000 Kč</b> (Shopify Plus). To zahrnuje design, build, integrace a launch.</p><p>Plus měsíční Shopify subscription přímo od Shopify: Basic $39/měs · Shopify $105/měs · Advanced $399/měs · Shopify Plus od $2 300/měs. Po launchi účtujeme servis v retaineru 20 — 90 tis. měsíčně.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Můžeme později přejít ze&nbsp;Shopify na&nbsp;custom?</h5><span class="tog"></span></summary><div class="answer"><p>Ano. Z Shopify se dá vždy migrovat na custom platformu — data exportujeme přes Admin API, redirects nastavíme, custom platforma se postaví podle vašich potřeb.</p><p>Reálně tato cesta nebývá běžná. Pokud Shopify v dlouhodobém horizontu nestačí, je často efektivnější přejít na <b>Shopify Plus</b> než stavět custom.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Co když potřebujeme něco, co Shopify nemá?</h5><span class="tog"></span></summary><div class="answer"><p>Tři možnosti: App ze Shopify App Store (10 000+ aplikací pokrývá většinu potřeb) · Custom app — postavíme vám Node.js app napojený přes Shopify API · Headless Hydrogen — full custom storefront na Shopify backendu (pro extreme customization).</p><p>V discovery zmapujeme, jestli vaše potřeba zapadá do Shopify možností, nebo je lepší custom platforma.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Můžeme migrovat ze&nbsp;Shoptetu / WooCommerce?</h5><span class="tog"></span></summary><div class="answer"><p>Ano, migrace je naše standardní služba. Přebíráme produkty, kategorie, zákazníky, historii objednávek, fakturační data. 301 redirects pro SEO continuity. Soft launch po segmentech minimalizuje riziko výpadku tržeb.</p><p>Migrace ze Shoptetu, WooCommerce, Magento, PrestaShop trvá typicky <b>4 — 10 týdnů</b> podle rozsahu a komplexity dat.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Funguje B2B na&nbsp;Shopify Plus?</h5><span class="tog"></span></summary><div class="answer"><p>Shopify Plus má <b>slušné B2B funkce</b>: cenové hladiny per zákazník, wholesale catalog, NET-30 platby, customer accounts s rolemi. Pro standardní B2B (do ~50 partnerů, jednoduchá hierarchie, žádné EDI) Shopify Plus stačí a je rychlejší cesta než custom.</p><p>Pro enterprise B2B s EDI, procurement systémy a schvalovacím workflow napříč 5+ rolemi → custom platforma → <a href="b2b-na-miru.html">B2B na míru</a>.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="invest">
+  <div class="wrap">
+    <div class="inv-grid">
+      <div class="left reveal">
+        <div class="lbl">§ 08 / Investice</div>
+        <h3>Vztahy dlouhodobé, ceny <span class="red">poctivé.</span></h3>
+        <p>Shopify je <b>transparentní platforma s jasnou cenovkou</b>. Nejsme nejlevnější agentura, ale dodáváme rychle a kvalitně. Po discovery vám předáme <b>fixní rozpočet</b>, který držíme.</p>
+        <p>Shopify projekty se nám vrací rychleji než custom — typicky v horizontu <b>6 — 12 měsíců</b> díky rychlému launchi a nižším setup nákladům.</p>
+        <div class="cross-sell">
+          <p>Potřebujete víc flexibility a custom design?</p>
+          <a href="b2c-na-miru.html">B2C E-shop na míru →</a>
+          <p>Potřebujete komplexní B2B s EDI a procurement?</p>
+          <a href="b2b-na-miru.html">B2B E-shop na míru →</a>
+        </div>
+      </div>
+      <div class="right">
+        <div class="price-table">
+          <div class="pt-head"><span>Cesta</span><span>Naše práce</span><span>Čas</span><span>Shopify subscription</span></div>
+          <div class="pt-row reveal"><b>Nový Shopify e-shop</b><span class="pv">od 89 000 Kč</span><span>4 — 8 týdnů</span><span>od $39/měs<span class="sub-note">Basic</span></span></div>
+          <div class="pt-row reveal d1"><b>Migrace na Shopify</b><span class="pv">od 149 000 Kč</span><span>4 — 10 týdnů</span><span>od $39/měs<span class="sub-note">Basic</span></span></div>
+          <div class="pt-row reveal d2"><b>Shopify Plus</b><span class="pv">od 500 000 Kč</span><span>8 — 16 týdnů</span><span>od $2 300/měs<span class="sub-note">Plus</span></span></div>
+        </div>
+        <p style="font-size:12px;color:var(--mute);margin-top:16px;line-height:1.5">Retainer post-launch: 20 — 90 tis. Kč/měs. Shopify zvládá většinu updates a security sám — nižší než u custom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Nejste si jistí, jestli je<br><span class="red">Shopify pro vás?</span></h2>
+    <p class="sub reveal d1">Domluvte si nezávaznou konzultaci — pomůžeme zjistit, jestli vám Shopify stačí, nebo potřebujete custom.</p>
+    <div class="ctas reveal d2">
+      <a href="../kontakt.html" class="btn">
+        <span class="lbl" data-t="Domluvit konzultaci"><span>Domluvit konzultaci</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="../index.html"><img src="../assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
+        <p>Digitální agentura z Karlína. Od roku 1999 stavíme e-shopy, weby a aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>E-shopy</h5>
+        <a href="../eshop.html">Přehled e-shopů <span class="ar">→</span></a>
+        <a href="b2c-na-miru.html">B2C na míru <span class="ar">→</span></a>
+        <a href="b2b-na-miru.html">B2B na míru <span class="ar">→</span></a>
+        <a href="shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="pim.html">PIM <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="../index.html">Úvod <span class="ar">→</span></a>
+        <a href="../reference.html">Reference <span class="ar">→</span></a>
+        <a href="../o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="../kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock"><span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span></div>
+      <div class="right">Vyrobeno s láskou v Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.pkg,.pt-row,.qa summary,.ref').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+  const sp=document.querySelector('.scroll-progress');
+  const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+  document.querySelectorAll('.qa').forEach(q=>{q.addEventListener('toggle',()=>{if(q.open){document.querySelectorAll('.qa').forEach(o=>{if(o!==q)o.removeAttribute('open')})}})});
+})();
+</script>
+</body>
+</html>

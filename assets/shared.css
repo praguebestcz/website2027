@@ -249,7 +249,7 @@ body.cursor-red .cursor-ring{border-color:var(--red);background:rgba(227,6,19,.1
 }
 
 .ncell .n sub{display:none}
-.ncell .l{font-size:16px;font-weight:600;margin-top:48px;letter-spacing:-.01em}
+.ncell .l{font-size:24px;font-weight:600;margin-top:48px;letter-spacing:-.02em}
 .ncell .d{font-size:16px;color:var(--mute);margin-top:8px;line-height:1.5;max-width:32ch}
 .ncell:hover .d{color:rgba(255,255,255,.75)}
 
@@ -831,4 +831,64 @@ body.cursor-red .cursor-ring{border-color:var(--red);background:rgba(227,6,19,.1
   /* Statement meta */
   .statement .meta{grid-template-columns:1fr;gap:20px}
   .statement .meta .yrs{text-align:left}
+  /* Browser collage */
+  .col-wrap{height:480px}
+  .col-wrap .m1{width:80%}
+  .col-wrap .m2,.col-wrap .m3{display:none}
+}
+
+/* ===================== BROWSER COLLAGE ===================== */
+/* Floating browser-window screenshots — used on product hero sections */
+
+.collage{padding:60px 0 120px}
+
+.col-wrap{
+  position:relative;
+  height:640px;
+}
+
+/* Individual browser cards — absolutely positioned */
+.col-wrap .card{
+  position:absolute;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(10,10,10,.4),0 0 0 1px rgba(10,10,10,.08);
+  transition:transform .8s var(--ease),box-shadow .6s var(--ease);
+}
+.col-wrap .card:hover{
+  box-shadow:0 60px 120px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.15);
+  z-index:10;
+}
+
+/* Center card — largest, front */
+.col-wrap .m1{left:50%;top:50%;transform:translate(-50%,-50%);width:54%;z-index:3}
+.col-wrap .m1:hover{transform:translate(-50%,-50%) translateY(-8px)}
+
+/* Left card — rotated back */
+.col-wrap .m2{left:3%;top:12%;width:30%;transform:rotate(-3deg);z-index:2}
+.col-wrap .m2:hover{transform:rotate(-1deg) translateY(-6px)}
+
+/* Right card — rotated back */
+.col-wrap .m3{right:3%;top:52%;width:30%;transform:rotate(2deg);z-index:2}
+.col-wrap .m3:hover{transform:rotate(0deg) translateY(-6px)}
+
+/* Browser chrome bar */
+.bmock{background:#fff;color:var(--ink);overflow:hidden}
+.bmock .chrome{
+  background:#ebe7df;
+  padding:8px 12px;
+  display:flex;gap:8px;align-items:center;
+  border-bottom:1px solid #dcd6ca;
+}
+.bmock .chrome .dots{display:flex;gap:4px}
+.bmock .chrome .dots i{
+  width:8px;height:8px;border-radius:50%;display:block;
+}
+.bmock .chrome .dots i:nth-child(1){background:#ff5f57}
+.bmock .chrome .dots i:nth-child(2){background:#febc2e}
+.bmock .chrome .dots i:nth-child(3){background:#28c841}
+.bmock .chrome .url{
+  flex:1;background:#fff;border-radius:4px;
+  padding:4px 10px;
+  font-family:var(--mono);font-size:9px;color:#666;
 }

@@ -161,9 +161,53 @@ window.REFS = [
     ]
   },
 
-  /* ─── 8. Bambule ───────────────────────────────────── */
+  /* ─── 8. Generali Penze ───────────────────────────── */
   {
     num:      '08',
+    id:       'generali',
+    name:     'Generali Penze',
+    headline: 'Korporátní web penzijní společnosti s&nbsp;online kalkulačkou, možností uzavřít smlouvu bez&nbsp;papíru a&nbsp;plnohodnotnou klientskou zónou. Makléři mají vlastní portál s&nbsp;přehledem portfolia a&nbsp;provizí v&nbsp;reálném čase.',
+    category: 'Korporátní web',
+    year:     '2024',
+    tags:     ["web","finance","b2b"],
+    href:     '#',
+    domain:   'generalipenze.cz',
+    mockImg:  'assets/reference/generali/mock.png',
+    thumb:    'assets/reference/generali/thumb.png',
+    badge:    { show: false, text: 'WT100', year: '2025' },
+    cat:      'Web · Finance · ePublisher CMS',
+    kpis: [
+      { label: 'Online sjednání', value: '<span class="red">+</span>180%', title: 'Nárůst online sjednání smluv', desc: 'Zjednodušený průvodce snížil dobu sjednání z 22 na 7 minut. Většina nových smluv se dnes uzavírá bez návštěvy pobočky.' },
+      { label: 'Makléřů v portálu', value: '3 200', title: 'Aktivních makléřů v B2B portálu', desc: 'Partnerský portál pro makléře s přehledem portfolia, kalkulačkami a provizemi v reálném čase.' },
+      { label: 'Lighthouse skóre', value: '98', title: 'Průměrné Lighthouse skóre', desc: 'Optimalizovaný frontend na ePublisher CMS, WCAG 2.2 AA, rychlost pod vteřinu na 4G.' },
+    ]
+  },
+
+  /* ─── 9. DPP ───────────────────────────────────────── */
+  {
+    num:      '09',
+    id:       'dpp',
+    name:     'DPP',
+    headline: 'Informační portál Dopravního podniku hl.&nbsp;m.&nbsp;Prahy pro&nbsp;miliony cestujících ročně. Jízdní řády, plánování trasy, zákaznický servis, aktuality a&nbsp;online správa čipových karet — vše pod&nbsp;jednou střechou, přístupné i&nbsp;lidem se&nbsp;zdravotním postižením.',
+    category: 'Veřejný portál',
+    year:     '2024',
+    tags:     ["web","public"],
+    href:     '#',
+    domain:   'dpp.cz',
+    mockImg:  'assets/reference/dpp/mock.png',
+    thumb:    'assets/reference/dpp/thumb.png',
+    badge:    { show: false, text: 'WT100', year: '2025' },
+    cat:      'Web · Veřejný sektor · ePublisher CMS',
+    kpis: [
+      { label: 'Návštěv / měsíc', value: '4,2 M', title: 'Měsíční návštěvnost', desc: 'Největší provoz v době dopravních výluk a mimořádných událostí. Infrastruktura zvládá špičky bez výpadku.' },
+      { label: 'WCAG shoda', value: '2.2 AA', title: 'Přístupnost WCAG 2.2 AA', desc: 'Splňuje zákon č. 99/2019 Sb. o přístupnosti. Auditem prošel bez připomínek k funkčnosti pro screenreadery.' },
+      { label: 'Transakce / rok', value: '1,8 M', title: 'Online transakcí ročně', desc: 'Dobíjení Lítačky, zakoupení jízdenky a správa předplatného probíhá online — bez fronty na přepážce.' },
+    ]
+  },
+
+  /* ─── 10. Bambule ──────────────────────────────────── */
+  {
+    num:      '10',
     id:       'bambule',
     name:     'Bambule',
     headline: 'Omnichannel hračkářský e-shop s&nbsp;věrnostním programem pro&nbsp;rodiny.',
@@ -174,7 +218,7 @@ window.REFS = [
     domain:   'bambule.cz',
     mockImg:  'assets/reference/bambule/mock.png',
     thumb:    'assets/reference/bambule/thumb.png',
-    badge:    { show: false, text: 'WT100' },
+    badge:    { show: false, text: 'WT100', year: '2025' },
     cat:      'E-commerce · Retail · Omnichannel',
     kpis: [
       { label: 'Členů věr. prog.', value: '180k' },

@@ -163,10 +163,10 @@ code.snip{font-family:var(--mono);font-size:11px;background:var(--paper-3);paddi
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
       <div class="dd">
         <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
-        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby a portály</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby &amp; portály</a>
         <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
         <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
-        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace na míru</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace &amp; AI vývoj</a>
       </div>
     </li>
     <li class="has-dd">
@@ -1346,6 +1346,153 @@ code.snip{font-family:var(--mono);font-size:11px;background:var(--paper-3);paddi
     </div>
   </div>
 
+  <!-- ─── § 23 BROWSER COLLAGE ─── -->
+  <div class="sg-chapter"><div class="wrap"><span>§ 23 — Browser Collage</span></div></div>
+  <div class="wrap">
+
+    <div class="sg-group">
+      <div class="sg-group-label">Popis komponenty</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--mute);line-height:2.2;max-width:72ch">
+        <div>Tři plovoucí okna prohlížeče — centrum velké, dvě menší rotovaná. Používá se v hero sekcích produktových stránek.</div>
+        <div style="margin-top:12px">
+          <code class="snip">.collage</code> — section wrapper, padding 60px top / 120px bottom<br>
+          <code class="snip">.col-wrap</code> — relativní kontejner výšky 640px<br>
+          <code class="snip">.card.m1</code> — středová karta, 54 % šířky, <code class="snip">z-index: 3</code><br>
+          <code class="snip">.card.m2</code> — levá karta, 30 %, rotace <code class="snip">−3°</code>, <code class="snip">z-index: 2</code><br>
+          <code class="snip">.card.m3</code> — pravá karta, 30 %, rotace <code class="snip">+2°</code>, <code class="snip">z-index: 2</code><br>
+          <code class="snip">.bmock</code> — rámeček prohlížeče (bílé pozadí)<br>
+          <code class="snip">.bmock .chrome</code> — lišta s dots + URL barem<br>
+        </div>
+        <div style="margin-top:12px;color:var(--red)">
+          Obsah karet: buď <code class="snip">&lt;img src="assets/reference/X/mock.png"&gt;</code>, nebo inline HTML placeholder.
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Live ukázka — reálné screenshoty (eshop.html)</div>
+      <div class="demo lined" style="padding:0;overflow:hidden;background:var(--paper)">
+        <section class="collage" style="padding:60px 40px 80px">
+          <div class="col-wrap reveal on">
+
+            <!-- Center: harfasport -->
+            <div class="card m1">
+              <div class="bmock">
+                <div class="chrome">
+                  <div class="dots"><i></i><i></i><i></i></div>
+                  <div class="url">harfasport.cz</div>
+                </div>
+                <img src="assets/reference/harfasport/mock.png" alt="Harfa Sport" style="width:100%;display:block;object-fit:cover">
+              </div>
+            </div>
+
+            <!-- Left: fotoskoda -->
+            <div class="card m2">
+              <div class="bmock">
+                <div class="chrome">
+                  <div class="dots"><i></i><i></i><i></i></div>
+                  <div class="url">fotoskoda.cz</div>
+                </div>
+                <img src="assets/reference/fotoskoda/mock.png" alt="FotoŠkoda" style="width:100%;display:block;object-fit:cover">
+              </div>
+            </div>
+
+            <!-- Right: sparkys -->
+            <div class="card m3">
+              <div class="bmock">
+                <div class="chrome">
+                  <div class="dots"><i></i><i></i><i></i></div>
+                  <div class="url">sparkys.cz</div>
+                </div>
+                <img src="assets/reference/sparkys/mock.png" alt="Sparky's" style="width:100%;display:block;object-fit:cover">
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">HTML šablona</div>
+      <pre class="code-block" style="background:var(--ink);color:var(--paper);border-radius:12px;padding:28px 32px;font-family:var(--mono);font-size:11px;line-height:1.9;overflow-x:auto;white-space:pre">&lt;section class="collage"&gt;
+  &lt;div class="wrap"&gt;
+    &lt;div class="col-wrap reveal"&gt;
+
+      &lt;!-- Center card (velká, přední) --&gt;
+      &lt;div class="card m1"&gt;
+        &lt;div class="bmock"&gt;
+          &lt;div class="chrome"&gt;
+            &lt;div class="dots"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class="url"&gt;example.cz&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;img src="assets/reference/X/mock.png" alt="Název" style="width:100%;display:block"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Left card (malá, rotace −3°) --&gt;
+      &lt;div class="card m2"&gt;
+        &lt;div class="bmock"&gt;
+          &lt;div class="chrome"&gt;
+            &lt;div class="dots"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class="url"&gt;example2.cz&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;img src="assets/reference/Y/mock.png" alt="Název" style="width:100%;display:block"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Right card (malá, rotace +2°) --&gt;
+      &lt;div class="card m3"&gt;
+        &lt;div class="bmock"&gt;
+          &lt;div class="chrome"&gt;
+            &lt;div class="dots"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class="url"&gt;example3.cz&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;img src="assets/reference/Z/mock.png" alt="Název" style="width:100%;display:block"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+    </div>
+
+    <div class="sg-group">
+      <div class="sg-group-label">Dostupné screenshoty (assets/reference/*/mock.png)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/harfasport/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">harfasport</div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/fotoskoda/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">fotoskoda</div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/hyundai/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">hyundai</div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/sparkys/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">sparkys</div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/bambule/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">bambule</div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/albi/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">albi</div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <img src="assets/reference/konsepti/mock.png" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--mute)">konsepti</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div><!-- /sg-page -->
 
 <!-- ===================== FOOTER ===================== -->
@@ -1360,7 +1507,7 @@ code.snip{font-family:var(--mono);font-size:11px;background:var(--paper-3);paddi
       <div>
         <h5>Služby</h5>
         <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
-        <a href="weby.html">Weby &amp; aplikace <span class="ar">→</span></a>
+        <a href="weby.html">Weby &amp; portály <span class="ar">→</span></a>
         <a href="bigdata.html">Big Data <span class="ar">→</span></a>
         <a href="upsearch.html">UpSearch <span class="ar">→</span></a>
       </div>

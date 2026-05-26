@@ -126,6 +126,9 @@
 .route-card:hover .rc-arr{background:var(--red);border-color:var(--red)}
 .route-card .rc-arr svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .5s var(--ease)}
 .route-card:hover .rc-arr svg{stroke:#fff}
+.route-card .btn{margin-top:28px;margin-bottom:4px;align-self:flex-start;transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease)}
+.route-card:hover .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.route-card:hover .btn .arr svg{stroke:var(--ink)}
 
 /* ===================== PRINCIPLES ===================== */
 .principles{padding:80px 0;border-top:1px solid var(--ink);background:var(--ink)}
@@ -303,35 +306,44 @@
     </div>
 
     <div class="route-grid">
-      <a href="eshop/b2c-na-miru.html" class="route-card reveal">
+      <div class="route-card reveal">
         <div class="rc-tag">B2C na míru</div>
         <h3>E-shop s&nbsp;vlastní tváří.</h3>
         <p>Custom B2C platformy s&nbsp;plnou kontrolou nad designem, rychlostí pod 1&nbsp;sekundu a&nbsp;integrací na cokoliv, co&nbsp;potřebujete. Headless architektura.</p>
+        <a href="eshop/b2c-na-miru.html" class="btn">
+          <span class="lbl" data-t="Více o B2C na míru"><span>Více o B2C na míru</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
         <div class="rc-meta">
           <span>od 750 000&nbsp;Kč · 4–12 měs.</span>
-          <span class="rc-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
-      </a>
+      </div>
 
-      <a href="eshop/b2b-na-miru.html" class="route-card reveal d1">
+      <div class="route-card reveal d1">
         <div class="rc-tag">B2B na míru</div>
         <h3>E-shop pro firmy, co&nbsp;prodávají firmám.</h3>
         <p>Custom B2B platformy s&nbsp;vlastní logikou rolí, ceníků a&nbsp;procesů. EDI, ERP integrace, schvalovací workflow, API pro procurement systémy zákazníků.</p>
+        <a href="eshop/b2b-na-miru.html" class="btn">
+          <span class="lbl" data-t="Více o B2B na míru"><span>Více o B2B na míru</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
         <div class="rc-meta">
           <span>od 1 000 000&nbsp;Kč · 3–18 měs.</span>
-          <span class="rc-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
-      </a>
+      </div>
 
-      <a href="eshop/shopify.html" class="route-card reveal d2">
+      <div class="route-card reveal d2">
         <div class="rc-tag">Shopify</div>
         <h3>Spusťte e-shop za&nbsp;týdny, ne&nbsp;měsíce.</h3>
         <p>Shopify e-shopy za 4–8 týdnů od 89&nbsp;000&nbsp;Kč. Migrace bez ztráty SEO, Shopify Plus pro enterprise, mezinárodní expanze. 27 let e-commerce zkušeností.</p>
+        <a href="eshop/shopify.html" class="btn">
+          <span class="lbl" data-t="Více o Shopify"><span>Více o Shopify</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
         <div class="rc-meta">
           <span>od 89 000&nbsp;Kč · 4–12 týdnů</span>
-          <span class="rc-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>

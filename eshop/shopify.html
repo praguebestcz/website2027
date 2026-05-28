@@ -56,8 +56,9 @@
 .fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
 .fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
 .fw-col ul{list-style:none;margin-top:16px}
-.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
-.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);padding-left:26px;position:relative}
+.fw-col:first-child ul li::before{content:"✓";position:absolute;left:0;color:#1a7a4a;font-weight:700;font-size:15px}
+.fw-col:last-child ul li::before{content:"✕";position:absolute;left:0;color:var(--red);font-size:13px}
 
 /* ===================== SERVICE PACKAGES ===================== */
 .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -294,11 +295,11 @@
         <p>— Komplexní B2B platformu s rolemi, EDI a procurement → <a href="b2b-na-miru.html" style="color:var(--red)">B2B na míru</a><br>
         — Plnou kontrolu nad designem a unique brand experience → <a href="b2c-na-miru.html" style="color:var(--red)">B2C na míru</a><br>
         — Hluboké integrace na legacy systémy mimo Shopify ekosystém → custom</p>
-        <ul style="opacity:.7">
-          <li style="color:var(--mute)">5 000+ SKU s komplexními variantami</li>
-          <li style="color:var(--mute)">Custom business logika (konfigurátor produktu apod.)</li>
-          <li style="color:var(--mute)">EDI s velkými retailovými řetězci</li>
-          <li style="color:var(--mute)">Hluboké napojení na legacy ERP/CRM</li>
+        <ul>
+          <li>5 000+ SKU s komplexními variantami</li>
+          <li>Custom business logika (konfigurátor produktu apod.)</li>
+          <li>EDI s velkými retailovými řetězci</li>
+          <li>Hluboké napojení na legacy ERP/CRM</li>
         </ul>
       </div>
     </div>

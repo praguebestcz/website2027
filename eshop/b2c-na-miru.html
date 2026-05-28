@@ -98,8 +98,9 @@
 .fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
 .fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
 .fw-col ul{list-style:none;margin-top:16px}
-.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
-.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);padding-left:26px;position:relative}
+.fw-col:first-child ul li::before{content:"✓";position:absolute;left:0;color:#1a7a4a;font-weight:700;font-size:15px}
+.fw-col:last-child ul li::before{content:"✕";position:absolute;left:0;color:var(--red);font-size:13px}
 
 /* ===================== FEATURES GRID ===================== */
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -352,12 +353,12 @@
         <h3>Malým obchodům, co potřebují rychle odstartovat.</h3>
         <p>Pokud chcete rychlý launch s&nbsp;transparentní cenou a&nbsp;zatím neřešíte komplexní integrace, podívejte se na&nbsp;naši <a href="shopify.html" style="color:var(--red)">Shopify nabídku →</a> — postavíme vám e-shop na&nbsp;ověřené platformě za&nbsp;4–8 týdnů od&nbsp;89&nbsp;000&nbsp;Kč.</p>
         <p>Custom B2C dává smysl teprve, když šablonové obchody přestávají stačit.</p>
-        <ul style="opacity:.7">
-          <li style="color:var(--mute)">První e-shop bez jasné strategie</li>
-          <li style="color:var(--mute)">Rozpočet pod 500 tis. Kč</li>
-          <li style="color:var(--mute)">Spěcháte na launch za měsíc</li>
-          <li style="color:var(--mute)">Katalog pod 500 produktů</li>
-          <li style="color:var(--mute)">Nepotřebujete integrace</li>
+        <ul>
+          <li>První e-shop bez jasné strategie</li>
+          <li>Rozpočet pod 500 tis. Kč</li>
+          <li>Spěcháte na launch za měsíc</li>
+          <li>Katalog pod 500 produktů</li>
+          <li>Nepotřebujete integrace</li>
         </ul>
       </div>
     </div>

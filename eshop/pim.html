@@ -84,8 +84,9 @@
 .fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
 .fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
 .fw-col ul{list-style:none;margin-top:16px}
-.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);padding-left:18px;position:relative}
-.fw-col ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.fw-col ul li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);padding-left:26px;position:relative}
+.fw-col:first-child ul li::before{content:"✓";position:absolute;left:0;color:#1a7a4a;font-weight:700;font-size:15px}
+.fw-col:last-child ul li::before{content:"✕";position:absolute;left:0;color:var(--red);font-size:13px}
 
 /* ===================== INTEGRATIONS GRID ===================== */
 .int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
@@ -346,12 +347,12 @@
         <div class="lbl">Nejsme vhodní</div>
         <h3>Když Excel a admin e-shopu pořád stačí.</h3>
         <p>Pod určitou hranicí katalogu a komplexity je PIM zbytečný overhead. Excel + admin e-shopu vás bude stát víc úsilí, ale méně peněz.</p>
-        <ul style="opacity:.7">
-          <li style="color:var(--mute)">Pod 500 SKU v katalogu</li>
-          <li style="color:var(--mute)">Jeden kanál, jeden jazyk</li>
-          <li style="color:var(--mute)">Tým 1–2 lidí spravuje katalog</li>
-          <li style="color:var(--mute)">Žádné integrace na ERP nebo dodavatelské feedy</li>
-          <li style="color:var(--mute)">Nemáte ambici růst nad současný rozsah</li>
+        <ul>
+          <li>Pod 500 SKU v katalogu</li>
+          <li>Jeden kanál, jeden jazyk</li>
+          <li>Tým 1–2 lidí spravuje katalog</li>
+          <li>Žádné integrace na ERP nebo dodavatelské feedy</li>
+          <li>Nemáte ambici růst nad současný rozsah</li>
         </ul>
       </div>
     </div>

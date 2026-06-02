@@ -220,7 +220,7 @@
 /* ===== CASE STUDIES ===== */
 .cases{padding:80px 0;border-top:1px solid var(--ink)}
 .cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.cs{padding:40px 34px;border:1px solid var(--line);border-radius:18px;background:var(--paper);transition:all .5s var(--ease);position:relative;overflow:hidden;cursor:none}
+.cs{padding:40px 34px;border:1px solid var(--line);border-radius:18px;background:var(--paper);transition:all .5s var(--ease);position:relative;overflow:hidden}
 .cs:hover{border-color:var(--ink);transform:translateY(-4px);background:var(--paper-2)}
 .cs::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
 .cs:hover::before{transform:scaleX(1)}
@@ -240,8 +240,6 @@
 </head>
 <body>
 
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
 <div class="scroll-progress"></div>
 
 <nav class="top">

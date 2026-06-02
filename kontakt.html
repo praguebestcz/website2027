@@ -94,7 +94,7 @@ form{display:grid;gap:14px}
   font-family:var(--sans);
 }
 .field textarea{resize:none;min-height:160px;line-height:1.6}
-.field select{appearance:none;-webkit-appearance:none;cursor:none;padding-right:48px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 22px center;background-size:16px}
+.field select{appearance:none;-webkit-appearance:none;padding-right:48px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 22px center;background-size:16px}
 .field input:hover,.field textarea:hover,.field select:hover{border-color:rgba(10,10,10,.3)}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--ink);background:rgba(255,255,255,.4)}
 .field input:focus ~ label,.field textarea:focus ~ label,.field input:not(:placeholder-shown) ~ label,.field textarea:not(:placeholder-shown) ~ label,.field.has-val label{
@@ -110,7 +110,7 @@ form{display:grid;gap:14px}
 .chip{
   padding:12px 20px;border:1px solid var(--line);border-radius:999px;
   font-size:13px;font-weight:500;letter-spacing:-.005em;color:var(--ink);
-  transition:all .3s var(--ease);background:transparent;cursor:none;
+  transition:all .3s var(--ease);background:transparent;
 }
 .chip:hover{border-color:var(--ink)}
 .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -120,7 +120,7 @@ form{display:grid;gap:14px}
 .budget button{
   padding:16px 14px;border:1px solid var(--line);border-radius:12px;
   font-size:13px;font-weight:600;text-align:center;color:var(--ink);
-  transition:all .3s var(--ease);cursor:none;
+  transition:all .3s var(--ease);
 }
 .budget button small{display:block;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--mute);letter-spacing:.04em;margin-top:4px}
 .budget button:hover{border-color:var(--ink)}
@@ -247,8 +247,6 @@ form{display:grid;gap:14px}
 </head>
 <body>
 
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
 <div class="scroll-progress"></div>
 
 <!-- ===================== NAV ===================== -->
@@ -782,14 +780,6 @@ form{display:grid;gap:14px}
 
 <script>
 (()=>{
-  const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
-  let mx=0,my=0,rx=0,ry=0;
-  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`},{passive:true});
-  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
-  document.querySelectorAll('a,button,.ch,.person,.chip,.inv-card,.nstep,.field input,.field textarea,.field select').forEach(el=>{
-    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
-  });
 
   const sp=document.querySelector('.scroll-progress');
   const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};

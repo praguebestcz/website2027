@@ -25,7 +25,7 @@
 .ide-sidebar{background:#111;border-right:1px solid #2a2a2a;padding:18px 0}
 .ide-sidebar .lbl-s{padding:0 18px;font-size:9px;color:rgba(242,236,224,.35);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
 .ide-sidebar .tree{font-size:12px;line-height:1.9}
-.ide-sidebar .tree .item{padding:3px 18px;color:rgba(242,236,224,.6);display:flex;align-items:center;gap:6px;cursor:none}
+.ide-sidebar .tree .item{padding:3px 18px;color:rgba(242,236,224,.6);display:flex;align-items:center;gap:6px}
 .ide-sidebar .tree .item::before{content:"▸";font-size:8px;color:rgba(242,236,224,.3)}
 .ide-sidebar .tree .item.open::before{content:"▾"}
 .ide-sidebar .tree .item.file::before{content:"";width:10px}
@@ -98,8 +98,6 @@
 </head>
 <body>
 
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
 <div class="scroll-progress"></div>
 
 <nav class="top">

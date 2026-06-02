@@ -19,7 +19,7 @@
 .jobs-card .bar-j .cnt-j b{color:var(--paper);font-weight:600}
 
 .j-list{position:relative;z-index:2}
-.j-row{display:grid;grid-template-columns:80px 1.5fr 1fr 1fr auto;gap:30px;align-items:center;padding:34px 40px;border-bottom:1px solid rgba(242,236,224,.08);position:relative;transition:all .5s var(--ease);cursor:none}
+.j-row{display:grid;grid-template-columns:80px 1.5fr 1fr 1fr auto;gap:30px;align-items:center;padding:34px 40px;border-bottom:1px solid rgba(242,236,224,.08);position:relative;transition:all .5s var(--ease)}
 .j-row:last-child{border-bottom:none}
 .j-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out)}
 .j-row:hover::before{transform:scaleY(1)}
@@ -119,8 +119,6 @@
 </head>
 <body>
 
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
 <div class="scroll-progress"></div>
 
 <nav class="top">

@@ -444,8 +444,24 @@ body.cursor-red body.cursor-red
 /* === STATS GRID === */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(242,236,224,.06);padding-top:24px;margin-top:24px;border-top:1px solid rgba(242,236,224,.1)}
 
-/* === TECH GRID T-GRID === */
+/* === TECH GRID T-GRID + T-CARD === */
 .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.t-card{padding:44px 36px 48px;background:var(--paper);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.t-card::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0}
+.t-card:hover::before{transform:translateY(0)}
+.t-card > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.t-card:hover > *{color:var(--paper)}
+.t-card .ico{width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:32px;transition:all .5s var(--ease)}
+.t-card:hover .ico{background:var(--red);color:#fff}
+.t-card .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.t-card .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.t-card:hover .n{color:rgba(242,236,224,.5)}
+.t-card h4{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.t-card p{font-size:14px;color:var(--ink-3);line-height:1.6;margin-bottom:16px}
+.t-card:hover p{color:rgba(242,236,224,.75)}
+.t-card .ex{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.04em;font-weight:600;display:flex;align-items:center;gap:8px}
+.t-card .ex::before{content:"→"}
+.t-card:hover .ex{color:var(--red)}
 
 /* === CARD GRID C-GRID === */
 .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;position:relative;z-index:2}

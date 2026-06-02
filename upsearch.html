@@ -3,265 +3,175 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>UpSearch — Chytré vyhledávání pro e-shopy</title>
+<title>UpSearch — Chytré vyhledávání pro e-shopy | PragueBest</title>
+<meta name="description" content="Inteligentní vyhledávání pro e-shopy s našeptávačem, tolerancí překlepů a personalizací. 100+ e-shopů, 38ms odezva, +30 % konverze. UpSearch od PragueBest." />
+<meta name="keywords" content="UpSearch, vyhledávání e-shop, fulltext vyhledávání, in-site search, autocomplete, našeptávač, tolerance překlepů, personalizace vyhledávání, Elasticsearch, site search, e-commerce search, konverze z vyhledávání, Karlín, Praha, PragueBest" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/upsearch" />
+<meta property="og:title" content="UpSearch — Chytré vyhledávání pro e-shopy | PragueBest" />
+<meta property="og:description" content="Inteligentní vyhledávání pro e-shopy s našeptávačem, tolerancí překlepů a personalizací. 100+ e-shopů, 38ms odezva, +30 % konverze. UpSearch od PragueBest." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-upsearch.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="UpSearch — Chytré vyhledávání pro e-shopy | PragueBest" />
+<meta name="twitter:description" content="Inteligentní vyhledávání pro e-shopy s našeptávačem, tolerancí překlepů a personalizací. 100+ e-shopů, 38ms odezva, +30 % konverze. UpSearch od PragueBest." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-upsearch.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "UpSearch" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UpSearch",
+  "applicationCategory": "Search Software",
+  "operatingSystem": "Web",
+  "description": "Inteligentní vyhledávání pro e-shopy s tolerancí překlepů, synonymy, skloňováním a personalizací výsledků. 38ms odezva, 100+ nasazení.",
+  "provider": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CZK",
+    "lowPrice": "3000",
+    "highPrice": "25000",
+    "description": "Starter od 3 000 Kč/měs., Growth 10 000 Kč/měs., Enterprise 25 000 Kč/měs."
+  }
+}
+</script>
 <style>
-.hero{padding:170px 0 120px;position:relative;text-align:center;overflow:hidden}
-.hero .blob{position:absolute;left:50%;top:45%;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.14),transparent 60%);transform:translate(-50%,-50%);filter:blur(50px);z-index:0;pointer-events:none}
-
-.brand-pill .badge{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:4px 10px;background:var(--ink);color:var(--paper);
-  border-radius:999px;font-weight:600;
-}
-.brand-pill .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px rgba(227,6,19,.7)}
-
-.hero h1{
-  font-size:clamp(44px,7.8vw,134px);font-weight:800;letter-spacing:-.055em;line-height:.86;
-  max-width:13ch;margin:0 auto;
-}
-.hero h1 .red{color:var(--red)}
-.hero .lede{margin-top:36px;font-size:clamp(18px,1.7vw,24px);font-weight:400;letter-spacing:-.015em;line-height:1.4;max-width:48ch;margin-left:auto;margin-right:auto;color:var(--ink-3)}
-.hero .lede b{color:var(--ink);font-weight:600}
-.hero .lede .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 2px}
-
-.hero .ctas{margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hero .trust{margin-top:28px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
-.hero .trust span{display:flex;align-items:center;gap:6px}
-.hero .trust span::before{content:"✓";color:var(--red);font-weight:700}
-
-/* ===================== LIVE SEARCH DEMO ===================== */
-.demo{padding:0 0 120px;position:relative}
-.demo-card{
-  max-width:860px;margin:0 auto;border-radius:24px;overflow:hidden;
-  background:var(--ink);color:var(--paper);
-  box-shadow:0 50px 120px -40px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1);
-  position:relative;
-}
-.demo-card::before{
-  content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(227,6,19,.3),transparent 60%);filter:blur(40px);pointer-events:none;
-}
-.demo-card::after{
-  content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
-  background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);
-  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);
-}
-.demo-card .bar{
-  position:relative;z-index:2;padding:18px 24px;display:flex;align-items:center;gap:14px;
-  border-bottom:1px solid rgba(242,236,224,.1);
-}
-.demo-card .bar .live{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:#2bb65d;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
-.demo-card .bar .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.25);animation:pulse 2s infinite}
-.demo-card .bar .url{flex:1;text-align:center;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.45);letter-spacing:.04em}
-.demo-card .bar .url b{color:var(--paper);font-weight:500}
-.demo-card .bar .ping{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.6);letter-spacing:.04em;text-transform:uppercase}
-.demo-card .bar .ping b{color:var(--red);font-weight:600}
-
-.search-wrap{position:relative;z-index:2;padding:44px 40px 28px}
-.search-box{
-  position:relative;background:rgba(242,236,224,.04);border:1px solid rgba(242,236,224,.2);
-  border-radius:16px;padding:22px 24px;display:flex;align-items:center;gap:18px;
-}
-.search-box .ic{width:24px;height:24px;stroke:var(--paper);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.7;flex-shrink:0}
-.search-box .txt{flex:1;font-size:22px;font-weight:500;letter-spacing:-.01em;min-height:30px;position:relative}
-.search-box .txt .cursor-blink{display:inline-block;width:2px;height:22px;background:var(--red);margin-left:3px;vertical-align:middle;animation:blink 1s infinite}
-@keyframes blink{50%{opacity:0}}
-.search-box .kbd{display:flex;gap:4px;font-family:var(--mono);font-size:9px;color:rgba(242,236,224,.5);letter-spacing:.04em}
-.search-box .kbd span{padding:3px 6px;background:rgba(242,236,224,.08);border:1px solid rgba(242,236,224,.15);border-radius:4px}
-
-.suggestion{
-  margin-top:10px;padding:14px 24px;font-size:13px;color:rgba(242,236,224,.7);
-  display:flex;align-items:center;gap:10px;
-  opacity:0;transform:translateY(-6px);transition:all .4s var(--ease);
-}
-.suggestion.on{opacity:1;transform:translateY(0)}
-.suggestion b{color:var(--red);font-weight:600}
-.suggestion .k{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;background:rgba(242,236,224,.06);border:1px solid rgba(242,236,224,.12);border-radius:99px}
-
-.results .head{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid rgba(242,236,224,.1);margin-bottom:6px}
-.results .head .lbl{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase}
-.results .head .lbl b{color:var(--paper);font-weight:500;margin-right:8px}
-.results .head .meta-r{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.02em;display:flex;gap:16px}
-.results .head .meta-r b{color:var(--red)}
-.results ul{list-style:none}
-.results li{
-  display:grid;grid-template-columns:54px 1fr auto auto;gap:20px;align-items:center;
-  padding:14px 4px;border-bottom:1px solid rgba(242,236,224,.08);
-  opacity:0;transform:translateX(-12px);transition:all .4s var(--ease);
-}
-.results li.on{opacity:1;transform:translateX(0)}
-.results li:nth-child(1).on{transition-delay:.1s}
-.results li:nth-child(2).on{transition-delay:.2s}
-.results li:nth-child(3).on{transition-delay:.3s}
-.results li:nth-child(4).on{transition-delay:.4s}
-.results li .ph{
-  width:54px;height:54px;border-radius:10px;
-  background:linear-gradient(135deg,rgba(242,236,224,.15),rgba(242,236,224,.04));
-  border:1px solid rgba(242,236,224,.1);position:relative;flex-shrink:0;
-}
-.results li .ph::after{content:"";position:absolute;inset:14px;background:radial-gradient(circle at 35% 35%,rgba(242,236,224,.4),transparent 60%);border-radius:50%}
-.results li .tx{min-width:0}
-.results li .tx b{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.results li .tx .highlight{background:rgba(227,6,19,.28);color:#ffd4d7;padding:0 2px;border-radius:2px}
-.results li .tx small{display:block;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);margin-top:3px;letter-spacing:.02em}
-.results li .tag-r{font-family:var(--mono);font-size:9px;color:rgba(242,236,224,.45);padding:4px 8px;background:rgba(242,236,224,.05);border:1px solid rgba(242,236,224,.1);border-radius:99px;letter-spacing:.04em;text-transform:uppercase}
-.results li .pr{font-size:14px;font-weight:700;color:var(--paper);letter-spacing:-.01em;min-width:80px;text-align:right}
-
-.demo .caption{margin-top:26px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
-.demo .caption b{color:var(--red);font-weight:600}
-
-/* ===================== STATS STRIP ===================== */
-.stats{padding:40px 0 120px;border-top:1px solid var(--line);margin-top:40px}
-.stat{
-  padding:50px 36px 44px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-  position:relative;overflow:hidden;transition:background .5s var(--ease);
-}
-.stat::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(100%);transition:transform .7s var(--ease-out);z-index:0}
-.stat:hover::before{transform:translateY(0)}
-.stat > *{position:relative;z-index:1;transition:color .5s var(--ease)}
-.stat:hover > *{color:var(--paper)}
-.stat .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
-.stat:hover .n{color:rgba(242,236,224,.5)}
-.stat .value{font-size:clamp(56px,5.5vw,88px);font-weight:700;letter-spacing:-.045em;line-height:.92;display:flex;align-items:baseline}
-.stat .value .red{color:var(--red)}
-.stat .value sub{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--mute);margin-left:6px;vertical-align:baseline;letter-spacing:0}
-.stat:hover .value sub{color:rgba(242,236,224,.55)}
-.stat .l{font-size:15px;font-weight:600;margin-top:16px;letter-spacing:-.01em}
-.stat .d{font-size:13px;color:var(--mute);margin-top:6px;line-height:1.5;max-width:32ch}
-.stat:hover .d{color:rgba(242,236,224,.7)}
-
-/* ===================== SECTION HEAD ===================== */
-
 /* ===================== PROBLEMS ===================== */
 .problems{padding:80px 0;border-top:1px solid var(--ink)}
-.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.prob{
-  padding:44px 36px 40px;border:1px solid var(--line);border-radius:18px;background:var(--paper);
-  position:relative;overflow:hidden;transition:all .5s var(--ease);
-}
-.prob:hover{border-color:var(--ink);transform:translateY(-4px)}
-.prob .num{font-family:var(--mono);font-size:11px;color:var(--red);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:10px}
-.prob .num::before{content:"";width:20px;height:1px;background:var(--red)}
-.prob h3{font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:16px}
-.prob h3 .strike{position:relative;display:inline-block}
-.prob h3 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:.06em;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease-out)}
-.prob:hover h3 .strike::after{transform:scaleX(1)}
-.prob p{font-size:14px;color:var(--ink-3);line-height:1.6}
-.prob .fix{margin-top:24px;padding-top:22px;border-top:1px dashed var(--line);display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.55;color:var(--ink)}
-.prob .fix::before{content:"→";color:var(--red);font-weight:700;font-size:18px;line-height:1}
-.prob .fix b{font-weight:600}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
+.prob-card{padding:44px 36px 48px;background:var(--paper);transition:background .5s var(--ease)}
+.prob-card:hover{background:var(--paper-2)}
+.prob-card .p-n{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.prob-card h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+.prob-card p{font-size:14px;color:var(--ink-3);line-height:1.65}
+.prob-card strong{color:var(--ink);font-weight:600}
 
-/* ===================== FEATURES ===================== */
-.features::before{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 30%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 30%,#000 30%,transparent 80%)}
-.features .sec-head{border-color:rgba(242,236,224,.2)}
-.features .sec-head h2{color:var(--paper)}
-.features .sec-head .aside{color:rgba(242,236,224,.5)}
-.features .sec-head .aside b{color:var(--paper)}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(242,236,224,.1);border:1px solid rgba(242,236,224,.1);border-radius:20px;overflow:hidden}
-.feat{
-  padding:44px 36px 48px;background:var(--ink);position:relative;overflow:hidden;
-  transition:background .5s var(--ease);
-}
-.feat:hover{background:var(--ink-2)}
-.feat::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease-out)}
-.feat:hover::before{transform:scaleX(1)}
-.feat .ico{
-  width:54px;height:54px;border-radius:14px;background:rgba(242,236,224,.06);border:1px solid rgba(242,236,224,.12);
-  display:flex;align-items:center;justify-content:center;margin-bottom:32px;
-  transition:all .5s var(--ease);
-}
-.feat:hover .ico{background:var(--red);border-color:var(--red)}
-.feat .ico svg{width:24px;height:24px;stroke:var(--paper);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.feat .n{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-.feat h4{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
-.feat p{font-size:13px;color:rgba(242,236,224,.65);line-height:1.6}
-.feat p code{font-family:var(--mono);font-size:12px;background:rgba(242,236,224,.08);padding:2px 6px;border-radius:4px;color:var(--red)}
+/* ===================== LOGOS BAND ===================== */
+.logos-band{padding:56px 0;border-top:1px solid var(--line)}
+.logos-band .lbl{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.07em;text-transform:uppercase;margin-bottom:32px}
+.logos-row{display:flex;gap:48px;align-items:center;flex-wrap:wrap}
+.logos-row .logo-name{font-size:18px;font-weight:800;letter-spacing:-.03em;color:var(--ink);opacity:.35;transition:opacity .3s}
+.logos-row .logo-name:hover{opacity:1}
 
-/* ===================== HOW IT WORKS ===================== */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.hstep:not(:first-child){padding-left:40px}
-.hstep .n{
-  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--red);letter-spacing:.08em;text-transform:uppercase;
-  margin-bottom:20px;display:flex;align-items:center;gap:12px;
-}
-.hstep .n .big-n{font-family:var(--sans);font-size:54px;font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:.9;text-transform:none}
-.hstep .n .big-n .mk{color:var(--red)}
-.hstep h3{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px;margin-top:10px}
-.hstep p + p{margin-top:12px}
-.hstep p b{color:var(--ink);font-weight:600}
-.hstep code{font-family:var(--mono);font-size:12px;background:var(--paper-2);padding:3px 8px;border-radius:5px;color:var(--ink);border:1px solid var(--line)}
-.hstep .badge{margin-top:24px;display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:var(--paper-2);border:1px solid var(--line);border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
-.hstep .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#2bb65d}
+/* ===================== TESTIMONIALS ===================== */
+.testimonials{padding:80px 0;border-top:1px solid var(--ink);background:var(--ink)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(242,236,224,.12);border:1px solid rgba(242,236,224,.12);border-radius:20px;overflow:hidden;margin-top:0}
+.testi{padding:44px 36px 48px;background:var(--ink);transition:background .5s var(--ease)}
+.testi:hover{background:#111}
+.testi .quote{font-size:36px;color:var(--red);font-weight:900;line-height:1;margin-bottom:20px;font-family:var(--serif,serif)}
+.testi blockquote{font-size:16px;color:rgba(242,236,224,.85);line-height:1.7;margin-bottom:28px;font-style:italic}
+.testi blockquote strong{color:var(--paper);font-style:normal;font-weight:600}
+.testi .testi-by{display:flex;flex-direction:column;gap:4px}
+.testi .testi-name{font-size:14px;font-weight:700;color:var(--paper);letter-spacing:-.01em}
+.testi .testi-role{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.45);letter-spacing:.04em;text-transform:uppercase}
 
-/* ===================== TESTIMONIAL ===================== */
-.tcard{
-  padding:48px 44px;border:1px solid var(--line);border-radius:20px;background:var(--paper);
-  position:relative;overflow:hidden;transition:all .5s var(--ease);
-}
-.tcard:hover{border-color:var(--ink);background:var(--paper-2)}
-.tcard::before{content:"";font-size:140px;line-height:.8;color:var(--red);font-weight:700;position:absolute;top:24px;right:32px;opacity:.2;font-family:var(--sans);pointer-events:none}
-.tcard .q{font-size:22px;font-weight:500;letter-spacing:-.015em;line-height:1.35;max-width:34ch;position:relative}
-.tcard .q .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 2px}
-.tcard .who{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:center;gap:16px}
-.tcard .av{width:52px;height:52px;border-radius:50%;border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line);flex-shrink:0}
-.tcard.t1 .av{background:linear-gradient(135deg,#c8a878,#7a5030)}
-.tcard.t2 .av{background:linear-gradient(135deg,#a8b896,#3a4830)}
-.tcard .who b{display:block;font-size:15px;font-weight:600;letter-spacing:-.005em}
-.tcard .who small{display:block;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:3px;letter-spacing:.02em}
-.tcard .metric{position:absolute;bottom:44px;right:44px;text-align:right}
-.tcard .metric b{font-size:48px;font-weight:700;letter-spacing:-.035em;color:var(--red);line-height:.9;display:block}
-.tcard .metric small{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;display:block;margin-top:4px}
+/* ===================== FOR WHOM ===================== */
+.fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+.fw-col{padding:56px 52px}
+.fw-col:first-child{border-right:1px solid var(--ink)}
+.fw-col .lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+.fw-col h3{font-size:clamp(24px,2.2vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.2;margin-bottom:16px}
+.fw-col p{font-size:15px;color:var(--ink-3);line-height:1.65;margin-bottom:12px}
+.fw-col ul{list-style:none;margin-top:16px}
+.fw-col ul li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);display:flex;gap:10px;align-items:flex-start}
+.fw-col:first-child ul li::before{content:"✓";color:#1a7a4a;font-weight:700;font-size:15px;flex-shrink:0;line-height:1.5}
+.fw-col:last-child ul li::before{content:"✕";color:var(--red);font-size:13px;flex-shrink:0;line-height:1.65}
 
-/* ===================== CUSTOMERS ===================== */
-.customers{padding:80px 0;border-top:1px solid var(--ink)}
-.c-grid .c{
-  height:130px;display:flex;align-items:center;justify-content:center;
-  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-  font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--mute);
-  transition:all .4s var(--ease);position:relative;
-}
-.c-grid .c:hover{color:var(--ink);background:var(--paper-2)}
-.c-grid .c::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
-.c-grid .c:hover::before{transform:scaleX(1)}
+/* ===================== STATS BAND ===================== */
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.stat-item{padding:52px 44px;border-right:1px solid var(--ink);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-item .val{font-size:clamp(48px,6vw,80px);font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.stat-item .val span{color:var(--red)}
+.stat-item .lbl{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
 
 /* ===================== PRICING ===================== */
-.toggle{display:inline-flex;padding:5px;background:var(--paper-2);border:1px solid var(--line);border-radius:999px;margin-bottom:60px;position:relative}
-.toggle-wrap{text-align:center;margin-bottom:40px}
-.toggle button{padding:10px 22px;font-size:13px;font-weight:600;letter-spacing:-.005em;color:var(--mute);border-radius:999px;transition:all .35s var(--ease);position:relative}
-.toggle button.on{background:var(--ink);color:var(--paper)}
-.toggle button .save{position:absolute;top:-10px;right:-14px;font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;background:var(--red);color:#fff;border-radius:99px;letter-spacing:.04em;text-transform:uppercase}
+.pricing{padding:100px 0;border-top:1px solid var(--ink)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
+.price-card{padding:52px 44px;background:var(--paper);transition:background .4s var(--ease);display:flex;flex-direction:column;gap:0}
+.price-card:hover{background:var(--paper-2)}
+.price-card.featured{background:var(--ink);color:var(--paper)}
+.price-card.featured:hover{background:#111}
+.price-card .tier{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:16px}
+.price-card.featured .tier{color:rgba(242,236,224,.45)}
+.price-card .amount{font-size:clamp(40px,4.5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.price-card .amount .unit{font-size:18px;font-weight:500;color:var(--mute);letter-spacing:0}
+.price-card.featured .amount .unit{color:rgba(242,236,224,.5)}
+.price-card .per{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;margin-bottom:28px}
+.price-card.featured .per{color:rgba(242,236,224,.5)}
+.price-card .price-desc{font-size:14px;color:var(--ink-3);line-height:1.65;margin-bottom:28px}
+.price-card.featured .price-desc{color:rgba(242,236,224,.7)}
+.price-card ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.price-card.featured ul{border-top-color:rgba(242,236,224,.15)}
+.price-card ul li{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
+.price-card.featured ul li{border-bottom-color:rgba(242,236,224,.1);color:rgba(242,236,224,.85)}
+.price-card ul li::before{content:"✓";color:#1a7a4a;font-weight:700;font-size:13px;flex-shrink:0;line-height:1.5}
+.price-card.featured ul li::before{color:#4ade80}
 
-.plan.featured .n,.plan.featured .d,.plan.featured ul li{color:rgba(242,236,224,.7)}
-.plan.featured .flag{background:var(--red);color:#fff;border-color:var(--red)}
-.plan.featured .price,.plan.featured .plan-name{color:var(--paper)}
+/* ===================== FAQ ===================== */
+.faq{padding:100px 0;border-top:1px solid var(--ink)}
+.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
+.qa:hover{background:var(--paper-2)}
+.qa summary{padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;list-style:none;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
+.qa:hover summary h5{transform:translateX(6px)}
+.qa summary .tog{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s var(--ease)}
+.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
+.qa summary .tog::before{width:14px;height:1.5px}
+.qa summary .tog::after{width:1.5px;height:14px}
+.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
+.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
+.qa[open] summary .tog::after{transform:scaleY(0)}
+.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
+.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
+.qa .answer p+p{margin-top:12px}
+.qa .answer b{color:var(--ink);font-weight:600}
+.qa .answer a{color:var(--red)}
 
-.plan .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
-.plan.featured .price sub{color:rgba(242,236,224,.55)}
-.plan .cta-btn{margin-top:auto}
-
-.pricing .note{margin-top:40px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em}
-.pricing .note b{color:var(--red);font-weight:600}
-
-/* ===================== CTA ===================== */
-.cta .trust{margin-top:32px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
-.cta .trust span::before{content:"✓ ";color:var(--red);font-weight:700}
-
-/* ===================== FOOTER ===================== */
+@media(max-width:1024px){
+  .prob-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .fw-grid{grid-template-columns:1fr}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:1fr}
+  .logos-row{gap:28px}
+}
+@media(max-width:700px){
+  .prob-grid{grid-template-columns:1fr}
+  .fw-col{padding:40px 24px}
+  .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
+  .qa .answer{padding:0 16px 24px 56px}
+  .stats-band{grid-template-columns:1fr 1fr}
+  .stat-item{padding:32px 24px}
+  .price-card{padding:36px 28px}
+}
 </style>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
+<script src="assets/data/references.js"></script>
+<script src="assets/quarter.js"></script>
 </head>
 <body>
 
 <div class="scroll-progress"></div>
 
-<!-- ===================== NAV ===================== -->
+<!-- NAV -->
 <nav class="top">
-  <a class="logo" href="index.html">
-    <img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
-    <ul>
+  <a class="logo" href="index.html"><img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+  <ul>
     <li class="has-dd">
       <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
       <div class="dd">
@@ -288,638 +198,421 @@
     <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
   </ul>
   <div class="meta">
-    <span><span class="dot"></span>38 ms · 5 M dotazů / měsíc</span>
-    <a href="#pricing" class="btn sm">
-      <span class="lbl" data-t="Vyzkoušet zdarma"><span>Vyzkoušet zdarma</span></span>
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q4/26</span></span>
+    <a href="kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
     </a>
   </div>
 </nav>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero">
-  <div class="blob"></div>
+<!-- BREADCRUMB -->
+<div class="crumbs">
   <div class="wrap">
-    <div class="idx reveal">Produkt PragueBest &nbsp;·&nbsp; Od 2018 &nbsp;·&nbsp; 100+ e-shopů</div>
-    <h1 class="reveal d1">Kdo&nbsp;najde,<br>ten <span class="red">koupí.</span></h1>
-    <p class="lede reveal d2">
-      Chytré vyhledávání, které <span class="hi">rozumí zákazníkům</span>.
-      Opravuje překlepy, rozumí české skloňování a&nbsp;<b>zvyšuje konverze z&nbsp;vyhledávání o&nbsp;30&nbsp;%</b>.
-    </p>
-    <div class="ctas reveal d3">
-      <a href="#pricing" class="btn big">
-        <span class="lbl" data-t="Vyzkoušet 14 dní zdarma"><span>Vyzkoušet 14 dní zdarma</span></span>
-        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-      </a>
-      <a href="#demo" class="btn ghost big">
-        <span class="lbl" data-t="Živá ukázka ↓"><span>Živá ukázka ↓</span></span>
-        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
-      </a>
-    </div>
-    <div class="trust reveal">
-      <span>Setup za 20 minut</span>
-      <span>Bez platební karty</span>
-      <span>Žádný závazek</span>
-      <span>Česká podpora</span>
+    <a href="index.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Zpět na úvod
+    </a>
+    <div class="path">
+      <b>Úvod</b> <span>/</span> <b>UpSearch</b>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ===================== DEMO ===================== -->
-<section class="demo" id="demo">
+<!-- HERO -->
+<section class="title">
   <div class="wrap">
-    <div class="demo-card reveal">
-      <div class="bar">
-        <div class="live">Live demo</div>
-        <div class="url">preview.<b>upsearch.cz</b>/demo</div>
-        <div class="ping">response <b id="ping-ms">38</b> ms</div>
-      </div>
-
-      <div class="search-wrap">
-        <div class="search-box">
-          <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
-          <div class="txt" id="typed">
-            <span id="typed-text"></span><span class="cursor-blink"></span>
-          </div>
-          <div class="kbd"><span>⌘</span><span>K</span></div>
-        </div>
-
-        <div class="suggestion" id="sugg">
-          <span class="k">Did you mean</span>
-          <span>Zkusili jste <b id="suggested">nokia</b>?</span>
-        </div>
-      </div>
-
-      <div class="results">
-        <div class="head">
-          <div class="lbl"><b>6 výsledků</b> pro „<span id="q-echo">nokia</span>"</div>
-          <div class="meta-r">
-            <span>Překlepy <b>✓</b></span>
-            <span>Skloňování <b>✓</b></span>
-            <span>Synonyma <b>✓</b></span>
-          </div>
-        </div>
-        <ul id="result-list">
-          <li>
-            <div class="ph"></div>
-            <div class="tx"><b>Nokia G22 Charcoal</b><small>Smartphones · SKU 12-44921</small></div>
-            <div class="tag-r">TOP MATCH</div>
-            <div class="pr">4 290 Kč</div>
-          </li>
-          <li>
-            <div class="ph"></div>
-            <div class="tx"><b>Nokia 150 (2023)</b><small>Mobile phones · SKU 12-44105</small></div>
-            <div class="tag-r">Stock: 24</div>
-            <div class="pr">890 Kč</div>
-          </li>
-          <li>
-            <div class="ph"></div>
-            <div class="tx"><b>Nokia C32 Cyan</b><small>Smartphones · SKU 12-44855</small></div>
-            <div class="tag-r">Stock: 12</div>
-            <div class="pr">2 690 Kč</div>
-          </li>
-          <li>
-            <div class="ph"></div>
-            <div class="tx"><b>Nokia HQ8 Headset</b><small>Audio · SKU 18-09921</small></div>
-            <div class="tag-r">Synonym</div>
-            <div class="pr">1 190 Kč</div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="caption">Napiš <b>nokya</b>, <b>samsungalxy</b> nebo <b>sluchátka bluetooht</b> &mdash; UpSearch pochopí.</p>
-  </div>
-</section>
-
-<!-- ===================== STATS ===================== -->
-<section class="stats">
-  <div class="wrap">
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="n">/ 01</div>
-        <div class="value">100<span class="red">+</span></div>
-        <div class="l">E-shopů</div>
-        <div class="d">Používá UpSearch v produkci &mdash; od&nbsp;malých obchodů po mezinárodní B2B platformy.</div>
-      </div>
-      <div class="stat">
-        <div class="n">/ 02</div>
-        <div class="value">5<sub>M / měsíc</sub></div>
-        <div class="l">Dotazů</div>
-        <div class="d">Měsíčně zpracujeme 5+ milionů vyhledávání napříč všemi instalacemi.</div>
-      </div>
-      <div class="stat">
-        <div class="n">/ 03</div>
-        <div class="value">38<sub>ms</sub></div>
-        <div class="l">Odezva</div>
-        <div class="d">Průměrná doba odezvy API. P99 pod 120&nbsp;ms. Rychlé i&nbsp;při špičkách.</div>
-      </div>
-      <div class="stat">
-        <div class="n">/ 04</div>
-        <div class="value"><span class="red">+</span>30<sub>%</sub></div>
-        <div class="l">Konverze</div>
-        <div class="d">Průměrné zvýšení konverze z&nbsp;vyhledávání po&nbsp;nasazení UpSearch.</div>
+    <div class="idx reveal">Vlastní produkt &nbsp;·&nbsp; 100+ e-shopů &nbsp;·&nbsp; 38ms odezva</div>
+    <h1 class="reveal d1">Vyhledávání, které zvyšuje <span class="red">konverze</span> vašeho e-shopu.</h1>
+    <div class="below">
+      <p class="lede reveal d2">Zákazník hledá — a buď najde, nebo odejde. UpSearch zajistí, že vždy najde. <b>Tolerance překlepů, synonyma, skloňování, personalizace</b> — technologie, která prodává.</p>
+      <div class="ctas reveal d3">
+        <a href="kontakt.html" class="btn">
+          <span class="lbl" data-t="Domluvit demo"><span>Domluvit demo</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="https://upsearch.cz" target="_blank" rel="noopener" class="btn ghost">
+          <span class="lbl" data-t="Více na upsearch.cz"><span>Více na upsearch.cz</span></span>
+          <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== PROBLEMS ===================== -->
+<!-- STATS BAND -->
+<div class="stats-band reveal">
+  <div class="stat-item"><div class="val">100<span>+</span></div><div class="lbl">e-shopů</div></div>
+  <div class="stat-item"><div class="val">5M<span>+</span></div><div class="lbl">dotazů měsíčně</div></div>
+  <div class="stat-item"><div class="val">38<span>ms</span></div><div class="lbl">odezva</div></div>
+  <div class="stat-item"><div class="val"><span>+</span>30<span>%</span></div><div class="lbl">konverze</div></div>
+</div>
+
+<!-- CLIENTS LOGOS -->
+<section style="padding:56px 0;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div style="font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.07em;text-transform:uppercase;margin-bottom:32px">UpSearch běží na</div>
+    <div class="logos-row">
+      <span class="logo-name">Albi</span>
+      <span class="logo-name">Bambule</span>
+      <span class="logo-name">El&nbsp;Niño</span>
+      <span class="logo-name">FotoŠkoda</span>
+      <span class="logo-name">Harfa&nbsp;Sport</span>
+      <span class="logo-name">Hyundai</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
 <section class="problems">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Problémy</div>
-      <h2>Vyhledávání, které vás stojí <span class="red">peníze.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Poptat demo <span class="arr">→</span></a></div>
+      <div class="idx">Problém</div>
+      <h2>Proč vám vyhledávání <span class="red">dnes bere tržby.</span></h2>
     </div>
-
+    <p style="font-size:16px;color:var(--ink-3);max-width:58ch;margin-bottom:48px">Výchozí vyhledávání každé e-commerce platformy je generické řešení pro průměrný e-shop. Velký katalog, specifická terminologie a nároční zákazníci si zaslouží víc.</p>
     <div class="prob-grid">
-      <article class="prob reveal">
-        <div class="num">Problém / 01</div>
-        <h3>Zákazník napíše <span class="strike">nokya</span><br>a&nbsp;nic&nbsp;nenajde.</h3>
-        <p>Průměrně <b>5,5&nbsp;%</b> všech vyhledávání na&nbsp;e-shopech končí s&nbsp;prázdným výsledkem. To&nbsp;je každých 20 zákazníků, co&nbsp;odchází bez nákupu.</p>
-        <div class="fix"><b>UpSearch:</b> tolerance překlepů v&nbsp;češtině i&nbsp;angličtině &mdash; „nokya", „nokiia", „nokija" všechno vede na&nbsp;Nokia.</div>
-      </article>
-
-      <article class="prob reveal d1">
-        <div class="num">Problém / 02</div>
-        <h3>Výsledky nejsou relevantní.</h3>
-        <p>Klasické MySQL LIKE vyhledávání hledá slovo přesně tak, jak je napsané. Neumí relevance, nerozumí kontextu, neřadí podle&nbsp;prodejnosti.</p>
-        <div class="fix"><b>UpSearch:</b> learn-to-rank model učený na&nbsp;vašich datech &mdash; nejprodávanější, nejdražší, novinky, dle business pravidel.</div>
-      </article>
-
-      <article class="prob reveal d2">
-        <div class="num">Problém / 03</div>
-        <h3>Nevíte, co&nbsp;lidé hledají.</h3>
-        <p>Google Analytics vám ukáže, kolik lidí hledalo &mdash; ale neřekne, co&nbsp;hledali a&nbsp;nenašli. Bez&nbsp;dat neumíte zlepšovat katalog ani ceny.</p>
-        <div class="fix"><b>UpSearch:</b> dashboard s&nbsp;top dotazy, zero-result queries a&nbsp;AI doporučeními, co&nbsp;přidat do&nbsp;katalogu.</div>
-      </article>
+      <div class="prob-card">
+        <div class="p-n">/ 01 — Nulové výsledky</div>
+        <h4>Zákazník napíše jinak, než máte v databázi.</h4>
+        <p>Hledá <strong>„iphone 14 256gb"</strong> — váš e-shop vrátí nulu, protože produkt se jmenuje „Apple iPhone 14 256 GB Space Black". Zákazník odejde ke Googlu nebo ke konkurenci. UpSearch tohle zná — a výsledek vždy najde.</p>
+      </div>
+      <div class="prob-card">
+        <div class="p-n">/ 02 — Překlepy a odchody</div>
+        <h4>Jeden překlep = odchod bez nákupu.</h4>
+        <p>Zákazník napíše <strong>„halenaka"</strong> místo „halenka" a dostane nulový výsledek. Místo aby ho e-shop zachytil a nabídl to, co hledá, zákazník odejde. Průměrně 12 % dotazů obsahuje překlep nebo přehozená písmena.</p>
+      </div>
+      <div class="prob-card">
+        <div class="p-n">/ 03 — Slepota bez dat</div>
+        <h4>Nevíte, co zákazníci hledají a nenajdou.</h4>
+        <p>Bez analytiky hledaných dotazů optimalizujete naslepo. <strong>Co zákazníci hledají? Co nenajdou? Které dotazy vedou k nákupu a které k odchodu?</strong> UpSearch vám tohle všechno ukáže v přehledném dashboardu.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FEATURES ===================== -->
-<section class="features">
+<!-- FEATURES -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
       <div class="idx">Funkce</div>
-      <h2>Šest věcí, co&nbsp;dělá UpSearch <span class="red">jinak.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Vybrat plán <span class="arr">→</span></a></div>
+      <h2>Co UpSearch umí <span class="red">za vás.</span></h2>
     </div>
-
     <div class="feat-grid">
-      <article class="feat">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M21 3v6h-6"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <article class="feat reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></div>
         <div class="n">/ 01</div>
-        <h4>Tolerance překlepů</h4>
-        <p>Damerau-Levenshtein algoritmus pochopí i&nbsp;dvě chyby v&nbsp;jednom slově. <code>nokya</code>, <code>noika</code> i&nbsp;<code>noiia</code> vrátí Nokia.</p>
+        <h4>Fulltext s&nbsp;tolerancí překlepů</h4>
+        <p>Elasticsearch backend, 38ms odezva. Najde produkt i přes překlep, zkratku nebo přehozené pořadí slov. Žádný zákazník neodejde s prázdnou stránkou.</p>
       </article>
-
-      <article class="feat">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="19" cy="17" r="2"/></svg></div>
+      <article class="feat reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <div class="n">/ 02</div>
-        <h4>České skloňování</h4>
-        <p>Hledání „telefonu" najde „telefon". <b>13&nbsp;pádů, 4&nbsp;rody</b>, vzorový slovník pro češtinu, slovenštinu, polštinu, němčinu a&nbsp;maďarštinu.</p>
+        <h4>Našeptávač v&nbsp;reálném čase</h4>
+        <p>Autocomplete pod 50ms. Zobrazí produkty, kategorie i populární dotazy dřív, než zákazník dopíše. Zkracuje cestu k nákupu a snižuje zátěž serveru.</p>
       </article>
-
-      <article class="feat">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg></div>
+      <article class="feat reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <div class="n">/ 03</div>
-        <h4>Synonyma &amp;&nbsp;slovníky</h4>
-        <p><code>mobil</code> = <code>smartphone</code> = <code>telefon</code>. Vlastní slovníky v&nbsp;admin panelu, import z&nbsp;CSV, dvousměrné i&nbsp;jednosměrné mapování.</p>
+        <h4>Synonyma a&nbsp;skloňování</h4>
+        <p>Slovník synonym a morfologické analyzátory pro 13 jazyků. „Šaty" = „šatičky" = „šaty na ples". Zákazník hledá svými slovy — UpSearch rozumí všem.</p>
       </article>
-
-      <article class="feat">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
+      <article class="feat reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="n">/ 04</div>
-        <h4>Learn-to-Rank</h4>
-        <p>Model se&nbsp;učí z&nbsp;vašich historických objednávek. Čím dál nakupují, tím lépe řadí &mdash; automaticky, bez&nbsp;ručního boostování.</p>
+        <h4>Personalizace výsledků</h4>
+        <p>Výsledky řazené podle chování zákazníka — oblíbené kategorie, zakoupené produkty, cesta v&nbsp;e-shopu. Vrací relevantnější výsledky, než generický ranking.</p>
       </article>
-
-      <article class="feat">
-        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+      <article class="feat reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
         <div class="n">/ 05</div>
-        <h4>Instant search &lt; 100 ms</h4>
-        <p>Výsledky se objevují už při&nbsp;psaní. P50 na&nbsp;38&nbsp;ms, P99 pod 120&nbsp;ms. <b>99,95&nbsp;%&nbsp;SLA</b> v&nbsp;rámci CZ datového centra.</p>
+        <h4>Analytika a&nbsp;A/B testing</h4>
+        <p>Dashboard hledaných dotazů, nulových výsledků a konverzního rate per dotaz. Víte přesně, co zákazníci hledají, nenajdou — a co to stojí.</p>
       </article>
-
-      <article class="feat">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h8"/></svg></div>
+      <article class="feat reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
         <div class="n">/ 06</div>
-        <h4>Widget designer</h4>
-        <p>Vzhled vyhledávání přizpůsobíte brandu v&nbsp;admin panelu &mdash; barvy, fonty, rohy, spacing. <b>Žádný frontend developer nepotřeba</b>.</p>
+        <h4>Snadná integrace</h4>
+        <p>REST API, headless-ready. Napojení na Mastershop, Shopify, Magento nebo custom frontend za 2–5 dní. Plugin pro hlavní platformy nainstalujete sami za hodinu.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ===================== HOW IT WORKS ===================== -->
-<section class="how">
+<!-- HOW IT WORKS -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Jak to funguje</div>
-      <h2>Od kódu k&nbsp;výsledkům za&nbsp;<span class="red">20 minut.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Zahájit trial <span class="arr">→</span></a></div>
+      <div class="idx">Proces</div>
+      <h2>Jak nasazení <span class="red">probíhá.</span></h2>
     </div>
-
-    <div class="how-grid">
-      <article class="hstep">
-        <div class="n"><span class="big-n">0<span class="mk">1</span></span></div>
-        <h3>Připojte data.</h3>
-        <p>Propojte produktový katalog přes <b>XML feed</b> (Heureka, Zbozi) nebo REST API. UpSearch se synchronizuje každých 15 minut.</p>
-        <p>Události tracking přidáte jedním <code>&lt;script&gt;</code> přes&nbsp;Google Tag Manager.</p>
-        <div class="badge">~5 minut setup</div>
-      </article>
-
-      <article class="hstep">
-        <div class="n"><span class="big-n">0<span class="mk">2</span></span></div>
-        <h3>Nakonfigurujte.</h3>
-        <p>V&nbsp;admin panelu nastavíte <b>synonyma, TOP výsledky a&nbsp;boosty</b>. Vyberete jazyk, barvy a&nbsp;chování widgetu.</p>
-        <p>Šablona pro Shoptet, Shopify a&nbsp;WooCommerce je připravená &mdash; ostatní platformy přes <code>&lt;input&gt;</code> bind.</p>
-        <div class="badge">~10 minut konfigurace</div>
-      </article>
-
-      <article class="hstep">
-        <div class="n"><span class="big-n">0<span class="mk">3</span></span></div>
-        <h3>Měřte a&nbsp;učte.</h3>
-        <p>Dashboard ukazuje <b>top dotazy, zero-result queries, CTR a&nbsp;konverze</b>. AI Insights navrhuje, co&nbsp;přidat do&nbsp;katalogu nebo synonym.</p>
-        <p>Po&nbsp;dvou týdnech vidíte první měřitelný růst konverzí &mdash; garantujeme.</p>
-        <div class="badge">Průběžně · 0 min denně</div>
-      </article>
+    <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+      <div class="step reveal">
+        <div class="n-lbl">Fáze <span class="dur">1–3 dny</span></div>
+        <div class="big-n">01<span class="mk">.</span></div>
+        <h4>Integrace</h4>
+        <p>Napojíme UpSearch na váš e-shop přes REST API. Plugin pro Mastershop, Shopify nebo WooCommerce nainstalujete sami za hodinu. Zaindexujeme katalog — do 24 hodin máte výsledky.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Fáze <span class="dur">1–4 týdny</span></div>
+        <div class="big-n">02<span class="mk">.</span></div>
+        <h4>Konfigurace a učení</h4>
+        <p>Nastavíme synonyma, boosting pravidla a váhy atributů specificky pro váš sortiment. UpSearch se učí z reálných hledaných dotazů a průběžně optimalizuje relevanci výsledků.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Fáze <span class="dur">Trvale</span></div>
+        <div class="big-n">03<span class="mk">.</span></div>
+        <h4>Launch a optimalizace</h4>
+        <p>Go live. Sledujeme dashboardy, dolaďujeme výsledky a přidáváme nové funkce na základě dat. Zákazníci nacházejí produkty — a kupují je.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== TESTIMONIALS ===================== -->
-<section class="testi">
+<!-- REFERENCES -->
+<section class="refs" id="refs">
   <div class="wrap">
     <div class="sec-head">
       <div class="idx">Klienti</div>
-      <h2>Co říkají ti, co&nbsp;už&nbsp;ho&nbsp;<span class="red">používají.</span></h2>
-      <div class="aside"><a href="reference.html" class="lnk">Výsledky klientů <span class="arr">→</span></a></div>
+      <h2>Klienti, kteří UpSearch <span class="red">používají.</span></h2>
     </div>
-
-    <div class="t-grid">
-      <article class="tcard t1">
-        <p class="q">„Po nasazení UpSearch se&nbsp;nám <span class="hi">konverze z&nbsp;vyhledávání zvýšily o&nbsp;35&nbsp;%</span>. Zero-result queries klesly téměř na&nbsp;nulu a&nbsp;máme konečně data o&nbsp;tom, co&nbsp;lidé hledají."</p>
-        <div class="who">
-          <div class="av"></div>
-          <div>
-            <b>Martin Havlík</b>
-            <small>E-commerce manager · Albi</small>
-          </div>
-        </div>
-        <div class="metric">
-          <b>+35%</b>
-          <small>Konverze</small>
-        </div>
-      </article>
-
-      <article class="tcard t2">
-        <p class="q">„Integrace trvala <span class="hi">20&nbsp;minut</span> a&nbsp;výsledky jsme viděli <span class="hi">hned první den</span>. Před UpSearch jsme používali MySQL LIKE &mdash; jako z&nbsp;doby kamenné."</p>
-        <div class="who">
-          <div class="av"></div>
-          <div>
-            <b>Tomáš Sedláček</b>
-            <small>Sales manager · Elnino</small>
-          </div>
-        </div>
-        <div class="metric">
-          <b>20 min</b>
-          <small>Integrace</small>
-        </div>
-      </article>
-    </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:62ch;margin-bottom:48px">UpSearch běží na více než 100 e-shopech v CZ, SK a dalších zemích EU. Od drogerií po sportovní zboží — všude tam, kde záleží na tom, aby zákazník hledal a nacházel.</p>
+    <div class="ref-grid" id="upsearch-refs"></div>
+    <script>
+    (()=>{
+      const grid = document.getElementById('upsearch-refs');
+      const refs = window.REFS || [];
+      const ids = ['albi','fotoskoda','elnino'];
+      const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
+      if (!grid || !refs.length) return;
+      const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
+      grid.innerHTML = picks.map((ref, i) => {
+        const imgStyle = ref.thumb ? `style="background-image:url('${ref.thumb}');background-size:cover;background-position:center"` : '';
+        return `<a class="ref r${i+1}" href="${ref.href}">
+          <div class="img" ${imgStyle}></div>
+          <div class="meta"><div><h4>${ref.name}</h4><div class="cat">${ref.cat}</div></div><div class="go">${arr}</div></div>
+        </a>`;
+      }).join('');
+    })();
+    </script>
   </div>
 </section>
 
-<!-- ===================== CUSTOMERS ===================== -->
-<section class="customers">
+<!-- TESTIMONIALS -->
+<section class="testimonials">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Kdo používá</div>
-      <h2>100+ e-shopů po&nbsp;celé <span class="red">Evropě.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Poptat UpSearch <span class="arr">→</span></a></div>
+      <div class="idx" style="color:rgba(242,236,224,.5)">Reference</div>
+      <h2 style="color:var(--paper)">Co říkají <span class="red">klienti.</span></h2>
     </div>
-    <div class="c-grid">
-      <div class="c">ELNINO</div>
-      <div class="c">ALBI</div>
-      <div class="c">BAMBULE</div>
-      <div class="c">FOTOŠKODA</div>
-      <div class="c">HARFA SPORT</div>
-      <div class="c">HYUNDAI</div>
-      <div class="c">BESTDRIVE</div>
-      <div class="c">BUSHMAN</div>
-      <div class="c">EKOSPORT</div>
-      <div class="c">KONSEPTI</div>
-      <div class="c">TIMOUS</div>
-      <div class="c">+ 89</div>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="quote">&ldquo;</div>
+        <blockquote>Po nasazení UpSearch vzrostla konverze z vyhledávání o <strong>31 %</strong>. Zákazníci najdou produkt i přes překlep nebo synonymum. Dřív jsme tu chybu v defaultním vyhledávání vůbec neviděli.</blockquote>
+        <div class="testi-by">
+          <div class="testi-name">Tomáš Veselý</div>
+          <div class="testi-role">Head of E-commerce · Albi</div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="quote">&ldquo;</div>
+        <blockquote>Elasticsearch backend zvládá špičky Vánoc bez problémů. Odezva pod <strong>40ms</strong> i při tisících souběžných dotazech. Přesně to, co e-shop s 48&nbsp;000 SKU potřebuje.</blockquote>
+        <div class="testi-by">
+          <div class="testi-name">Martin Škoda</div>
+          <div class="testi-role">CTO · FotoŠkoda</div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="quote">&ldquo;</div>
+        <blockquote>Analytika hledaných dotazů nám ukázala, co zákazníci chtějí — a co nám v sortimentu chybí. <strong>Zalistovali jsme 3 nové kategorie</strong> přímo podle dat z UpSearch.</blockquote>
+        <div class="testi-by">
+          <div class="testi-name">Petra Nováková</div>
+          <div class="testi-role">Produktová manažerka · El Niño</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== PRICING ===================== -->
-<section class="pricing" id="pricing">
+<!-- FOR WHOM -->
+<section class="forwhom" style="padding:80px 0;border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Pro koho</div>
+      <h2>Pro koho UpSearch je a&nbsp;pro koho <span class="red">ne.</span></h2>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-col">
+        <div class="lbl">Ideální zadání</div>
+        <h3>Zákazníci hledají — a vaše vyhledávání je zklamává.</h3>
+        <p>UpSearch dává smysl, jakmile vyhledávání přestane být jenom input box a stane se prodejním nástrojem. Typické signály:</p>
+        <ul>
+          <li>5 000+ produktů v katalogu</li>
+          <li>Zákazníci aktivně používají vyhledávací pole (10 %+ návštěv)</li>
+          <li>Volně psané dotazy, specifická terminologie nebo technické parametry</li>
+          <li>Požadavek na odezvu pod 50ms i ve špičce</li>
+          <li>Potřeba analytiky: co lidé hledají, co nenajdou</li>
+          <li>Multi-language katalog nebo expanze do zahraničí</li>
+        </ul>
+      </div>
+      <div class="fw-col">
+        <div class="lbl">Nejsme vhodní</div>
+        <h3>Když vám výchozí vyhledávání e-shopu stačí.</h3>
+        <p>Pod určitou hranicí katalogu a návštěvnosti je investice do pokročilého vyhledávání nerentabilní. Výchozí řešení platformy vám bude stačit.</p>
+        <ul>
+          <li>Pod 500 produktů v katalogu</li>
+          <li>Zákazníci navigují výhradně přes kategorie</li>
+          <li>Nízká návštěvnost a jednoduché dotazy</li>
+          <li>Jeden jazyk, žádné synonymní výzvy</li>
+          <li>Nechcete investovat do optimalizace vyhledávání</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap-sm">
+    <div class="sec-head" style="grid-template-columns:1fr">
+      <div class="idx">FAQ</div>
+      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
+    </div>
+    <div class="faq-grid">
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Jak rychle můžeme nasadit UpSearch?</h5><span class="tog"></span></summary><div class="answer"><p>Technická integrace přes REST API trvá <b>1–3 dny</b>. Pro hlavní platformy (Mastershop, Shopify, WooCommerce) máme hotové pluginy — nainstalujete sami za hodinu. Zaindexování katalogu proběhne do 24 hodin po napojení.</p><p>Reálné nasazení se synonymy, boosting pravidly a testováním trvá <b>2–4 týdny</b>. Go live je pak plynulý — přepnete DNS a UpSearch jede.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Funguje UpSearch s&nbsp;naším e-shopem?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch je platforma-agnostický — komunikuje přes REST API s jakýmkoliv e-shopem. Máme hotové pluginy pro <b>Mastershop, Shopify, Magento, WooCommerce a Nuvio</b>.</p><p>Pro custom e-shopy nebo jiné platformy napíšeme konektor na míru — typicky 1–3 dny práce. Stačí nám přístup k produktovému API a frontend, kde vyhledávání zobrazujeme.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Jaké je SLA a&nbsp;jak probíhá provoz?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch běží na naší infrastruktuře s <b>SLA 99,9 %</b> a on-call monitoringem 24/7. V případě incidentu vás informujeme dřív, než si toho všimnou zákazníci.</p><p>Index se aktualizuje v reálném čase při změnách katalogu — nový produkt se ve výsledcích objeví do <b>sekund</b>. Žádné noční přeindexování, žádné výpadky.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Jak se UpSearch liší od&nbsp;Elasticsearch přímo nebo Algolia?</h5><span class="tog"></span></summary><div class="answer"><p><b>Elasticsearch sám o sobě</b> je jen vyhledávací engine — bez synonymů, skloňování, analytiky a UI komponent potřebujete měsíce vývoje a specialistu. UpSearch staví na Elasticsearch, ale přidává vrstvy optimalizované pro e-commerce.</p><p><b>Algolia</b> je skvělé řešení pro americký trh. Pro českou a slovenskou morfologii, lokální synonyma a GDPR-compliant hosting v EU je UpSearch lepší volba. A levnější — bez poplatků za dokument.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Jak funguje personalizace — potřebujeme mít data?</h5><span class="tog"></span></summary><div class="answer"><p>Personalizace funguje ve dvou režimech. <b>Cold start</b> (od prvního dne) — výsledky řadíme podle globálních vzorců chování a popularity kategorií. <b>Personalizovaný ranking</b> se zapíná po nashromáždění dostatečného množství dat o daném zákazníkovi (obvykle po 2–3 návštěvách).</p><p>UpSearch sbírá data výhradně na vaší doméně — žádné sdílení s třetími stranami, GDPR compliant, data zůstávají u vás.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Kolik to stojí?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch je SaaS s měsíčním předplatným. Starter od <b>3 000 Kč/měs.</b> (do 50 tis. dotazů), Growth <b>10 000 Kč/měs.</b> (neomezené dotazy, A/B testing, personalizace), Enterprise <b>25 000 Kč/měs.</b> (multi-tenant, SLA, dedikovaný support).</p><p>K tomu jednorázová implementace — základní nasazení od 15 000 Kč, komplexní projekt s custom konfigurací 50–200 tis. Kč. Po demo hovoru dostanete přesný odhad.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Jsme malý e-shop — dává nám UpSearch smysl?</h5><span class="tog"></span></summary><div class="answer"><p>Záleží na složitosti katalogů a dotazů, ne jen na počtu produktů. E-shop s 800 produkty v technické oblasti (elektronika, náhradní díly, chemie) těží z UpSearch víc než e-shop s 5 000 produkty jednoduché spotřební kategorie.</p><p>Klíčová otázka: <b>hledají vaši zákazníci aktivně?</b> Pokud ano a vracejí se s překlepovými dotazy nebo synonymy, UpSearch se zaplatí. Pokud navigují výhradně přes kategorie, výchozí vyhledávání stačí. Na demo hovoru vám upřímně řekneme, co vám přinese hodnotu.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
   <div class="wrap">
     <div class="sec-head">
       <div class="idx">Ceník</div>
-      <h2>Platíte jen za&nbsp;to, co&nbsp;<span class="red">využijete.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Zkusit zdarma <span class="arr">→</span></a></div>
+      <h2>Transparentní ceny, <span class="red">žádná překvapení.</span></h2>
     </div>
-
-    <div class="toggle-wrap">
-      <div class="toggle" id="toggle">
-        <button class="on" data-p="m">Měsíčně</button>
-        <button data-p="y">Ročně <span class="save">&minus;20%</span></button>
-      </div>
-    </div>
-
+    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">SaaS předplatné bez skrytých poplatků za dotaz nebo za produkt. Cena se nemění s růstem katalogu.</p>
     <div class="price-grid">
-
-      <div class="plan">
-        <div class="n">Plan / 01</div>
-        <div class="plan-name">Start</div>
-        <div class="d">Pro malé e-shopy do&nbsp;10&nbsp;000 produktů. Vše potřebné pro&nbsp;rozjezd.</div>
-        <div class="price"><span class="amt" data-m="990" data-y="790">990</span><sub>Kč</sub></div>
-        <div class="unit">měsíčně bez DPH</div>
+      <div class="price-card">
+        <div class="tier">Starter</div>
+        <div class="amount">3 000 <span class="unit">Kč</span></div>
+        <div class="per">/ měsíc</div>
+        <div class="price-desc">Pro e-shopy se standardními požadavky na vyhledávání. Rychlý start, základní analytika.</div>
         <ul>
-          <li>Do 10 000 produktů</li>
-          <li>100 000 vyhledávání / měsíc</li>
-          <li>Tolerance překlepů &amp; skloňování</li>
-          <li>Základní statistiky</li>
-          <li>E-mail podpora (Po&ndash;Pá)</li>
+          <li>Do 50 000 dotazů měsíčně</li>
+          <li>1 e-shop, 1 jazyk</li>
+          <li>Tolerance překlepů a synonyma</li>
+          <li>Našeptávač (autocomplete)</li>
+          <li>Základní analytický dashboard</li>
+          <li>Email podpora</li>
         </ul>
-        <div class="cta-btn">
-          <a href="#" class="btn ghost" style="width:100%;justify-content:space-between">
-            <span class="lbl" data-t="Vyzkoušet Start"><span>Vyzkoušet Start</span></span>
-            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-          </a>
-        </div>
       </div>
-
-      <div class="plan featured">
-        <div class="flag">Nejpopulárnější</div>
-        <div class="n">Plan / 02</div>
-        <div class="plan-name">Business</div>
-        <div class="d">Pro rostoucí e-shopy s&nbsp;velkým katalogem a&nbsp;vyššími objemy.</div>
-        <div class="price"><span class="amt" data-m="4990" data-y="3990">4 990</span><sub>Kč</sub></div>
-        <div class="unit">měsíčně bez DPH</div>
+      <div class="price-card featured">
+        <div class="tier">Growth</div>
+        <div class="amount">10 000 <span class="unit">Kč</span></div>
+        <div class="per">/ měsíc</div>
+        <div class="price-desc">Pro e-shopy, které chtějí vytěžit ze vyhledávání maximum. Personalizace, A/B testing, pokročilá data.</div>
         <ul>
-          <li>Do 100 000 produktů</li>
-          <li>1 000 000 vyhledávání / měsíc</li>
-          <li>Vlastní synonyma &amp; slovníky</li>
-          <li>Learn-to-Rank &amp; AI Insights</li>
-          <li>Pokročilé statistiky &amp; exporty</li>
-          <li>Prioritní podpora (Po&ndash;Pá)</li>
+          <li>Neomezené dotazy</li>
+          <li>1–3 e-shopy, multi-language</li>
+          <li>Personalizace výsledků</li>
+          <li>A/B testing rankingu</li>
+          <li>Pokročilá analytika a reporting</li>
+          <li>Prioritní podpora, SLA</li>
         </ul>
-        <div class="cta-btn">
-          <a href="#" class="btn" style="width:100%;justify-content:space-between">
-            <span class="lbl" data-t="Vyzkoušet Business"><span>Vyzkoušet Business</span></span>
-            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-          </a>
-        </div>
       </div>
-
-      <div class="plan">
-        <div class="n">Plan / 03</div>
-        <div class="plan-name">Enterprise</div>
-        <div class="d">Pro velké e-shopy s&nbsp;vlastními potřebami, SLA a&nbsp;dedikovaným týmem.</div>
-        <div class="price">Na míru</div>
-        <div class="unit">individuální nabídka</div>
+      <div class="price-card">
+        <div class="tier">Enterprise</div>
+        <div class="amount">25 000 <span class="unit">Kč</span></div>
+        <div class="per">/ měsíc</div>
+        <div class="price-desc">Pro velké e-shopy a skupiny s nároky na SLA, vlastní ML modely a dedikovaný tým.</div>
         <ul>
-          <li>Neomezené produkty</li>
-          <li>Neomezené vyhledávání</li>
-          <li>Dedikovaný account manager</li>
-          <li>99,95 % SLA s&nbsp;garancí</li>
-          <li>Custom integrace &amp; tréninky</li>
-          <li>24/7 podpora</li>
+          <li>Neomezené dotazy, multi-tenant</li>
+          <li>Libovolný počet e-shopů</li>
+          <li>Custom ML ranking modely</li>
+          <li>SLA 99,9 %, on-call 24/7</li>
+          <li>Dedikovaný search konzultant</li>
+          <li>On-premise / vlastní cloud</li>
         </ul>
-        <div class="cta-btn">
-          <a href="kontakt.html" class="btn ghost" style="width:100%;justify-content:space-between">
-            <span class="lbl" data-t="Kontaktovat"><span>Kontaktovat</span></span>
-            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-          </a>
-        </div>
       </div>
-
     </div>
-
-    <p class="note">Všechny plány zahrnují <b>14 dní zdarma</b>, bez&nbsp;nutnosti platební karty. Ceny jsou bez DPH. Ušetřete <b>20&nbsp;%</b> při&nbsp;ročním předplatném.</p>
+    <p style="font-family:var(--mono);font-size:13px;color:var(--mute);margin-top:28px;text-align:center">K předplatnému jednorázová implementace od 15 000 Kč. Přesný odhad dostanete po demo hovoru.</p>
   </div>
 </section>
 
-<!-- ===================== CTA ===================== -->
+<!-- CTA -->
 <section class="cta">
   <div class="wrap">
-    <h2 class="reveal">Máte projekt?<br><span class="red">Pojďme do toho.</span></h2>
-    <p class="sub reveal d1">Vyzkoušejte UpSearch na&nbsp;14 dní zdarma, bez&nbsp;závazků a&nbsp;bez&nbsp;platební karty. Setup máte za&nbsp;20 minut.</p>
+    <h2 class="reveal">Připraveni zvýšit<br><span class="red">tržby z&nbsp;vyhledávání?</span></h2>
+    <p class="sub reveal d1">Napište nám — do 24 hodin se ozveme s návrhem demo hovoru a prvním odhadem implementace.</p>
     <div class="ctas reveal d2">
-      <a href="#pricing" class="btn big">
-        <span class="lbl" data-t="Vyzkoušet zdarma"><span>Vyzkoušet zdarma</span></span>
-        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-      </a>
-      <a href="kontakt.html" class="btn ghost big">
+      <a href="kontakt.html" class="btn">
         <span class="lbl" data-t="Domluvit demo"><span>Domluvit demo</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-    </div>
-    <div class="trust reveal d3">
-      <span>Bez platební karty</span>
-      <span>Žádný závazek</span>
-      <span>Setup za 20 minut</span>
-      <span>Česká podpora</span>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="big">UpSearch<span class="red"></span></div>
+    <div class="big">Prague<span class="red">Best</span></div>
     <div class="cols">
       <div class="about">
         <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
-        <p>UpSearch je produkt digitální agentury PragueBest. Vyvíjíme ho v&nbsp;Karlíně od&nbsp;roku 2018 a&nbsp;dnes běží na&nbsp;100+ e-shopech v&nbsp;Evropě.</p>
+        <p>Digitální agentura z Karlína. Od roku 1999 stavíme e-shopy, weby a aplikace, které reálně prodávají.</p>
       </div>
       <div>
-        <h5>Produkt</h5>
-        <a href="#demo">Živá ukázka <span class="ar">→</span></a>
-        <a href="#pricing">Ceník <span class="ar">→</span></a>
-        <a href="#">Dokumentace <span class="ar">→</span></a>
-        <a href="#">API reference <span class="ar">→</span></a>
+        <h5>E-shopy</h5>
+        <a href="eshop.html">Přehled e-shopů <span class="ar">→</span></a>
+        <a href="eshop/b2c-na-miru.html">B2C na míru <span class="ar">→</span></a>
+        <a href="eshop/b2b-na-miru.html">B2B na míru <span class="ar">→</span></a>
+        <a href="eshop/shopify.html">Shopify <span class="ar">→</span></a>
+        <a href="eshop/pim.html">PIM <span class="ar">→</span></a>
       </div>
       <div>
-        <h5>Podpora</h5>
-        <a href="#">Help centrum <span class="ar">→</span></a>
-        <a href="#">Changelog <span class="ar">→</span></a>
-        <a href="#">Status page <span class="ar">→</span></a>
-        <a href="kontakt.html">Kontakt <span class="ar">→</span></a>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="o-nas.html">O nás <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra · 6 pozic <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Kontakt</h5>
-        <a href="mailto:info@upsearch.cz">info@upsearch.cz <span class="ar">→</span></a>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
         <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
-        <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+        <a href="#">Vítkova 32, Praha 8 <span class="ar">→</span></a>
       </div>
     </div>
     <div class="base">
-      <div>© 2026 PragueBest s.r.o. &nbsp;·&nbsp; UpSearch je registrovaná ochranná známka</div>
-      <div class="clock">
-        <span><span class="k">UPTIME</span><b>99,97%</b></span>
-        <span><span class="k">RESPONSE</span><b>38ms</b></span>
-      </div>
-      <div class="right">Provoz v&nbsp;CZ &amp; EU</div>
+      <div>© 2026 PragueBest s.r.o.</div>
+      <div class="clock"><span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span></div>
+      <div class="right">Vyrobeno s láskou v Karlíně</div>
     </div>
   </div>
 </footer>
 
 <script>
 (()=>{
-
   const sp=document.querySelector('.scroll-progress');
   const onScroll=()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;sp.style.setProperty('--p',p+'%');document.querySelector('nav.top').classList.toggle('scrolled',h.scrollTop>20)};
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -60px 0px"});
-  document.querySelectorAll('.reveal,.prob,.feat').forEach(el=>io.observe(el));
-
-  document.querySelectorAll('.btn').forEach(b=>{
-  });
-
-  // ====== Demo search auto-type animation ======
-  const demoScript=[
-    {typo:'nokya',fix:'nokia',results:[
-      ['Nokia G22 Charcoal','Smartphones · SKU 12-44921','TOP MATCH','4 290 Kč'],
-      ['Nokia 150 (2023)','Mobile phones · SKU 12-44105','Stock: 24','890 Kč'],
-      ['Nokia C32 Cyan','Smartphones · SKU 12-44855','Stock: 12','2 690 Kč'],
-      ['Nokia HQ8 Headset','Audio · SKU 18-09921','Synonym','1 190 Kč'],
-    ]},
-    {typo:'samsungalxy',fix:'samsung galaxy',results:[
-      ['Samsung Galaxy S24 Ultra','Smartphones · SKU 14-88121','TOP MATCH','29 990 Kč'],
-      ['Samsung Galaxy A55','Smartphones · SKU 14-88012','Stock: 18','11 490 Kč'],
-      ['Samsung Galaxy Watch 6','Wearables · SKU 14-90001','Stock: 7','6 990 Kč'],
-      ['Samsung Galaxy Buds','Audio · SKU 14-91015','Synonym','2 890 Kč'],
-    ]},
-    {typo:'sluchatka bluetooht',fix:'sluchátka bluetooth',results:[
-      ['Sony WH-1000XM5','Audio · SKU 21-55012','TOP MATCH','9 990 Kč'],
-      ['Apple AirPods Pro 2','Audio · SKU 21-55020','Stock: 34','6 490 Kč'],
-      ['JBL Tune 770NC','Audio · SKU 21-55099','Stock: 52','2 790 Kč'],
-      ['Sennheiser Momentum 4','Audio · SKU 21-55188','Relevant','8 490 Kč'],
-    ]},
-  ];
-
-  const typedEl=document.getElementById('typed-text');
-  const suggEl=document.getElementById('sugg');
-  const suggestedEl=document.getElementById('suggested');
-  const qEcho=document.getElementById('q-echo');
-  const listEl=document.getElementById('result-list');
-  const pingEl=document.getElementById('ping-ms');
-
-  let demoIndex=0;
-
-  function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
-
-  async function typeText(el,text,speed=80){
-    el.textContent='';
-    for(let i=0;i<text.length;i++){
-      el.textContent+=text[i];
-      await sleep(speed+Math.random()*50);
-    }
-  }
-
-  async function deleteText(el,speed=40){
-    const curr=el.textContent;
-    for(let i=curr.length;i>0;i--){
-      el.textContent=curr.slice(0,i-1);
-      await sleep(speed);
-    }
-  }
-
-  function renderResults(items,query){
-    qEcho.textContent=query;
-    const lis=listEl.querySelectorAll('li');
-    lis.forEach(li=>li.classList.remove('on'));
-    lis.forEach((li,i)=>{
-      const data=items[i];
-      if(!data){li.style.display='none';return}
-      li.style.display='';
-      li.querySelector('.tx b').innerHTML=highlightMatch(data[0],query);
-      li.querySelector('.tx small').textContent=data[1];
-      li.querySelector('.tag-r').textContent=data[2];
-      li.querySelector('.pr').textContent=data[3];
-    });
-    // trigger staggered entrance
-    requestAnimationFrame(()=>{
-      lis.forEach(li=>li.classList.add('on'));
-    });
-  }
-
-  function highlightMatch(text,q){
-    const words=q.split(/\s+/).filter(Boolean);
-    let out=text;
-    words.forEach(w=>{
-      if(w.length<2)return;
-      const re=new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-      out=out.replace(re,'<span class="highlight">$1</span>');
-    });
-    return out;
-  }
-
-  async function runDemo(){
-    while(true){
-      const d=demoScript[demoIndex];
-      suggEl.classList.remove('on');
-      // Hide old results
-      listEl.querySelectorAll('li').forEach(li=>li.classList.remove('on'));
-      await sleep(400);
-
-      // Type typo
-      await typeText(typedEl,d.typo,85);
-      await sleep(500);
-
-      // Show suggestion
-      suggestedEl.textContent=d.fix;
-      suggEl.classList.add('on');
-      await sleep(900);
-
-      // Delete typo
-      await deleteText(typedEl,30);
-
-      // Type corrected
-      suggEl.classList.remove('on');
-      await typeText(typedEl,d.fix,65);
-
-      // Ping ms animation
-      const ms=28+Math.floor(Math.random()*24);
-      pingEl.textContent=ms;
-
-      await sleep(200);
-      renderResults(d.results,d.fix);
-      await sleep(4200);
-
-      demoIndex=(demoIndex+1)%demoScript.length;
-    }
-  }
-
-  // Start demo when visible
-  const demoCard=document.querySelector('.demo-card');
-  const dio=new IntersectionObserver((es)=>{
-    es.forEach(e=>{if(e.isIntersecting){runDemo();dio.disconnect()}});
-  },{threshold:.3});
-  if(demoCard)dio.observe(demoCard);
-
-  // ====== Pricing toggle ======
-  document.querySelectorAll('#toggle button').forEach(b=>{
-    b.addEventListener('click',()=>{
-      document.querySelectorAll('#toggle button').forEach(x=>x.classList.remove('on'));
-      b.classList.add('on');
-      const p=b.dataset.p;
-      document.querySelectorAll('.amt').forEach(a=>{
-        const v=a.dataset[p];
-        if(v)a.textContent=Number(v).toLocaleString('cs-CZ');
-      });
-    });
-  });
+  document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+  function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
+  setInterval(tick,1000);tick();
+  document.querySelectorAll('.qa').forEach(q=>{q.addEventListener('toggle',()=>{if(q.open){document.querySelectorAll('.qa').forEach(o=>{if(o!==q)o.removeAttribute('open')})}})});
 })();
 </script>
 </body>

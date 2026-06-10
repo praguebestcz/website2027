@@ -128,33 +128,13 @@
 .qa .answer a{color:var(--red)}
 
 /* ===================== INVESTMENT ===================== */
-.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:2}
-.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
-.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
-.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
-.inv-grid .left p+p{margin-top:16px}
-.inv-grid .left p b{color:var(--ink);font-weight:600}
-.inv-grid .right{display:grid;gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden}
-.range-row{padding:40px 44px;border-bottom:1px solid var(--line);background:var(--paper);transition:background .4s var(--ease)}
-.range-row:last-child{border-bottom:none}
-.range-row:hover{background:var(--ink);color:var(--paper)}
-.range-row .lbl-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;transition:color .4s}
-.range-row:hover .lbl-r{color:rgba(242,236,224,.5)}
-.range-row .val-r{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
-.range-row small{font-size:13px;color:var(--mute);max-width:44ch;display:block;line-height:1.5;transition:color .4s}
-.range-row:hover small{color:rgba(242,236,224,.6)}
-.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
-.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
-.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+/* .invest / .inv-grid / .cross-sell → shared.css */
 
 @media(max-width:1024px){
   .feat-grid{grid-template-columns:repeat(2,1fr)}
   .b2b-cats{grid-template-columns:repeat(2,1fr)}
   .int-grid{grid-template-columns:repeat(2,1fr)}
-  .inv-grid{grid-template-columns:1fr;gap:40px}
+
   .fw-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
@@ -257,8 +237,8 @@
     <div class="col-wrap reveal">
       <div class="card m1">
         <div class="bmock">
-          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">albi.cz — B2B portál</div></div>
-          <img src="../assets/reference/albi/mock.png" alt="Albi B2B" style="width:100%;display:block;object-fit:cover">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">fotoskoda.cz</div></div>
+          <img src="../assets/reference/fotoskoda/mock.png" alt="FotoŠkoda" style="width:100%;display:block;object-fit:cover">
         </div>
       </div>
       <div class="card m2">
@@ -269,8 +249,8 @@
       </div>
       <div class="card m3">
         <div class="bmock">
-          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">elnino.cz — B2B sekce</div></div>
-          <img src="../assets/reference/elnino/mock.png" alt="El Nino B2B" style="width:100%;display:block;object-fit:cover">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">albi.cz — B2B portál</div></div>
+          <img src="../assets/reference/albi/mock.png" alt="Albi B2B" style="width:100%;display:block;object-fit:cover">
         </div>
       </div>
     </div>
@@ -343,8 +323,8 @@
     <div class="sec-head">
       <div class="idx">Funkce</div>
       <h2>Co B2B platforma od&nbsp;PragueBest <span class="red">skutečně umí.</span></h2>
-      <p class="lede" style="font-size:16px;color:var(--ink-3);max-width:62ch;margin-top:16px">Stavíme platformy z reálných potřeb B2B nákupčích. Tady je devět oblastí, ve kterých si B2B custom platforma od nás zaslouží své jméno.</p>
     </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:62ch;margin-bottom:48px">Stavíme platformy z reálných potřeb B2B nákupčích. Tady je devět oblastí, ve kterých si B2B custom platforma od nás zaslouží své jméno.</p>
     <div class="b2b-cats">
       <div class="b2b-cat"><div class="cat-n">/ 01</div><h5>Objednávkový proces</h5><ul><li>Quick Order — CSV import, EAN skener mobilem přímo z prodejny</li><li>Uložené nákupní seznamy — pojmenované, sdílitelné mezi podúčty firmy</li><li>Opakovaná objednávka jedním kliknutím — B2B zákazníci opakují 60–80 % objednávek</li></ul></div>
       <div class="b2b-cat"><div class="cat-n">/ 02</div><h5>Cenotvorba a katalog</h5><ul><li>Cenové hladiny per zákazník — vlastní ceník pro každého, podle objemu, segmentu nebo dohody</li><li>Odstupňované ceny (Bulk pricing) — transparentní tabulka úspor podle množství přímo u produktu</li><li>B2B porovnání produktů — RRP vs nákupní cena, minimální objednací množství, rozměry balení</li></ul></div>
@@ -422,21 +402,21 @@
       <div class="step reveal">
         <div class="n-lbl">Fáze</div>
         <div class="big-n">01<span class="mk">.</span></div>
-        <h4>Discovery</h4>
+        <h4>Průzkum</h4>
         <p class="dur">3–8 týdnů</p>
         <p>Hluboká analýza B2B procesů, mapování rolí a workflow, ERP audit, persony nákupčích.</p>
       </div>
       <div class="step reveal d1">
         <div class="n-lbl">Fáze</div>
         <div class="big-n">02<span class="mk">.</span></div>
-        <h4>Design</h4>
+        <h4>Návrh</h4>
         <p class="dur">6–14 týdnů</p>
         <p>Design system pro multi-role UX, 80–150 obrazovek včetně admin/schvalovacích flows, usability testing s reálnými B2B nákupčími.</p>
       </div>
       <div class="step reveal d2">
         <div class="n-lbl">Fáze</div>
         <div class="big-n">03<span class="mk">.</span></div>
-        <h4>Build</h4>
+        <h4>Vývoj</h4>
         <p class="dur">12–40 týdnů</p>
         <p>Komplexní business logika, role-based access control, ERP/WMS integrace, EDI implementace.</p>
       </div>
@@ -450,7 +430,7 @@
       <div class="step reveal d1">
         <div class="n-lbl">Fáze</div>
         <div class="big-n">05<span class="mk">.</span></div>
-        <h4>Launch</h4>
+        <h4>Spuštění</h4>
         <p class="dur">3–6 týdnů</p>
         <p>Migrace zákazníků, partnerů, ceníků, EDI smluv. Soft launch na vybrané segmenty, hot-fix sprint.</p>
       </div>
@@ -478,7 +458,7 @@
     (()=>{
       const grid = document.getElementById('b2b-refs');
       const refs = window.REFS || [];
-      const ids = ['albi','sparkys','elnino'];
+      const ids = ['fotoskoda','sparkys','albi'];
       const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
       if (!grid || !refs.length) return;
       const picks = ids.map(id => refs.find(r => r.id === id)).filter(Boolean);
@@ -532,20 +512,17 @@
         </div>
       </div>
       <div class="right">
-        <div class="range-row reveal">
-          <div class="lbl-r">Entry</div>
-          <div class="val-r">od 1 000 000 Kč</div>
-          <small>Jednodušší projekt s jedním segmentem zákazníků, standardní role, základní integrace.</small>
+        <div class="price reveal">
+          <div><div class="lbl-p">Entry</div><h4>B2B platforma</h4><small>Jednodušší projekt s jedním segmentem zákazníků, standardní role, základní integrace.</small></div>
+          <div class="val">od 1 mil.<sub>Kč bez DPH</sub></div>
         </div>
-        <div class="range-row reveal d1">
-          <div class="lbl-r">Střední projekt</div>
-          <div class="val-r">2—8 milionů Kč</div>
-          <small>Většina B2B projektů — multi-segment, ERP integrace, EDI s 1–3 partnery, komplexní rolová struktura.</small>
+        <div class="price reveal d1">
+          <div><div class="lbl-p">Střední projekt</div><h4>Multi-segment platforma</h4><small>Většina B2B projektů — multi-segment, ERP integrace, EDI s 1–3 partnery, komplexní rolová struktura.</small></div>
+          <div class="val">2—8 mil.<sub>Kč bez DPH</sub></div>
         </div>
-        <div class="range-row reveal d2">
-          <div class="lbl-r">Enterprise platforma</div>
-          <div class="val-r">15 mil. Kč+</div>
-          <small>EDI s více retailovými řetězci, multi-warehouse, globální expanze, full procurement automation.</small>
+        <div class="price reveal d2">
+          <div><div class="lbl-p">Enterprise platforma</div><h4>Enterprise B2B</h4><small>EDI s více retailovými řetězci, multi-warehouse, globální expanze, full procurement automation.</small></div>
+          <div class="val">15 mil.+<sub>Kč bez DPH</sub></div>
         </div>
       </div>
     </div>

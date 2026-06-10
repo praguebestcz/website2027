@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BigDataManager — Prodávejte chytřeji — PragueBest</title>
+<title>BigDataManager — Doporučování, BI a personalizace | PragueBest</title>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
@@ -124,16 +124,89 @@
 .r-cell:hover .d-r{color:rgba(242,236,224,.7)}
 .results .footnote{margin-top:28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.02em}
 
+/* ===== DATA FLOW DIAGRAM ===== */
+.bdm-flow{position:relative;margin-top:80px;background:var(--ink);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.1)}
+.bdm-flow-glow{position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.22),transparent 60%);filter:blur(60px);pointer-events:none;z-index:0}
+.bdm-flow-grid{position:absolute;inset:0;opacity:.4;pointer-events:none;background:linear-gradient(rgba(242,236,224,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,224,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,#000 30%,transparent 80%);z-index:0}
+.bdm-flow-bar{position:relative;z-index:2;padding:18px 28px;border-bottom:1px solid rgba(242,236,224,.08);display:flex;align-items:center;justify-content:space-between}
+.bdm-flow-dot{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--paper);letter-spacing:.06em;text-transform:uppercase}
+.bdm-flow-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite;flex-shrink:0}
+.bdm-flow-meta{display:flex;gap:20px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.04em;text-transform:uppercase}
+.bdm-flow-meta b{color:var(--paper);font-weight:600}
+.bdm-flow-body{position:relative;z-index:2;display:grid;grid-template-columns:1fr 80px 200px 80px 1fr;gap:0;align-items:center;padding:48px 40px}
+.bdm-col{display:flex;flex-direction:column;gap:10px}
+.bdm-col-lbl{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.bdm-node{padding:9px 16px;background:rgba(242,236,224,.06);border:1px solid rgba(242,236,224,.1);border-radius:8px;font-size:13px;font-weight:500;color:rgba(242,236,224,.85);transition:all .3s}
+.bdm-node:hover{background:rgba(242,236,224,.1);border-color:rgba(242,236,224,.25)}
+.bdm-node.out{border-color:rgba(227,6,19,.3);background:rgba(227,6,19,.06)}
+.bdm-node.out:hover{background:rgba(227,6,19,.12);border-color:rgba(227,6,19,.5)}
+/* arrow connector */
+.bdm-arrow{display:flex;align-items:center;justify-content:center}
+.bdm-arrow-icon{width:32px;height:32px;border-radius:50%;background:var(--red);border:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0}
+.bdm-center{background:rgba(242,236,224,.05);border:1px solid rgba(242,236,224,.15);border-radius:14px;padding:24px 20px;text-align:center;align-self:center}
+.bdm-center-lbl{font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.bdm-center-items{display:flex;flex-direction:column;gap:8px}
+.bdm-center-item{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:rgba(242,236,224,.85);padding:6px 10px;background:rgba(242,236,224,.04);border-radius:6px;border:1px solid rgba(242,236,224,.08)}
+.bdm-ci-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.bdm-flow-footer{position:relative;z-index:2;padding:16px 28px;border-top:1px solid rgba(242,236,224,.08);display:flex;gap:24px;font-family:var(--mono);font-size:10px;color:rgba(242,236,224,.4);letter-spacing:.04em}
+.bdm-flow-footer b{color:var(--paper);font-weight:500}
+
+
+/* .invest / .inv-grid / .cross-sell → shared.css */
+.pillar-price{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.pillar-price .pp-row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:18px 24px;border-bottom:1px solid var(--line)}
+.pillar-price .pp-row:last-child{border-bottom:none}
+.pillar-price .pp-row:hover{background:var(--paper-2)}
+.pillar-price .pp-name{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.pillar-price .pp-from{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em}
+.pillar-price .pp-price{font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
+.invest-note{margin-top:28px;font-family:var(--mono);font-size:12px;color:var(--mute);line-height:1.6}
+
 /* ===== INTEGRATIONS ===== */
 .integ{padding:80px 0;border-top:1px solid var(--ink)}
-.i-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:20px}
-.i-cell{height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;transition:background .4s var(--ease);position:relative}
-.i-cell:hover{background:var(--paper-2)}
-.i-cell::before{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
-.i-cell:hover::before{transform:scaleX(1)}
-.i-cell b{font-size:17px;font-weight:700;letter-spacing:-.015em;color:var(--ink);text-align:center}
-.i-cell small{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+/* .i-grid / .i-cell → shared.css */
 </style>
+<meta name="description" content="Vlastní platforma pro datovou inteligenci e-shopu. Doporučování produktů, obohacení katalogu, profilování zákazníků, BI reporty. 40+ nasazení, +20 % konverze." />
+<meta name="keywords" content="BigDataManager, datová inteligence pro e-shop, AI doporučování produktů, segmentace zákazníků, RFM analýza, BI dashboardy, personalizace e-shopu, Karlín, Praha, PragueBest" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/bigdata" />
+<meta property="og:title" content="BigDataManager — Doporučování, BI a personalizace | PragueBest" />
+<meta property="og:description" content="Vlastní platforma pro datovou inteligenci e-shopu. Doporučování produktů, obohacení katalogu, profilování zákazníků, BI reporty. 40+ nasazení, +20 % konverze." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-bigdata.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="BigDataManager — Doporučování, BI a personalizace | PragueBest" />
+<meta name="twitter:description" content="Vlastní platforma pro datovou inteligenci e-shopu. Doporučování produktů, obohacení katalogu, profilování zákazníků, BI reporty. 40+ nasazení, +20 % konverze." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-bigdata.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "BigDataManager" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BigDataManager",
+  "applicationCategory": "Business Intelligence + Recommendation Engine",
+  "operatingSystem": "Web-based, Cloud SaaS",
+  "description": "Vlastní platforma pro datovou inteligenci e-shopu. Doporučování produktů, obohacení katalogu, profilování zákazníků, BI reporty. 40+ nasazení od 2019.",
+  "creator": { "@type": "Organization", "name": "PragueBest s.r.o.", "url": "https://praguebest.cz" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CZK",
+    "lowPrice": "5000",
+    "highPrice": "100000",
+    "description": "Cena se odvíjí od vybraných funkcí a velikosti e-shopu. Od 5 000 Kč/měs. pro menší e-shopy."
+  }
+}
+</script>
 </head>
 <body>
 
@@ -182,30 +255,30 @@
 
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal">Produkt PragueBest &nbsp;·&nbsp; Od 2019 &nbsp;·&nbsp; 40+ e-shopů</div>
-    <h1 class="reveal d1">Prodávejte<br><span class="red">chytřeji.</span></h1>
+    <div class="idx reveal">Doporučení &nbsp;·&nbsp; Profilování &nbsp;·&nbsp; BI &nbsp;·&nbsp; Obohacení katalogu</div>
+    <h1 class="reveal d1">Datová inteligence<br>pro váš <span class="red">e-shop.</span></h1>
 
     <div class="below">
       <p class="lede reveal d2">
-        Analyzujeme chování zákazníků a&nbsp;pomáháme nabízet <b>správné produkty správným lidem</b>.
-        Výsledek? Vyšší konverze a&nbsp;<span class="hi">větší košíky</span>.
+        Vlastní platforma pro datovou inteligenci e-shopu. <b>Doporučování produktů, obohacení katalogu, profilování zákazníků, BI&nbsp;reporty.</b> 40+&nbsp;nasazení, <span class="hi">+15&nbsp;% AOV, +20&nbsp;% konverze.</span>
       </p>
       <div class="ctas reveal d3">
-        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci demo"><span>Chci demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
-        <a href="#results" class="btn ghost"><span class="lbl" data-t="Výsledky klientů"><span>Výsledky klientů</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></a>
+        <a href="kontakt.html" class="btn"><span class="lbl" data-t="Domluvit demo"><span>Domluvit demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="#features" class="btn ghost"><span class="lbl" data-t="Vidět 4 pilíře"><span>Vidět 4 pilíře</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></a>
       </div>
     </div>
 
     <div class="meta-bar reveal d4">
-      <div class="m"><h6>Spuštěno</h6><p>2019<small>7 let ve vývoji</small></p></div>
-      <div class="m"><h6>E-shopů</h6><p>40<span style="color:var(--red)">+</span><small>V produkci</small></p></div>
-      <div class="m"><h6>Od</h6><p>4 900 Kč<small>Měsíčně, bez DPH</small></p></div>
-      <div class="m"><h6>Integrace</h6><p>2 týdny<small>Od kickoffu</small></p></div>
+      <div class="m"><h6>E-shopů</h6><p>40+<small>Aktivních nasazení</small></p></div>
+      <div class="m"><h6>Vyšší AOV</h6><p>+15 %<small>Průměr klientů</small></p></div>
+      <div class="m"><h6>Vyšší konverze</h6><p>+20 %<small>Průměr klientů</small></p></div>
+      <div class="m"><h6>Let vývoje</h6><p>6 let<small>BigData od roku 2019</small></p></div>
     </div>
   </div>
 </section>
 
 <!-- ===== RECOMMENDER HERO ===== -->
+<!-- ZAKOMENTOVÁNO
 <section class="rec-wrap">
   <div class="wrap">
     <div class="rec reveal">
@@ -294,15 +367,133 @@
     </div>
   </div>
 </section>
+ZAKOMENTOVÁNO -->
 
-<!-- ===== FEATURES ===== -->
-<section class="features">
+<!-- ===== CLIENT LOGOS ===== -->
+<section class="logos">
+  <div class="wrap">
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:28px">Personalizujeme e-shopy pro:</p>
+    <div class="lgrid">
+      <div class="lcell"><img src="assets/loga/albi.svg" alt="Albi" height="30"></div>
+      <div class="lcell"><img src="assets/loga/fotoskoda.svg" alt="FotoŠkoda" height="37"></div>
+      <div class="lcell"><img src="assets/loga/bambule.svg" alt="Bambule" height="39"></div>
+      <div class="lcell"><img src="assets/loga/elnino.svg" alt="ElNiño" height="20"></div>
+      <div class="lcell"><img src="assets/loga/harfasport.svg" alt="Harfa Sport" height="35"></div>
+      <div class="lcell"><img src="assets/loga/hyundai_v2.svg" alt="Hyundai" height="46"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPLAINER ===== -->
+<section style="padding:80px 0;border-top:1px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Funkce</div>
-      <h2>Čtyři věci, které BDM <span class="red">umí.</span></h2>
+      <div class="idx">Jak to funguje</div>
+      <h2>Z&nbsp;dat se stávají <span class="red">tržby.</span></h2>
+      <div class="aside"><a href="kontakt.html" class="lnk">Zahájit projekt <span class="arr">→</span></a></div>
+    </div>
+    <div class="steps" style="grid-template-columns:repeat(3,1fr);margin-top:60px">
+      <div class="step reveal">
+        <div class="n-lbl">Krok <span class="dur">01</span></div>
+        <div class="big-n">01<span class="mk">.</span></div>
+        <h4>Sbíráme data</h4>
+        <p>BigDataManager sbírá data o chování návštěvníků vašeho e-shopu — co prohlíželi, co dali do košíku, co koupili, kdy a jak často se vracejí. Plus data z ERP, e-mail kampaní a marketing analytiky.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n-lbl">Krok <span class="dur">02</span></div>
+        <div class="big-n">02<span class="mk">.</span></div>
+        <h4>Analyzujeme</h4>
+        <p>Z těchto dat vytváříme segmenty zákazníků, predictive scoring a personalizovaná doporučení. Algoritmy se učí na vašich zákaznících, vaší kategorizaci, vašem byznysu — výsledky jsou specifické pro vás, ne generické.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n-lbl">Krok <span class="dur">03</span></div>
+        <div class="big-n">03<span class="mk">.</span></div>
+        <h4>Personalizujeme</h4>
+        <p>Tato inteligence pak personalizuje váš e-shop, e-mail kampaně, marketing automation. Každý zákazník vidí relevantní produkty, dostává relevantní e-maily, vidí relevantní akce. Výsledek: <b>+15&nbsp;% AOV, +20&nbsp;% konverze.</b></p>
+      </div>
+    </div>
+
+    <!-- DATA FLOW DIAGRAM -->
+    <div class="bdm-flow reveal">
+      <!-- glow + grid overlay stejný pattern jako .rec -->
+      <div class="bdm-flow-glow"></div>
+      <div class="bdm-flow-grid"></div>
+
+      <!-- top bar -->
+      <div class="bdm-flow-bar">
+        <div class="bdm-flow-dot">BigDataManager &middot; Data Flow</div>
+        <div class="bdm-flow-meta">
+          <span>Live pipeline</span>
+          <span>Inputs <b>5</b></span>
+          <span>Outputs <b>6</b></span>
+        </div>
+      </div>
+
+      <!-- diagram body -->
+      <div class="bdm-flow-body">
+
+        <!-- VSTUPY -->
+        <div class="bdm-col">
+          <div class="bdm-col-lbl">Vstupy</div>
+          <div class="bdm-node">Návštěvníci e-shopu</div>
+          <div class="bdm-node">ERP / objednávky</div>
+          <div class="bdm-node">E-mail kampaně</div>
+          <div class="bdm-node">Marketing analytika</div>
+          <div class="bdm-node">CRM</div>
+        </div>
+
+        <!-- ŠIPKA VLEVO -->
+        <div class="bdm-arrow">
+          <div class="bdm-arrow-icon">→</div>
+        </div>
+
+        <!-- CENTRUM -->
+        <div class="bdm-center">
+          <div class="bdm-center-lbl">BigDataManager</div>
+          <div class="bdm-center-items">
+            <div class="bdm-center-item"><span class="bdm-ci-dot"></span>Segmentace</div>
+            <div class="bdm-center-item"><span class="bdm-ci-dot"></span>Scoring</div>
+            <div class="bdm-center-item"><span class="bdm-ci-dot"></span>Doporučení</div>
+          </div>
+        </div>
+
+        <!-- ŠIPKA VPRAVO -->
+        <div class="bdm-arrow">
+          <div class="bdm-arrow-icon">→</div>
+        </div>
+
+        <!-- VÝSTUPY -->
+        <div class="bdm-col">
+          <div class="bdm-col-lbl">Výstupy</div>
+          <div class="bdm-node out">Personalizace e-shopu</div>
+          <div class="bdm-node out">Doporučení produktů</div>
+          <div class="bdm-node out">Personalizované kampaně</div>
+          <div class="bdm-node out">Targetované akce</div>
+          <div class="bdm-node out">A/B testy</div>
+          <div class="bdm-node out">Customer insights</div>
+        </div>
+
+      </div>
+
+      <!-- footer bar -->
+      <div class="bdm-flow-footer">
+        <span>Model retrained <b>every 4h</b></span>
+        <span>Latency <b style="color:#5fcd86">42 ms</b></span>
+        <span>Signal: <b>124 features</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">4 pilíře</div>
+      <h2>Čtyři pilíře <span class="red">BigDataManageru.</span></h2>
       <div class="aside"><a href="kontakt.html" class="lnk">Poptat demo <span class="arr">→</span></a></div>
     </div>
+    <p style="font-size:16px;color:var(--ink-3);max-width:62ch;margin-bottom:48px">BigDataManager kombinuje doporučovací engine, obohacení katalogu, profilování zákazníků a&nbsp;BI&nbsp;reporty — komplexní datová inteligence pro e-shop pod jednou střechou.</p>
 
     <div class="f-grid">
       <article class="f-card reveal">
@@ -380,31 +571,36 @@
   </div>
 </section>
 
-<!-- ===== HOW IT WORKS ===== -->
-<section class="how">
+
+<!-- ===== USE CASES ===== -->
+<section style="padding:100px 0;border-top:1px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Jak to funguje</div>
-      <h2>Tři kroky od&nbsp;setupu k&nbsp;<span class="red">prodejům.</span></h2>
-      <div class="aside"><a href="kontakt.html" class="lnk">Zahájit projekt <span class="arr">→</span></a></div>
+      <div class="idx">Use cases</div>
+      <h2>Kdy BigDataManager <span class="red">dává smysl.</span></h2>
+      <div class="aside"><a href="kontakt.html" class="lnk">Domluvit demo <span class="arr">→</span></a></div>
     </div>
-
-    <div class="h-row">
-      <article class="h-step reveal">
-        <div class="circle">1</div>
-        <h4>Sběr dat</h4>
-        <p>Sbíráme data o&nbsp;chování návštěvníků a&nbsp;nákupech z&nbsp;vašeho e-shopu. GTM + API, bez&nbsp;zásahu do&nbsp;kódu.</p>
-      </article>
-      <article class="h-step reveal d1">
-        <div class="circle">2</div>
-        <h4>Analýza</h4>
-        <p>Naše algoritmy identifikují vzorce chování a&nbsp;vytvářejí prediktivní modely. Retrénování každé 4 hodiny.</p>
-      </article>
-      <article class="h-step reveal d2">
-        <div class="circle">3</div>
-        <h4>Akce</h4>
-        <p>Personalizovaná doporučení se&nbsp;zobrazují zákazníkům v&nbsp;reálném čase. Widget, API nebo plugin.</p>
-      </article>
+    <div class="num-grid">
+      <div class="ncell reveal">
+        <div class="idx">/ 01 — Doporučování</div>
+        <h3 class="l">„Naše doporučení jsou jen top sellers."</h3>
+        <div class="d">Relevantní doporučení podle skutečného chování návštěvníka — co prohlížel, co koupili podobní zákazníci, co teď v&nbsp;sezóně frčí. Průměrný AOV roste o&nbsp;10–15&nbsp;%.</div>
+      </div>
+      <div class="ncell reveal d1">
+        <div class="idx">/ 02 — Obohacení katalogu</div>
+        <h3 class="l">„Katalog je plný produktů bez popisků a&nbsp;parametrů."</h3>
+        <div class="d">AI automaticky doplňuje chybějící atributy, generuje SEO popisky, standardizuje parametry napříč katalogem. Z&nbsp;týdnů ručního obsahu na hodiny AI generování.</div>
+      </div>
+      <div class="ncell reveal d2">
+        <div class="idx">/ 03 — Profilování</div>
+        <h3 class="l">„Nevíme, kdo jsou naši VIP zákazníci."</h3>
+        <div class="d">Automatická segmentace podle chování, frequency, monetary hodnoty. VIP segment dostane vlastní péči, kampaně, kupony. Plus RFM analýza a&nbsp;churn prediction.</div>
+      </div>
+      <div class="ncell reveal d3">
+        <div class="idx">/ 04 — BI reporty</div>
+        <h3 class="l">„Reporty děláme v&nbsp;Excelu, trvá nám to dny."</h3>
+        <div class="d">BI dashboardy s&nbsp;drill-down, custom reporty na míru, e-mailové digesty s&nbsp;klíčovými metrikami. Z&nbsp;dnů Excelu na minuty BI.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -449,6 +645,62 @@
   </div>
 </section>
 
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <div class="wrap-sm">
+    <div class="sec-head" style="grid-template-columns:1fr">
+      <div class="idx">FAQ</div>
+      <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
+    </div>
+    <div class="faq-grid">
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Kolik BigDataManager stojí?</h5><span class="tog"></span></summary><div class="answer"><p>Cena BigData se odvíjí od vybraných funkcí a&nbsp;velikosti e-shopu — nemáme pevné tiery. Zaškrtnete si funkce (doporučování, obohacení katalogu, profilování, BI&nbsp;reporty), zadáte velikost e-shopu, dostanete cenu na&nbsp;míru.</p><p>Orientačně: menší e-shopy s&nbsp;jedním pilířem od <b>5&nbsp;000&nbsp;Kč/měs.</b>, střední e-shopy s&nbsp;2–3 pilíři <b>15&nbsp;000–30&nbsp;000&nbsp;Kč/měs.</b>, velké e-shopy se&nbsp;všemi 4&nbsp;pilíři <b>50&nbsp;000&nbsp;Kč/měs.&nbsp;a výš.</b></p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Jak dlouho trvá nasazení?</h5><span class="tog"></span></summary><div class="answer"><p><b>1–2 týdny</b> pro základní setup (tracking script, doporučovací engine, první data). <b>3–4 týdny</b> pro komplexní deployment — nasazení všech 4 pilířů, custom segmentace, propojení s&nbsp;ERP/CRM, design BI&nbsp;dashboardů.</p><p>Modely se učí na vašich datech průběžně — první relevantní doporučení po <b>2 týdnech dat</b>, plná inteligence po 1–2 měsících.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Funguje to s&nbsp;mým e-shopem?</h5><span class="tog"></span></summary><div class="answer"><p>BigData je platforma-agnostic — funguje s <b>Shopify, Magento, WooCommerce, Mastershop, Shoptetem</b> i custom platformami. Propojení přes JavaScript tracking + API integration.</p><p>Speciálně dobře funguje s&nbsp;našimi vlastními projekty (custom B2C/B2B, Shopify e-shopy postavené PB), kde BigData nativně sedí ve stacku.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Pro jak velký e-shop se BigData vyplatí?</h5><span class="tog"></span></summary><div class="answer"><p>BigData potřebuje data k&nbsp;učení. Minimum: <b>10&nbsp;000+ návštěv měsíčně, 500+ produktů v&nbsp;katalogu, 100+ objednávek měsíčně.</b> Pod touto hranicí algoritmy nemají dost dat na meaningful insights.</p><p>Nad touto hranicí návratnost investice typicky <b>3–6 měsíců</b> přes zvýšenou konverzi a&nbsp;AOV.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Jak se BigDataManager liší od Recombee, Bloomreach nebo Dynamic Yield?</h5><span class="tog"></span></summary><div class="answer"><p>Tři hlavní rozdíly: <b>Lokální podpora a customizace</b> — implementaci, ladění a support máte v&nbsp;Karlíně. Pro CZ/SK trh často flexibilnější než globální platformy.</p><p><b>Komplexnost pod jednou střechou</b> — Recombee řeší jen doporučení, Bloomreach je drahá enterprise platforma. BigData spojuje doporučování + obohacení katalogu + profilování + BI reporty v&nbsp;jednom produktu. <b>Cena</b> — pro střední e-shopy bývá BigData levnější než Bloomreach/Dynamic Yield.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Liší se BigDataManager od vašeho PIM?</h5><span class="tog"></span></summary><div class="answer"><p>Ano, ale doplňují se. <b>PIM</b> spravuje katalog produktů — workflow, role, multi-language, publikace na kanály. <b>BigData</b> analyzuje a personalizuje — doporučení, segmentace, BI.</p><p>Pilíř 02 BigData (Obohacení katalogu) používá AI k&nbsp;doplnění chybějících atributů. PIM by tato data uložil, schválil a&nbsp;publikoval. Spolu tvoří kompletní data layer e-commerce projektu.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Co s&nbsp;daty zákazníků? GDPR?</h5><span class="tog"></span></summary><div class="answer"><p>BigData anonymizuje chování zákazníků pro algoritmy — <b>žádné PII se neukládá</b> do trénovacích modelů. Individuální profily zákazníků slouží jen pro vaše vlastní marketing, nikdy nesdílíme data napříč klienty.</p><p>Plně GDPR compliant, hostováno v&nbsp;EU (PB private cloud, Praha). Klient má plnou kontrolu nad svými daty — export, delete, audit log.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INVESTICE ===== -->
+<section class="invest">
+  <div class="wrap">
+    <div class="inv-grid">
+      <div class="left reveal">
+        <div class="lbl">Investice</div>
+        <h3>Vztahy dlouhodobé, ceny <span class="red">poctivé.</span></h3>
+        <p>BigData je SaaS s měsíčním fee — žádný velký setup fee, žádné dlouhodobé závazky. Klient si zaškrtne funkce a&nbsp;velikost e-shopu, my spočítáme cenu na míru.</p>
+        <p>Většina klientů s námi je <b>3+ let</b>. BigData se vyplatí, dokud zvyšuje konverzi a&nbsp;AOV — a to dělá u&nbsp;95 % klientů od druhého měsíce.</p>
+        <p>Orientační rozmezí závisí na vybraných pilířích a&nbsp;velikosti e-shopu. Přesnou cenu spočítáme společně na demo hovoru.</p>
+        <div style="margin-top:32px">
+          <a href="kontakt.html" class="btn"><span class="lbl" data-t="Spočítat cenu"><span>Spočítat cenu</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        </div>
+      </div>
+      <div class="right">
+        <div class="price reveal">
+          <div><div class="lbl-p">Pilíř 01</div><h4>Doporučování produktů</h4><small>cross-sell · up-sell · collaborative filtering</small></div>
+          <div class="val">od 5 000<sub>Kč/měs.</sub></div>
+        </div>
+        <div class="price reveal d1">
+          <div><div class="lbl-p">Pilíř 02</div><h4>Obohacení katalogu</h4><small>AI popisky · atributy · kategorizace</small></div>
+          <div class="val">od 4 000<sub>Kč/měs.</sub></div>
+        </div>
+        <div class="price reveal d2">
+          <div><div class="lbl-p">Pilíř 03</div><h4>Profilování zákazníka</h4><small>RFM · CLV · churn prediction</small></div>
+          <div class="val">od 4 000<sub>Kč/měs.</sub></div>
+        </div>
+        <div class="price reveal d3">
+          <div><div class="lbl-p">Pilíř 04</div><h4>BI reporty</h4><small>dashboardy · drill-down · e-mailové digesty</small></div>
+          <div class="val">od 3 000<sub>Kč/měs.</sub></div>
+        </div>
+        <p style="font-family:var(--mono);font-size:12px;color:var(--mute);margin-top:16px;line-height:1.5">Ceny jsou orientační. Finální fee závisí na&nbsp;velikosti e-shopu a&nbsp;vybraných pilířích. Setup je v&nbsp;ceně.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== INTEGRATIONS ===== -->
 <section class="integ">
   <div class="wrap">
@@ -478,11 +730,11 @@
 
 <section class="cta">
   <div class="wrap">
-    <h2 class="reveal">Máte projekt?<br><span class="red">Pojďme do toho.</span></h2>
-    <p class="sub reveal d1">Nabízíme živé demo na&nbsp;vašich datech. Za&nbsp;30 minut vám&nbsp;ukážeme, co&nbsp;byste získali.</p>
+    <h2 class="reveal">Připraveni proměnit<br><span class="red">data v&nbsp;tržby?</span></h2>
+    <p class="sub reveal d1">Nezávazná konzultace nebo demo na&nbsp;vašich datech. Ozveme se&nbsp;do 24&nbsp;hodin.</p>
     <div class="ctas reveal d2">
-      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci demo"><span>Chci demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
-      <a href="upsearch.html" class="btn ghost"><span class="lbl" data-t="UpSearch vyhledávač"><span>UpSearch vyhledávač</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="kontakt.html" class="btn"><span class="lbl" data-t="Domluvit demo"><span>Domluvit demo</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a href="tel:+420774219988" class="btn ghost"><span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -513,7 +765,7 @@
       <div>
         <h5>Kontakt</h5>
         <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
-        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
         <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
       </div>
     </div>

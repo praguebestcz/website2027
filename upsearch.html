@@ -91,66 +91,22 @@
 
 /* ===================== PRICING ===================== */
 .pricing{padding:100px 0;border-top:1px solid var(--ink)}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:0}
-.price-card{padding:52px 44px;background:var(--paper);transition:background .4s var(--ease);display:flex;flex-direction:column;gap:0}
-.price-card:hover{background:var(--paper-2)}
-.price-card.featured{background:var(--ink);color:var(--paper)}
-.price-card.featured:hover{background:#111}
-.price-card .tier{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:16px}
-.price-card.featured .tier{color:rgba(242,236,224,.45)}
-.price-card .amount{font-size:clamp(40px,4.5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
-.price-card .amount .unit{font-size:18px;font-weight:500;color:var(--mute);letter-spacing:0}
-.price-card.featured .amount .unit{color:rgba(242,236,224,.5)}
-.price-card .per{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;margin-bottom:28px}
-.price-card.featured .per{color:rgba(242,236,224,.5)}
-.price-card .price-desc{font-size:14px;color:var(--ink-3);line-height:1.65;margin-bottom:28px}
-.price-card.featured .price-desc{color:rgba(242,236,224,.7)}
-.price-card ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.price-card.featured ul{border-top-color:rgba(242,236,224,.15)}
-.price-card ul li{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
-.price-card.featured ul li{border-bottom-color:rgba(242,236,224,.1);color:rgba(242,236,224,.85)}
-.price-card ul li::before{content:"✓";color:#1a7a4a;font-weight:700;font-size:13px;flex-shrink:0;line-height:1.5}
-.price-card.featured ul li::before{color:#4ade80}
 
-/* ===================== FAQ ===================== */
-.faq{padding:100px 0;border-top:1px solid var(--ink)}
-.faq-grid{display:grid;grid-template-columns:1fr;max-width:980px;margin:0 auto;border-top:1px solid var(--line)}
-.qa{border-bottom:1px solid var(--line);transition:background .4s var(--ease)}
-.qa:hover{background:var(--paper-2)}
-.qa summary{padding:32px 40px 32px 0;display:grid;grid-template-columns:60px 1fr 40px;gap:32px;align-items:center;list-style:none;position:relative}
-.qa summary::-webkit-details-marker{display:none}
-.qa summary .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
-.qa summary h5{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3;transition:transform .4s var(--ease)}
-.qa:hover summary h5{transform:translateX(6px)}
-.qa summary .tog{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s var(--ease)}
-.qa summary .tog::before,.qa summary .tog::after{content:"";position:absolute;background:var(--ink);transition:transform .4s var(--ease)}
-.qa summary .tog::before{width:14px;height:1.5px}
-.qa summary .tog::after{width:1.5px;height:14px}
-.qa[open] summary .tog{background:var(--red);border-color:var(--red)}
-.qa[open] summary .tog::before,.qa[open] summary .tog::after{background:#fff}
-.qa[open] summary .tog::after{transform:scaleY(0)}
-.qa[open] summary h5{color:var(--red);transform:translateX(6px)}
-.qa .answer{padding:0 72px 32px 92px;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:72ch}
-.qa .answer p+p{margin-top:12px}
-.qa .answer b{color:var(--ink);font-weight:600}
-.qa .answer a{color:var(--red)}
+/* FAQ — styles přesunuty do shared.css */
 
 @media(max-width:1024px){
   .prob-grid{grid-template-columns:1fr}
   .testi-grid{grid-template-columns:1fr}
   .fw-grid{grid-template-columns:1fr}
   .stats-band{grid-template-columns:repeat(2,1fr)}
-  .price-grid{grid-template-columns:1fr}
   .logos-row{gap:28px}
 }
 @media(max-width:700px){
   .prob-grid{grid-template-columns:1fr}
   .fw-col{padding:40px 24px}
-  .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
-  .qa .answer{padding:0 16px 24px 56px}
+
   .stats-band{grid-template-columns:1fr 1fr}
   .stat-item{padding:32px 24px}
-  .price-card{padding:36px 28px}
 }
 </style>
 <link rel="stylesheet" href="assets/shared.css">
@@ -219,7 +175,7 @@
     <div class="idx reveal">Vlastní produkt &nbsp;·&nbsp; 100+ e-shopů &nbsp;·&nbsp; 38ms odezva</div>
     <h1 class="reveal d1">Vyhledávání, které zvyšuje <span class="red">konverze</span> vašeho e-shopu.</h1>
     <div class="below">
-      <p class="lede reveal d2">Zákazník hledá — a buď najde, nebo odejde. UpSearch zajistí, že vždy najde. <b>Tolerance překlepů, synonyma, skloňování, personalizace</b> — technologie, která prodává.</p>
+      <p class="lede reveal d2">Inteligentní fulltextové vyhledávání pro e-shopy. <b>Našeptávač, tolerance překlepů, české skloňování, AI&nbsp;ranking.</b> Nasaďte za 15&nbsp;minut, +30&nbsp;% konverze.</p>
       <div class="ctas reveal d3">
         <a href="kontakt.html" class="btn">
           <span class="lbl" data-t="Domluvit demo"><span>Domluvit demo</span></span>
@@ -234,20 +190,20 @@
 
     <div class="meta-bar reveal d4">
       <div class="m">
-        <h6>Typ produktu</h6>
-        <p>SaaS vyhledávání<small>Vlastní vývoj od 2010</small></p>
+        <h6>E-shopů</h6>
+        <p>100+<small>Aktivních nasazení</small></p>
       </div>
       <div class="m">
-        <h6>Nasazení</h6>
-        <p>1–3 dny<small>Plugin nebo REST API</small></p>
+        <h6>Dotazů měsíčně</h6>
+        <p>5M+<small>Průměr přes všechny klienty</small></p>
       </div>
       <div class="m">
         <h6>Odezva</h6>
         <p>38 ms<small>P99 při špičce</small></p>
       </div>
       <div class="m">
-        <h6>Cena</h6>
-        <p>od 3 000 Kč/měs.<small>Starter · Growth · Enterprise</small></p>
+        <h6>Konverze</h6>
+        <p>+30 %<small>Průměrný nárůst z vyhledávání</small></p>
       </div>
     </div>
   </div>
@@ -298,6 +254,7 @@
 <!-- CLIENTS LOGOS -->
 <section class="logos">
   <div class="wrap">
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:28px">Důvěřuje nám více než 100 e-shopů po celé České republice.</p>
     <div class="lgrid">
       <div class="lcell"><img src="assets/loga/fotoskoda.svg" alt="Foto Škoda" height="37"></div>
       <div class="lcell"><img src="assets/loga/harfasport.svg" alt="Harfa Sport" height="35"></div>
@@ -313,32 +270,32 @@
 <section class="problems">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Problém</div>
-      <h2>Proč vám vyhledávání <span class="red">dnes bere tržby.</span></h2>
+      <div class="idx">Problémy</div>
+      <h2>Problémy, které <span class="red">řešíme.</span></h2>
     </div>
-    <p style="font-size:16px;color:var(--ink-3);max-width:58ch;margin-bottom:48px">Výchozí vyhledávání každé e-commerce platformy je generické řešení pro průměrný e-shop. Velký katalog, specifická terminologie a nároční zákazníci si zaslouží víc.</p>
+    <p style="font-size:16px;color:var(--ink-3);max-width:58ch;margin-bottom:48px">Většina e-shopů ztrácí tržby kvůli špatnému vyhledávání. UpSearch to mění.</p>
     <div class="prob-grid">
       <div class="prob-card">
         <div class="p-n">/ 01 — Nulové výsledky</div>
-        <h4>Zákazník napíše jinak, než máte v databázi.</h4>
-        <p>Hledá <strong>„iphone 14 256gb"</strong> — váš e-shop vrátí nulu, protože produkt se jmenuje „Apple iPhone 14 256 GB Space Black". Zákazník odejde ke Googlu nebo ke konkurenci. UpSearch tohle zná — a výsledek vždy najde.</p>
+        <h4>Zákazník vždy něco najde.</h4>
+        <p>UpSearch automaticky navrhuje alternativy, opravuje překlepy a pracuje se synonymy — zákazník vždy něco najde. <strong>5–10&nbsp;% vyhledávání běžně končí bez výsledků. S&nbsp;UpSearch pod 1&nbsp;%.</strong></p>
       </div>
       <div class="prob-card">
-        <div class="p-n">/ 02 — Překlepy a odchody</div>
-        <h4>Jeden překlep = odchod bez nákupu.</h4>
-        <p>Zákazník napíše <strong>„halenaka"</strong> místo „halenka" a dostane nulový výsledek. Místo aby ho e-shop zachytil a nabídl to, co hledá, zákazník odejde. Průměrně 12 % dotazů obsahuje překlep nebo přehozená písmena.</p>
+        <div class="p-n">/ 02 — Nerelevantní výsledky</div>
+        <h4>Relevantní výsledky na prvním místě.</h4>
+        <p>Learn-to-Rank učí UpSearch z reálných prodejů. Relevantní výsledky první — vyšší konverze. <strong>22&nbsp;140 vyhledávání denně na průměrném e-shopu. Každé špatně seřazené&nbsp;= ztracený zákazník.</strong></p>
       </div>
       <div class="prob-card">
-        <div class="p-n">/ 03 — Slepota bez dat</div>
-        <h4>Nevíte, co zákazníci hledají a nenajdou.</h4>
-        <p>Bez analytiky hledaných dotazů optimalizujete naslepo. <strong>Co zákazníci hledají? Co nenajdou? Které dotazy vedou k nákupu a které k odchodu?</strong> UpSearch vám tohle všechno ukáže v přehledném dashboardu.</p>
+        <div class="p-n">/ 03 — Chybí data o hledání</div>
+        <h4>Víte přesně, kde ztrácíte tržby.</h4>
+        <p>Kompletní analytika vyhledávání + AI&nbsp;Insights s konkrétními návrhy na zlepšení. <strong>Nevíte, co zákazníci hledají, co nenachází, kde ztrácíte tržby? UpSearch to ukáže.</strong></p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="types" style="border-top:1px solid var(--ink)">
+<section class="types" style="padding:80px 0;border-top:1px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
       <div class="idx">Funkce</div>
@@ -397,27 +354,28 @@
 <section style="padding:80px 0;border-top:1px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Proces</div>
-      <h2>Jak nasazení <span class="red">probíhá.</span></h2>
+      <div class="idx">Jak to funguje</div>
+      <h2>Jak to <span class="red">funguje.</span></h2>
     </div>
-    <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+    <p style="font-size:16px;color:var(--ink-3);max-width:58ch;margin-bottom:0">Tři jednoduché kroky k&nbsp;lepšímu vyhledávání ve vašem e-shopu.</p>
+    <div class="steps" style="grid-template-columns:repeat(3,1fr);margin-top:60px">
       <div class="step reveal">
-        <div class="n-lbl">Fáze <span class="dur">1–3 dny</span></div>
+        <div class="n-lbl">Krok <span class="dur">15 minut</span></div>
         <div class="big-n">01<span class="mk">.</span></div>
-        <h4>Integrace</h4>
-        <p>Napojíme UpSearch na váš e-shop přes REST API. Plugin pro Mastershop, Shopify nebo WooCommerce nainstalujete sami za hodinu. Zaindexujeme katalog — do 24 hodin máte výsledky.</p>
+        <h4>Připojte data</h4>
+        <p>Vyhledávací widget vložíte přes Google Tag Manager. Produktová data se napojí přes XML feed nebo API — bez zásahu do kódu e-shopu.</p>
       </div>
       <div class="step reveal d1">
-        <div class="n-lbl">Fáze <span class="dur">1–4 týdny</span></div>
+        <div class="n-lbl">Krok <span class="dur">1–2 dny</span></div>
         <div class="big-n">02<span class="mk">.</span></div>
-        <h4>Konfigurace a učení</h4>
-        <p>Nastavíme synonyma, boosting pravidla a váhy atributů specificky pro váš sortiment. UpSearch se učí z reálných hledaných dotazů a průběžně optimalizuje relevanci výsledků.</p>
+        <h4>Nastavte vyhledávání</h4>
+        <p>Přizpůsobte si vyhledávání přes admin rozhraní. Nastavte synonyma, boosting pravidla a vzhled widgetu podle svého brandu.</p>
       </div>
       <div class="step reveal d2">
-        <div class="n-lbl">Fáze <span class="dur">Trvale</span></div>
+        <div class="n-lbl">Krok <span class="dur">Průběžně</span></div>
         <div class="big-n">03<span class="mk">.</span></div>
-        <h4>Launch a optimalizace</h4>
-        <p>Go live. Sledujeme dashboardy, dolaďujeme výsledky a přidáváme nové funkce na základě dat. Zákazníci nacházejí produkty — a kupují je.</p>
+        <h4>Sledujte výsledky</h4>
+        <p>Detailní analytika vám ukáže, co zákazníci hledají, co nenachází a kde ztrácíte tržby. AI&nbsp;Insights navrhnou konkrétní zlepšení.</p>
       </div>
     </div>
   </div>
@@ -456,32 +414,32 @@
 <section class="testimonials">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx" style="color:rgba(242,236,224,.5)">Reference</div>
-      <h2 style="color:var(--paper)">Co říkají <span class="red">klienti.</span></h2>
+      <div class="idx" style="color:rgba(242,236,224,.5)">Klienti</div>
+      <h2 style="color:var(--paper)">Co o&nbsp;UpSearch říkají <span class="red">klienti.</span></h2>
     </div>
     <div class="testi-grid">
       <div class="testi">
         <div class="quote">&ldquo;</div>
-        <blockquote>Po nasazení UpSearch vzrostla konverze z vyhledávání o <strong>31 %</strong>. Zákazníci najdou produkt i přes překlep nebo synonymum. Dřív jsme tu chybu v defaultním vyhledávání vůbec neviděli.</blockquote>
+        <blockquote>Po nasazení UpSearch se nám konverze z vyhledávání zvýšily o <strong>35&nbsp;%</strong>. Zákazníci najdou co hledají a&nbsp;my prodáváme víc.</blockquote>
         <div class="testi-by">
-          <div class="testi-name">Tomáš Veselý</div>
-          <div class="testi-role">Head of E-commerce · Albi</div>
+          <div class="testi-name">Martin Procházka</div>
+          <div class="testi-role">E-commerce manažer · Albi</div>
         </div>
       </div>
       <div class="testi">
         <div class="quote">&ldquo;</div>
-        <blockquote>Elasticsearch backend zvládá špičky Vánoc bez problémů. Odezva pod <strong>40ms</strong> i při tisících souběžných dotazech. Přesně to, co e-shop s 48&nbsp;000 SKU potřebuje.</blockquote>
+        <blockquote>Integrace trvala 20&nbsp;minut a výsledky jsme viděli hned první den. UpSearch je přesně to, co jsme potřebovali.</blockquote>
         <div class="testi-by">
-          <div class="testi-name">Martin Škoda</div>
+          <div class="testi-name">Petra Dvořáková</div>
+          <div class="testi-role">Vedoucí online prodeje · El Niño</div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="quote">&ldquo;</div>
+        <blockquote>Analytika hledaných dotazů nám ukázala, co zákazníci chtějí — a co nám v&nbsp;sortimentu chybí. <strong>Zalistovali jsme 3&nbsp;nové kategorie</strong> přímo podle dat z&nbsp;UpSearch.</blockquote>
+        <div class="testi-by">
+          <div class="testi-name">Ondřej Škoda</div>
           <div class="testi-role">CTO · FotoŠkoda</div>
-        </div>
-      </div>
-      <div class="testi">
-        <div class="quote">&ldquo;</div>
-        <blockquote>Analytika hledaných dotazů nám ukázala, co zákazníci chtějí — a co nám v sortimentu chybí. <strong>Zalistovali jsme 3 nové kategorie</strong> přímo podle dat z UpSearch.</blockquote>
-        <div class="testi-by">
-          <div class="testi-name">Petra Nováková</div>
-          <div class="testi-role">Produktová manažerka · El Niño</div>
         </div>
       </div>
     </div>
@@ -533,13 +491,13 @@
       <h2>Otázky, co&nbsp;nám lidé <span class="red">pokládají nejčastěji.</span></h2>
     </div>
     <div class="faq-grid">
-      <details class="qa"><summary><span class="n">/ 01</span><h5>Jak rychle můžeme nasadit UpSearch?</h5><span class="tog"></span></summary><div class="answer"><p>Technická integrace přes REST API trvá <b>1–3 dny</b>. Pro hlavní platformy (Mastershop, Shopify, WooCommerce) máme hotové pluginy — nainstalujete sami za hodinu. Zaindexování katalogu proběhne do 24 hodin po napojení.</p><p>Reálné nasazení se synonymy, boosting pravidly a testováním trvá <b>2–4 týdny</b>. Go live je pak plynulý — přepnete DNS a UpSearch jede.</p></div></details>
-      <details class="qa"><summary><span class="n">/ 02</span><h5>Funguje UpSearch s&nbsp;naším e-shopem?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch je platforma-agnostický — komunikuje přes REST API s jakýmkoliv e-shopem. Máme hotové pluginy pro <b>Mastershop, Shopify, Magento, WooCommerce a Nuvio</b>.</p><p>Pro custom e-shopy nebo jiné platformy napíšeme konektor na míru — typicky 1–3 dny práce. Stačí nám přístup k produktovému API a frontend, kde vyhledávání zobrazujeme.</p></div></details>
-      <details class="qa"><summary><span class="n">/ 03</span><h5>Jaké je SLA a&nbsp;jak probíhá provoz?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch běží na naší infrastruktuře s <b>SLA 99,9 %</b> a on-call monitoringem 24/7. V případě incidentu vás informujeme dřív, než si toho všimnou zákazníci.</p><p>Index se aktualizuje v reálném čase při změnách katalogu — nový produkt se ve výsledcích objeví do <b>sekund</b>. Žádné noční přeindexování, žádné výpadky.</p></div></details>
-      <details class="qa"><summary><span class="n">/ 04</span><h5>Jak se UpSearch liší od&nbsp;Elasticsearch přímo nebo Algolia?</h5><span class="tog"></span></summary><div class="answer"><p><b>Elasticsearch sám o sobě</b> je jen vyhledávací engine — bez synonymů, skloňování, analytiky a UI komponent potřebujete měsíce vývoje a specialistu. UpSearch staví na Elasticsearch, ale přidává vrstvy optimalizované pro e-commerce.</p><p><b>Algolia</b> je skvělé řešení pro americký trh. Pro českou a slovenskou morfologii, lokální synonyma a GDPR-compliant hosting v EU je UpSearch lepší volba. A levnější — bez poplatků za dokument.</p></div></details>
-      <details class="qa"><summary><span class="n">/ 05</span><h5>Jak funguje personalizace — potřebujeme mít data?</h5><span class="tog"></span></summary><div class="answer"><p>Personalizace funguje ve dvou režimech. <b>Cold start</b> (od prvního dne) — výsledky řadíme podle globálních vzorců chování a popularity kategorií. <b>Personalizovaný ranking</b> se zapíná po nashromáždění dostatečného množství dat o daném zákazníkovi (obvykle po 2–3 návštěvách).</p><p>UpSearch sbírá data výhradně na vaší doméně — žádné sdílení s třetími stranami, GDPR compliant, data zůstávají u vás.</p></div></details>
-      <details class="qa"><summary><span class="n">/ 06</span><h5>Kolik to stojí?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch je SaaS s měsíčním předplatným. Starter od <b>3 000 Kč/měs.</b> (do 50 tis. dotazů), Growth <b>10 000 Kč/měs.</b> (neomezené dotazy, A/B testing, personalizace), Enterprise <b>25 000 Kč/měs.</b> (multi-tenant, SLA, dedikovaný support).</p><p>K tomu jednorázová implementace — základní nasazení od 15 000 Kč, komplexní projekt s custom konfigurací 50–200 tis. Kč. Po demo hovoru dostanete přesný odhad.</p></div></details>
-      <details class="qa"><summary><span class="n">/ 07</span><h5>Jsme malý e-shop — dává nám UpSearch smysl?</h5><span class="tog"></span></summary><div class="answer"><p>Záleží na složitosti katalogů a dotazů, ne jen na počtu produktů. E-shop s 800 produkty v technické oblasti (elektronika, náhradní díly, chemie) těží z UpSearch víc než e-shop s 5 000 produkty jednoduché spotřební kategorie.</p><p>Klíčová otázka: <b>hledají vaši zákazníci aktivně?</b> Pokud ano a vracejí se s překlepovými dotazy nebo synonymy, UpSearch se zaplatí. Pokud navigují výhradně přes kategorie, výchozí vyhledávání stačí. Na demo hovoru vám upřímně řekneme, co vám přinese hodnotu.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 01</span><h5>Kolik UpSearch stojí?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch je SaaS s měsíčním fee podle velikosti e-shopu — počet produktů, počet vyhledávání měsíčně. Začínáme od cca <b>3&nbsp;000&nbsp;Kč měsíčně</b> pro menší e-shopy, enterprise plány od <b>25&nbsp;000&nbsp;Kč/měs.</b></p><p>Setup je v ceně — naši lidé nasadí UpSearch za 15 minut, žádný setup fee navíc. Aktuální ceník na <a href="https://upsearch.cz/cenik" target="_blank" rel="noopener">upsearch.cz/ceník&nbsp;→</a></p></div></details>
+      <details class="qa"><summary><span class="n">/ 02</span><h5>Jak dlouho trvá nasazení?</h5><span class="tog"></span></summary><div class="answer"><p><b>15–30 minut.</b> Vyhledávací widget vložíte přes Google Tag Manager, produktová data napojíte přes XML feed nebo API. Bez zásahu do kódu e-shopu.</p><p>Komplexnější setup s vlastními pravidly, boostováním a designerem widgetu vyladíme společně během <b>1–2 dní.</b></p></div></details>
+      <details class="qa"><summary><span class="n">/ 03</span><h5>Funguje UpSearch s&nbsp;mým e-shopem?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch je platforma-agnostic — funguje s <b>Shopify, Magento, WooCommerce, Mastershop, Shoptetem</b> i custom platformami. Připojení přes XML feed, API nebo direct database connection.</p><p>Speciálně dobře funguje s našimi vlastními projekty (custom B2C/B2B, Shopify e-shopy postavené PB), kde UpSearch nativně sedí ve stacku.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 04</span><h5>Vyplatí se UpSearch pro malý e-shop?</h5><span class="tog"></span></summary><div class="answer"><p>Vyplatí se, pokud máte alespoň <b>500 produktů a měsíčně 10&nbsp;000+ návštěv.</b> Pod touto hranicí vám standardní vyhledávání e-shop platformy stačí.</p><p>Nad touto hranicí UpSearch obvykle navrátí investici za <b>2–4 měsíce</b> přes zvýšenou konverzi z vyhledávání.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 05</span><h5>Jak se UpSearch liší od Algolia nebo Elasticsearch?</h5><span class="tog"></span></summary><div class="answer"><p>Tři hlavní rozdíly: <b>České skloňování nativně</b> — Algolia ani Elasticsearch neumí 13&nbsp;pádů a&nbsp;4&nbsp;rody. UpSearch ano, learn-to-rank trénovaný na češtině.</p><p><b>Lokální podpora</b> — implementaci, ladění a support máte v Karlíně. Žádný timezone, žádný language barrier. <b>Cena</b> — pro střední CZ/SK e-shopy bývá UpSearch levnější než Algolia (která účtuje per-query). Pro CZ/SK e-commerce mainstream je UpSearch optimální.</p></div></details>
+      <details class="qa"><summary><span class="n">/ 06</span><h5>Co s&nbsp;daty zákazníků? GDPR?</h5><span class="tog"></span></summary><div class="answer"><p>UpSearch neukládá personalizovaná data o jednotlivých zákaznících (žádné PII, žádné e-maily, žádné účty). Trackuje pouze <b>anonymizované vyhledávací termíny a click events.</b></p><p>Plně GDPR compliant, hostováno v EU (PB private cloud, Praha). Pro klienty z bank a státní správy nabízíme i <b>on-premise deployment.</b></p></div></details>
+      <details class="qa"><summary><span class="n">/ 07</span><h5>Můžeme vyzkoušet UpSearch zdarma?</h5><span class="tog"></span></summary><div class="answer"><p>Ano. <b>30 dní zdarma</b> — bez kreditní karty, bez závazku. Nasadíme UpSearch na váš e-shop, ladíme společně, sledujete výsledky. Pokud po 30 dnech není UpSearch pro vás, prostě ho vypneme.</p><p>Domluvit demo na <a href="https://upsearch.cz" target="_blank" rel="noopener">upsearch.cz&nbsp;→</a></p></div></details>
     </div>
   </div>
 </section>
@@ -548,16 +506,17 @@
 <section class="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <div class="idx">Ceník</div>
-      <h2>Transparentní ceny, <span class="red">žádná překvapení.</span></h2>
+      <div class="idx">Investice</div>
+      <h2>Vztahy dlouhodobé, <span class="red">ceny poctivé.</span></h2>
     </div>
-    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">SaaS předplatné bez skrytých poplatků za dotaz nebo za produkt. Cena se nemění s růstem katalogu.</p>
+    <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">UpSearch je SaaS s měsíčním fee — žádný velký setup fee, žádné dlouhodobé závazky. Klient si vybere plán podle velikosti e-shopu, my nasadíme, klient platí měsíčně.</p>
     <div class="price-grid">
-      <div class="price-card">
-        <div class="tier">Starter</div>
-        <div class="amount">3 000 <span class="unit">Kč</span></div>
-        <div class="per">/ měsíc</div>
-        <div class="price-desc">Pro e-shopy se standardními požadavky na vyhledávání. Rychlý start, základní analytika.</div>
+      <div class="plan">
+        <div class="nb">01 / základní</div>
+        <div class="plan-name">Starter</div>
+        <div class="d">Pro menší e-shopy do 10&nbsp;000&nbsp;SKU. Rychlý start, základní analytika.</div>
+        <div class="price"><span class="from">od</span>3 000<sub>Kč/m</sub></div>
+        <div class="unit">měsíční předplatné</div>
         <ul>
           <li>Do 50 000 dotazů měsíčně</li>
           <li>1 e-shop, 1 jazyk</li>
@@ -566,12 +525,15 @@
           <li>Základní analytický dashboard</li>
           <li>Email podpora</li>
         </ul>
+        <div class="cta-p"><a href="kontakt.html" class="btn ghost" style="width:100%;justify-content:center"><span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a></div>
       </div>
-      <div class="price-card featured">
-        <div class="tier">Growth</div>
-        <div class="amount">10 000 <span class="unit">Kč</span></div>
-        <div class="per">/ měsíc</div>
-        <div class="price-desc">Pro e-shopy, které chtějí vytěžit ze vyhledávání maximum. Personalizace, A/B testing, pokročilá data.</div>
+      <div class="plan featured">
+        <div class="flag">Nejoblíbenější</div>
+        <div class="nb">02 / growth</div>
+        <div class="plan-name">Growth</div>
+        <div class="d">Pro střední e-shopy, 10–100&nbsp;000&nbsp;SKU. Personalizace, A/B testing, pokročilá data.</div>
+        <div class="price"><span class="from">od</span>10 000<sub>Kč/m</sub></div>
+        <div class="unit">měsíční předplatné</div>
         <ul>
           <li>Neomezené dotazy</li>
           <li>1–3 e-shopy, multi-language</li>
@@ -580,12 +542,14 @@
           <li>Pokročilá analytika a reporting</li>
           <li>Prioritní podpora, SLA</li>
         </ul>
+        <div class="cta-p"><a href="kontakt.html" class="btn red" style="width:100%;justify-content:center"><span class="lbl" data-t="Začít používat"><span>Začít používat</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a></div>
       </div>
-      <div class="price-card">
-        <div class="tier">Enterprise</div>
-        <div class="amount">25 000 <span class="unit">Kč</span></div>
-        <div class="per">/ měsíc</div>
-        <div class="price-desc">Pro velké e-shopy a skupiny s nároky na SLA, vlastní ML modely a dedikovaný tým.</div>
+      <div class="plan">
+        <div class="nb">03 / enterprise</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="d">Pro velké e-shopy s vlastní customizací, SLA a dedikovaným support týmem.</div>
+        <div class="price"><span class="from">od</span>25 000<sub>Kč/m</sub></div>
+        <div class="unit">měsíční předplatné</div>
         <ul>
           <li>Neomezené dotazy, multi-tenant</li>
           <li>Libovolný počet e-shopů</li>
@@ -594,9 +558,10 @@
           <li>Dedikovaný search konzultant</li>
           <li>On-premise / vlastní cloud</li>
         </ul>
+        <div class="cta-p"><a href="kontakt.html" class="btn ghost" style="width:100%;justify-content:center"><span class="lbl" data-t="Nezávazná poptávka"><span>Nezávazná poptávka</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a></div>
       </div>
     </div>
-    <p style="font-family:var(--mono);font-size:13px;color:var(--mute);margin-top:28px;text-align:center">K předplatnému jednorázová implementace od 15 000 Kč. Přesný odhad dostanete po demo hovoru.</p>
+    <p style="font-family:var(--mono);font-size:13px;color:var(--mute);margin-top:28px;text-align:center">Plný ceník na <a href="https://upsearch.cz/cenik" target="_blank" rel="noopener" style="color:var(--red)">upsearch.cz/ceník</a> · Většina klientů s námi je 3+ let.</p>
   </div>
 </section>
 
@@ -604,14 +569,14 @@
 <section class="cta">
   <div class="wrap">
     <h2 class="reveal">Připraveni zvýšit<br><span class="red">tržby z&nbsp;vyhledávání?</span></h2>
-    <p class="sub reveal d1">Napište nám — do 24 hodin se ozveme s návrhem demo hovoru a prvním odhadem implementace.</p>
+    <p class="sub reveal d1">Žádná kreditní karta, nastavení za 15&nbsp;minut.</p>
     <div class="ctas reveal d2">
       <a href="kontakt.html" class="btn">
         <span class="lbl" data-t="Domluvit demo"><span>Domluvit demo</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a href="tel:+420774219988" class="btn ghost">
-        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
+      <a href="https://upsearch.cz" target="_blank" rel="noopener" class="btn ghost">
+        <span class="lbl" data-t="Vyzkoušet zdarma"><span>Vyzkoušet zdarma</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
     </div>

@@ -22,10 +22,4 @@
   function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
   setInterval(tick,1000);tick();
 
-  document.querySelectorAll('.btn').forEach(b=>{
-    let rect;
-    b.addEventListener('mouseenter',()=>{rect=b.getBoundingClientRect()});
-    b.addEventListener('mousemove',e=>{if(!rect)return;const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;b.style.transform=`translate(${x*.18}px,${y*.22}px)`});
-    b.addEventListener('mouseleave',()=>{b.style.transform=''});
-  });
 })();

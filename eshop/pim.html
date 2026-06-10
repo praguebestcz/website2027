@@ -136,27 +136,7 @@
 .qa .answer a{color:var(--red)}
 
 /* ===================== INVESTMENT ===================== */
-.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:2}
-.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
-.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
-.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
-.inv-grid .left p+p{margin-top:16px}
-.inv-grid .left p b{color:var(--ink);font-weight:600}
-.inv-grid .right{display:grid;gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden}
-.range-row{padding:40px 44px;border-bottom:1px solid var(--line);background:var(--paper);transition:background .4s var(--ease)}
-.range-row:last-child{border-bottom:none}
-.range-row:hover{background:var(--ink);color:var(--paper)}
-.range-row .lbl-r{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;transition:color .4s}
-.range-row:hover .lbl-r{color:rgba(242,236,224,.5)}
-.range-row .val-r{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
-.range-row small{font-size:13px;color:var(--mute);max-width:44ch;display:block;line-height:1.5;transition:color .4s}
-.range-row:hover small{color:rgba(242,236,224,.6)}
-.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
-.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
-.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+/* .invest / .inv-grid / .cross-sell → shared.css */
 
 @media(max-width:1024px){
   .expl-grid{grid-template-columns:1fr}
@@ -164,7 +144,7 @@
   .ai-grid{grid-template-columns:repeat(2,1fr)}
   .stats-band{grid-template-columns:repeat(2,1fr)}
   .int-grid{grid-template-columns:repeat(2,1fr)}
-  .inv-grid{grid-template-columns:1fr;gap:40px}
+
   .fw-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
@@ -470,20 +450,17 @@
         </div>
       </div>
       <div class="right">
-        <div class="range-row reveal">
-          <div class="lbl-r">Standardní nasazení</div>
-          <div class="val-r">od 250 000 Kč</div>
-          <small>Do 5 000 SKU, 1–2 kanály, základní multi-language, standardní ERP integrace.</small>
+        <div class="price reveal">
+          <div><div class="lbl-p">Standardní nasazení</div><h4>PIM základní</h4><small>Do 5 000 SKU, 1–2 kanály, základní multi-language, standardní ERP integrace.</small></div>
+          <div class="val">od 250 tis.<sub>Kč bez DPH</sub></div>
         </div>
-        <div class="range-row reveal d1">
-          <div class="lbl-r">Střední projekt</div>
-          <div class="val-r">500 tis. — 2 mil. Kč</div>
-          <small>Multi-channel publishing, 3+ jazyků, AI obohacení, komplexní workflow, více ERP/feed integrací.</small>
+        <div class="price reveal d1">
+          <div><div class="lbl-p">Střední projekt</div><h4>PIM pokročilý</h4><small>Multi-channel publishing, 3+ jazyků, AI obohacení, komplexní workflow, více ERP/feed integrací.</small></div>
+          <div class="val">0,5—2 mil.<sub>Kč bez DPH</sub></div>
         </div>
-        <div class="range-row reveal d2">
-          <div class="lbl-r">Enterprise</div>
-          <div class="val-r">2 — 5 mil. Kč</div>
-          <small>Multi-market, multi-language, custom AI pipeline, 10+ kanálů, globální deployment.</small>
+        <div class="price reveal d2">
+          <div><div class="lbl-p">Enterprise</div><h4>PIM enterprise</h4><small>Multi-market, multi-language, custom AI pipeline, 10+ kanálů, globální deployment.</small></div>
+          <div class="val">2—5 mil.<sub>Kč bez DPH</sub></div>
         </div>
       </div>
     </div>

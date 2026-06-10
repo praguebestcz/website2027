@@ -162,8 +162,8 @@ form{display:grid;gap:14px}
 .visit .info-box{padding:56px 48px;background:var(--ink);color:var(--paper);border-radius:20px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
 .visit .info-box::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.25),transparent 60%);filter:blur(40px);pointer-events:none}
 .visit .info-box > *{position:relative}
-.visit .info-box .lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.visit .info-box .lbl::before{content:"";width:24px;height:1px;background:var(--red)}
+.visit .info-box .sec-lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.visit .info-box .sec-lbl::before{content:"";width:24px;height:1px;background:var(--red)}
 .visit .info-box h3{font-size:52px;font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:24px}
 .visit .info-box h3 .red{color:var(--red)}
 .visit .info-box .addr{font-size:18px;font-weight:500;line-height:1.5;margin-bottom:28px}
@@ -244,6 +244,40 @@ form{display:grid;gap:14px}
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <script src="assets/quarter.js"></script>
+<meta name="description" content="Napište nám nebo zavolejte — odpovídáme do 24 hodin. Vítkova 32, Praha 8 – Karlín. info@praguebest.cz · +420 774 219 988." />
+<meta name="keywords" content="kontakt, PragueBest, Praha, Karlín, Vítkova 32, info@praguebest.cz, digitální agentura" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/kontakt" />
+<meta property="og:title" content="Kontakt — PragueBest" />
+<meta property="og:description" content="Napište nám nebo zavolejte — odpovídáme do 24 hodin. Vítkova 32, Praha 8 – Karlín. info@praguebest.cz · +420 774 219 988." />
+<meta property="og:image" content="https://praguebest.cz/assets/og-kontakt.jpg" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kontakt — PragueBest" />
+<meta name="twitter:description" content="Napište nám nebo zavolejte — odpovídáme do 24 hodin. Vítkova 32, Praha 8 – Karlín. info@praguebest.cz · +420 774 219 988." />
+<meta name="twitter:image" content="https://praguebest.cz/assets/og-kontakt.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Kontakt — PragueBest",
+  "url": "https://praguebest.cz/kontakt",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "PragueBest s.r.o.",
+    "telephone": "+420774219988",
+    "email": "info@praguebest.cz",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Vítkova 32",
+      "addressLocality": "Praha 8",
+      "postalCode": "186 00",
+      "addressCountry": "CZ"
+    }
+  }
+}
+</script>
 </head>
 <body>
 
@@ -331,13 +365,13 @@ form{display:grid;gap:14px}
         </div>
         <div class="n">Kanál / 01</div>
         <h3>Zavolejte.</h3>
-        <div class="primary">+420 775 219 999<small>Obchodní oddělení · Po&ndash;Pá 9&ndash;18</small></div>
+        <div class="primary">+420 774 219 988<small>Obchodní oddělení · Po&ndash;Pá 9&ndash;18</small></div>
         <div class="extras">
           <div class="row"><span>Helpdesk 24/7</span><span>+420 608 252 303</span></div>
           <div class="row"><span>Kariéra</span><span>+420 608 172 331</span></div>
           <div class="row"><span>Administrativa</span><span>+420 266 091 373</span></div>
         </div>
-        <button class="copy" data-copy="+420775219999">
+        <button class="copy" data-copy="+420774219988">
           <span class="cbtn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
           Kopírovat číslo
         </button>
@@ -479,7 +513,7 @@ form{display:grid;gap:14px}
           <h4>Luděk Vorel</h4>
           <div class="role">CEO</div>
           <div class="contact">
-            <a href="tel:+420775219999"><small>TEL</small>+420 775 219 999</a>
+            <a href="tel:+420774219988"><small>TEL</small>+420 774 219 988</a>
             <a href="mailto:jan@praguebest.cz"><small>MAIL</small>jan@praguebest.cz</a>
           </div>
         </div>
@@ -546,7 +580,7 @@ form{display:grid;gap:14px}
     <div class="visit-grid">
       <div class="info-box">
         <div>
-          <div class="lbl">Adresa studia</div>
+          <div class="sec-lbl">Adresa studia</div>
           <h3>Vítkova 32,<br><span class="red">Karlín.</span></h3>
           <p class="addr">Vítkova 32<small>186 00 Praha 8, Karlín · Česká republika</small></p>
           <div class="open">Otevřeno &mdash; dnes do 18:00</div>
@@ -728,8 +762,8 @@ form{display:grid;gap:14px}
         <span class="lbl" data-t="Domluvit návštěvu"><span>Domluvit návštěvu</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a href="tel:+420775219999" class="btn ghost">
-        <span class="lbl" data-t="+420 775 219 999"><span>+420 775 219 999</span></span>
+      <a href="tel:+420774219988" class="btn ghost">
+        <span class="lbl" data-t="+420 774 219 988"><span>+420 774 219 988</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
     </div>
@@ -763,7 +797,7 @@ form{display:grid;gap:14px}
       <div>
         <h5>Kontakt</h5>
         <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
-        <a href="tel:+420775219999">+420 775 219 999 <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
         <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
       </div>
     </div>

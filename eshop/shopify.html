@@ -116,19 +116,7 @@
 .qa .answer b{color:var(--ink);font-weight:600}
 .qa .answer a{color:var(--red)}
 
-/* ===================== INVESTMENT TABLE ===================== */
-.invest{padding:100px 0;border-top:1px solid var(--ink);background:var(--paper-2);position:relative;overflow:hidden}
-.invest::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(10,10,10,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 80%)}
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:2}
-.inv-grid .left .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.inv-grid .left .lbl::before{content:"";width:28px;height:1px;background:var(--red)}
-.inv-grid .left h3{font-size:clamp(40px,4.5vw,68px);font-weight:900;letter-spacing:-.035em;line-height:.95;margin-bottom:32px}
-.inv-grid .left p{font-size:17px;color:var(--ink-3);line-height:1.65;max-width:52ch}
-.inv-grid .left p+p{margin-top:16px}
-.inv-grid .left p b{color:var(--ink);font-weight:600}
-.cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
-.cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
-.cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
+/* .invest / .inv-grid / .cross-sell → shared.css */
 .price-table{border:1px solid var(--line);border-radius:20px;overflow:hidden}
 .pt-head{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;padding:16px 24px;background:var(--ink);font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;gap:16px}
 .pt-row{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--paper);gap:16px;align-items:center;transition:background .3s}
@@ -142,7 +130,7 @@
 @media(max-width:1024px){
   .pkg-grid{grid-template-columns:1fr}
   .int-grid{grid-template-columns:repeat(2,1fr)}
-  .inv-grid{grid-template-columns:1fr;gap:40px}
+
   .fw-grid{grid-template-columns:1fr}
   .pt-head{grid-template-columns:1fr 1fr}
   .pt-row{grid-template-columns:1fr 1fr}
@@ -518,13 +506,19 @@
         </div>
       </div>
       <div class="right">
-        <div class="price-table">
-          <div class="pt-head"><span>Cesta</span><span>Naše práce</span><span>Čas</span><span>Shopify subscription</span></div>
-          <div class="pt-row reveal"><b>Nový Shopify e-shop</b><span class="pv">od 89 000 Kč</span><span>4 — 8 týdnů</span><span>od $39/měs<span class="sub-note">Basic</span></span></div>
-          <div class="pt-row reveal d1"><b>Migrace na Shopify</b><span class="pv">od 149 000 Kč</span><span>4 — 10 týdnů</span><span>od $39/měs<span class="sub-note">Basic</span></span></div>
-          <div class="pt-row reveal d2"><b>Shopify Plus</b><span class="pv">od 500 000 Kč</span><span>8 — 16 týdnů</span><span>od $2 300/měs<span class="sub-note">Plus</span></span></div>
+        <div class="price reveal">
+          <div><div class="lbl-p">Nový e-shop · 4–8 týdnů</div><h4>Nový Shopify e-shop</h4><small>Shopify Basic od $39/měs. Rychlý launch, full-featured.</small></div>
+          <div class="val">89 tis.<sub>od · Kč bez DPH</sub></div>
         </div>
-        <p style="font-size:12px;color:var(--mute);margin-top:16px;line-height:1.5">Retainer post-launch: 20 — 90 tis. Kč/měs. Shopify zvládá většinu updates a security sám — nižší než u custom.</p>
+        <div class="price reveal d1">
+          <div><div class="lbl-p">Migrace · 4–10 týdnů</div><h4>Migrace na Shopify</h4><small>Shopify Basic od $39/měs. Přechod z jiné platformy.</small></div>
+          <div class="val">149 tis.<sub>od · Kč bez DPH</sub></div>
+        </div>
+        <div class="price reveal d2">
+          <div><div class="lbl-p">Enterprise · 8–16 týdnů</div><h4>Shopify Plus</h4><small>Shopify Plus od $2 300/měs. Bez limitů, B2B, multi-store.</small></div>
+          <div class="val">500 tis.<sub>od · Kč bez DPH</sub></div>
+        </div>
+        <p style="font-family:var(--mono);font-size:12px;color:var(--mute);margin-top:16px;line-height:1.5">Retainer post-launch: 20–90 tis. Kč/měs. Shopify zvládá většinu updates a security sám — nižší než u custom.</p>
       </div>
     </div>
   </div>

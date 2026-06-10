@@ -365,7 +365,7 @@ body{
 let data = JSON.parse(JSON.stringify(window.REFS || []));
 let activeIdx = null;
 
-const ALL_TAGS = ['eshop','b2b','b2c','retail','webapp','auto','fashion','food'];
+const ALL_TAGS = (window.FILTER_TAGS || [{id:'eshop'},{id:'webapp'},{id:'app'}]).map(t => t.id);
 
 
 // ── Sidebar ──────────────────────────────────────────────

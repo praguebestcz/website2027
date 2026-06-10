@@ -4,9 +4,17 @@
  *
  * Přidání nové reference: přidej objekt do pole REFS.
  * Úprava: změň data zde — promítne se na reference.html i index.html.
+ * Filtrovací tagy: uprav FILTER_TAGS — promítne se do reference.html i admin.html.
  *
  * Složky s médii: assets/reference/<id>/
  */
+
+/** Filtrovací tagy — sdílený zdroj pravdy pro reference.html i admin.html */
+window.FILTER_TAGS = [
+  { id: 'eshop',  label: 'E-shopy'  },
+  { id: 'webapp', label: 'Weby'     },
+  { id: 'app',    label: 'Aplikace' },
+];
 
 window.REFS = [
 
@@ -19,7 +27,7 @@ window.REFS = [
     headline: 'Evropská síť parfumerií potřebovala sjednotit 13 národních e-shopů, napojit ERP Abra, Heureku, Zásilkovnu a vlastní UpSearch. Výsledek: jedna codebase, lokální ceny a měny, rychlost pod vteřinu.',
     category: 'Parfumerský zázrak',
     year:     '2025',
-    tags:     ["b2b","retail"],
+    tags:     ["eshop"],
     href:     'elnino.html',
     domain:   'elnino.cz',
     mockImg:  'assets/elnino-web-small.png',
@@ -42,7 +50,7 @@ window.REFS = [
     headline: 'Největší český foto e-shop s&nbsp;plnou integrací skladového a&nbsp;ERP systému.',
     category: 'E-shop',
     year:     '2024',
-    tags:     ["eshop","b2c","retail"],
+    tags:     ["eshop"],
     href:     '#',
     domain:   'fotoskoda.cz',
     mockImg:  'assets/reference/fotoskoda/mock.png',
@@ -63,7 +71,7 @@ window.REFS = [
     headline: 'Konfigurátor a&nbsp;dealer portál pro&nbsp;CZ&amp;SK síť.',
     category: 'Web aplikace',
     year:     '2024',
-    tags:     ["webapp","auto"],
+    tags:     ["webapp"],
     href:     '#',
     domain:   'hyundai.cz',
     mockImg:  'assets/reference/hyundai/mock.png',
@@ -84,7 +92,7 @@ window.REFS = [
     headline: 'Omnichannel e-shop propojující 120 poboček v&nbsp;CZ&nbsp;&amp;&nbsp;SK.',
     category: 'Case Study 025',
     year:     '2024',
-    tags:     ["eshop","b2c","retail"],
+    tags:     ["eshop"],
     href:     '#',
     domain:   'albi.cz',
     mockImg:  'assets/reference/albi/mock.png',
@@ -106,7 +114,7 @@ window.REFS = [
     headline: 'Sportovní retailer s&nbsp;obsáhlým katalogem a&nbsp;B2B ceníky pro&nbsp;sportovní kluby.',
     category: 'E-shop',
     year:     '2023',
-    tags:     ["eshop","b2b","b2c","retail"],
+    tags:     ["eshop"],
     href:     '#',
     domain:   'harfasport.cz',
     mockImg:  'assets/reference/harfasport/mock.png',
@@ -127,7 +135,7 @@ window.REFS = [
     headline: 'Luxusní designový nábytek s&nbsp;PIM a&nbsp;ceníky pro&nbsp;architekty.',
     category: 'B2B platforma',
     year:     '2023',
-    tags:     ["eshop","b2b","retail"],
+    tags:     ["eshop"],
     href:     '#',
     domain:   'konsepti.cz',
     mockImg:  'assets/reference/konsepti/mock.png',
@@ -148,7 +156,7 @@ window.REFS = [
     headline: 'Největší řetězec hračkářství s&nbsp;plnou integrací 90 kamenných prodejen.',
     category: 'E-shop',
     year:     '2023',
-    tags:     ["eshop","b2c","retail"],
+    tags:     ["eshop"],
     href:     '#',
     domain:   'sparkys.cz',
     mockImg:  'assets/reference/sparkys/mock.png',
@@ -169,7 +177,7 @@ window.REFS = [
     headline: 'Korporátní web penzijní společnosti s&nbsp;online kalkulačkou, možností uzavřít smlouvu bez&nbsp;papíru a&nbsp;plnohodnotnou klientskou zónou. Makléři mají vlastní portál s&nbsp;přehledem portfolia a&nbsp;provizí v&nbsp;reálném čase.',
     category: 'Korporátní web',
     year:     '2024',
-    tags:     ["web","finance","b2b"],
+    tags:     ["webapp"],
     href:     '#',
     domain:   'generalipenze.cz',
     mockImg:  'assets/reference/generali/mock.png',
@@ -191,7 +199,7 @@ window.REFS = [
     headline: 'Informační portál Dopravního podniku hl.&nbsp;m.&nbsp;Prahy pro&nbsp;miliony cestujících ročně. Jízdní řády, plánování trasy, zákaznický servis, aktuality a&nbsp;online správa čipových karet — vše pod&nbsp;jednou střechou, přístupné i&nbsp;lidem se&nbsp;zdravotním postižením.',
     category: 'Veřejný portál',
     year:     '2024',
-    tags:     ["web","public"],
+    tags:     ["webapp"],
     href:     '#',
     domain:   'dpp.cz',
     mockImg:  'assets/reference/dpp/mock.png',
@@ -213,7 +221,7 @@ window.REFS = [
     headline: 'Omnichannel hračkářský e-shop s&nbsp;věrnostním programem pro&nbsp;rodiny.',
     category: 'E-shop',
     year:     '2022',
-    tags:     ["eshop","b2c","retail"],
+    tags:     ["eshop"],
     href:     '#',
     domain:   'bambule.cz',
     mockImg:  'assets/reference/bambule/mock.png',

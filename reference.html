@@ -205,22 +205,12 @@
     <div class="lbl">Filtrovat</div>
     <div class="filter-chips" id="filters">
       <button class="fchip on" data-f="all">Vše <span class="cnt">180+</span></button>
-      <button class="fchip" data-f="eshop">E-shopy <span class="cnt">100+</span></button>
-      <button class="fchip" data-f="webapp">Webové aplikace <span class="cnt">40</span></button>
-      <button class="fchip" data-f="b2b">B2B <span class="cnt">35</span></button>
-      <button class="fchip" data-f="b2c">B2C <span class="cnt">70</span></button>
-      <button class="fchip" data-f="retail">Retail <span class="cnt">45</span></button>
-      <button class="fchip" data-f="auto">Automotive <span class="cnt">12</span></button>
-      <button class="fchip" data-f="fashion">Fashion <span class="cnt">18</span></button>
-      <button class="fchip" data-f="food">Food <span class="cnt">9</span></button>
     </div>
     <div class="sort">
       <span>Řadit</span>
-      <select>
-        <option>Nejnovější</option>
-        <option>Abecedně A→Z</option>
-        <option>Nejvýkonnější</option>
-        <option>Nejstarší</option>
+      <select id="sort-select">
+        <option value="newest">Nejnovější</option>
+        <option value="alpha">Abecedně A→Z</option>
       </select>
     </div>
   </div>
@@ -422,7 +412,16 @@
     </article>`;
   }
 
-  container.innerHTML = refs.map(ref => card(ref)).join('');
+  // Renderuj karty — drží pořadí z refs pole (= nejnovější první dle year/num)
+  function renderCards(refsArr) {
+    container.innerHTML = refsArr.map(ref => card(ref)).join('');
+  }
+
+  // Výchozí pořadí: nejnovější (year desc, pak num asc)
+  const refsNewest = [...refs].sort((a,b) => (b.year||0)-(a.year||0) || (a.num||0)-(b.num||0));
+  const refsAlpha  = [...refs].sort((a,b) => a.name.localeCompare(b.name, 'cs'));
+
+  renderCards(refsNewest);
 
   // Aktualizace počítadla
   const shownEl = document.getElementById('shown');
@@ -475,25 +474,60 @@
   document.querySelectorAll('.btn').forEach(b=>{
   });
 
-  // Filter logic — karty jsou už v DOM (renderovány synchrónně výše)
-  const chips=document.querySelectorAll('#filters .fchip');
-  const projs=document.querySelectorAll('.case-card');
-  const shownEl=document.getElementById('shown');
-  const activeEl=document.getElementById('active-filter');
-  chips.forEach(ch=>{
-    ch.addEventListener('click',()=>{
-      chips.forEach(c=>c.classList.remove('on'));
-      ch.classList.add('on');
-      const f=ch.dataset.f;
-      let count=0;
-      projs.forEach(p=>{
-        const tags=(p.dataset.tags||'').split(' ');
-        if(f==='all'||tags.includes(f)){p.classList.remove('hidden');count++}
-        else p.classList.add('hidden');
-      });
-      if(shownEl)shownEl.textContent=count;
-      if(activeEl)activeEl.textContent=ch.textContent.replace(/\d+\+?/,'').trim();
+  // Sort select
+  const sortSel = document.getElementById('sort-select');
+  if (sortSel) {
+    sortSel.addEventListener('change', () => {
+      const sorted = sortSel.value === 'alpha' ? refsAlpha : refsNewest;
+      renderCards(sorted);
+      // Po re-renderu znovu aplikuj aktivní filtr
+      const activeChip = filtersEl.querySelector('.fchip.on');
+      const f = activeChip ? activeChip.dataset.f : 'all';
+      if (f !== 'all') {
+        document.querySelectorAll('.case-card').forEach(p => {
+          const tags = (p.dataset.tags||'').split(' ');
+          p.classList.toggle('hidden', !tags.includes(f));
+        });
+      }
+      // Znovu připoj scroll observer na nové karty
+      document.querySelectorAll('.case-card').forEach(c => flopObserver && flopObserver.observe(c));
     });
+  }
+
+  // Dynamicky vygeneruj filtrovací chipy z FILTER_TAGS (references.js)
+  const filtersEl = document.getElementById('filters');
+  const projs = document.querySelectorAll('.case-card');
+  const shownEl = document.getElementById('shown');
+  const activeEl = document.getElementById('active-filter');
+
+  (window.FILTER_TAGS || []).forEach(({id, label}) => {
+    const count = [...projs].filter(p => (p.dataset.tags||'').split(' ').includes(id)).length;
+    const btn = document.createElement('button');
+    btn.className = 'fchip';
+    btn.dataset.f = id;
+    btn.innerHTML = `${label} <span class="cnt">${count}</span>`;
+    filtersEl.appendChild(btn);
+  });
+
+  // Aktualizuj počet "Vše"
+  const allChip = filtersEl.querySelector('[data-f="all"]');
+  if (allChip) allChip.innerHTML = `Vše <span class="cnt">${projs.length}</span>`;
+
+  // Filter logic — vždy čte živé DOM (funguje i po re-renderu při sortování)
+  filtersEl.addEventListener('click', e => {
+    const ch = e.target.closest('.fchip');
+    if (!ch) return;
+    filtersEl.querySelectorAll('.fchip').forEach(c => c.classList.remove('on'));
+    ch.classList.add('on');
+    const f = ch.dataset.f;
+    let count = 0;
+    container.querySelectorAll('.case-card').forEach(p => {
+      const tags = (p.dataset.tags||'').split(' ');
+      if (f === 'all' || tags.includes(f)) { p.classList.remove('hidden'); count++; }
+      else p.classList.add('hidden');
+    });
+    if (shownEl) shownEl.textContent = count;
+    if (activeEl) activeEl.textContent = ch.textContent.replace(/\d+\+?/,'').trim();
   });
 })();
 </script>

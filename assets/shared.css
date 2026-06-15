@@ -55,6 +55,8 @@ nav.top ul a .t span{display:block;transition:transform .45s var(--ease)}
 nav.top ul a .t::after{content:attr(data-t);position:absolute;top:100%;left:0;font-weight:500;transition:transform .45s var(--ease)}
 nav.top ul a:hover .t span{transform:translateY(-100%)}
 nav.top ul a:hover .t::after{transform:translateY(-100%)}
+nav.top ul > li > a.active{font-weight:700}
+nav.top[data-active]::after{content:"";position:absolute;bottom:0;left:var(--ind-l,0);width:var(--ind-w,0);height:2px;background:var(--red);border-radius:1px}
 nav.top .meta{display:flex;gap:20px;align-items:center;justify-content:flex-end;font-family:var(--mono);font-size:11px;color:var(--mute)}
 nav.top .meta > span{display:inline-flex;align-items:center;gap:8px}
 nav.top .meta .dot{width:8px;height:8px;flex-shrink:0;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.2);animation:pulse 2s infinite}

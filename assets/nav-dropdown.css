@@ -1,8 +1,8 @@
 /* ===== NAV DROPDOWNS ===== */
 /* Additive styles – scoped with unique selectors (.has-dd, .dd) to avoid conflicts */
 
-nav.top ul{align-items:center}
-nav.top ul li{display:flex;align-items:center}
+nav.top > ul{align-self:stretch;align-items:stretch}
+nav.top ul li{display:flex;align-items:center;position:relative}
 nav.top ul li > a{display:inline-flex;align-items:center;gap:6px;line-height:1}
 nav.top ul li.has-dd{position:relative}
 nav.top ul li.has-dd > a .caret{

@@ -1,4 +1,31 @@
 (()=>{
+  // Active nav item + indicator
+  (function(){
+    var page=location.pathname.split('/').pop()||'index.html';
+    var nav=document.querySelector('nav.top');
+    if(!nav)return;
+    var ul=nav.querySelector('ul');
+    if(!ul)return;
+    var activeA=null;
+    ul.querySelectorAll(':scope > li > a').forEach(function(a){
+      if(a.getAttribute('href')===page){a.classList.add('active');activeA=a;}
+    });
+    ul.querySelectorAll('li.has-dd .dd a').forEach(function(a){
+      if(a.getAttribute('href')===page){
+        var pa=a.closest('li.has-dd').querySelector(':scope > a');
+        pa.classList.add('active');activeA=pa;
+      }
+    });
+    if(!activeA)return;
+    function updateInd(){
+      var nr=nav.getBoundingClientRect(),ar=activeA.getBoundingClientRect();
+      nav.style.setProperty('--ind-l',(ar.left-nr.left+16)+'px');
+      nav.style.setProperty('--ind-w',(ar.width-32)+'px');
+      nav.setAttribute('data-active','1');
+    }
+    updateInd();
+    window.addEventListener('resize',updateInd,{passive:true});
+  })();
   const c=document.querySelector('.cursor'),r=document.querySelector('.cursor-ring');
   if(c&&r){
     let mx=0,my=0,rx=0,ry=0;

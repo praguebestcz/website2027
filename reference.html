@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Reference — PragueBest</title>
+<title>Reference – PragueBest</title>
 <style>
 /* ===================== FILTER BAR ===================== */
 .title { padding-bottom: 80px; }
@@ -68,6 +68,11 @@
 /* Hide filtered out */
 .case-card.hidden{display:none}
 
+@media(max-width:720px){
+  .filter-bar .wrap{grid-template-columns:1fr auto;gap:16px}
+  .filter-bar .lbl{display:none}
+}
+
 /* ── Card flop-in effect ───────────────────────────────── */
 @keyframes cardFlop {
   0%   { transform: translateY(-52px) scale(0.96) rotate(-0.8deg); opacity: 0; }
@@ -95,13 +100,13 @@
 <meta name="keywords" content="reference, case studies, e-shopy na míru, weby, aplikace, PragueBest, Karlín, Praha" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://praguebest.cz/reference" />
-<meta property="og:title" content="Reference — PragueBest" />
+<meta property="og:title" content="Reference – PragueBest" />
 <meta property="og:description" content="27 let práce v jednom přehledu. E-shopy, weby, aplikace a AI projekty pro banky, pojišťovny, retail a B2B firmy. 180+ klientů, 150 mld. Kč zpracovaný obrat." />
 <meta property="og:image" content="https://praguebest.cz/assets/og-reference.jpg" />
 <meta property="og:site_name" content="PragueBest" />
 <meta property="og:locale" content="cs_CZ" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Reference — PragueBest" />
+<meta name="twitter:title" content="Reference – PragueBest" />
 <meta name="twitter:description" content="27 let práce v jednom přehledu. E-shopy, weby, aplikace a AI projekty pro banky, pojišťovny, retail a B2B firmy. 180+ klientů, 150 mld. Kč zpracovaný obrat." />
 <meta name="twitter:image" content="https://praguebest.cz/assets/og-reference.jpg" />
 <script type="application/ld+json">
@@ -174,7 +179,7 @@
 <!-- ===================== TITLE ===================== -->
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal">Vybrané projekty &nbsp;—&nbsp; 1999 &ndash; 2026 &nbsp;—&nbsp; 100+ e-shopů, 80+ webů</div>
+    <div class="idx reveal">Vybrané projekty &nbsp;–&nbsp; 1999 &ndash; 2026 &nbsp;–&nbsp; 100+ e-shopů, 80+ webů</div>
 
     <div class="top-row">
       <h1 class="reveal d1">Case Studies<span class="red">.</span></h1>
@@ -338,7 +343,7 @@
 </footer>
 
 <script>
-/* ── Reference renderer — case-card format ──────────────────── */
+/* ── Reference renderer – case-card format ──────────────────── */
 (()=>{
   const container = document.getElementById('refs-container');
   const refs = window.REFS || [];
@@ -412,7 +417,7 @@
     </article>`;
   }
 
-  // Renderuj karty — drží pořadí z refs pole (= nejnovější první dle year/num)
+  // Renderuj karty – drží pořadí z refs pole (= nejnovější první dle year/num)
   function renderCards(refsArr) {
     container.innerHTML = refsArr.map(ref => card(ref)).join('');
   }
@@ -444,6 +449,56 @@
   // Scroll reveal (ostatní prvky)
   const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.08,rootMargin:"0px 0px -40px 0px"});
   container.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Filtrovací chipy
+  const filtersEl = document.getElementById('filters');
+  const shownEl2 = document.getElementById('shown');
+  const activeEl = document.getElementById('active-filter');
+
+  (window.FILTER_TAGS || []).forEach(({id, label}) => {
+    const count = [...container.querySelectorAll('.case-card')].filter(p => (p.dataset.tags||'').split(' ').includes(id)).length;
+    const btn = document.createElement('button');
+    btn.className = 'fchip';
+    btn.dataset.f = id;
+    btn.innerHTML = `${label} <span class="cnt">${count}</span>`;
+    filtersEl.appendChild(btn);
+  });
+  const allChip = filtersEl.querySelector('[data-f="all"]');
+  if (allChip) allChip.innerHTML = `Vše <span class="cnt">${refs.length}</span>`;
+
+  // Sort select
+  const sortSel = document.getElementById('sort-select');
+  if (sortSel) {
+    sortSel.addEventListener('change', () => {
+      const sorted = sortSel.value === 'alpha' ? refsAlpha : refsNewest;
+      renderCards(sorted);
+      const activeChip = filtersEl.querySelector('.fchip.on');
+      const f = activeChip ? activeChip.dataset.f : 'all';
+      if (f !== 'all') {
+        container.querySelectorAll('.case-card').forEach(p => {
+          p.classList.toggle('hidden', !(p.dataset.tags||'').split(' ').includes(f));
+        });
+      }
+      container.querySelectorAll('.case-card').forEach(c => flopObserver.observe(c));
+    });
+  }
+
+  // Filter logic
+  filtersEl.addEventListener('click', e => {
+    const ch = e.target.closest('.fchip');
+    if (!ch) return;
+    filtersEl.querySelectorAll('.fchip').forEach(c => c.classList.remove('on'));
+    ch.classList.add('on');
+    const f = ch.dataset.f;
+    let count = 0;
+    container.querySelectorAll('.case-card').forEach(p => {
+      const tags = (p.dataset.tags||'').split(' ');
+      if (f === 'all' || tags.includes(f)) { p.classList.remove('hidden'); count++; }
+      else p.classList.add('hidden');
+    });
+    if (shownEl2) shownEl2.textContent = count;
+    if (activeEl) activeEl.textContent = ch.textContent.replace(/\d+\+?/,'').trim();
+  });
 })();
 </script>
 
@@ -472,62 +527,6 @@
   setInterval(tick,1000);tick();
 
   document.querySelectorAll('.btn').forEach(b=>{
-  });
-
-  // Sort select
-  const sortSel = document.getElementById('sort-select');
-  if (sortSel) {
-    sortSel.addEventListener('change', () => {
-      const sorted = sortSel.value === 'alpha' ? refsAlpha : refsNewest;
-      renderCards(sorted);
-      // Po re-renderu znovu aplikuj aktivní filtr
-      const activeChip = filtersEl.querySelector('.fchip.on');
-      const f = activeChip ? activeChip.dataset.f : 'all';
-      if (f !== 'all') {
-        document.querySelectorAll('.case-card').forEach(p => {
-          const tags = (p.dataset.tags||'').split(' ');
-          p.classList.toggle('hidden', !tags.includes(f));
-        });
-      }
-      // Znovu připoj scroll observer na nové karty
-      document.querySelectorAll('.case-card').forEach(c => flopObserver && flopObserver.observe(c));
-    });
-  }
-
-  // Dynamicky vygeneruj filtrovací chipy z FILTER_TAGS (references.js)
-  const filtersEl = document.getElementById('filters');
-  const projs = document.querySelectorAll('.case-card');
-  const shownEl = document.getElementById('shown');
-  const activeEl = document.getElementById('active-filter');
-
-  (window.FILTER_TAGS || []).forEach(({id, label}) => {
-    const count = [...projs].filter(p => (p.dataset.tags||'').split(' ').includes(id)).length;
-    const btn = document.createElement('button');
-    btn.className = 'fchip';
-    btn.dataset.f = id;
-    btn.innerHTML = `${label} <span class="cnt">${count}</span>`;
-    filtersEl.appendChild(btn);
-  });
-
-  // Aktualizuj počet "Vše"
-  const allChip = filtersEl.querySelector('[data-f="all"]');
-  if (allChip) allChip.innerHTML = `Vše <span class="cnt">${projs.length}</span>`;
-
-  // Filter logic — vždy čte živé DOM (funguje i po re-renderu při sortování)
-  filtersEl.addEventListener('click', e => {
-    const ch = e.target.closest('.fchip');
-    if (!ch) return;
-    filtersEl.querySelectorAll('.fchip').forEach(c => c.classList.remove('on'));
-    ch.classList.add('on');
-    const f = ch.dataset.f;
-    let count = 0;
-    container.querySelectorAll('.case-card').forEach(p => {
-      const tags = (p.dataset.tags||'').split(' ');
-      if (f === 'all' || tags.includes(f)) { p.classList.remove('hidden'); count++; }
-      else p.classList.add('hidden');
-    });
-    if (shownEl) shownEl.textContent = count;
-    if (activeEl) activeEl.textContent = ch.textContent.replace(/\d+\+?/,'').trim();
   });
 })();
 </script>

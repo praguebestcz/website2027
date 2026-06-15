@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Kariéra — Přidej se k nám — PragueBest</title>
+<title>Kariéra – Přidej se k nám – PragueBest</title>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
@@ -114,18 +114,35 @@
 .cv-card .skills span{font-family:var(--mono);font-size:8px;padding:2px 6px;background:var(--paper-2);border:1px solid var(--line);border-radius:99px;color:var(--mute)}
 
 /* .steps → shared.css */
+
+@media(max-width:1100px){
+  .j-row{grid-template-columns:60px 1.5fr 1fr auto;gap:20px;padding:28px 24px}
+  .j-row:hover{padding-left:34px}
+  .j-row .salary{display:none}
+  .w-grid{grid-template-columns:repeat(2,1fr)}
+  .polaroids{grid-template-columns:repeat(2,1fr);gap:20px}
+  .talent-card{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:720px){
+  .j-row{grid-template-columns:1fr auto;gap:14px;padding:20px 16px}
+  .j-row:hover{padding-left:20px}
+  .j-row .no-j{display:none}
+  .j-row .meta-j{display:none}
+  .w-grid{grid-template-columns:1fr}
+  .polaroids{grid-template-columns:repeat(2,1fr);gap:12px}
+}
 </style>
 <meta name="description" content="Přidej se k týmu PragueBest v Karlíně. Hledáme šikovné lidi na projekty pro přední české i mezinárodní klienty. Práce, která dává smysl." />
 <meta name="keywords" content="kariéra, práce, PragueBest, Karlín, Praha, frontend, backend, UX, project manager, digitální agentura" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://praguebest.cz/kariera" />
-<meta property="og:title" content="Kariéra — Přidej se k nám — PragueBest" />
+<meta property="og:title" content="Kariéra – Přidej se k nám – PragueBest" />
 <meta property="og:description" content="Přidej se k týmu PragueBest v Karlíně. Hledáme šikovné lidi na projekty pro přední české i mezinárodní klienty. Práce, která dává smysl." />
 <meta property="og:image" content="https://praguebest.cz/assets/og-kariera.jpg" />
 <meta property="og:site_name" content="PragueBest" />
 <meta property="og:locale" content="cs_CZ" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Kariéra — Přidej se k nám — PragueBest" />
+<meta name="twitter:title" content="Kariéra – Přidej se k nám – PragueBest" />
 <meta name="twitter:description" content="Přidej se k týmu PragueBest v Karlíně. Hledáme šikovné lidi na projekty pro přední české i mezinárodní klienty. Práce, která dává smysl." />
 <meta name="twitter:image" content="https://praguebest.cz/assets/og-kariera.jpg" />
 <script type="application/ld+json">
@@ -186,7 +203,7 @@
 
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal">Kariéra &nbsp;—&nbsp; Přijímáme &nbsp;—&nbsp; Praha · Karlín &nbsp;—&nbsp; 6 otevřených pozic</div>
+    <div class="idx reveal">Kariéra &nbsp;–&nbsp; Přijímáme &nbsp;–&nbsp; Praha · Karlín &nbsp;–&nbsp; 6 otevřených pozic</div>
     <h1 class="reveal d1">Přidej<br>se <span class="red">k nám.</span></h1>
 
     <div class="below">
@@ -387,7 +404,7 @@
       <div class="aside"><a href="kontakt.html" class="lnk">Poslat životopis <span class="arr">→</span></a></div>
     </div>
 
-    <div class="steps" style="grid-template-columns:repeat(4,1fr)">
+    <div class="steps steps-4">
       <div class="step reveal">
         <div class="n-lbl">Krok <span class="dur">Den 1–2</span></div>
         <div class="big-n">01<span class="mk">.</span></div>

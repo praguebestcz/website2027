@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin — Reference · PragueBest</title>
+<title>Admin – Reference · PragueBest</title>
 <script src="assets/data/references.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -346,7 +346,7 @@ body{
 <div class="modal-bg" id="modal">
   <div class="modal">
     <div class="modal-head">
-      <h3>references.js — náhled</h3>
+      <h3>references.js – náhled</h3>
       <button class="modal-close" onclick="closePreview()">×</button>
     </div>
     <pre id="preview-code"></pre>
@@ -480,7 +480,7 @@ function renderEditor() {
       <div class="badge-header${ref.badge && ref.badge.show ? ' is-on' : ''}" id="badge-header" onclick="toggleBadge()">
         <div class="badge-icon">WT</div>
         <div class="badge-label">
-          <strong>Badge — ocenění / štítek</strong>
+          <strong>Badge – ocenění / štítek</strong>
           <span>Kruhový odznak zobrazený na case study kartě (např. WT100, TOP 10…)</span>
         </div>
         <div class="badge-switch"></div>
@@ -529,7 +529,7 @@ function renderEditor() {
         <textarea oninput="update('headline',this.value)" placeholder="Krátký popis projektu...">${esc(ref.headline)}</textarea>
       </div>
       <div class="field form-full">
-        <label>Záložka — krátký popis pro ref-grid na homepage</label>
+        <label>Záložka – krátký popis pro ref-grid na homepage</label>
         <input type="text" value="${esc(ref.cat)}" oninput="update('cat',this.value)" placeholder="E-commerce · Headless · 13 zemí">
       </div>
       <div class="field">
@@ -539,7 +539,7 @@ function renderEditor() {
       </div>
     </div>
 
-    <div class="section-title">Screenshot mocku <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">— zobrazuje se v browser mock okně na homepage</span></div>
+    <div class="section-title">Screenshot mocku <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– zobrazuje se v browser mock okně na homepage</span></div>
     <input type="file" id="mock-file" accept="image/*" style="display:none" onchange="handleMock(this)">
     <div class="thumb-wrap">
       <div class="thumb-drop ${ref.mockImg ? 'has-img' : ''}" id="mock-drop" onclick="document.getElementById('mock-file').click()">
@@ -558,7 +558,7 @@ function renderEditor() {
       </div>
     </div>
 
-    <div class="section-title">Náhledový obrázek <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">— zobrazuje se místo gradientu v kartě na homepage</span></div>
+    <div class="section-title">Náhledový obrázek <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– zobrazuje se místo gradientu v kartě na homepage</span></div>
     <input type="file" id="thumb-file" accept="image/*" style="display:none" onchange="handleThumb(this)">
     <div class="thumb-wrap">
       <div class="thumb-drop ${ref.thumb ? 'has-img' : ''}" id="thumb-drop" onclick="document.getElementById('thumb-file').click()">
@@ -773,11 +773,11 @@ function safeStr(s) {
 function generateJS() {
   const lines = [];
   lines.push('/**');
-  lines.push(' * PragueBest — Case Studies databáze');
+  lines.push(' * PragueBest – Case Studies databáze');
   lines.push(' * Jediný zdroj pravdy pro všechny reference na webu.');
   lines.push(' *');
   lines.push(' * Přidání nové reference: přidej objekt do pole REFS.');
-  lines.push(' * Úprava: změň data zde — promítne se na reference.html i index.html.');
+  lines.push(' * Úprava: změň data zde – promítne se na reference.html i index.html.');
   lines.push(' *');
   lines.push(' * Složky s médii: assets/reference/<id>/');
   lines.push(' */');
@@ -824,7 +824,7 @@ function exportFile() {
   const a = document.createElement('a');
   a.href = url; a.download = 'references.js'; a.click();
   URL.revokeObjectURL(url);
-  toast('references.js stažen — přesuň ho do assets/data/');
+  toast('references.js stažen – přesuň ho do assets/data/');
 }
 
 // ── Preview modal ────────────────────────────────────────

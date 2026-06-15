@@ -1,5 +1,5 @@
 /* ===== NAV DROPDOWNS ===== */
-/* Additive styles — scoped with unique selectors (.has-dd, .dd) to avoid conflicts */
+/* Additive styles – scoped with unique selectors (.has-dd, .dd) to avoid conflicts */
 
 nav.top ul{align-items:center}
 nav.top ul li{display:flex;align-items:center}

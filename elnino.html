@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Elnino — Case Study — PragueBest</title>
+<title>Elnino – Case Study – PragueBest</title>
 <style>
 .hero-viz{padding:40px 0 120px}
 .hero-viz .frame{
@@ -92,7 +92,7 @@
 .step .dur{margin-left:auto;color:var(--mute);font-weight:500}
 .step ul{list-style:none;margin-top:18px;font-size:12px;font-family:var(--mono);color:var(--ink-3);line-height:1.9}
 .step ul li{padding-left:14px;position:relative}
-.step ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.step ul li::before{content:"–";position:absolute;left:0;color:var(--red)}
 
 /* ===================== APPROACH PILLARS ===================== */
 .pillars{padding:100px 0;border-top:1px solid var(--ink)}
@@ -255,18 +255,18 @@
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <script src="assets/quarter.js"></script>
-<meta name="description" content="Case study Elnino — jedna headless platforma pro 13 zemí a 330 poboček. Sjednocení evropské sítě parfumerií do jedné codebase. +214 % B2B konverze." />
+<meta name="description" content="Case study Elnino – jedna headless platforma pro 13 zemí a 330 poboček. Sjednocení evropské sítě parfumerií do jedné codebase. +214 % B2B konverze." />
 <meta name="keywords" content="Elnino, case study, headless e-commerce, PIM, UpSearch, 13 zemí, parfumerie, PragueBest" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://praguebest.cz/elnino" />
-<meta property="og:title" content="Elnino — Case Study — PragueBest" />
-<meta property="og:description" content="Case study Elnino — jedna headless platforma pro 13 zemí a 330 poboček. Sjednocení evropské sítě parfumerií do jedné codebase. +214 % B2B konverze." />
+<meta property="og:title" content="Elnino – Case Study – PragueBest" />
+<meta property="og:description" content="Case study Elnino – jedna headless platforma pro 13 zemí a 330 poboček. Sjednocení evropské sítě parfumerií do jedné codebase. +214 % B2B konverze." />
 <meta property="og:image" content="https://praguebest.cz/assets/og-elnino.jpg" />
 <meta property="og:site_name" content="PragueBest" />
 <meta property="og:locale" content="cs_CZ" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Elnino — Case Study — PragueBest" />
-<meta name="twitter:description" content="Case study Elnino — jedna headless platforma pro 13 zemí a 330 poboček. Sjednocení evropské sítě parfumerií do jedné codebase. +214 % B2B konverze." />
+<meta name="twitter:title" content="Elnino – Case Study – PragueBest" />
+<meta name="twitter:description" content="Case study Elnino – jedna headless platforma pro 13 zemí a 330 poboček. Sjednocení evropské sítě parfumerií do jedné codebase. +214 % B2B konverze." />
 <meta name="twitter:image" content="https://praguebest.cz/assets/og-elnino.jpg" />
 <script type="application/ld+json">
 {
@@ -339,7 +339,7 @@
 <!-- ===================== TITLE ===================== -->
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal" id="cs-category">Case Study 026 &nbsp;—&nbsp; Retail · B2B · Headless</div>
+    <div class="idx reveal" id="cs-category">Case Study 026 &nbsp;–&nbsp; Retail · B2B · Headless</div>
     <h1 class="reveal d1" id="cs-name">Elnino</h1>
     <p class="sub reveal d2" id="cs-headline">Jedna <b>headless platforma</b>, 13&nbsp;zemí, 330&nbsp;poboček. Sjednotili jsme evropskou síť parfumerií do&nbsp;jedné <b>codebase</b>.</p>
 
@@ -677,17 +677,17 @@
   if (!ref) return;
 
   // Page title
-  document.title = `${ref.name} — Case Study — PragueBest`;
+  document.title = `${ref.name} – Case Study – PragueBest`;
 
-  // .idx — category + cat
+  // .idx – category + cat
   const idxEl = document.getElementById('cs-category');
   if (idxEl) idxEl.textContent = ref.category;
 
-  // h1 — name (keep  sup)
+  // h1 – name (keep  sup)
   const h1 = document.getElementById('cs-name');
   if (h1) h1.textContent = ref.name;
 
-  // sub — headline
+  // sub – headline
   const sub = document.getElementById('cs-headline');
   if (sub) sub.innerHTML = ref.headline;
 
@@ -705,13 +705,13 @@
     if (ov) ov.style.display = 'block';
   }
 
-  // url bar — domain
+  // url bar – domain
   if (ref.domain) {
     const urlEl = document.getElementById('cs-url');
     if (urlEl) urlEl.textContent = ref.domain;
   }
 
-  // mockImg — replace fake device content with real screenshot
+  // mockImg – replace fake device content with real screenshot
   if (ref.mockImg) {
     const stage = document.getElementById('cs-stage');
     if (stage) {

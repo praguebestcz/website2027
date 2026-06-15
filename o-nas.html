@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>O nás — PragueBest</title>
+<title>O nás – PragueBest</title>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
 <style>
@@ -137,19 +137,37 @@
 
 /* ===== PROCESS ===== */
 .process{padding:80px 0;border-top:1px solid var(--ink)}
+
+@media(max-width:1100px){
+  .leadership{grid-template-columns:repeat(2,1fr)}
+  .tm-grid{grid-template-columns:repeat(2,1fr)}
+  .tech-partners{grid-template-columns:repeat(2,1fr)}
+  .a-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+}
+@media(max-width:720px){
+  .manifesto-card{padding:40px 28px 36px}
+  .manifesto-card .sig{grid-template-columns:1fr;gap:20px}
+  .v-grid{grid-template-columns:1fr}
+  .leadership{grid-template-columns:1fr}
+  .tm-grid{grid-template-columns:1fr}
+  .tech-partners{grid-template-columns:1fr}
+  .a-grid{grid-template-columns:1fr}
+  .comp-info{grid-template-columns:1fr}
+  .ip-grid{grid-template-columns:1fr;gap:24px}
+}
 </style>
-<meta name="description" content="Digitální agentura z Karlína od roku 1999. 37 lidí, 4 vlastní platformy, 180+ klientů. Nejsme továrna na weby — jsme partner, kterému záleží na výsledku." />
+<meta name="description" content="Digitální agentura z Karlína od roku 1999. 37 lidí, 4 vlastní platformy, 180+ klientů. Nejsme továrna na weby – jsme partner, kterému záleží na výsledku." />
 <meta name="keywords" content="o nás, PragueBest, digitální agentura, Karlín, Praha, e-shopy, weby, aplikace, tým, 1999" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://praguebest.cz/o-nas" />
-<meta property="og:title" content="O nás — PragueBest" />
-<meta property="og:description" content="Digitální agentura z Karlína od roku 1999. 37 lidí, 4 vlastní platformy, 180+ klientů. Nejsme továrna na weby — jsme partner, kterému záleží na výsledku." />
+<meta property="og:title" content="O nás – PragueBest" />
+<meta property="og:description" content="Digitální agentura z Karlína od roku 1999. 37 lidí, 4 vlastní platformy, 180+ klientů. Nejsme továrna na weby – jsme partner, kterému záleží na výsledku." />
 <meta property="og:image" content="https://praguebest.cz/assets/og-o-nas.jpg" />
 <meta property="og:site_name" content="PragueBest" />
 <meta property="og:locale" content="cs_CZ" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="O nás — PragueBest" />
-<meta name="twitter:description" content="Digitální agentura z Karlína od roku 1999. 37 lidí, 4 vlastní platformy, 180+ klientů. Nejsme továrna na weby — jsme partner, kterému záleží na výsledku." />
+<meta name="twitter:title" content="O nás – PragueBest" />
+<meta name="twitter:description" content="Digitální agentura z Karlína od roku 1999. 37 lidí, 4 vlastní platformy, 180+ klientů. Nejsme továrna na weby – jsme partner, kterému záleží na výsledku." />
 <meta name="twitter:image" content="https://praguebest.cz/assets/og-o-nas.jpg" />
 <script type="application/ld+json">
 {
@@ -209,7 +227,7 @@
 
 <section class="title">
   <div class="wrap">
-    <div class="idx reveal">Studio &nbsp;—&nbsp; Od 1999 &nbsp;—&nbsp; 37 lidí &nbsp;—&nbsp; Karlín, Praha</div>
+    <div class="idx reveal">Studio &nbsp;–&nbsp; Od 1999 &nbsp;–&nbsp; 37 lidí &nbsp;–&nbsp; Karlín, Praha</div>
     <h1 class="reveal d1">Partner,<br>ne <span class="red">dodavatel.</span></h1>
 
     <div class="below">
@@ -347,96 +365,24 @@
       </article>
     </div>
 
-    <!-- Team subsection: Design & Development -->
-    <div class="team-sub-head">
-      <div class="idx-t">Specialisté</div>
-      <h3>Ze <span class="red">zbytku týmu.</span></h3>
-      <div class="count-t">Zobrazeno 8 z&nbsp;<b>33 specialistů</b></div>
-    </div>
-
-    <div class="tm-grid">
-      <article class="tm a1">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Martina Veselá</b><small>Senior UX &middot; 8 let praxe</small></div>
-        </div>
-        <p class="bio-tm">Výzkumnice a&nbsp;analytička. Vždy začíná u&nbsp;uživatele, končí u&nbsp;dat.</p>
-      </article>
-
-      <article class="tm a2">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Petr Kučera</b><small>UI Designer &middot; 6 let praxe</small></div>
-        </div>
-        <p class="bio-tm">Pixel-perfect design a&nbsp;krásné animace. Design systems specialist.</p>
-      </article>
-
-      <article class="tm a3">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Jana Svobodová</b><small>Frontend Lead &middot; 10 let</small></div>
-        </div>
-        <p class="bio-tm">Vue.js expert. Headless architektura je&nbsp;její domov. PSM&nbsp;II.</p>
-      </article>
-
-      <article class="tm a4">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Tomáš Horák</b><small>Backend Lead &middot; 11 let</small></div>
-        </div>
-        <p class="bio-tm">PHP a&nbsp;Node.js guru. Integrace na&nbsp;SAP, Abra a&nbsp;legacy systémy.</p>
-      </article>
-
-      <article class="tm a5">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Lucie Dvořáková</b><small>Data Analyst &middot; 5 let</small></div>
-        </div>
-        <p class="bio-tm">SQL, Python, dashboardy. Umí z&nbsp;dat vytáhnout insight, který změní byznys.</p>
-      </article>
-
-      <article class="tm a6">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Ondřej Malý</b><small>Project Manager &middot; 7 let</small></div>
-        </div>
-        <p class="bio-tm">Scrum Master (PSM&nbsp;II). Koordinace, komunikace, žádný drama.</p>
-      </article>
-
-      <article class="tm a7">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>Anna Králová</b><small>Senior Developer &middot; 9 let</small></div>
-        </div>
-        <p class="bio-tm">Fullstack vývojářka s&nbsp;láskou k&nbsp;čistému kódu a&nbsp;TDD.</p>
-      </article>
-
-      <article class="tm a8">
-        <div class="head">
-          <div class="av"></div>
-          <div class="tx"><b>David Novotný</b><small>DevOps / SRE &middot; 8 let</small></div>
-        </div>
-        <p class="bio-tm">AWS, Kubernetes, Terraform. Udrží web nahoře i&nbsp;o&nbsp;Black Friday.</p>
-      </article>
-    </div>
 
     <!-- Team stats -->
-    <div class="team-nums">
-      <div class="tn">
+    <div class="stats-strip" style="grid-template-columns:repeat(4,1fr)">
+      <div class="s">
         <div class="n">37<span class="red">+</span></div>
         <div class="l">Specialistů celkem</div>
       </div>
-      <div class="tn">
-        <div class="n">9 let</div>
+      <div class="s">
+        <div class="n">9<sub>let</sub></div>
         <div class="l">Průměrná délka praxe</div>
       </div>
-      <div class="tn">
-        <div class="n">6 let</div>
+      <div class="s">
+        <div class="n">6<sub>let</sub></div>
         <div class="l">Průměrně ve firmě</div>
       </div>
-      <div class="tn">
+      <div class="s">
         <div class="n">100<span class="red">%</span></div>
-        <div class="l">In-house &middot; žádný outsourcing</div>
+        <div class="l">In-house · žádný outsourcing</div>
       </div>
     </div>
   </div>
@@ -636,34 +582,34 @@
       <div class="aside"><a href="kontakt.html" class="lnk">Napsat nám <span class="arr">→</span></a></div>
     </div>
 
-    <div class="p-grid">
-      <article class="pstep reveal">
-        <div class="n-big">0<span class="mk">1</span></div>
+    <div class="step-grid">
+      <article class="step reveal">
+        <div class="big-n">0<span class="mk">1</span></div>
         <h4>Seznámení</h4>
         <p>Probereme vaše cíle a&nbsp;potřeby. Pochopíme váš&nbsp;byznys a&nbsp;zákazníky.</p>
       </article>
-      <article class="pstep reveal d1">
-        <div class="n-big">0<span class="mk">2</span></div>
+      <article class="step reveal d1">
+        <div class="big-n">0<span class="mk">2</span></div>
         <h4>Analýza</h4>
         <p>Prozkoumáme trh, konkurenci, uživatele. Identifikujeme příležitosti.</p>
       </article>
-      <article class="pstep reveal d2">
-        <div class="n-big">0<span class="mk">3</span></div>
+      <article class="step reveal d2">
+        <div class="big-n">0<span class="mk">3</span></div>
         <h4>Návrh</h4>
         <p>Wireframy, design, technická specifikace. Víte přesně, co&nbsp;dostanete.</p>
       </article>
-      <article class="pstep reveal d3">
-        <div class="n-big">0<span class="mk">4</span></div>
+      <article class="step reveal d3">
+        <div class="big-n">0<span class="mk">4</span></div>
         <h4>Realizace</h4>
         <p>Vývoj, testování, iterace. Pravidelné dema a&nbsp;zpětná vazba.</p>
       </article>
-      <article class="pstep reveal">
-        <div class="n-big">0<span class="mk">5</span></div>
+      <article class="step reveal">
+        <div class="big-n">0<span class="mk">5</span></div>
         <h4>Spuštění</h4>
         <p>Go-live, školení, podpora. Jsme s&nbsp;vámi i&nbsp;po&nbsp;spuštění.</p>
       </article>
-      <article class="pstep reveal d1">
-        <div class="n-big">0<span class="mk">6</span></div>
+      <article class="step reveal d1">
+        <div class="big-n">0<span class="mk">6</span></div>
         <h4>Rozvoj</h4>
         <p>Průběžné vylepšování na&nbsp;základě dat. Partnerství na&nbsp;dlouho.</p>
       </article>

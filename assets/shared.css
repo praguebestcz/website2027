@@ -147,7 +147,7 @@ section.sx{padding:80px 0;position:relative}
 .card-base:hover p{color:rgba(242,236,224,.75)}
 .card-base ul{list-style:none;margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2}
 .card-base ul li{padding-left:14px;position:relative}
-.card-base ul li::before{content:"—";position:absolute;left:0;color:var(--red)}
+.card-base ul li::before{content:"–";position:absolute;left:0;color:var(--red)}
 .card-base:hover ul{color:rgba(242,236,224,.75)}
 .card-base:hover ul li::before{color:var(--red)}
 
@@ -182,6 +182,7 @@ footer .base .right{text-align:right}
 /* Responsive base */
 @media (max-width:1100px){
   .title .below,.meta-bar,footer .cols{grid-template-columns:1fr;gap:30px}
+  .title .below .ctas{justify-content:flex-start}
   .sec-head{grid-template-columns:1fr;gap:20px}
   .sec-head .aside{text-align:left}
 }
@@ -295,6 +296,8 @@ body.cursor-red body.cursor-red
 
 /* === PROCESS STEPS STEP === */
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:60px}
+.steps.steps-3{grid-template-columns:repeat(3,1fr)}
+.steps.steps-4{grid-template-columns:repeat(4,1fr)}
 .steps.steps-6{grid-template-columns:repeat(6,1fr)}
 .step{padding:40px 24px 48px;border-right:1px solid var(--line);position:relative;transition:background .5s var(--ease)}
 .step:last-child{border-right:none}
@@ -667,7 +670,7 @@ body.cursor-red body.cursor-red
 .statement .meta .yrs b{display:block;font-family:var(--sans);font-size:40px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-top:2px}
 
 /* === PROCESS GRID === */
-.p-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:60px}
+.p-grid,.step-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:60px}
 
 /* === LOGO GRID === */
 .logos{padding:80px 0}
@@ -744,8 +747,11 @@ body.cursor-red body.cursor-red
 .s-cell .dc{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.55;max-width:32ch}
 .s-cell:hover .dc{color:rgba(242,236,224,.7)}
 
-/* ===================== RESPONSIVE — COMPONENTS ===================== */
+/* ===================== RESPONSIVE – COMPONENTS ===================== */
 @media(max-width:1100px){
+  .wrap,.wrap-sm{padding:0 24px}
+  nav.top{padding:18px 24px}
+  nav.top.scrolled{padding:12px 24px}
   /* Srv-row */
   .srv-row{grid-template-columns:80px 1fr auto 50px;gap:24px}
   .srv-row h3{font-size:42px}
@@ -773,7 +779,7 @@ body.cursor-red body.cursor-red
   .case-card .viz{border-left:none;border-top:1px solid rgba(242,236,224,.08)}
   .case-card .meta{padding:36px 28px}
   /* Process grid */
-  .p-grid{grid-template-columns:repeat(3,1fr)}
+  .p-grid,.step-grid{grid-template-columns:repeat(3,1fr)}
   .steps.steps-6{grid-template-columns:repeat(3,1fr)}
   /* Stack */
   .stack-grid{grid-template-columns:1fr 1fr}
@@ -787,7 +793,7 @@ body.cursor-red body.cursor-red
   /* Ref grid */
   .ref-grid{grid-template-columns:1fr 1fr}
 }
-/* ===================== SRV-ROW — services accordion ===================== */
+/* ===================== SRV-ROW – services accordion ===================== */
 .srv-list{border-top:1px solid var(--line)}
 .srv-row{
   display:grid;grid-template-columns:100px 1fr auto 60px;gap:48px;align-items:center;
@@ -818,6 +824,9 @@ body.cursor-red body.cursor-red
 .srv-row:hover::before,.srv-row.active::before{transform:scaleX(1)}
 
 @media(max-width:720px){
+  .wrap,.wrap-sm{padding:0 16px}
+  nav.top{padding:14px 16px}
+  nav.top.scrolled{padding:10px 16px}
   /* Srv-row */
   .srv-row{grid-template-columns:48px 1fr;gap:16px}
   .srv-row .tags,.srv-row .icon-slot{display:none}
@@ -833,27 +842,27 @@ body.cursor-red body.cursor-red
   /* Stats */
   .stats-grid,.bs-grid,.inc-grid{grid-template-columns:1fr}
   .stats-strip{grid-template-columns:1fr}
-  /* T-grid + footer + steps */
-  .t-grid,.f-grid,.mod-grid,.fw-grid,.steps{grid-template-columns:1fr}
+  /* T-grid + footer */
+  .t-grid,.f-grid,.mod-grid,.fw-grid{grid-template-columns:1fr}
+  /* Steps – 2 col on mobile */
+  .steps,.steps.steps-3,.steps.steps-4,.steps.steps-6{grid-template-columns:repeat(2,1fr)}
+  .step:nth-child(2n){border-right:none}
+  .step:nth-last-child(-n+2){border-bottom:none}
   /* Case card */
   .case-card h3{font-size:44px}
   /* Sticker */
   .sticker{width:90px;height:90px;top:20px;right:20px}
   /* Process grid */
-  .p-grid{grid-template-columns:1fr 1fr}
+  .p-grid,.step-grid{grid-template-columns:1fr 1fr}
   /* Ref grid */
   .ref-grid{grid-template-columns:1fr}
   /* Statement meta */
   .statement .meta{grid-template-columns:1fr;gap:20px}
   .statement .meta .yrs{text-align:left}
-  /* Browser collage */
-  .col-wrap{height:480px}
-  .col-wrap .m1{width:80%}
-  .col-wrap .m2,.col-wrap .m3{display:none}
 }
 
 /* ===================== BROWSER COLLAGE ===================== */
-/* Floating browser-window screenshots — used on product hero sections */
+/* Floating browser-window screenshots – used on product hero sections */
 
 .collage{padding:60px 0 120px}
 
@@ -862,7 +871,7 @@ body.cursor-red body.cursor-red
   height:640px;
 }
 
-/* Individual browser cards — absolutely positioned */
+/* Individual browser cards – absolutely positioned */
 .col-wrap .card{
   position:absolute;
   border-radius:16px;
@@ -875,17 +884,25 @@ body.cursor-red body.cursor-red
   z-index:10;
 }
 
-/* Center card — largest, front */
+/* Center card – largest, front */
 .col-wrap .m1{left:50%;top:50%;transform:translate(-50%,-50%);width:54%;z-index:3}
 .col-wrap .m1:hover{transform:translate(-50%,-50%) translateY(-8px)}
 
-/* Left card — rotated back */
+/* Left card – rotated back */
 .col-wrap .m2{left:3%;top:12%;width:30%;transform:rotate(-3deg);z-index:2}
 .col-wrap .m2:hover{transform:rotate(-1deg) translateY(-6px)}
 
-/* Right card — rotated back */
+/* Right card – rotated back */
 .col-wrap .m3{right:3%;top:52%;width:30%;transform:rotate(2deg);z-index:2}
 .col-wrap .m3:hover{transform:rotate(0deg) translateY(-6px)}
+
+@media(max-width:720px){
+  .collage{padding:32px 0 48px}
+  .col-wrap{height:auto;display:flex;justify-content:center}
+  .col-wrap .card{position:static;transform:none !important;box-shadow:0 20px 40px -16px rgba(10,10,10,.3),0 0 0 1px rgba(10,10,10,.08)}
+  .col-wrap .m1{width:100%}
+  .col-wrap .m2,.col-wrap .m3{display:none}
+}
 
 /* Browser chrome bar */
 .bmock{background:#fff;color:var(--ink);overflow:hidden}

@@ -176,6 +176,21 @@
 /* ===== STATS ===== */
 .stats-shop{padding:80px 0;border-top:1px solid var(--ink)}
 .s-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .s-grid{grid-template-columns:repeat(2,1fr)}
+  .i-wrap{grid-template-columns:repeat(3,1fr)}
+  .care-grid{grid-template-columns:1fr;gap:48px}
+  .s-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+  .why-grid{grid-template-columns:1fr}
+  .s-grid{grid-template-columns:1fr}
+  .i-wrap{grid-template-columns:repeat(2,1fr)}
+  .admin{overflow-x:auto}
+  .admin .chrome,.admin-layout{min-width:760px}
+}
 </style>
 </head>
 <body>
@@ -241,7 +256,7 @@
 
     <div class="meta-bar reveal d4">
       <div class="m"><h6>Služba</h6><p>New · Migrace · Plus<small>Celý Shopify ekosystém</small></p></div>
-      <div class="m"><h6>Doba nasazení</h6><p>2 &mdash; 12 týdnů<small>Podle rozsahu</small></p></div>
+      <div class="m"><h6>Doba nasazení</h6><p>2 &ndash; 12 týdnů<small>Podle rozsahu</small></p></div>
       <div class="m"><h6>Projektů</h6><p>100<span style="color:var(--red)">+</span> dodaných<small>E-shopů v&nbsp;provozu</small></p></div>
       <div class="m"><h6>Investice od</h6><p>89 000 Kč<small>Starter balíček</small></p></div>
     </div>
@@ -350,7 +365,7 @@
 
           <div class="chart-row">
             <div class="chart-card">
-              <h5>Total sales &mdash; posledních 30&nbsp;dní</h5>
+              <h5>Total sales &ndash; posledních 30&nbsp;dní</h5>
               <div class="sub-c">Compared to previous period</div>
               <svg viewBox="0 0 700 140" preserveAspectRatio="none">
                 <defs>
@@ -443,14 +458,14 @@
         <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <div class="n">Důvod / 02</div>
         <h3>Globální dosah</h3>
-        <p>Prodávejte <b>kamkoli na&nbsp;světě</b>. Shopify Markets vyřeší jazyky, měny, daně, platební metody i&nbsp;dopravce &mdash; za&nbsp;pár kliků.</p>
+        <p>Prodávejte <b>kamkoli na&nbsp;světě</b>. Shopify Markets vyřeší jazyky, měny, daně, platební metody i&nbsp;dopravce &ndash; za&nbsp;pár kliků.</p>
       </article>
 
       <article class="why-card reveal d2">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <div class="n">Důvod / 03</div>
         <h3>Bez starostí</h3>
-        <p>Hosting, bezpečnost, PCI compliance, aktualizace, certifikáty, CDN &mdash; <b>o&nbsp;vše se&nbsp;stará Shopify</b>. Vy se&nbsp;soustředíte na&nbsp;produkt a&nbsp;marketing.</p>
+        <p>Hosting, bezpečnost, PCI compliance, aktualizace, certifikáty, CDN &ndash; <b>o&nbsp;vše se&nbsp;stará Shopify</b>. Vy se&nbsp;soustředíte na&nbsp;produkt a&nbsp;marketing.</p>
       </article>
     </div>
   </div>
@@ -470,7 +485,7 @@
         <div class="lbl-s">Služba / 01</div>
         <h3>Nový e-shop</h3>
         <div class="sub-st">Greenfield &middot; od&nbsp;89 000&nbsp;Kč</div>
-        <p>Profesionální úprava šablony nebo custom design. Kompletní setup, platby, dopravci, daně. Launch za&nbsp;2&mdash;4 týdny.</p>
+        <p>Profesionální úprava šablony nebo custom design. Kompletní setup, platby, dopravci, daně. Launch za&nbsp;2&ndash;4 týdny.</p>
         <ul>
           <li>Výběr &amp; úprava šablony</li>
           <li>Nastavení plateb a&nbsp;dopravy</li>
@@ -768,7 +783,7 @@
     <div class="care-grid">
       <div class="left reveal">
         <div class="lbl-cr">Monthly support</div>
-        <h3>Shopify Care &mdash; péče <span class="red">od A do Z.</span></h3>
+        <h3>Shopify Care &ndash; péče <span class="red">od A do Z.</span></h3>
         <p>Měsíční balíček podpory, který pokrývá <b>technický dohled, konzultace, správu obsahu, administraci aplikací i&nbsp;řešení incidentů</b>. Jeden kontakt na&nbsp;všechno.</p>
         <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci Shopify Care"><span>Chci Shopify Care</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
       </div>
@@ -829,13 +844,13 @@
         <div class="nb">/ 02</div>
         <div class="vl">100<span class="r">+</span></div>
         <div class="lb">E-commerce projektů</div>
-        <div class="dc">Desítky Shopify e-shopů v&nbsp;provozu &mdash; od&nbsp;malých DTC brandů po&nbsp;Shopify Plus.</div>
+        <div class="dc">Desítky Shopify e-shopů v&nbsp;provozu &ndash; od&nbsp;malých DTC brandů po&nbsp;Shopify Plus.</div>
       </div>
       <div class="s-cell reveal d2">
         <div class="nb">/ 03</div>
         <div class="vl">37<span class="r">+</span></div>
         <div class="lb">Specialistů</div>
-        <div class="dc">UX, dev, analytika, projekťáci &mdash; jeden kontakt, žádné koordinování vendorů.</div>
+        <div class="dc">UX, dev, analytika, projekťáci &ndash; jeden kontakt, žádné koordinování vendorů.</div>
       </div>
       <div class="s-cell reveal d3">
         <div class="nb">/ 04</div>

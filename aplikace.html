@@ -138,7 +138,7 @@
 .gen-mock .gm-body .table-g{display:flex;flex-direction:column;gap:4px}
 .gen-mock .gm-body .table-g .r-g{display:grid;grid-template-columns:1fr auto auto;gap:10px;padding:6px 10px;background:#faf7f0;border-radius:4px;font-size:9px;align-items:center}
 .gen-mock .gm-body .table-g .r-g b{font-weight:600}
-.gen-mock .gm-body .table-g .r-g .s-g{font-family:'Geist Mono',monospace;font-size:8px;padding:2px 6px;background:#fff;border-radius:3px;color:var(--red);font-weight:700}
+.gen-mock .gm-body .table-g .r-g .s-g{font-family:"Satoshi",sans-serif;font-size:8px;padding:2px 6px;background:#fff;border-radius:3px;color:var(--red);font-weight:700}
 
 /* Generation overlay (being built) */
 .gen-mock .scanner{position:absolute;left:0;right:0;top:58%;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);box-shadow:0 0 20px var(--red);animation:scan 3.5s linear infinite;pointer-events:none;z-index:2}
@@ -239,6 +239,14 @@
 
 @media(max-width:1100px){
   .cs-grid{grid-template-columns:repeat(2,1fr)}
+  .ai-hd{grid-template-columns:1fr;gap:28px}
+  .comp-bar .row-c{grid-template-columns:140px 1fr auto;gap:16px}
+}
+@media(max-width:720px){
+  .ai-body{grid-template-columns:1fr}
+  .ai-body .prompt{border-right:none;border-bottom:1px solid rgba(242,236,224,.08)}
+  .split{grid-template-columns:1fr}
+  .comp-bar .row-c{grid-template-columns:1fr;gap:6px}
 }
 </style>
 </head>
@@ -304,7 +312,7 @@
 
     <div class="meta-bar reveal d4">
       <div class="m"><h6>MVP</h6><p>2 týdny<small>AI vývoj</small></p></div>
-      <div class="m"><h6>Produkční verze</h6><p>6 &mdash; 16 týdnů<small>Lidský vývoj</small></p></div>
+      <div class="m"><h6>Produkční verze</h6><p>6 &ndash; 16 týdnů<small>Lidský vývoj</small></p></div>
       <div class="m"><h6>Stack</h6><p>Vue · React · Node<small>PHP · Python</small></p></div>
       <div class="m"><h6>Investice</h6><p>od 180 000 Kč<small>MVP fáze</small></p></div>
     </div>
@@ -363,7 +371,7 @@ do <em>2 týdnů</em>.</div>
           <div class="head-g">
             <div class="left-h">
               <span class="dot-g"></span>
-              <span class="t-g">Generated &mdash; Preview</span>
+              <span class="t-g">Generated &ndash; Preview</span>
             </div>
             <div class="tabs-g">
               <span class="on">Design</span>
@@ -430,13 +438,13 @@ do <em>2 týdnů</em>.</div>
         <h2>Rychlé MVP s&nbsp;<span class="red">AI</span>,<br>dokonalé finále s&nbsp;<span class="red">lidmi.</span></h2>
       </div>
       <div class="right">
-        <p>AI nástroje nám umožňují postavit <b>použitelný prototyp za&nbsp;2 týdny</b>, ne&nbsp;za&nbsp;2 měsíce. Následně přichází ke&nbsp;slovu lidé &mdash; <b>doladí, otestují, zabezpečí</b> a&nbsp;dotáhnou do&nbsp;produkce. To&nbsp;nejlepší z&nbsp;obou světů.</p>
+        <p>AI nástroje nám umožňují postavit <b>použitelný prototyp za&nbsp;2 týdny</b>, ne&nbsp;za&nbsp;2 měsíce. Následně přichází ke&nbsp;slovu lidé &ndash; <b>doladí, otestují, zabezpečí</b> a&nbsp;dotáhnou do&nbsp;produkce. To&nbsp;nejlepší z&nbsp;obou světů.</p>
       </div>
     </div>
 
     <div class="comp-bar">
       <div class="row-c trad">
-        <div class="label-r">Tradiční přístup<b>8 &mdash; 16 týdnů</b></div>
+        <div class="label-r">Tradiční přístup<b>8 &ndash; 16 týdnů</b></div>
         <div class="bar-c"></div>
         <div class="time-c">16 týdnů<sub>na prototyp</sub></div>
       </div>
@@ -496,14 +504,14 @@ do <em>2 týdnů</em>.</div>
         <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <div class="n">Typ / 01</div>
         <h4>Webové aplikace</h4>
-        <p>Interní systémy, dashboardy, portály &mdash; přístupné odkudkoli přes prohlížeč. SSO, role, audit log.</p>
+        <p>Interní systémy, dashboardy, portály &ndash; přístupné odkudkoli přes prohlížeč. SSO, role, audit log.</p>
       </article>
 
       <article class="t-item reveal d1">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 1 0 7 7l1-1"/></svg></div>
         <div class="n">Typ / 02</div>
         <h4>Integrace</h4>
-        <p>Propojení vašich systémů &mdash; ERP, CRM, e-shop, sklady. REST / GraphQL / SOAP, eventy, message queue.</p>
+        <p>Propojení vašich systémů &ndash; ERP, CRM, e-shop, sklady. REST / GraphQL / SOAP, eventy, message queue.</p>
       </article>
 
       <article class="t-item reveal d2">
@@ -571,7 +579,7 @@ do <em>2 týdnů</em>.</div>
       <article class="cs reveal">
         <div class="tag">ATS &middot; Onboarding</div>
         <h4>Recruitment systém</h4>
-        <p>Správa kandidátů, plánování pohovorů, onboarding &mdash; vše na&nbsp;jednom místě. LinkedIn integrace.</p>
+        <p>Správa kandidátů, plánování pohovorů, onboarding &ndash; vše na&nbsp;jednom místě. LinkedIn integrace.</p>
         <div class="cli">Klient<b>HR agentura</b><span class="yr">2025</span></div>
       </article>
 

@@ -58,7 +58,7 @@
 
 .chart-svg{width:100%;height:200px}
 .chart-svg .grid-l{stroke:rgba(242,236,224,.08);stroke-width:1}
-.chart-svg .axis{fill:rgba(242,236,224,.4);font-family:'Geist Mono',monospace;font-size:9px}
+.chart-svg .axis{fill:rgba(242,236,224,.4);font-family:"Satoshi",sans-serif;font-size:9px}
 .chart-svg .line-r{fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .chart-svg .line-g{fill:none;stroke:#5fcd86;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4 4}
 .chart-svg .area-r{fill:url(#grad-r);opacity:.4}
@@ -96,6 +96,11 @@
 /* ===== TOOLS ===== */
 .tools{padding:80px 0;border-top:1px solid var(--ink)}
 /* .i-grid / .i-cell → shared.css */
+
+@media(max-width:1100px){
+  .dash-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-body{grid-template-columns:1fr}
+}
 </style>
 <script src="assets/quarter.js"></script>
 <meta name="description" content="Data a analytika pro lepší rozhodování. GTM, server-side tracking, GA4, dashboardy, BI reporty. Nastavíme měření, které dává smysl. PragueBest, Praha." />
@@ -176,7 +181,7 @@
     <div class="below">
       <p class="lede reveal d2">
         Nastavíme vám <b>měření, které dává smysl</b>. GTM, server-side tracking,
-        dashboardy &mdash; všechno pro <span class="hi">informovaná rozhodnutí</span>, ne pro&nbsp;managementové pohádky.
+        dashboardy &ndash; všechno pro <span class="hi">informovaná rozhodnutí</span>, ne pro&nbsp;managementové pohádky.
       </p>
       <div class="ctas reveal d3">
         <a href="kontakt.html" class="btn"><span class="lbl" data-t="Chci audit analytiky"><span>Chci audit analytiky</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
@@ -186,9 +191,9 @@
 
     <div class="meta-bar reveal d4">
       <div class="m"><h6>Typický výstup</h6><p>GTM + Dashboards<small>Server-side, reporting</small></p></div>
-      <div class="m"><h6>Doba nasazení</h6><p>2 &mdash; 8 týdnů<small>Audit: 1 týden</small></p></div>
+      <div class="m"><h6>Doba nasazení</h6><p>2 &ndash; 8 týdnů<small>Audit: 1 týden</small></p></div>
       <div class="m"><h6>Stack</h6><p>GA4 · GTM · BQ<small>Looker · Power BI</small></p></div>
-      <div class="m"><h6>Hodinová sazba</h6><p>2 400 &mdash; 3 200 Kč<small>Podle seniority</small></p></div>
+      <div class="m"><h6>Hodinová sazba</h6><p>2 400 &ndash; 3 200 Kč<small>Podle seniority</small></p></div>
     </div>
   </div>
 </section>
@@ -248,7 +253,7 @@
         <div class="chart-main">
           <div class="head-c">
             <div>
-              <h5>Revenue vs. Sessions &mdash; posledních 30 dní</h5>
+              <h5>Revenue vs. Sessions &ndash; posledních 30 dní</h5>
               <div class="sub-c">zdroj: GA4 + Server-side GTM · updated 2 min ago</div>
             </div>
             <div class="legend">
@@ -376,7 +381,7 @@
             <h4>Custom dashboardy</h4>
           </div>
         </div>
-        <p class="desc">Přehledné dashboardy pro rychlé rozhodování &mdash; management, marketing, sales.</p>
+        <p class="desc">Přehledné dashboardy pro rychlé rozhodování &ndash; management, marketing, sales.</p>
         <ul>
           <li>Looker Studio (Data Studio)</li>
           <li>Power BI &amp; Tableau</li>
@@ -420,7 +425,7 @@
       <article class="c-item reveal">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></div>
         <h4>Přesnější data</h4>
-        <p>Obejdete ad-blockery a&nbsp;ITP omezení prohlížečů. Získáte 15&mdash;30&nbsp;% dat navíc.</p>
+        <p>Obejdete ad-blockery a&nbsp;ITP omezení prohlížečů. Získáte 15&ndash;30&nbsp;% dat navíc.</p>
         <div class="bonus">+15 – 30% dat</div>
       </article>
 

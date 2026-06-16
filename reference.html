@@ -91,6 +91,10 @@
 #refs-container .case-card.flopped {
   animation: cardFlop 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+/* Celá karta klikací – překryvný odkaz */
+#refs-container .case-card { position: relative; }
+#refs-container .case-card .card-link { position: absolute; inset: 0; z-index: 3; border-radius: 24px; }
+#refs-container .case-card .meta .actions { position: relative; z-index: 4; }
 </style>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
@@ -387,6 +391,7 @@
     })() : '';
 
     return `<article class="case-card reveal" data-tags="${ref.tags.join(' ')}">
+      <a class="card-link" href="${ref.href}" aria-label="${ref.name} – celá case study"></a>
       ${wtBadge}
       <div class="meta">
         <div>

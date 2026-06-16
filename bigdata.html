@@ -165,6 +165,16 @@
 /* ===== INTEGRATIONS ===== */
 .integ{padding:80px 0;border-top:1px solid var(--ink)}
 /* .i-grid / .i-cell → shared.css */
+
+@media(max-width:1100px){
+  .r-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+  .h-row{grid-template-columns:1fr;gap:32px}
+  .h-row::after{display:none}
+  .bdm-flow{overflow-x:auto}
+  .bdm-flow-bar,.bdm-flow-body{min-width:760px}
+}
 </style>
 <meta name="description" content="Vlastní platforma pro datovou inteligenci e-shopu. Doporučování produktů, obohacení katalogu, profilování zákazníků, BI reporty. 40+ nasazení, +20 % konverze." />
 <meta name="keywords" content="BigDataManager, datová inteligence pro e-shop, AI doporučování produktů, segmentace zákazníků, RFM analýza, BI dashboardy, personalizace e-shopu, Karlín, Praha, PragueBest" />
@@ -504,7 +514,7 @@ ZAKOMENTOVÁNO -->
             <h4>Doporučování produktů</h4>
           </div>
         </div>
-        <p class="desc">„Zákazníci, kteří koupili X, koupili i&nbsp;Y" &mdash; personalizovaná doporučení v&nbsp;reálném čase. Learn-to-rank model učený na&nbsp;historických datech.</p>
+        <p class="desc">„Zákazníci, kteří koupili X, koupili i&nbsp;Y" &ndash; personalizovaná doporučení v&nbsp;reálném čase. Learn-to-rank model učený na&nbsp;historických datech.</p>
         <ul>
           <li>Cross-sell &amp; up-sell engine</li>
           <li>Podobné produkty (content-based)</li>
@@ -631,7 +641,7 @@ ZAKOMENTOVÁNO -->
         <div class="n-r">/ 03</div>
         <div class="v-r">&minus;25<sub style="font-size:.6em">%</sub></div>
         <div class="l-r">Odchod zákazníků</div>
-        <div class="d-r">Predikce churn umožňuje včasný zásah &mdash; retention kampaň, sleva, komunikace.</div>
+        <div class="d-r">Predikce churn umožňuje včasný zásah &ndash; retention kampaň, sleva, komunikace.</div>
       </div>
       <div class="r-cell reveal d3">
         <div class="n-r">/ 04</div>

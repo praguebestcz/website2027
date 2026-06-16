@@ -127,7 +127,7 @@
 .pt-row .pv{font-size:15px;font-weight:700;color:var(--ink)}
 .pt-row .sub-note{font-size:11px;color:var(--mute);font-family:var(--mono);display:block;margin-top:2px}
 
-@media(max-width:1024px){
+@media(max-width:1100px){
   .pkg-grid{grid-template-columns:1fr}
   .int-grid{grid-template-columns:repeat(2,1fr)}
 
@@ -135,10 +135,11 @@
   .pt-head{grid-template-columns:1fr 1fr}
   .pt-row{grid-template-columns:1fr 1fr}
 }
-@media(max-width:700px){
+@media(max-width:720px){
   .qa summary{grid-template-columns:40px 1fr 36px;gap:16px}
   .qa .answer{padding:0 16px 24px 56px}
   .pt-head,.pt-row{grid-template-columns:1fr}
+  .int-grid{grid-template-columns:1fr}
 }
 </style>
 <link rel="stylesheet" href="../assets/shared.css">
@@ -352,7 +353,7 @@
       <h2>Technologie, kterým <span class="red">rozumíme.</span></h2>
       <p class="lede" style="color:rgba(242,236,224,.6);font-size:15px;max-width:55ch;margin-top:12px">Stavíme na standardním Shopify stacku plus custom rozšířeních. Liquid pro storefront, Hydrogen pro headless, Apps pro funkce a integrace.</p>
     </div>
-    <div class="stack-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="stack-grid">
       <div class="stack-item"><div class="lg">Shopify Liquid</div><div class="cat">Storefront (OS 2.0)</div></div>
       <div class="stack-item"><div class="lg">Hydrogen</div><div class="cat">Headless · React</div></div>
       <div class="stack-item"><div class="lg">Oxygen</div><div class="cat">Hosting</div></div>
@@ -373,7 +374,7 @@
       <h2>Integrace, na&nbsp;které jste <span class="red">zvyklí.</span></h2>
     </div>
     <p style="font-size:16px;color:var(--ink-3);max-width:60ch;margin-bottom:48px">Shopify má rozsáhlý ekosystém apps a integrací pro většinu české i mezinárodní reality.</p>
-    <div class="int-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="int-grid">
       <div class="int-card"><div class="in">/ 01</div><h5>ERP &amp; účetnictví</h5><p>Pohoda · SAP · MS Dynamics · Money apps · Xero · QuickBooks</p></div>
       <div class="int-card"><div class="in">/ 02</div><h5>Sklady &amp; fulfillment</h5><p>Shopify Fulfillment Network · Shopify Shipping · ShipStation · vlastní WMS apps</p></div>
       <div class="int-card"><div class="in">/ 03</div><h5>Platební brány</h5><p>Shopify Payments · GoPay · ComGate · Stripe · PayPal · Klarna · Twisto</p></div>

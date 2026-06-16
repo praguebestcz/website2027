@@ -18,7 +18,7 @@
   --line:rgba(10,10,10,.12);--line-2:rgba(10,10,10,.06);
   --red:#e30613;--red-2:#b8050f;
   --sans:"Satoshi",system-ui,-apple-system,sans-serif;
-  --mono:"Geist Mono",ui-monospace,monospace;
+  --mono:"Satoshi",sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
 }
@@ -209,8 +209,6 @@ footer .base .right{text-align:right}
 .lnk .arr{display:inline-block;transition:transform .4s var(--ease)}
 .lnk:hover .arr{transform:translateX(4px)}
 
-/* ===================== CURSOR_RED ===================== */
-body.cursor-red body.cursor-red 
 /* ===================== TITLE_EXTRA ===================== */
 .title .lede{margin-top:44px;font-size:clamp(20px,2vw,28px);font-weight:400;letter-spacing:-.015em;line-height:1.35;max-width:38ch;color:var(--ink-3)}
 .title .lede b{color:var(--ink);font-weight:600}
@@ -225,8 +223,8 @@ body.cursor-red body.cursor-red
 
 /* === NCELL === */
 .num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-@media(max-width:1024px){.num-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.num-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.num-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.num-grid{grid-template-columns:1fr}}
 
 .ncell{
   padding:48px 40px 44px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -852,6 +850,7 @@ body.cursor-red body.cursor-red
   .step:nth-last-child(-n+2){border-bottom:none}
   /* Case card */
   .case-card h3{font-size:44px}
+  .case-card .kpi{grid-template-columns:1fr 1fr 1fr;gap:16px}
   /* Sticker */
   .sticker{width:90px;height:90px;top:20px;right:20px}
   /* Process grid */
@@ -978,7 +977,7 @@ body.cursor-red body.cursor-red
 .cross-sell{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
 .cross-sell p{font-size:14px;color:var(--ink-3);margin-bottom:8px}
 .cross-sell a{color:var(--red);font-weight:600;text-decoration:none;font-size:14px;display:block;margin-bottom:6px}
-@media(max-width:1024px){.inv-grid{grid-template-columns:1fr;gap:40px}}
+@media(max-width:1100px){.inv-grid{grid-template-columns:1fr;gap:40px}}
 
 
 /* ===================== INTEGRATIONS GRID (.i-grid / .i-cell) ===================== */
@@ -989,5 +988,5 @@ body.cursor-red body.cursor-red
 .i-cell:hover::before{transform:scaleX(1)}
 .i-cell b{font-size:17px;font-weight:700;letter-spacing:-.015em;color:var(--ink);text-align:center}
 .i-cell small{font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-@media(max-width:1024px){.i-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.i-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.i-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.i-grid{grid-template-columns:repeat(2,1fr)}}

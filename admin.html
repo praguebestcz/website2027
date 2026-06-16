@@ -140,6 +140,15 @@ body{
 .kpi-row .kpi-bottom{grid-column:1/3;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .kpi-row input:focus{border-color:var(--ink)}
 .kpi-row .preview{font-size:11px;color:var(--mute)}
+/* KPI / Výsledek karty */
+.kpi-card{border:1px solid var(--line);border-radius:10px;background:#faf7f1;padding:16px 16px 18px}
+.kpi-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.kpi-card-num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.kpi-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kpi-card-grid .field label{font-size:10px}
+.kpi-card-grid .field input,.kpi-card-grid .field textarea{padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;font-family:var(--sans);font-size:13px;color:var(--ink);outline:none;transition:border-color .15s;width:100%}
+.kpi-card-grid .field textarea{resize:vertical;min-height:60px;font-size:12px;line-height:1.5}
+.kpi-card-grid .field input:focus,.kpi-card-grid .field textarea:focus{border-color:var(--ink)}
 .btn-kpi-del{
   width:32px;height:32px;border:1px solid #f0bcc0;background:transparent;
   color:#c0293a;border-radius:6px;cursor:pointer;font-size:16px;
@@ -406,13 +415,16 @@ function addRef() {
   data.push({
     id: 'nova-reference',
     name: 'Nová reference',
-    sup: '',
     headline: '',
     category: 'E-shop',
     year: new Date().getFullYear().toString(),
     tags: ['eshop'],
       href: '#',
     cat: '',
+    meta: { klient: { a:'', b:'' }, rok: { a:'', b:'' }, sluzby: { a:'', b:'' }, stack: { a:'', b:'' } },
+    initial: { heading:'', lead:'', p1:'', p2:'', p3:'' },
+    quote: { text:'', name:'', role:'' },
+    pillars: [{ title:'', desc:'' }],
     kpis: [{ label: '', value: '' }]
   });
   selectRef(data.length - 1);
@@ -437,16 +449,53 @@ function renderEditor() {
 
   // KPIs
   const kpisHtml = ref.kpis.map((k, i) => `
-    <div class="kpi-row">
-      <input type="text" value="${esc(k.label)}" placeholder="Krátký popis (karty)"
-        oninput="updateKpi(${i},'label',this.value)">
-      <input type="text" value="${esc(k.value)}" placeholder='Hodnota (HTML ok, +214%)'
-        oninput="updateKpi(${i},'value',this.value)">
-      <button class="btn-kpi-del" onclick="removeKpi(${i})" title="Odstranit" style="align-self:start;margin-top:1px">×</button>
-      <div class="kpi-bottom">
-        <input type="text" value="${esc(k.title||'')}" placeholder="Nadpis (detail stránka)"
-          oninput="updateKpi(${i},'title',this.value)">
-        <textarea placeholder="Popis (detail stránka)" oninput="updateKpi(${i},'desc',this.value)">${esc(k.desc||'')}</textarea>
+    <div class="kpi-card">
+      <div class="kpi-card-head">
+        <span class="kpi-card-num">Výsledek / ${String(i+1).padStart(2,'0')}</span>
+        <button class="btn-kpi-del" onclick="removeKpi(${i})" title="Odstranit">×</button>
+      </div>
+      <div class="kpi-card-grid">
+        <div class="field">
+          <label>Hodnota <span style="font-weight:400;color:#bbb">(HTML ok, +214%)</span></label>
+          <input type="text" value="${esc(k.value)}" placeholder='<span class="red">+</span>214%' oninput="updateKpi(${i},'value',this.value)">
+        </div>
+        <div class="field">
+          <label>Krátký popis <span style="font-weight:400;color:#bbb">(karta na homepage)</span></label>
+          <input type="text" value="${esc(k.label)}" placeholder="Konverze B2B" oninput="updateKpi(${i},'label',this.value)">
+        </div>
+        <div class="field form-full">
+          <label>Nadpis <span style="font-weight:400;color:#bbb">(detail stránka)</span></label>
+          <input type="text" value="${esc(k.title||'')}" placeholder="Konverze v B2B sekci" oninput="updateKpi(${i},'title',this.value)">
+        </div>
+        <div class="field form-full">
+          <label>Popis <span style="font-weight:400;color:#bbb">(detail stránka)</span></label>
+          <textarea placeholder="Co se měřilo, za jaké období, jak se počítá." oninput="updateKpi(${i},'desc',this.value)">${esc(k.desc||'')}</textarea>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Case study detail – šablona (elnino.html)
+  const meta = ref.meta || {};
+  const mk = meta.klient || {}, mr = meta.rok || {}, ms = meta.sluzby || {}, mst = meta.stack || {};
+  const ini = ref.initial || {};
+  const q = ref.quote || {};
+  const pillars = ref.pillars || [];
+  const pillarsHtml = pillars.map((p, i) => `
+    <div class="kpi-card">
+      <div class="kpi-card-head">
+        <span class="kpi-card-num">Pilíř / ${String(i+1).padStart(2,'0')}</span>
+        <button class="btn-kpi-del" onclick="removePillar(${i})" title="Odstranit">×</button>
+      </div>
+      <div class="kpi-card-grid">
+        <div class="field form-full">
+          <label>Název pilíře</label>
+          <input type="text" value="${esc(p.title)}" placeholder="Jedna codebase" oninput="updatePillar(${i},'title',this.value)">
+        </div>
+        <div class="field form-full">
+          <label>Popis <span style="font-weight:400;color:#bbb">(co bylo uděláno a proč, 2–3 věty)</span></label>
+          <textarea placeholder="Nuxt 3 monorepo s lokalizací na úrovni route…" oninput="updatePillar(${i},'desc',this.value)">${esc(p.desc||'')}</textarea>
+        </div>
       </div>
     </div>
   `).join('');
@@ -539,6 +588,93 @@ function renderEditor() {
       </div>
     </div>
 
+    <div class="section-title" style="margin-top:8px;color:var(--red)">— Detail case study —</div>
+
+    <div class="section-title">Meta-bar <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– Klient · Rok · Služby · Stack (každý 2 řádky)</span></div>
+    <div class="kpi-card"><div class="form-grid">
+      <div class="field">
+        <label>KLIENT – řádek 1</label>
+        <input type="text" value="${esc(mk.a||'')}" oninput="updateMeta('klient','a',this.value)" placeholder="Elnino Partners">
+      </div>
+      <div class="field">
+        <label>KLIENT – řádek 2</label>
+        <input type="text" value="${esc(mk.b||'')}" oninput="updateMeta('klient','b',this.value)" placeholder="Parfumerie · Retail">
+      </div>
+      <div class="field">
+        <label>ROK – řádek 1</label>
+        <input type="text" value="${esc(mr.a||'')}" oninput="updateMeta('rok','a',this.value)" placeholder="2024–2025">
+      </div>
+      <div class="field">
+        <label>ROK – řádek 2</label>
+        <input type="text" value="${esc(mr.b||'')}" oninput="updateMeta('rok','b',this.value)" placeholder="11 měsíců vývoje">
+      </div>
+      <div class="field">
+        <label>SLUŽBY – řádek 1</label>
+        <input type="text" value="${esc(ms.a||'')}" oninput="updateMeta('sluzby','a',this.value)" placeholder="E-shop, PIM, UpSearch">
+      </div>
+      <div class="field">
+        <label>SLUŽBY – řádek 2</label>
+        <input type="text" value="${esc(ms.b||'')}" oninput="updateMeta('sluzby','b',this.value)" placeholder="Design + vývoj + provoz">
+      </div>
+      <div class="field">
+        <label>STACK – řádek 1</label>
+        <input type="text" value="${esc(mst.a||'')}" oninput="updateMeta('stack','a',this.value)" placeholder="Nuxt 3 · Elastic">
+      </div>
+      <div class="field">
+        <label>STACK – řádek 2</label>
+        <input type="text" value="${esc(mst.b||'')}" oninput="updateMeta('stack','b',this.value)" placeholder="PHP · ERP Abra">
+      </div>
+    </div></div>
+
+    <div class="section-title">Výchozí stav</div>
+    <div class="kpi-card"><div class="form-grid">
+      <div class="field form-full">
+        <label>Nadpis</label>
+        <input type="text" value="${esc(ini.heading||'')}" oninput="updateInitial('heading',this.value)" placeholder="Třináct e-shopů, které si nerozuměly.">
+      </div>
+      <div class="field form-full">
+        <label>Úvodní věta (velký text vlevo)</label>
+        <textarea oninput="updateInitial('lead',this.value)" placeholder="Každá země řešila stejný problém svým vlastním způsobem…">${esc(ini.lead||'')}</textarea>
+      </div>
+      <div class="field form-full">
+        <label>Odstavec 1</label>
+        <textarea oninput="updateInitial('p1',this.value)" placeholder="Detailní popis situace před projektem. 3–4 věty.">${esc(ini.p1||'')}</textarea>
+      </div>
+      <div class="field form-full">
+        <label>Odstavec 2</label>
+        <textarea oninput="updateInitial('p2',this.value)" placeholder="Konkrétní dopad problému — zákazníci, tržby, provoz, tým. 3–4 věty.">${esc(ini.p2||'')}</textarea>
+      </div>
+      <div class="field form-full">
+        <label>Odstavec 3</label>
+        <textarea oninput="updateInitial('p3',this.value)" placeholder="Zadání — co přesně bylo naším cílem. 2–3 věty.">${esc(ini.p3||'')}</textarea>
+      </div>
+    </div></div>
+
+    <div class="section-title">Citát</div>
+    <div class="kpi-card"><div class="form-grid">
+      <div class="field form-full">
+        <label>Text citátu <span style="font-weight:400;color:#bbb">– max 30 slov</span></label>
+        <textarea oninput="updateQuote('text',this.value)" placeholder="Hledali jsme partnera, který rozumí retailu i datům…">${esc(q.text||'')}</textarea>
+      </div>
+      <div class="field">
+        <label>Jméno a příjmení</label>
+        <input type="text" value="${esc(q.name||'')}" oninput="updateQuote('name',this.value)" placeholder="Tomáš Mareš">
+      </div>
+      <div class="field">
+        <label>Pozice · Firma</label>
+        <input type="text" value="${esc(q.role||'')}" oninput="updateQuote('role',this.value)" placeholder="CEO · Elnino Partners">
+      </div>
+    </div></div>
+
+    <div class="section-title">Přístup / Pilíře <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– lze přidat/odebrat</span></div>
+    <div class="kpi-list" id="pillar-list">
+      ${pillarsHtml}
+    </div>
+    <button class="btn-kpi-add" onclick="addPillar()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Přidat pilíř
+    </button>
+
     <div class="section-title">Screenshot mocku <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– zobrazuje se v browser mock okně na homepage</span></div>
     <input type="file" id="mock-file" accept="image/*" style="display:none" onchange="handleMock(this)">
     <div class="thumb-wrap">
@@ -581,7 +717,7 @@ function renderEditor() {
     <div class="tags-grid">${tagsHtml}</div>
 
 
-    <div class="section-title">KPI metriky</div>
+    <div class="section-title">Výsledky <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– metriky (hodnota +XX%, název, popis)</span></div>
     <div class="kpi-list" id="kpi-list">
       ${kpisHtml}
     </div>
@@ -669,25 +805,58 @@ function updateKpi(i, key, val) {
   data[activeIdx].kpis[i][key] = val;
 }
 
+// ── Case study detail (šablona) ──────────────────────────
+function updateMeta(block, key, val) {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  if (!ref.meta) ref.meta = {};
+  if (!ref.meta[block]) ref.meta[block] = {};
+  ref.meta[block][key] = val;
+}
+
+function updateInitial(key, val) {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  if (!ref.initial) ref.initial = {};
+  ref.initial[key] = val;
+}
+
+function updateQuote(key, val) {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  if (!ref.quote) ref.quote = {};
+  ref.quote[key] = val;
+}
+
+function updatePillar(i, key, val) {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  if (!ref.pillars) return;
+  ref.pillars[i][key] = val;
+}
+
+function addPillar() {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  if (!ref.pillars) ref.pillars = [];
+  ref.pillars.push({ title: '', desc: '' });
+  renderEditor();
+}
+
+function removePillar(i) {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  if (!ref.pillars) return;
+  ref.pillars.splice(i, 1);
+  renderEditor();
+}
+
 function addKpi() {
   if (activeIdx === null) return;
   data[activeIdx].kpis.push({ label: '', value: '', title: '', desc: '' });
-  // append without full re-render
-  const list = document.getElementById('kpi-list');
-  const i = data[activeIdx].kpis.length - 1;
-  const row = document.createElement('div');
-  row.className = 'kpi-row';
-  row.innerHTML = `
-    <input type="text" value="" placeholder="Krátký popis (karty)" oninput="updateKpi(${i},'label',this.value)">
-    <input type="text" value="" placeholder='Hodnota' oninput="updateKpi(${i},'value',this.value)">
-    <button class="btn-kpi-del" onclick="removeKpi(${i})" title="Odstranit" style="align-self:start;margin-top:1px">×</button>
-    <div class="kpi-bottom">
-      <input type="text" value="" placeholder="Nadpis (detail stránka)" oninput="updateKpi(${i},'title',this.value)">
-      <textarea placeholder="Popis (detail stránka)" oninput="updateKpi(${i},'desc',this.value)"></textarea>
-    </div>
-  `;
-  list.appendChild(row);
-  row.querySelector('input').focus();
+  renderEditor();
+  const inputs = document.querySelectorAll('#kpi-list .kpi-card:last-child input');
+  if (inputs.length) inputs[0].focus();
 }
 
 function handleThumb(input) {
@@ -802,6 +971,30 @@ function generateJS() {
     if (ref.thumb)   lines.push(`    thumb:    '${safeStr(ref.thumb)}',`);
     if (ref.badge)   lines.push(`    badge:    { show: ${ref.badge.show ? 'true' : 'false'}, text: '${safeStr(ref.badge.text||'WT100')}', year: '${safeStr(ref.badge.year||ref.year||'2025')}' },`);
     lines.push(`    cat:      '${safeStr(ref.cat)}',`);
+    // Meta-bar (detail)
+    const m = ref.meta || {};
+    if (['klient','rok','sluzby','stack'].some(b => m[b] && (m[b].a || m[b].b))) {
+      const mb = b => `{ a: '${safeStr((m[b]||{}).a)}', b: '${safeStr((m[b]||{}).b)}' }`;
+      lines.push(`    meta: { klient: ${mb('klient')}, rok: ${mb('rok')}, sluzby: ${mb('sluzby')}, stack: ${mb('stack')} },`);
+    }
+    // Výchozí stav
+    const ini = ref.initial || {};
+    if (['heading','lead','p1','p2','p3'].some(k => ini[k])) {
+      const ip = ['heading','lead','p1','p2','p3'].filter(k => ini[k]).map(k => `${k}: '${safeStr(ini[k])}'`);
+      lines.push(`    initial: { ${ip.join(', ')} },`);
+    }
+    // Citát
+    const q = ref.quote || {};
+    if (q.text || q.name || q.role) {
+      lines.push(`    quote: { text: '${safeStr(q.text)}', name: '${safeStr(q.name)}', role: '${safeStr(q.role)}' },`);
+    }
+    // Přístup / pilíře
+    const pil = (ref.pillars || []).filter(p => p.title || p.desc);
+    if (pil.length) {
+      lines.push(`    pillars: [`);
+      pil.forEach(p => lines.push(`      { title: '${safeStr(p.title)}', desc: '${safeStr(p.desc)}' },`));
+      lines.push(`    ],`);
+    }
     lines.push(`    kpis: [`);
     ref.kpis.forEach(k => {
       const kLine = [`label: '${safeStr(k.label)}'`, `value: '${safeStr(k.value)}'`];

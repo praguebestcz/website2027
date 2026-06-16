@@ -460,21 +460,21 @@
     <div class="pillar-grid" id="cs-pillars">
       <article class="pillar reveal">
         <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-        <div class="n">Pilíř / 01</div>
+        <div class="n">Řešení / 01</div>
         <h4>Jedna codebase</h4>
         <p>Nuxt 3 monorepo s&nbsp;lokalizací na&nbsp;úrovni route. Každá země má vlastní obsah, ceník a&nbsp;logistiku &ndash; kód je ale jeden.</p>
       </article>
 
       <article class="pillar reveal d1">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 10l9 4 9-4M3 14l9 4 9-4"/></svg></div>
-        <div class="n">Pilíř / 02</div>
+        <div class="n">Řešení / 02</div>
         <h4>Headless PIM</h4>
         <p>Centrální katalog s&nbsp;produkty, obrázky a&nbsp;překlady. Nový produkt se přidá jednou &ndash; a&nbsp;do hodiny je na&nbsp;všech 13 trzích.</p>
       </article>
 
       <article class="pillar reveal d2">
         <div class="ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15 15l5 5"/></svg></div>
-        <div class="n">Pilíř / 03</div>
+        <div class="n">Řešení / 03</div>
         <h4>UpSearch</h4>
         <p>Vlastní vyhledávání s&nbsp;tolerancí překlepů ve&nbsp;13&nbsp;jazycích, kontextovým řazením a&nbsp;learn-to-rank modelem na&nbsp;historických objednávkách.</p>
       </article>
@@ -773,7 +773,7 @@
     setHtml('cs-quote-role', q.role);
   }
 
-  // Přístup – pilíře
+  // Přístup – řešení
   if (ref.pillars && ref.pillars.length) {
     const grid = document.getElementById('cs-pillars');
     if (grid) {
@@ -786,7 +786,7 @@
       grid.innerHTML = ref.pillars.map((p, i) => `
         <article class="pillar ${delays[i] || 'reveal'}">
           <div class="ico"><svg viewBox="0 0 24 24">${icons[i % icons.length]}</svg></div>
-          <div class="n">Pilíř / ${String(i + 1).padStart(2, '0')}</div>
+          <div class="n">Řešení / ${String(i + 1).padStart(2, '0')}</div>
           <h4>${p.title || ''}</h4>
           <p>${p.desc || ''}</p>
         </article>`).join('');

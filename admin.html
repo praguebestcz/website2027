@@ -490,12 +490,12 @@ function renderEditor() {
   const pillarsHtml = pillars.map((p, i) => `
     <div class="kpi-card">
       <div class="kpi-card-head">
-        <span class="kpi-card-num">Pilíř / ${String(i+1).padStart(2,'0')}</span>
+        <span class="kpi-card-num">Řešení / ${String(i+1).padStart(2,'0')}</span>
         <button class="btn-kpi-del" onclick="removePillar(${i})" title="Odstranit">×</button>
       </div>
       <div class="kpi-card-grid">
         <div class="field form-full">
-          <label>Název pilíře</label>
+          <label>Název řešení</label>
           <input type="text" value="${esc(p.title)}" placeholder="Jedna codebase" oninput="updatePillar(${i},'title',this.value)">
         </div>
         <div class="field form-full">
@@ -683,13 +683,13 @@ function renderEditor() {
       </div>
     </div></div>
 
-    <div class="section-title">Přístup / Pilíře <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– lze přidat/odebrat</span></div>
+    <div class="section-title">Přístup / Řešení <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– lze přidat/odebrat</span></div>
     <div class="kpi-list" id="pillar-list">
       ${pillarsHtml}
     </div>
     <button class="btn-kpi-add" onclick="addPillar()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Přidat pilíř
+      Přidat řešení
     </button>
 
     <div class="section-title">Screenshot mocku <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#bbb">– zobrazuje se v browser mock okně na homepage</span></div>
@@ -1015,7 +1015,7 @@ function generateJS() {
     if (q.text || q.name || q.role) {
       lines.push(`    quote: { text: '${safeStr(q.text)}', name: '${safeStr(q.name)}', role: '${safeStr(q.role)}' },`);
     }
-    // Přístup / pilíře
+    // Přístup / řešení
     const pil = (ref.pillars || []).filter(p => p.title || p.desc);
     if (pil.length) {
       lines.push(`    pillars: [`);

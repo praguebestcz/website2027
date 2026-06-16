@@ -84,8 +84,8 @@ form{display:grid;gap:14px}
 .field{position:relative}
 .field label{
   position:absolute;left:22px;top:22px;font-size:15px;color:var(--mute);
-  pointer-events:none;transition:all .35s var(--ease);font-weight:400;
-  background:var(--paper);padding:0 6px;
+  pointer-events:none;transition:color .35s var(--ease),top .35s var(--ease),font-size .35s var(--ease);font-weight:400;
+  background:transparent;padding:0 6px;
 }
 .field input,.field textarea,.field select{
   width:100%;padding:22px 22px;border:1px solid var(--line);
@@ -98,15 +98,16 @@ form{display:grid;gap:14px}
 .field input:hover,.field textarea:hover,.field select:hover{border-color:rgba(10,10,10,.3)}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--ink);background:rgba(255,255,255,.4)}
 .field input:focus ~ label,.field textarea:focus ~ label,.field input:not(:placeholder-shown) ~ label,.field textarea:not(:placeholder-shown) ~ label,.field.has-val label{
-  top:-8px;font-size:11px;font-weight:600;color:var(--red);letter-spacing:.04em;text-transform:uppercase;
+  top:-8px;font-size:11px;font-weight:600;color:var(--red);letter-spacing:.04em;text-transform:uppercase;background:var(--paper);
 }
+.form-grid form{display:flex;flex-direction:column;gap:16px}
 .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field .hint{position:absolute;right:22px;top:22px;font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;pointer-events:none}
 
 /* Chip choice */
-.chips-label{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.chips-label{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin:24px 0 4px;display:flex;align-items:center;gap:10px}
 .chips-label::before{content:"";width:20px;height:1px;background:var(--mute)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{
   padding:12px 20px;border:1px solid var(--line);border-radius:999px;
   font-size:13px;font-weight:500;letter-spacing:-.005em;color:var(--ink);
@@ -116,7 +117,7 @@ form{display:grid;gap:14px}
 .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 /* Budget slider placeholder – visual card group */
-.budget{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
+.budget{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .budget button{
   padding:16px 14px;border:1px solid var(--line);border-radius:12px;
   font-size:13px;font-weight:600;text-align:center;color:var(--ink);
@@ -448,11 +449,6 @@ form{display:grid;gap:14px}
         <h2>Máte projekt<br>na <span class="red">stole?</span></h2>
         <p>Vyplňte pár polí vpravo &ndash; zkusíme vám ještě dnes odpovědět, <b>i&nbsp;kdyby jen potvrzením, že zpráva dorazila</b>.</p>
         <p>Po&nbsp;obdržení zprávy vám pošleme <b>pár doplňujících otázek</b>, případně rovnou domluvíme kickoff call na&nbsp;30&nbsp;minut.</p>
-        <div class="proof">
-          <div>Projektů<b>100<span class="red">+</span></b></div>
-          <div>Průměr<br>reakce<b>&lt; 24<span class="red">h</span></b></div>
-          <div>Tým<b>37</b></div>
-        </div>
       </div>
 
       <form onsubmit="event.preventDefault();this.querySelector('.btn').click()">
@@ -480,12 +476,12 @@ form{display:grid;gap:14px}
 
         <div class="chips-label">Co potřebujete?</div>
         <div class="chips" id="chips">
-          <button type="button" class="chip on">E-shop na míru</button>
-          <button type="button" class="chip">Webová aplikace</button>
-          <button type="button" class="chip">Redesign / rozvoj</button>
-          <button type="button" class="chip">Big Data &amp; analytika</button>
+          <button type="button" class="chip on">E-shop</button>
+          <button type="button" class="chip">Web</button>
+          <button type="button" class="chip">Aplikace</button>
+          <button type="button" class="chip">Analytika</button>
           <button type="button" class="chip">UpSearch</button>
-          <button type="button" class="chip">Ještě nevím</button>
+          <button type="button" class="chip">Jiné</button>
         </div>
 
         <div class="chips-label">Orientační rozpočet</div>
@@ -511,81 +507,6 @@ form{display:grid;gap:14px}
           </button>
         </div>
       </form>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== TEAM ===================== -->
-<section class="team">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="idx">Tým</div>
-      <h2>Lidé, kteří zvednou <span class="red">telefon.</span></h2>
-      <div class="aside"><a href="#form" class="lnk">Přejít na formulář <span class="arr">→</span></a></div>
-    </div>
-
-    <div class="team-grid">
-
-      <article class="person p1 reveal">
-        <div class="photo">
-          <span class="tag">CEO</span>
-          <span class="dept">Business &amp; Strategy</span>
-        </div>
-        <div class="info">
-          <h4>Luděk Vorel</h4>
-          <div class="role">CEO</div>
-          <div class="contact">
-            <a href="tel:+420774219988"><small>TEL</small>+420 774 219 988</a>
-            <a href="mailto:jan@praguebest.cz"><small>MAIL</small>jan@praguebest.cz</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="person p2 reveal d1">
-        <div class="photo">
-          <span class="tag">CTO</span>
-          <span class="dept">Tech &amp; Delivery</span>
-        </div>
-        <div class="info">
-          <h4>Petra Marková</h4>
-          <div class="role">CTO &amp; Head of Delivery</div>
-          <div class="contact">
-            <a href="tel:+420608252303"><small>TEL</small>+420 608 252 303</a>
-            <a href="mailto:petra@praguebest.cz"><small>MAIL</small>petra@praguebest.cz</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="person p3 reveal d2">
-        <div class="photo">
-          <span class="tag">HEAD</span>
-          <span class="dept">Design &amp; UX</span>
-        </div>
-        <div class="info">
-          <h4>Martin Štěpán</h4>
-          <div class="role">Head of Design</div>
-          <div class="contact">
-            <a href="tel:+420608172331"><small>TEL</small>+420 608 172 331</a>
-            <a href="mailto:martin@praguebest.cz"><small>MAIL</small>martin@praguebest.cz</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="person p4 reveal d3">
-        <div class="photo">
-          <span class="tag">HEAD</span>
-          <span class="dept">People &amp; Careers</span>
-        </div>
-        <div class="info">
-          <h4>Tereza Veselá</h4>
-          <div class="role">Head of People</div>
-          <div class="contact">
-            <a href="tel:+420266091373"><small>TEL</small>+420 266 091 373</a>
-            <a href="mailto:tereza@praguebest.cz"><small>MAIL</small>tereza@praguebest.cz</a>
-          </div>
-        </div>
-      </article>
-
     </div>
   </div>
 </section>
@@ -699,40 +620,6 @@ form{display:grid;gap:14px}
           <div class="pulse"></div>
           <div class="drop"></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== NEXT STEPS ===================== -->
-<section class="next-steps">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="idx">Co potom</div>
-      <h2>Co se stane po&nbsp;<span class="red">odeslání zprávy.</span></h2>
-      <div class="aside"><a href="tel:+420" class="lnk">Zavolat nám <span class="arr">→</span></a></div>
-    </div>
-
-    <div class="steps-grid">
-      <div class="nstep">
-        <div class="n"><b>/ 01</b>Reakce<span class="dur">&lt; 24 h</span></div>
-        <h4>Přečteme si, co&nbsp;chcete.</h4>
-        <p>Odpovíme do&nbsp;24 hodin &ndash; i&nbsp;kdyby to&nbsp;bylo jen potvrzení, že zpráva dorazila a&nbsp;někdo se&nbsp;na&nbsp;ni ještě&nbsp;dnes podívá.</p>
-      </div>
-      <div class="nstep">
-        <div class="n"><b>/ 02</b>Doplnění<span class="dur">1&ndash;2 dny</span></div>
-        <h4>Pošleme pár otázek.</h4>
-        <p>Pravděpodobně se&nbsp;budeme chtít něco doptat &ndash; rozpočet, termíny, stávající stack, klíčové metriky. Krátce, na&nbsp;5&nbsp;minut čtení.</p>
-      </div>
-      <div class="nstep">
-        <div class="n"><b>/ 03</b>Kickoff<span class="dur">do 1 týdne</span></div>
-        <h4>Domluvíme 30&nbsp;min call.</h4>
-        <p>Online nebo v&nbsp;Karlíně. Představíme se, proberete projekt, ukážeme pár podobných case studies a&nbsp;společně zhodnotíme, jestli si&nbsp;sednete s&nbsp;námi a&nbsp;my s&nbsp;vámi.</p>
-      </div>
-      <div class="nstep">
-        <div class="n"><b>/ 04</b>Nabídka<span class="dur">do 2 týdnů</span></div>
-        <h4>Pošleme strukturovaný návrh.</h4>
-        <p>Co, za&nbsp;kolik, jak dlouho, kdo z&nbsp;týmu to&nbsp;povede. Pak už jen rozhodnutí &ndash; a&nbsp;pokud ano, kickoff discovery fáze.</p>
       </div>
     </div>
   </div>

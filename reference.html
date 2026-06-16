@@ -350,7 +350,7 @@
 /* ── Reference renderer – case-card format ──────────────────── */
 (()=>{
   const container = document.getElementById('refs-container');
-  const refs = window.REFS || [];
+  const refs = (window.REFS || []).filter(r => r.visible !== false);
   if (!container || !refs.length) return;
 
   const arr = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;

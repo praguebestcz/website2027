@@ -305,6 +305,10 @@ body{
 .featured-label span{font-size:11px;color:var(--mute);margin-top:2px;display:block}
 .featured-check{width:24px;height:24px;border-radius:6px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#7a6000;background:transparent;transition:all .2s}
 .is-featured .featured-check{background:#e8c84a;border-color:#e8c84a}
+.featured-toggle.is-visible{border-color:#2bb65d;background:#f0faf4}
+.is-visible .featured-icon{background:#2bb65d}
+.is-visible .featured-icon svg{stroke:#fff}
+.is-visible .featured-check{background:#2bb65d;border-color:#2bb65d;color:#fff}
 </style>
 </head>
 <body>
@@ -384,9 +388,10 @@ function renderSidebar() {
   count.textContent = data.length;
   list.innerHTML = data.map((ref, i) => {
     const active = i === activeIdx ? ' active' : '';
-    return `<li class="ref-item${active}" onclick="selectRef(${i})">
+    const hidden = ref.visible === false;
+    return `<li class="ref-item${active}" onclick="selectRef(${i})"${hidden ? ' style="opacity:.45"' : ''}>
       <span class="num">${ref.num || String(i+1).padStart(2,'0')}</span>
-      <span>${ref.name || '(bez názvu)'}${ref.featured ? ' <span style="color:#e8c84a;font-size:11px">★</span>' : ''}</span>
+      <span>${ref.name || '(bez názvu)'}${ref.featured ? ' <span style="color:#e8c84a;font-size:11px">★</span>' : ''}${hidden ? ' <span style="color:#888;font-size:9px;font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase">skryto</span>' : ''}</span>
       <span class="order">
         <button onclick="moveRef(event,${i},-1)" ${i===0?'disabled':''} title="Nahoru">↑</button>
         <button onclick="moveRef(event,${i},1)"  ${i===data.length-1?'disabled':''} title="Dolů">↓</button>
@@ -415,6 +420,7 @@ function addRef() {
   data.push({
     id: 'nova-reference',
     name: 'Nová reference',
+    visible: true,
     headline: '',
     category: 'E-shop',
     year: new Date().getFullYear().toString(),
@@ -523,6 +529,17 @@ function renderEditor() {
         <span>Tento projekt se zobrazí jako hlavní case study na homepage</span>
       </div>
       <div class="featured-check">${ref.featured ? '✓' : ''}</div>
+    </div>
+
+    <div class="featured-toggle${ref.visible !== false ? ' is-visible' : ''}" id="visible-toggle" onclick="toggleVisible()">
+      <div class="featured-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <div class="featured-label">
+        <strong>Zobrazit na webu</strong>
+        <span>Když vypneš, reference zmizí z webu (zůstane jen tady v adminu)</span>
+      </div>
+      <div class="featured-check">${ref.visible !== false ? '✓' : ''}</div>
     </div>
 
     <div class="badge-section">
@@ -748,6 +765,15 @@ function setFeatured() {
   toast(`"${data[activeIdx].name}" nastaven jako vybraný projekt`);
 }
 
+function toggleVisible() {
+  if (activeIdx === null) return;
+  const ref = data[activeIdx];
+  ref.visible = (ref.visible === false) ? true : false;
+  renderEditor();
+  renderSidebar();
+  toast(ref.visible === false ? `"${ref.name}" skryto z webu` : `"${ref.name}" zobrazeno na webu`);
+}
+
 function updateSidebar() {
   // re-render just the active item name without full sidebar rebuild
   renderSidebar();
@@ -959,6 +985,7 @@ function generateJS() {
     lines.push('  {');
     lines.push(`    num:      '${safeStr(ref.num||String(i+1).padStart(2,'0'))}',`);
     if (ref.featured) lines.push(`    featured: true,`);
+    if (ref.visible === false) lines.push(`    visible:  false,`);
     lines.push(`    id:       '${safeStr(ref.id)}',`);
     lines.push(`    name:     '${safeStr(ref.name)}',`);
     lines.push(`    headline: '${safeStr(ref.headline)}',`);

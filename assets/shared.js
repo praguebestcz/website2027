@@ -49,4 +49,21 @@
   function tick(){const d=new Date();const p=n=>n.toString().padStart(2,'0');const el=document.getElementById('clk');if(el)el.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`}
   setInterval(tick,1000);tick();
 
+  // Malý font (≤12px) → font-weight aspoň 600 (celý web)
+  (function(){
+    function bumpSmallFonts(root){
+      (root||document).querySelectorAll('body *').forEach(function(el){
+        var cs=getComputedStyle(el);
+        var fs=parseFloat(cs.fontSize);
+        if(fs && fs<=12){
+          var w=parseInt(cs.fontWeight,10)||400;
+          if(w<600) el.style.fontWeight='600';
+        }
+      });
+    }
+    bumpSmallFonts();
+    // znovu po dorenderování dynamického obsahu (karty referencí apod.)
+    setTimeout(bumpSmallFonts,300);
+  })();
+
 })();

@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Harfa Sport – Case Study – PragueBest</title>
+<style>
+/* ===================== HERO VIZ ===================== */
+.hero-viz{padding:40px 0 120px}
+.hero-viz .frame{
+  position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/9;
+  background:linear-gradient(135deg,#001a0a 0%,#003318 50%,#0a0a0a 100%);
+  box-shadow:0 60px 120px -40px rgba(10,10,10,.5),0 0 0 1px rgba(10,10,10,.08);
+}
+.hero-viz .frame::before{
+  content:"";position:absolute;inset:0;opacity:.2;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);
+}
+.hero-viz .frame::after{
+  content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(227,6,19,.3),transparent 60%);filter:blur(40px);
+}
+.hero-viz .stage{position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:center;padding:60px;gap:40px}
+
+/* Device mockup */
+.device{
+  background:#fff;color:var(--ink);border-radius:12px;overflow:hidden;
+  width:100%;max-width:700px;
+  box-shadow:0 60px 100px -30px rgba(0,0,0,.7),0 30px 60px -20px rgba(0,0,0,.5);
+  transform:perspective(2000px) rotateY(-4deg) rotateX(3deg);
+}
+.device .chrome{background:#1a1a1a;padding:12px 16px;display:flex;gap:12px;align-items:center;border-bottom:1px solid #333}
+.device .chrome .dots{display:flex;gap:6px}
+.device .chrome .dots i{width:11px;height:11px;border-radius:50%;display:block}
+.device .chrome .dots i:nth-child(1){background:#ff5f57}.device .chrome .dots i:nth-child(2){background:#febc2e}.device .chrome .dots i:nth-child(3){background:#28c841}
+.device .chrome .url{flex:1;background:#2a2a2a;border-radius:6px;padding:6px 14px;font-family:var(--mono);font-size:11px;color:#aaa;display:flex;align-items:center;gap:6px}
+.device .chrome .url::before{content:"🔒";font-size:9px;opacity:.5}
+
+/* Sport hero banner */
+.device .sport-nav{padding:16px 24px;display:flex;align-items:center;gap:20px;border-bottom:1px solid #f0f0f0;background:#fff}
+.device .sport-nav .br{font-weight:900;font-size:18px;letter-spacing:-.02em;color:#000}
+.device .sport-nav .br span{color:var(--red)}
+.device .sport-nav .lnks{display:flex;gap:16px;font-size:11px;font-weight:500;color:#555}
+.device .sport-nav .lnks .on{color:var(--red);font-weight:700}
+.device .sport-nav .cart{margin-left:auto;display:flex;gap:8px}
+.device .sport-nav .cart .i{width:28px;height:28px;border-radius:50%;background:#f4f4f4;display:flex;align-items:center;justify-content:center;font-size:11px}
+
+.device .sport-banner{padding:36px 24px;background:linear-gradient(120deg,#0a0a0a 0%,#1a1a1a 60%,#2a0808 100%);color:#fff;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center;position:relative;overflow:hidden}
+.device .sport-banner::after{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.4),transparent 60%)}
+.device .sport-banner .tag{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;position:relative;z-index:2}
+.device .sport-banner h4{font-size:32px;font-weight:900;letter-spacing:-.04em;line-height:.95;position:relative;z-index:2}
+.device .sport-banner h4 span{color:var(--red)}
+.device .sport-banner p{font-size:11px;color:rgba(255,255,255,.6);margin-top:10px;max-width:28ch;line-height:1.5;position:relative;z-index:2}
+.device .sport-banner .minibtn{margin-top:18px;display:inline-block;font-size:10px;font-weight:700;padding:9px 18px;background:var(--red);color:#fff;border-radius:99px;letter-spacing:.06em;text-transform:uppercase;position:relative;z-index:2}
+.device .sport-banner .pic{width:160px;height:200px;border-radius:12px;background:linear-gradient(135deg,#2a2a2a,#111);box-shadow:0 20px 40px -10px rgba(0,0,0,.8);position:relative;z-index:2;display:flex;align-items:center;justify-content:center;font-size:48px}
+
+.device .sport-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #f0f0f0}
+.device .sport-cats .c{padding:14px 12px;text-align:center;border-right:1px solid #f0f0f0;font-size:9px;font-weight:600;color:#444;text-transform:uppercase;letter-spacing:.04em}
+.device .sport-cats .c:last-child{border-right:none}
+.device .sport-cats .c .ico{font-size:18px;display:block;margin-bottom:4px}
+
+/* ===================== INTRO ===================== */
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.intro .left h3{font-size:clamp(32px,3vw,48px);font-weight:500;letter-spacing:-.025em;line-height:1.1;max-width:18ch}
+.intro .left h3 b{font-weight:700}
+.intro .left h3 .red{color:var(--red)}
+.intro .right p{font-size:17px;line-height:1.7;color:var(--ink-3);max-width:52ch}
+.intro .right p + p{margin-top:20px}
+.intro .right p b{color:var(--ink);font-weight:600}
+.intro .right .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.15) 62% 92%,transparent 92%);padding:0 2px}
+
+/* ===================== PULL QUOTE ===================== */
+.pull{padding:100px 0;text-align:center;position:relative}
+.pull::before,.pull::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);width:60px;height:1px;background:var(--ink);
+}
+.pull::before{top:60px}
+.pull::after{bottom:60px}
+.pull .q{font-size:clamp(32px,4vw,60px);font-weight:500;letter-spacing:-.03em;line-height:1.2;max-width:22ch;margin:0 auto;color:var(--ink)}
+.pull .q .hi{background:linear-gradient(180deg,transparent 62%,rgba(227,6,19,.18) 62% 92%,transparent 92%);padding:0 4px}
+.pull .who{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mute);text-transform:uppercase}
+.pull .who .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c8a878,#7a5030);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line)}
+.pull .who b{color:var(--ink);font-weight:600;display:block;font-family:var(--sans);font-size:14px;letter-spacing:-.01em;text-transform:none;margin-bottom:2px}
+
+/* ===================== APPROACH PILLARS ===================== */
+.pillars{padding:100px 0;border-top:1px solid var(--ink)}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.pillar{
+  padding:48px 36px;border:1px solid var(--line);border-radius:16px;
+  background:var(--paper-2);position:relative;overflow:hidden;
+  transition:transform .6s var(--ease),background .5s var(--ease);
+}
+.pillar::before{
+  content:"";position:absolute;inset:0;background:var(--ink);
+  transform:translateY(101%);transition:transform .7s var(--ease-out);z-index:0;
+}
+.pillar:hover::before{transform:translateY(0)}
+.pillar > *{position:relative;z-index:1;transition:color .5s var(--ease)}
+.pillar:hover > *{color:var(--paper)}
+.pillar:hover{transform:translateY(-4px)}
+.pillar .ico{
+  width:56px;height:56px;border-radius:14px;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;margin-bottom:28px;
+  transition:all .5s var(--ease);
+}
+.pillar:hover .ico{background:var(--red);color:#fff}
+.pillar .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pillar .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.pillar:hover .n{color:rgba(242,236,224,.5)}
+.pillar h4{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.pillar p{font-size:14px;color:var(--ink-3);line-height:1.6}
+.pillar:hover p{color:rgba(242,236,224,.75)}
+
+/* ===================== ARCHITECTURE ===================== */
+.arch{padding:100px 0;border-top:1px solid var(--ink)}
+.arch-schema{margin-top:60px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:center}
+.arch-box{
+  padding:28px 20px;border:1px solid var(--line);border-radius:16px;text-align:center;
+  background:var(--paper-2);
+}
+.arch-box.main{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.arch-box .lbl{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.arch-box.main .lbl{color:rgba(242,236,224,.5)}
+.arch-box b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em}
+.arch-box small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);margin-top:6px;line-height:1.4}
+.arch-box.main small{color:rgba(242,236,224,.45)}
+.arch-arrow{text-align:center;font-size:24px;color:var(--red);font-weight:300}
+.arch-note{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.arch-note .an{padding:24px 28px;border-left:3px solid var(--red);background:var(--paper-2);border-radius:0 12px 12px 0}
+.arch-note .an h5{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.arch-note .an p{font-size:13px;color:var(--ink-3);line-height:1.6}
+
+/* ===================== GEO SECTION ===================== */
+.geo{padding:100px 0;border-top:1px solid var(--ink)}
+.geo-inner{margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.geo-inner .left p{font-size:16px;line-height:1.75;color:var(--ink-3);max-width:48ch}
+.geo-inner .left p + p{margin-top:18px}
+.geo-inner .left p b{color:var(--ink);font-weight:600}
+.geo-tags{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.geo-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.05em;padding:8px 16px;border:1px solid var(--line);border-radius:99px;color:var(--ink-3)}
+.geo-tag.hl{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.geo-card{background:var(--ink);color:var(--paper);border-radius:20px;padding:48px;position:relative;overflow:hidden}
+.geo-card::before{content:"";position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.25),transparent 60%)}
+.geo-card h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,236,224,.5);margin-bottom:24px;position:relative;z-index:2}
+.geo-card .items{display:flex;flex-direction:column;gap:18px;position:relative;z-index:2}
+.geo-card .item{display:flex;gap:16px;align-items:flex-start}
+.geo-card .item .dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px}
+.geo-card .item p{font-size:14px;line-height:1.6;color:rgba(242,236,224,.8)}
+.geo-card .item p b{color:#fff;font-weight:600}
+
+/* ===================== RESULTS ===================== */
+.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.res{
+  padding:60px 48px 56px;border-radius:16px;background:rgba(242,236,224,.04);
+  border:1px solid rgba(242,236,224,.1);position:relative;overflow:hidden;
+  transition:background .5s var(--ease),transform .5s var(--ease);
+}
+.res:hover{background:rgba(242,236,224,.08);transform:translateY(-4px)}
+.res::before{
+  content:"";position:absolute;top:0;right:0;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(227,6,19,.3),transparent 60%);filter:blur(40px);
+  opacity:0;transition:opacity .5s;
+}
+.res:hover::before{opacity:1}
+.res > *{position:relative}
+.res .rn{font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px}
+.res .value{font-size:clamp(44px,7.8vw,134px);font-weight:800;letter-spacing:-.055em;line-height:.88;display:flex;align-items:baseline;gap:16px}
+.res .value .plus{color:var(--red);font-size:.7em}
+.res .value sub{font-family:var(--mono);font-size:14px;font-weight:500;color:rgba(242,236,224,.5);vertical-align:baseline}
+.res h4{font-size:22px;font-weight:600;letter-spacing:-.015em;margin-top:24px}
+.res p{font-size:15px;color:rgba(242,236,224,.7);line-height:1.6;margin-top:12px;max-width:48ch}
+
+/* ===================== NEXT PROJECT ===================== */
+.next{padding:70px 0;border-top:1px solid var(--ink);position:relative;overflow:hidden}
+.next a{display:flex;align-items:center;justify-content:center;padding:60px 0;border-radius:0;position:relative;transition:background .5s var(--ease)}
+.next .lbl{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.next h3{font-size:clamp(48px,7vw,130px);font-weight:800;letter-spacing:-.055em;line-height:.9;justify-self:center;transition:color .4s var(--ease),transform .6s var(--ease)}
+.next a:hover h3{color:var(--red);transform:translateX(10px)}
+.next .arrow-big{position:absolute;right:40px;top:50%;transform:translateY(-50%);font-size:80px;font-weight:300;opacity:.15;transition:all .5s var(--ease);line-height:.8}
+.next a:hover .arrow-big{opacity:1;color:var(--red);transform:translateY(-50%) translateX(6px)}
+
+@media(max-width:1100px){
+  .pillar-grid{grid-template-columns:repeat(2,1fr)}
+  .arch-schema{grid-template-columns:1fr;gap:8px}
+  .arch-arrow{transform:rotate(90deg)}
+  .arch-note{grid-template-columns:1fr}
+  .geo-inner{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:720px){
+  .intro{grid-template-columns:1fr;gap:32px}
+  .pillar-grid{grid-template-columns:1fr}
+  .res-grid{grid-template-columns:1fr}
+}
+</style>
+<script src="assets/data/references.js"></script>
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/nav-dropdown.css">
+<script src="assets/quarter.js"></script>
+<meta name="description" content="Case study Harfa Sport – headless e-commerce platforma pro specializovaný sportovní retailer. Organická návštěvnost +164 %, obrat z organiky +349 % za první měsíc." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://praguebest.cz/harfasport" />
+<meta property="og:title" content="Harfa Sport – Case Study – PragueBest" />
+<meta property="og:description" content="Headless architektura zvýšila organickou návštěvnost o 164 % a obrat z organiky o 349 % již první měsíc po spuštění." />
+<meta property="og:image" content="https://praguebest.cz/assets/reference/harfasport/thumb.png" />
+<meta property="og:site_name" content="PragueBest" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://praguebest.cz/" },
+    { "@type": "ListItem", "position": 2, "name": "Reference", "item": "https://praguebest.cz/reference" },
+    { "@type": "ListItem", "position": 3, "name": "Harfa Sport" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="scroll-progress"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="top">
+  <a class="logo" href="index.html">
+    <img src="assets/logo-PB.svg" alt="PragueBest" height="40" width="166"></a>
+    <ul>
+    <li class="has-dd">
+      <a href="eshop.html">Produkty<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="eshop.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>E-commerce</a>
+        <a href="weby.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Weby &amp; portály</a>
+        <a href="bigdata.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></span>BigDataManager</a>
+        <a href="upsearch.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>UpSearch</a>
+        <a href="aplikace.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Aplikace &amp; AI vývoj</a>
+      </div>
+    </li>
+    <li class="has-dd">
+      <a href="sluzby.html">Služby<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dd">
+        <a href="sluzby-vyzkum.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.83 2.83 0 0 1 4 4L7 21l-4 1 1-4L17 3z"/></svg></span>Výzkum &amp; Design</a>
+        <a href="sluzby-data.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-7"/></svg></span>Data &amp; Analytika</a>
+        <a href="sluzby-vyvoj.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>Vývoj</a>
+        <a href="sluzby-provoz.html"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L3 7v6c0 5 4 9 9 11 5-2 9-6 9-11V7l-9-5z"/></svg></span>Provoz &amp; Podpora</a>
+      </div>
+    </li>
+    <li><a href="reference.html"><span class="t" data-t="Case Studies"><span>Case Studies</span></span></a></li>
+    <li><a href="o-nas.html"><span class="t" data-t="O nás"><span>O nás</span></span></a></li>
+    <li><a href="kariera.html"><span class="t" data-t="Kariéra"><span>Kariéra</span></span></a></li>
+    <li><a href="kontakt.html"><span class="t" data-t="Kontakt"><span>Kontakt</span></span></a></li>
+  </ul>
+  <div class="meta">
+    <span><span class="dot"></span>Přijímáme projekty <span class="next-q">Q3/26</span></span>
+    <a href="kontakt.html" class="btn sm">
+      <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+      <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===================== BREADCRUMB ===================== -->
+<div class="crumbs">
+  <div class="wrap">
+    <a href="reference.html" class="back">
+      <span class="dot"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+      Všechny reference
+    </a>
+    <div class="path">
+      <a href="index.html">Úvod</a> <span>/</span> <a href="reference.html">Reference</a> <span>/</span> <b id="cs-crumb">Harfa Sport</b>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TITLE ===================== -->
+<section class="title">
+  <div class="wrap">
+    <div class="idx reveal" id="cs-category">Case Study 005 &nbsp;–&nbsp; E-commerce · Sport · Headless</div>
+    <h1 class="reveal d1" id="cs-name">Harfa Sport</h1>
+    <p class="sub reveal d2" id="cs-headline">Přechod na&nbsp;<b>headless architekturu</b> zvýšil organickou návštěvnost o&nbsp;<b>164&nbsp;%</b> a&nbsp;obrat z&nbsp;organiky o&nbsp;<b>349&nbsp;%</b> už první měsíc po&nbsp;spuštění.</p>
+
+    <div class="meta-bar reveal d3" id="cs-meta">
+      <div class="m">
+        <h6>Klient</h6>
+        <p>HARFASPORT a.&nbsp;s.<small>Sport · Retail · E-commerce B2C</small></p>
+      </div>
+      <div class="m">
+        <h6>Rok</h6>
+        <p>2024<small>11 měsíců vývoje · spuštěno 13. 11. 2024</small></p>
+      </div>
+      <div class="m">
+        <h6>Služby</h6>
+        <p>Analýza, Design, Vývoj<small>Specifikace · Provoz &amp; Rozvoj</small></p>
+      </div>
+      <div class="m">
+        <h6>Stack</h6>
+        <p>StorefrontX (Vue.js)<small>PragueBest FrontAPI · UpSearch · BigData</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HERO VISUAL ===================== -->
+<section class="hero-viz">
+  <div class="wrap">
+    <div class="frame reveal" id="cs-frame">
+      <div class="frame-ov" id="cs-ov" style="display:none;position:absolute;inset:0;background:rgba(6,4,4,.72);z-index:1"></div>
+      <div class="stage" id="cs-stage">
+        <div class="device">
+          <div class="chrome">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url" id="cs-url">harfasport.cz</div>
+          </div>
+          <div class="sport-nav">
+            <div class="br">Harfa<span>Sport</span></div>
+            <div class="lnks"><span class="on">Kola</span><span>Lyže</span><span>Běh</span><span>Fitness</span><span>Servis</span></div>
+            <div class="cart"><div class="i">♥</div><div class="i">⌕</div><div class="i">🛒</div></div>
+          </div>
+          <div class="sport-banner">
+            <div>
+              <div class="tag">Sezóna 2024/25 · Nová kolekce</div>
+              <h4>Lyže &amp;<br><span>bikefitting.</span></h4>
+              <p>Odborné poradenství a&nbsp;servis na&nbsp;jednom místě. Přes 60&nbsp;000 produktů online.</p>
+              <span class="minibtn">Prozkoumat →</span>
+            </div>
+            <div class="pic">🚴</div>
+          </div>
+          <div class="sport-cats">
+            <div class="c"><span class="ico">⛷️</span>Lyže &amp; Snowboard</div>
+            <div class="c"><span class="ico">🚲</span>Kola &amp; Cyklo</div>
+            <div class="c"><span class="ico">👟</span>Běh &amp; Atletika</div>
+            <div class="c"><span class="ico">🔧</span>Servis &amp; Poradna</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VÝCHOZÍ STAV ===================== -->
+<section class="sx">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Výchozí stav</div>
+      <h2 id="cs-initial-heading">Monolitická platforma bránila dalšímu <span class="red">rozvoji.</span></h2>
+      <div class="aside"><a href="reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="intro">
+      <div class="left">
+        <h3 class="reveal" id="cs-lead">Původní e-shop běžel na&nbsp;monolitické platformě, která&nbsp;neumožňovala další&nbsp;rozvoj.</h3>
+      </div>
+      <div class="right reveal d1" id="cs-initial-body">
+        <p>Harfasport patří mezi specializované sportovní obchody. Kromě vybavení staví na&nbsp;odbornosti &ndash; nabízí poradenství, služby a&nbsp;servis, od&nbsp;<b>3D bikefittingu</b> pro&nbsp;cyklisty po&nbsp;nejmodernější stroj na&nbsp;servis lyží. Tuto odbornost ale starý web neuměl prezentovat: jeho struktura nedokázala cíleně představit sortiment, služby ani inspirativní obsah a&nbsp;oslovit jednotlivé segmenty zákazníků.</p>
+        <p>Důsledek byl měřitelný v&nbsp;rozpočtu. Klient musel platit za&nbsp;návštěvnost i&nbsp;v&nbsp;segmentech, kde mohl organicky dominovat, protože web nepokrýval longtailové a&nbsp;méně konkurenční dotazy. A&nbsp;protože <b>přes 90&nbsp;% uživatelů přicházelo z&nbsp;mobilu</b>, omezovala monolitická architektura výkon i&nbsp;nákupní cestu právě tam, kde padá většina objednávek.</p>
+        <p>Zadání bylo jednoznačné: postavit web na&nbsp;headless architektuře, zvýšit organickou viditelnost přes longtail SEO, navrhnout celé řešení mobile-first a&nbsp;vytvořit rozšiřitelnou platformu připravenou na&nbsp;další rozvoj &ndash; bez nutnosti redesignu za&nbsp;dva roky.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PŘÍSTUP ===================== -->
+<section class="sx" style="border-top:1px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Přístup</div>
+      <h2>Návrh vycházel z&nbsp;dat a&nbsp;uživatelského <span class="red">výzkumu.</span></h2>
+      <div class="aside"><a href="reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="intro">
+      <div class="left">
+        <h3 class="reveal">Než vznikl první návrh, prošli jsme se&nbsp;zákazníkem několik analytických&nbsp;vrstev.</h3>
+      </div>
+      <div class="right reveal d1">
+        <p>V&nbsp;rámci analýzy současného stavu jsme společně s&nbsp;klientem definovali pozici na&nbsp;trhu a&nbsp;hlavní konkurenty, rozdělili sortiment na&nbsp;„speciálky" a&nbsp;běžné produkty, popsali persony, slabiny stávajícího webu a&nbsp;zrevidovali věrnostní program. Analýza konkurence ukázala příležitosti pro&nbsp;nový web.</p>
+        <p>Z&nbsp;heatmap a&nbsp;dat z&nbsp;Google Analytics jsme vytěžili podklady pro&nbsp;nový vzhled a&nbsp;strukturu. Ve&nbsp;spolupráci s&nbsp;marketingovou agenturou klienta jsme provedli <b>analýzu klíčových slov</b> jako základ nové informační architektury a&nbsp;SEO strategie. Uživatelský výzkum (rozhovory s&nbsp;reálnými uživateli) odhalil problémy starého webu a&nbsp;nasměroval návrh funkcí i&nbsp;struktury.</p>
+        <p>Vše jsme uzavřeli detailní specifikací &ndash; popisem procesů a&nbsp;funkčností, workflow diagramy, use casy a&nbsp;návrhem API napojení na&nbsp;systémy klienta i&nbsp;aplikace třetích stran.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARCHITEKTURA ===================== -->
+<section class="arch">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Architektura</div>
+      <h2>Headless: oddělený frontend a&nbsp;<span class="red">backend.</span></h2>
+      <div class="aside"><a href="eshop.html" class="lnk">PragueBest e-commerce <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="arch-schema reveal">
+      <div class="arch-box main">
+        <div class="lbl">Backend</div>
+        <b>PragueBest<br>e-commerce</b>
+        <small>Katalog · Objednávky<br>Zákaznická data</small>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box">
+        <div class="lbl">Middleware</div>
+        <b>PragueBest<br>FrontAPI</b>
+        <small>API vrstva<br>mezi FE a BE</small>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box">
+        <div class="lbl">Frontend</div>
+        <b>StorefrontX<br>(Vue.js)</b>
+        <small>Komponentový přístup<br>Mobile-first · SSR</small>
+      </div>
+    </div>
+
+    <div class="arch-note reveal d1">
+      <div class="an">
+        <h5>UpSearch</h5>
+        <p>Pokročilé vyhledávání, zobrazení katalogu a&nbsp;filtrace s&nbsp;administrací algoritmů a&nbsp;boostováním.</p>
+      </div>
+      <div class="an">
+        <h5>BigData &amp; Personalizace</h5>
+        <p>Doporučování produktů a&nbsp;zvýšení relevance příslušenství a&nbsp;alternativ pro&nbsp;každého zákazníka.</p>
+      </div>
+      <div class="an">
+        <h5>Nezávislý rozvoj</h5>
+        <p>Jednotlivé části lze vyvíjet a&nbsp;nahrazovat nezávisle &ndash; bez zásahu do&nbsp;zbytku řešení.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ŘEŠENÍ (PILLARS) ===================== -->
+<section class="pillars">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Řešení</div>
+      <h2>Tři hlavní oblasti <span class="red">řešení.</span></h2>
+      <div class="aside"><a href="reference.html" class="lnk">Všechny reference <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="pillar-grid" id="cs-pillars">
+      <article class="pillar reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="n">Řešení / 01</div>
+        <h4>Headless architektura</h4>
+        <p>Oddělený frontend a&nbsp;backend umožňují vyvíjet a&nbsp;nasazovat každou část samostatně a&nbsp;napojovat aplikace třetích stran přes API. Další rozvoj nevyžaduje zásah do&nbsp;zbytku systému ani kompletní redesign.</p>
+      </article>
+
+      <article class="pillar reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M8 11h6M11 8v6"/></svg></div>
+        <div class="n">Řešení / 02</div>
+        <h4>SEO a&nbsp;struktura katalogu</h4>
+        <p>Nová informační architektura, SEO-friendly indexovatelné filtry, automatické generování vstupních stránek, strukturovaná data (JSON-LD), server-side rendering a&nbsp;redirect management pro&nbsp;bezeztrátový přechod.</p>
+      </article>
+
+      <article class="pillar reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <div class="n">Řešení / 03</div>
+        <h4>Mobile-first UX a&nbsp;obsah</h4>
+        <p>Protože z&nbsp;mobilu přichází přes 90&nbsp;% uživatelů, navrhovali jsme od&nbsp;nejmenších obrazovek. Nové obsahové formáty &ndash; inspirace, produktové sety, doporučené příslušenství a&nbsp;alternativy.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GEO & AI OVERVIEW ===================== -->
+<section class="geo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">GEO &amp; AI Overview</div>
+      <h2>Obsah a&nbsp;struktura pro generativní <span class="red">vyhledávání.</span></h2>
+      <div class="aside"><a href="sluzby-data.html" class="lnk">Data &amp; Analytika <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="geo-inner">
+      <div class="left">
+        <p>SEO strategii jsme navrhli začátkem roku 2024. Zpětně se ukazuje, že je dobře sladěná s&nbsp;principy, které s&nbsp;příchodem AI Overview formují nový způsob práce s&nbsp;vyhledáváním &ndash; tedy s&nbsp;<b>GEO (Generative Engine Optimization)</b>.</p>
+        <p>Generativní výsledky jako Google AI Overview často zpracovávají právě <b>informační a&nbsp;longtailové dotazy</b> &ndash; přesně ty, na&nbsp;které je nový web Harfasportu stavěný. Tvorba odborného a&nbsp;inspirativního obsahu odpovídá principům EEAT, které ovlivňují, zda a&nbsp;jak se obsah objeví v&nbsp;AI Overview.</p>
+        <p>Strategii dál rozvíjíme směrem k&nbsp;lepšímu pokrytí tzv. „information gain" dotazů. Pro&nbsp;Harfasport to znamená šanci získávat viditelnost v&nbsp;generativním vyhledávání &ndash; bez navyšování mediálních výdajů.</p>
+        <div class="geo-tags">
+          <span class="geo-tag hl">Longtail SEO</span>
+          <span class="geo-tag hl">AI Overview</span>
+          <span class="geo-tag">EEAT</span>
+          <span class="geo-tag">Strukturovaná data</span>
+          <span class="geo-tag">Information gain</span>
+          <span class="geo-tag">JSON-LD</span>
+        </div>
+      </div>
+      <div class="right reveal d1">
+        <div class="geo-card">
+          <h5>Proč web Harfasportu funguje v&nbsp;AI vyhledávání</h5>
+          <div class="items">
+            <div class="item">
+              <div class="dot"></div>
+              <p><b>Longtailová informační architektura</b> &ndash; web pokrývá dotazy, které generativní modely zpracovávají jako přímé odpovědi.</p>
+            </div>
+            <div class="item">
+              <div class="dot"></div>
+              <p><b>Odborný obsah (EEAT)</b> &ndash; poradna, bikefitting a&nbsp;servisní průvodci budují autoritu v&nbsp;oblasti sportovního vybavení.</p>
+            </div>
+            <div class="item">
+              <div class="dot"></div>
+              <p><b>Strukturovaná data a&nbsp;SSR</b> &ndash; obsah je snadno indexovatelný a&nbsp;citovatelný generativními modely.</p>
+            </div>
+            <div class="item">
+              <div class="dot"></div>
+              <p><b>Přímé odpovědi na&nbsp;uživatelské otázky</b> &ndash; formát obsahu odpovídá tomu, co AI Overview preferuje citovat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VÝSLEDKY ===================== -->
+<section class="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="idx">Výsledky za první měsíc</div>
+      <h2>Nechme mluvit <span class="red">čísla.</span></h2>
+      <div class="aside"><a href="kontakt.html" class="lnk">Začít spolupráci <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="res-grid" id="cs-results"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- ===================== NEXT PROJECT ===================== -->
+<section class="next">
+  <a href="bambule.html">
+    <h3>Bambule</h3>
+    <span class="arrow-big">→</span>
+  </a>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Máte projekt?<br><span class="red">Pojďme do toho.</span></h2>
+    <p class="sub reveal d1">Napište nám &ndash; ozveme se do&nbsp;24&nbsp;hodin s&nbsp;prvním odhadem a&nbsp;návrhem dalších kroků.</p>
+    <div class="ctas reveal d2">
+      <a href="kontakt.html" class="btn">
+        <span class="lbl" data-t="Napište nám"><span>Napište nám</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="reference.html" class="btn ghost">
+        <span class="lbl" data-t="Další reference"><span>Další reference</span></span>
+        <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="big">Prague<span class="red">Best</span></div>
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><img src="assets/logo-PB-white.svg" alt="PragueBest" height="40" width="166"></a>
+        <p>Digitální agentura z&nbsp;Karlína. Od roku 1999 stavíme e-shopy, weby a&nbsp;aplikace, které reálně prodávají.</p>
+      </div>
+      <div>
+        <h5>Služby</h5>
+        <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
+        <a href="weby.html">Weby &amp; portály <span class="ar">→</span></a>
+        <a href="bigdata.html">Big Data <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="index.html">Úvod <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="blog.html">Blog <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra <span class="ar">→</span></a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
+        <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
+        <a href="https://www.google.com/maps/search/V%C3%ADtkova+32,+Praha+8">Vítkova 32, Praha 8 <span class="ar">→</span></a>
+        <a href="kontakt.html#form" class="btn sm red footer-cta"><span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      </div>
+    </div>
+    <div class="base">
+      <div>© 2026 PragueBest s.r.o. <a href="admin.html" style="color:var(--mute);font-family:var(--mono);font-size:10px;text-decoration:none;margin-left:12px;letter-spacing:.04em;opacity:.6">Admin</a></div>
+      <div class="clock">
+        <span><span class="k">PRAHA</span><b id="clk">--:--:--</b></span>
+        <span><span class="k">50.0875° N</span><b>14.4378° E</b></span>
+      </div>
+      <div class="right">Vyrobeno s&nbsp;láskou v&nbsp;Karlíně</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const sp = document.querySelector('.scroll-progress');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const p = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    sp.style.setProperty('--p', p + '%');
+    document.querySelector('nav.top').classList.toggle('scrolled', h.scrollTop > 20);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll('.reveal,.step').forEach(el => io.observe(el));
+
+  function tick() {
+    const d = new Date();
+    const p = n => n.toString().padStart(2,'0');
+    const el = document.getElementById('clk');
+    if (el) el.textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+  }
+  setInterval(tick, 1000); tick();
+})();
+
+/* ── Reference data renderer ─────────────────────────────── */
+(()=>{
+  const refs = window.REFS || [];
+  const ref  = refs.find(r => r.id === 'harfasport');
+  if (!ref) return;
+
+  document.title = `${ref.name} – Case Study – PragueBest`;
+
+  const crumb = document.getElementById('cs-crumb');
+  if (crumb) crumb.textContent = ref.name;
+
+  // Hero frame — real screenshot if available
+  if (ref.thumb) {
+    const frame = document.getElementById('cs-frame');
+    if (frame) frame.style.cssText += `;background-image:url('${ref.thumb}');background-size:cover;background-position:center`;
+    const ov = document.getElementById('cs-ov');
+    if (ov) ov.style.display = 'block';
+  }
+
+  if (ref.mockImg) {
+    const stage = document.getElementById('cs-stage');
+    if (stage) {
+      stage.innerHTML = `
+        <div class="device">
+          <div class="chrome">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url">${ref.domain || ''}</div>
+          </div>
+          <img src="${ref.mockImg}" alt="${ref.name}" style="width:100%;display:block">
+        </div>`;
+    }
+  }
+})();
+
+/* ── Results renderer ─────────────────────────────────────── */
+(()=>{
+  const refs = window.REFS || [];
+  const ref  = refs.find(r => r.id === 'harfasport');
+  const grid = document.getElementById('cs-results');
+  if (!ref || !grid) return;
+
+  if (!ref.kpis || !ref.kpis.length) {
+    const sec = grid.closest('section.results');
+    if (sec) sec.style.display = 'none';
+    return;
+  }
+
+  const delays = ['reveal','reveal d1','reveal d2','reveal d3'];
+  grid.innerHTML = ref.kpis.map((k, i) => `
+    <div class="res ${delays[i] || 'reveal'}">
+      <div class="rn">Výsledek / ${String(i+1).padStart(2,'0')}</div>
+      <div class="value">${k.value}</div>
+      <h4>${k.title || k.label}</h4>
+      ${k.desc ? `<p>${k.desc}</p>` : ''}
+    </div>`).join('');
+
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:"0px 0px -60px 0px"});
+  grid.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+/* ── Automatický „Další projekt" ──────────────────────────── */
+(()=>{
+  const refs = window.REFS || [];
+  const ref  = refs.find(r => r.id === 'harfasport');
+  if (!ref) return;
+
+  const list = refs.filter(r => r.href && r.href !== '#');
+  const idx  = list.findIndex(r => r.id === ref.id);
+  if (idx !== -1 && list.length > 1) {
+    const nx = list[(idx + 1) % list.length];
+    const a  = document.querySelector('.next a');
+    if (a && nx) {
+      a.setAttribute('href', nx.href);
+      const h3 = a.querySelector('h3'); if (h3) h3.textContent = nx.name;
+    }
+  }
+})();
+</script>
+<script src="assets/shared.js"></script>
+</body>
+</html>

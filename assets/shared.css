@@ -1,3 +1,4 @@
+@keyframes spin{to{transform:rotate(360deg)}}
 /* ===================== SHARED DESIGN SYSTEM ===================== */
 @font-face{font-family:"Satoshi";src:url("font/Satoshi-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("font/Satoshi-LightItalic.otf") format("opentype");font-weight:300;font-style:italic;font-display:swap}
@@ -579,15 +580,6 @@ footer .base .right{text-align:right}
 
 .case-card:hover .mock{transform:perspective(1400px) rotateY(-4deg) rotateX(1deg)}
 
-/* WT badge */
-.case-card .wt-badge{
-  position:absolute;top:-10px;right:-10px;z-index:10;
-  width:148px;height:148px;pointer-events:none;
-}
-.case-card .wt-badge svg{
-  width:100%;height:100%;
-  filter:drop-shadow(0 6px 20px rgba(227,6,19,.45));
-}
 
 /* === BROWSER MOCK === */
 .mock{

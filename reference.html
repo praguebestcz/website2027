@@ -368,25 +368,10 @@
     const vizBg    = hasThumb ? `<div class="viz-bg" style="background-image:url('${ref.thumb}')"></div>` : '';
 
     const wtBadge = (ref.badge && ref.badge.show) ? (() => {
-      const b = ref.badge;
       const uid = ref.id;
-      const year = b.year || ref.year || '2025';
-      return `<div class="wt-badge">
-        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="60" fill="#E30613"/>
-          <defs>
-            <path id="wt-top-${uid}" d="M 11,60 A 49,49 0 1,1 109,60"/>
-            <path id="wt-bot-${uid}" d="M 15,60 A 45,45 0 0,0 105,60"/>
-          </defs>
-          <text font-size="7.2" font-weight="600" fill="rgba(255,255,255,.78)" letter-spacing="2.4" font-family="monospace">
-            <textPath href="#wt-top-${uid}" startOffset="50%" text-anchor="middle">· WEBTOP100 · VÍTĚZ ${year} ·</textPath>
-          </text>
-          <text font-size="7.2" font-weight="600" fill="rgba(255,255,255,.78)" letter-spacing="2.8" font-family="monospace">
-            <textPath href="#wt-bot-${uid}" startOffset="50%" text-anchor="middle">· CASE STUDY ·</textPath>
-          </text>
-          <text x="60" y="56" text-anchor="middle" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.72)" letter-spacing="3" font-family="monospace">VÍTĚZ</text>
-          <text x="60" y="76" text-anchor="middle" font-size="26" font-weight="900" fill="white" letter-spacing="-0.5" font-family="sans-serif">${b.text}</text>
-        </svg>
+      return `<div class="sticker">
+        <svg viewBox="0 0 200 200"><defs><path id="cp-${uid}" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#cp-${uid}">Ocenění v soutěži WebTop100 · Ocenění v soutěži WebTop100 · </textPath></text></svg>
+        <div class="inner"><img src="assets/loga/wt100.svg" alt="WebTop100" style="height:28px;width:auto;display:block"></div>
       </div>`;
     })() : '';
 

@@ -244,8 +244,8 @@
 .next .meta2{text-align:right;font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.02em;line-height:1.7}
 .next .meta2 b{color:var(--ink);font-weight:600}
 .next a:hover h3{color:var(--red);transform:translateX(10px)}
-.next .arrow-big{position:absolute;right:40px;bottom:40px;font-size:80px;font-weight:300;opacity:.15;transition:all .5s var(--ease);line-height:.8}
-.next a:hover .arrow-big{opacity:1;color:var(--red);transform:translate(6px,-6px)}
+.next .arrow-big{position:absolute;right:40px;top:50%;transform:translateY(-50%);font-size:80px;font-weight:300;opacity:.15;transition:all .5s var(--ease);line-height:.8}
+.next a:hover .arrow-big{opacity:1;color:var(--red);transform:translateY(-50%) translateX(6px)}
 
 /* ===================== CTA ===================== */
 
@@ -501,6 +501,7 @@
 <section class="next">
   <a href="elnino.html">
     <h3>El Nino</h3>
+      <span class="arrow-big">→</span>
   </a>
 </section>
 

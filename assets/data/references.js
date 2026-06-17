@@ -147,19 +147,48 @@ window.REFS = [
     num:      '05',
     id:       'harfasport',
     name:     'Harfa Sport',
-    headline: 'Sportovní retailer s&nbsp;obsáhlým katalogem a&nbsp;B2B ceníky pro&nbsp;sportovní kluby.',
-    category: 'E-shop',
-    year:     '2023',
+    headline: 'Přechod na&nbsp;headless architekturu zvýšil organickou návštěvnost o&nbsp;<b>164&nbsp;%</b> a&nbsp;obrat z&nbsp;organiky o&nbsp;<b>349&nbsp;%</b> už první měsíc po&nbsp;spuštění.',
+    category: 'Case Study 005 – E-commerce · Sport · Headless',
+    year:     '2024',
     tags:     ["eshop"],
-    href:     '#',
+    href:     'harfasport.html',
     domain:   'harfasport.cz',
     mockImg:  'assets/reference/harfasport/mock.png',
     thumb:    'assets/reference/harfasport/thumb.png',
-    badge:    { show: false, text: 'WT100', year: '2023' },
-    cat:      'E-commerce · Sport · B2B',
+    badge:    { show: false },
+    cat:      'E-commerce · Sport · Headless',
+    meta: {
+      klient: { a: 'HARFASPORT a. s.', b: 'Sport · Retail · E-commerce B2C' },
+      rok:    { a: '2024', b: 'Spuštěno 13. 11. 2024 · 11 měsíců vývoje' },
+      sluzby: { a: 'Analýza, Design, Vývoj', b: 'Specifikace · Provoz & Rozvoj' },
+      stack:  { a: 'StorefrontX (Vue.js)', b: 'PragueBest FrontAPI · UpSearch · BigData' }
+    },
+    initial: {
+      heading: 'Monolitická platforma bránila dalšímu <span class="red">rozvoji.</span>',
+      lead: 'Původní e-shop běžel na&nbsp;monolitické platformě, která neumožňovala další rozvoj, plnění nových standardů ani dlouhodobou udržitelnost webu.',
+      p1: 'Harfasport patří mezi specializované sportovní obchody. Kromě vybavení staví na&nbsp;odbornosti &ndash; nabízí poradenství, služby a&nbsp;servis, od&nbsp;3D bikefittingu pro&nbsp;cyklisty po&nbsp;nejmodernější stroj na&nbsp;servis lyží. Tuto odbornost ale starý web neuměl prezentovat: jeho struktura nedokázala cíleně představit sortiment, služby ani inspirativní obsah a&nbsp;oslovit jednotlivé segmenty zákazníků.',
+      p2: 'Důsledek byl měřitelný v&nbsp;rozpočtu. Klient musel platit za&nbsp;návštěvnost i&nbsp;v&nbsp;segmentech, kde mohl organicky dominovat, protože web nepokrýval longtailové a&nbsp;méně konkurenční dotazy. A&nbsp;protože přes 90&nbsp;% uživatelů přicházelo z&nbsp;mobilu, omezovala monolitická architektura výkon i&nbsp;nákupní cestu právě tam, kde padá většina objednávek.',
+      p3: 'Zadání bylo jednoznačné: postavit web na&nbsp;headless architektuře, zvýšit organickou viditelnost přes longtail SEO, navrhnout celé řešení mobile-first a&nbsp;vytvořit rozšiřitelnou platformu připravenou na&nbsp;další rozvoj a&nbsp;integrace třetích stran &ndash; bez nutnosti redesignu za&nbsp;dva roky.'
+    },
+    pillars: [
+      {
+        title: 'Headless architektura',
+        desc: 'Oddělený frontend a&nbsp;backend umožňují vyvíjet a&nbsp;nasazovat každou část samostatně a&nbsp;napojovat aplikace třetích stran přes API. Další rozvoj nevyžaduje zásah do&nbsp;zbytku systému ani kompletní redesign.'
+      },
+      {
+        title: 'SEO a&nbsp;struktura katalogu',
+        desc: 'Nová informační architektura, SEO-friendly indexovatelné filtry, automatické generování vstupních stránek, strukturovaná data (JSON-LD), server-side rendering a&nbsp;redirect management pro&nbsp;bezeztrátový přechod ze&nbsp;starých URL.'
+      },
+      {
+        title: 'Mobile-first UX a&nbsp;obsah',
+        desc: 'Protože z&nbsp;mobilu přichází přes 90&nbsp;% uživatelů, navrhovali jsme web od&nbsp;nejmenších obrazovek. Nové obsahové formáty &ndash; inspirace, produktové sety, doporučené příslušenství a&nbsp;alternativy &ndash; podporují nákupní rozhodování.'
+      }
+    ],
     kpis: [
-      { label: 'SKU', value: '60k' },
-      { label: 'B2B klientů', value: '240' },
+      { value: '<span class="plus">+</span>164&nbsp;<sub>%</sub>', title: 'Organická návštěvnost', desc: 'Nárůst návštěvnosti z&nbsp;organického vyhledávání za&nbsp;první měsíc po&nbsp;spuštění.' },
+      { value: '<span class="plus">+</span>349&nbsp;<sub>%</sub>', title: 'Obrat z&nbsp;organiky', desc: 'Nárůst obratu z&nbsp;organického kanálu; počet objednávek z&nbsp;organiky vzrostl o&nbsp;290&nbsp;%.' },
+      { value: '<span class="plus">+</span>96&nbsp;<sub>%</sub>',  title: 'Celková návštěvnost', desc: 'Nárůst napříč všemi kanály; celkový obrat +192&nbsp;% a&nbsp;celkový počet objednávek +175&nbsp;%.' },
+      { value: '<span class="plus">+</span>220&nbsp;<sub>%</sub>', title: 'Objednávky z&nbsp;mobilu', desc: 'Nárůst objednávek z&nbsp;mobilních zařízení; mobilní návštěvnost +112&nbsp;% a&nbsp;mobilní organika +164&nbsp;%.' }
     ]
   },
 

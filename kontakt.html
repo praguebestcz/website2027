@@ -169,12 +169,9 @@ form{display:grid;gap:14px}
 .visit .info-box h3 .red{color:var(--red)}
 .visit .info-box .addr{font-size:18px;font-weight:500;line-height:1.5;margin-bottom:28px}
 .visit .info-box .addr small{display:block;font-family:var(--mono);font-size:12px;color:rgba(242,236,224,.55);margin-top:6px;font-weight:400;letter-spacing:.02em}
-.visit .info-box .metro{padding:24px 0;margin-bottom:28px;border-top:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.6);letter-spacing:.04em;line-height:2}
+.visit .info-box .metro{padding:24px 0;margin-bottom:28px;border-top:1px solid rgba(242,236,224,.15);border-bottom:1px solid rgba(242,236,224,.15);font-family:var(--sans);font-size:14px;color:var(--paper);letter-spacing:-.01em;line-height:2}
 .visit .info-box .metro .row{display:flex;justify-content:space-between;align-items:center}
-.visit .info-box .metro .row b{color:var(--paper);font-family:var(--sans);font-weight:600;letter-spacing:-.01em;font-size:14px}
-.visit .info-box .metro .row .line{display:inline-block;width:16px;height:16px;border-radius:50%;color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-right:8px}
-.visit .info-box .metro .row .B{background:#1e5aad}
-.visit .info-box .metro .row .bus{background:var(--red)}
+.visit .info-box .metro .row b{color:var(--paper);font-weight:600}
 .visit .info-box .open{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:#2bb65d;letter-spacing:.04em;text-transform:uppercase;font-weight:600;margin-bottom:24px}
 .visit .info-box .open::before{content:"";width:8px;height:8px;border-radius:50%;background:#2bb65d;box-shadow:0 0 0 3px rgba(43,182,93,.25);animation:pulse2 2s infinite}
 .visit .map{position:relative;border-radius:20px;overflow:hidden;background:var(--paper-2);border:1px solid var(--line);min-height:460px}
@@ -537,12 +534,12 @@ form{display:grid;gap:14px}
 
         <div>
           <div class="metro">
-            <div class="row"><span><span class="line B">B</span>Metro Florenc</span><b>5 min pěšky</b></div>
-            <div class="row"><span><span class="line B">B</span>Metro Křižíkova</span><b>3 min pěšky</b></div>
-            <div class="row"><span><span class="line bus">⬒</span>Tram Florenc</span><b>4 min pěšky</b></div>
+            <div class="row"><span>Tram Karlínské náměstí</span><b>1 min pěšky</b></div>
+            <div class="row"><span>Metro Florenc</span><b>5 min pěšky</b></div>
+            <div class="row"><span>Metro Křižíkova</span><b>8 min pěšky</b></div>
           </div>
 
-          <a href="#" class="btn" style="width:100%;justify-content:space-between">
+          <a href="https://www.google.com/maps/search/V%C3%ADtkova+32,+Praha+8" target="_blank" rel="noopener" class="btn" style="width:100%;justify-content:space-between">
             <span class="lbl" data-t="Otevřít v Mapy.cz"><span>Otevřít v Mapy.cz</span></span>
             <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
           </a>
@@ -562,52 +559,66 @@ form{display:grid;gap:14px}
           <rect width="800" height="520" fill="url(#smallgrid)"/>
           <rect width="800" height="520" fill="url(#grid)"/>
 
-          <!-- River -->
-          <path d="M -50 180 Q 200 140, 400 220 T 850 280 L 850 360 Q 600 380, 400 300 T -50 260 Z" fill="rgba(50,120,200,.12)" stroke="rgba(50,120,200,.25)" stroke-width="1.5"/>
-          <path d="M -50 180 Q 200 140, 400 220 T 850 280" fill="none" stroke="rgba(50,120,200,.35)" stroke-width="1" stroke-dasharray="4 6"/>
+          <!-- River Vltava (sever – horní část mapy) -->
+          <path d="M -50 30 Q 150 15, 350 45 Q 550 70, 850 55 L 850 115 Q 550 130, 350 105 Q 150 75, -50 90 Z" fill="rgba(50,120,200,.13)" stroke="rgba(50,120,200,.25)" stroke-width="1.5"/>
+          <path d="M -50 30 Q 150 15, 350 45 Q 550 70, 850 55" fill="none" stroke="rgba(50,120,200,.35)" stroke-width="1" stroke-dasharray="4 6"/>
 
-          <!-- Main roads -->
-          <path d="M 0 300 L 800 280" stroke="rgba(10,10,10,.28)" stroke-width="6" stroke-linecap="round"/>
-          <path d="M 0 300 L 800 280" stroke="rgba(242,236,224,.95)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Sokolovská – hlavní horizontální silnice (pod pinem) -->
+          <path d="M 0 340 L 800 340" stroke="rgba(10,10,10,.28)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 0 340 L 800 340" stroke="rgba(242,236,224,.95)" stroke-width="3" stroke-linecap="round"/>
 
-          <path d="M 420 0 L 400 520" stroke="rgba(10,10,10,.22)" stroke-width="4" stroke-linecap="round"/>
-          <path d="M 420 0 L 400 520" stroke="rgba(242,236,224,.85)" stroke-width="2" stroke-linecap="round"/>
+          <!-- Vítkova – vertikální ulice (pin je na ní) -->
+          <path d="M 400 0 L 400 520" stroke="rgba(10,10,10,.22)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 400 0 L 400 520" stroke="rgba(242,236,224,.85)" stroke-width="2" stroke-linecap="round"/>
 
-          <path d="M 100 80 L 700 450" stroke="rgba(10,10,10,.15)" stroke-width="3" stroke-linecap="round"/>
-          <path d="M 100 80 L 700 450" stroke="rgba(242,236,224,.6)" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Pobřežní / nábřežní cesta -->
+          <path d="M 0 130 Q 400 115, 800 135" stroke="rgba(10,10,10,.12)" stroke-width="2" fill="none"/>
 
-          <!-- Side streets -->
-          <path d="M 200 0 L 220 520" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
-          <path d="M 600 0 L 580 520" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
-          <path d="M 0 150 L 800 170" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
-          <path d="M 0 420 L 800 440" stroke="rgba(10,10,10,.12)" stroke-width="2"/>
+          <!-- Vedlejší ulice -->
+          <path d="M 210 130 L 210 520" stroke="rgba(10,10,10,.10)" stroke-width="1.5"/>
+          <path d="M 600 130 L 600 520" stroke="rgba(10,10,10,.10)" stroke-width="1.5"/>
+          <path d="M 0 430 L 800 430" stroke="rgba(10,10,10,.10)" stroke-width="1.5"/>
 
-          <!-- Building blocks -->
-          <g fill="rgba(10,10,10,.05)" stroke="rgba(10,10,10,.15)" stroke-width="1">
-            <rect x="230" y="330" width="110" height="60" rx="2"/>
-            <rect x="360" y="330" width="60" height="60" rx="2"/>
-            <rect x="440" y="330" width="90" height="60" rx="2"/>
-            <rect x="550" y="330" width="80" height="60" rx="2"/>
-            <rect x="230" y="400" width="90" height="50" rx="2"/>
-            <rect x="340" y="400" width="70" height="50" rx="2"/>
-            <rect x="430" y="400" width="100" height="50" rx="2"/>
-            <rect x="230" y="30" width="80" height="80" rx="2"/>
-            <rect x="320" y="30" width="100" height="80" rx="2"/>
-            <rect x="430" y="30" width="70" height="80" rx="2"/>
-            <rect x="510" y="30" width="120" height="80" rx="2"/>
-            <rect x="640" y="30" width="90" height="80" rx="2"/>
+          <!-- Bloky budov (Karlín – mezi řekou a Sokolovskou) -->
+          <g fill="rgba(10,10,10,.05)" stroke="rgba(10,10,10,.14)" stroke-width="1">
+            <!-- sever, západ od Vítkovy -->
+            <rect x="50"  y="145" width="110" height="65" rx="2"/>
+            <rect x="50"  y="225" width="100" height="55" rx="2"/>
+            <rect x="50"  y="295" width="110" height="30" rx="2"/>
+            <rect x="220" y="145" width="130" height="65" rx="2"/>
+            <rect x="220" y="225" width="130" height="55" rx="2"/>
+            <rect x="220" y="295" width="130" height="30" rx="2"/>
+            <!-- sever, východ od Vítkovy -->
+            <rect x="420" y="145" width="130" height="65" rx="2"/>
+            <rect x="420" y="225" width="130" height="55" rx="2"/>
+            <rect x="420" y="295" width="130" height="30" rx="2"/>
+            <rect x="620" y="145" width="130" height="65" rx="2"/>
+            <rect x="620" y="225" width="130" height="55" rx="2"/>
+            <rect x="620" y="295" width="130" height="30" rx="2"/>
+            <!-- jih (pod Sokolovskou) -->
+            <rect x="50"  y="360" width="120" height="55" rx="2"/>
+            <rect x="50"  y="430" width="120" height="60" rx="2"/>
+            <rect x="220" y="360" width="130" height="55" rx="2"/>
+            <rect x="440" y="360" width="120" height="55" rx="2"/>
+            <rect x="620" y="360" width="130" height="55" rx="2"/>
+            <rect x="220" y="445" width="130" height="50" rx="2"/>
+            <rect x="440" y="445" width="120" height="50" rx="2"/>
           </g>
 
-          <!-- Street labels -->
-          <text x="220" y="270" font-family="Satoshi, sans-serif" font-size="9" fill="rgba(10,10,10,.35)" letter-spacing="1">SOKOLOVSKÁ</text>
-          <text x="410" y="140" font-family="Satoshi, sans-serif" font-size="9" fill="rgba(10,10,10,.35)" letter-spacing="1" transform="rotate(90 410 140)">VÍTKOVA</text>
-          <text x="130" y="160" font-family="Satoshi, sans-serif" font-size="9" fill="rgba(50,120,200,.55)" letter-spacing="1">VLTAVA</text>
+          <!-- Popisky ulic -->
+          <text x="45" y="335" font-family="Satoshi, sans-serif" font-size="9" fill="rgba(10,10,10,.35)" letter-spacing="1">SOKOLOVSKÁ</text>
+          <text x="410" y="200" font-family="Satoshi, sans-serif" font-size="9" fill="rgba(10,10,10,.35)" letter-spacing="1" transform="rotate(90 410 200)">VÍTKOVA</text>
+          <text x="55" y="72" font-family="Satoshi, sans-serif" font-size="9" fill="rgba(50,120,200,.6)" letter-spacing="1">VLTAVA</text>
 
-          <!-- Metro dots -->
-          <circle cx="180" cy="305" r="7" fill="#1e5aad"/>
-          <text x="195" y="309" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Florenc</text>
-          <circle cx="540" cy="285" r="7" fill="#1e5aad"/>
-          <text x="555" y="289" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Křižíkova</text>
+          <!-- Metro stanice (na Sokolovské) -->
+          <circle cx="130" cy="340" r="7" fill="#1e5aad"/>
+          <text x="145" y="335" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Florenc</text>
+          <circle cx="650" cy="340" r="7" fill="#1e5aad"/>
+          <text x="595" y="335" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Křižíkova</text>
+
+          <!-- Tram – Karlínské náměstí (blízko pinu) -->
+          <circle cx="400" cy="390" r="6" fill="var(--red,#e30613)"/>
+          <text x="415" y="394" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="rgba(10,10,10,.65)">Karlínské nám.</text>
         </svg>
 
         <div class="overlay">
@@ -681,7 +692,7 @@ form{display:grid;gap:14px}
     <h2 class="reveal">Radši osobně?<br><span class="red">Přijďte.</span></h2>
     <p class="sub reveal d1">V&nbsp;Karlíně máme dobrou kávu, klidnou zasedačku a&nbsp;obvykle někoho z&nbsp;týmu, kdo vám&nbsp;umí na&nbsp;ruku namalovat, jak to&nbsp;bude fungovat.</p>
     <div class="ctas reveal d2">
-      <a href="#" class="btn">
+      <a href="https://www.google.com/maps/search/V%C3%ADtkova+32,+Praha+8" target="_blank" rel="noopener" class="btn">
         <span class="lbl" data-t="Domluvit návštěvu"><span>Domluvit návštěvu</span></span>
         <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
@@ -705,23 +716,23 @@ form{display:grid;gap:14px}
       <div>
         <h5>Služby</h5>
         <a href="eshop.html">B2B &amp; B2C e-shopy <span class="ar">→</span></a>
-        <a href="#">Weby &amp; portály <span class="ar">→</span></a>
-        <a href="#">Big Data <span class="ar">→</span></a>
-        <a href="#">UpSearch <span class="ar">→</span></a>
+        <a href="weby.html">Weby &amp; portály <span class="ar">→</span></a>
+        <a href="bigdata.html">Big Data <span class="ar">→</span></a>
+        <a href="upsearch.html">UpSearch <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Studio</h5>
         <a href="index.html">Úvod <span class="ar">→</span></a>
-        <a href="#">Reference <span class="ar">→</span></a>
-        <a href="#">Blog <span class="ar">→</span></a>
-        <a href="#">Kariéra <span class="ar">→</span></a>
+        <a href="reference.html">Reference <span class="ar">→</span></a>
+        <a href="blog.html">Blog <span class="ar">→</span></a>
+        <a href="kariera.html">Kariéra <span class="ar">→</span></a>
       </div>
       <div>
         <h5>Kontakt</h5>
         <a href="mailto:info@praguebest.cz">info@praguebest.cz <span class="ar">→</span></a>
         <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
         <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
-        <a href="kontakt.html" class="btn sm red footer-cta"><span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="kontakt.html#form" class="btn sm red footer-cta"><span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
       </div>
     </div>
     <div class="base">

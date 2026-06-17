@@ -68,12 +68,9 @@
 .pol.p3{--r:-1deg}
 .pol.p4{--r:2deg}
 .pol .photo{aspect-ratio:1;position:relative;overflow:hidden;margin-bottom:14px}
-.pol.p1 .photo{background:linear-gradient(135deg,#c8a878,#5a3a1a)}
-.pol.p2 .photo{background:linear-gradient(135deg,#a8b896,#3a4830)}
-.pol.p3 .photo{background:linear-gradient(135deg,#e8b8b0,#7a3028)}
-.pol.p4 .photo{background:linear-gradient(135deg,#98b0c8,#2a4a68)}
-.pol .photo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 25%,rgba(255,255,255,.3),transparent 60%)}
-.pol .photo .ic-p{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);font-weight:700}
+.pol .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.pol .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 60%);z-index:1}
+.pol .photo .ic-p{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.9);font-weight:700;z-index:2;white-space:nowrap}
 .pol .cap{font-family:var(--mono);font-size:11px;color:var(--ink);letter-spacing:.02em;text-align:center;font-weight:600}
 .pol .cap small{display:block;font-size:9px;color:var(--mute);margin-top:4px;letter-spacing:.04em;text-transform:uppercase}
 
@@ -378,19 +375,19 @@
 
     <div class="polaroids">
       <div class="pol p1">
-        <div class="photo"><span class="ic-p">Kancelář · Karlín</span></div>
-        <div class="cap">Vítkova 32, 4. patro<small>14. dubna 2026</small></div>
+        <div class="photo"><img src="assets/photos/IMG_9474.jpg" alt="Kancelář Karlín" style="object-position:center 60%"></div>
+        <div class="cap">Jaro 2026<small>14. dubna 2026</small></div>
       </div>
       <div class="pol p2">
-        <div class="photo"><span class="ic-p">Letní výjezd</span></div>
-        <div class="cap">Teambuilding na&nbsp;chalupě<small>Léto 2025</small></div>
+        <div class="photo"><img src="assets/photos/IMG_8028.jpg" alt="Letní výjezd" style="object-position:center 30%"></div>
+        <div class="cap">Týmový minigolf<small>Léto 2025</small></div>
       </div>
       <div class="pol p3">
-        <div class="photo"><span class="ic-p">Design sprint</span></div>
-        <div class="cap">Sprint review<small>Prosinec 2025</small></div>
+        <div class="photo"><img src="assets/photos/IMG_20240530_195114.jpg" alt="Design sprint" style="object-position:center 20%"></div>
+        <div class="cap">Kdo si hraje, nezlobí<small>Prosinec 2025</small></div>
       </div>
       <div class="pol p4">
-        <div class="photo"><span class="ic-p">Vánoční večírek</span></div>
+        <div class="photo"><img src="assets/photos/IMG_9545.jpg" alt="Vánoční večírek" style="object-position:center 40%"></div>
         <div class="cap">Firemní Vánoce<small>Prosinec 2025</small></div>
       </div>
     </div>
@@ -519,7 +516,7 @@
         <a href="mailto:kariera@praguebest.cz">kariera@praguebest.cz <span class="ar">→</span></a>
         <a href="tel:+420774219988">+420 774 219 988 <span class="ar">→</span></a>
         <a href="kontakt.html">Vítkova 32, Praha 8 <span class="ar">→</span></a>
-        <a href="kontakt.html" class="btn sm red footer-cta"><span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+        <a href="kontakt.html#form" class="btn sm red footer-cta"><span class="lbl" data-t="Domluvit schůzku"><span>Domluvit schůzku</span></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
       </div>
     </div>
     <div class="base">

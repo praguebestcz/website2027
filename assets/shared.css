@@ -169,6 +169,10 @@ footer .cols a{display:block;padding:6px 0;font-size:15px;color:var(--paper);pos
 footer .cols a:hover{color:var(--red)}
 footer .cols a .ar{display:inline-block;opacity:0;transform:translateX(-8px);transition:all .3s var(--ease);margin-left:4px}
 footer .cols a:hover .ar{opacity:1;transform:translateX(0)}
+/* Footer CTA = stejné tlačítko jako v hlavičce (.btn sm), jen červené */
+footer .cols a.footer-cta{display:inline-flex;width:auto;margin-top:20px;padding:11px 16px 11px 20px;font-size:13px;font-weight:500;color:var(--fg)}
+footer .cols a.footer-cta::before{background:#a30410}
+footer .cols a.footer-cta:hover{color:#fff}
 footer .base{margin-top:60px;padding-top:30px;border-top:1px solid rgba(242,236,224,.12);display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;font-family:var(--mono);font-size:11px;color:rgba(242,236,224,.5)}
 footer .base .clock{display:flex;gap:20px;justify-content:center}
 footer .base .clock span{display:flex;align-items:center;gap:8px}

@@ -237,6 +237,20 @@ form{display:grid;gap:14px}
 .inv-card .grid dt{font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em;padding-top:3px}
 .inv-card .grid dd{font-weight:500;letter-spacing:-.005em}
 .inv-card .grid dd b{font-weight:700}
+.inv-card .copy{
+  margin-top:28px;padding-top:24px;border-top:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;
+  transition:color .3s var(--ease);
+}
+.inv-card .copy .cbtn{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);flex-shrink:0;
+}
+.inv-card .copy .cbtn svg{width:13px;height:13px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s var(--ease)}
+.inv-card .copy:hover .cbtn,.inv-card .copy.copied .cbtn{background:var(--red);border-color:var(--red)}
+.inv-card .copy:hover .cbtn svg,.inv-card .copy.copied .cbtn svg{stroke:#fff}
+.inv-card .copy:hover,.inv-card .copy.copied{color:var(--ink)}
 
 /* ===================== CTA ===================== */
 
@@ -637,6 +651,10 @@ form{display:grid;gap:14px}
           <dt>Registrace</dt><dd>Městský soud v&nbsp;Praze, spis. zn. <b>C 59001</b></dd>
           <dt>Datum vzniku</dt><dd>26. 4. 1999</dd>
         </dl>
+        <button class="copy" data-copy="25648101">
+          <span class="cbtn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          Kopírovat IČ
+        </button>
       </div>
       <div class="inv-card">
         <div class="lbl">Bankovní spojení</div>
@@ -648,6 +666,10 @@ form{display:grid;gap:14px}
           <dt>SWIFT</dt><dd><b>GIBACZPX</b></dd>
           <dt>Faktury</dt><dd><a href="mailto:faktury@praguebest.cz" style="border-bottom:1px solid currentColor">faktury@praguebest.cz</a></dd>
         </dl>
+        <button class="copy" data-copy="2701123456/0800">
+          <span class="cbtn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          Kopírovat účet
+        </button>
       </div>
     </div>
   </div>

@@ -101,6 +101,8 @@ nav.top .meta .dot{width:8px;height:8px;flex-shrink:0;border-radius:50%;backgrou
 .crumbs .path{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
 .crumbs .path b{color:var(--ink);font-weight:600}
 .crumbs .path span{opacity:.4;margin:0 10px}
+.crumbs .path a{color:var(--mute);transition:color .3s var(--ease)}
+.crumbs .path a:hover{color:var(--ink)}
 
 /* ===================== TITLE ===================== */
 .title{padding:80px 0 40px;position:relative}

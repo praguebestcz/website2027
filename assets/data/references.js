@@ -400,3 +400,9 @@ window.REFS = [
   }
 
 ];
+
+window.FILTER_TAGS = [
+  { id: 'eshop', label: 'E-shopy' },
+  { id: 'web',   label: 'Weby' },
+  { id: 'app',   label: 'Aplikace' },
+];

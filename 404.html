@@ -8,10 +8,33 @@
 <style>
 .hero-404{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
 .hero-404 h1{font-size:clamp(120px,25vw,320px);font-weight:900;letter-spacing:-.055em;line-height:.86;margin:0 0 24px;color:var(--ink)}
-.hero-404 h1 .red{color:var(--red)}
+.hero-404 h1 span{display:inline-block}
+.hero-404 h1 .zero{color:var(--red);transform-origin:center center}
 .hero-404 .sub{font-size:clamp(20px,2.5vw,32px);font-weight:500;letter-spacing:-.02em;color:var(--ink);margin:0 0 12px}
 .hero-404 p{font-size:17px;color:var(--mute);max-width:420px;line-height:1.6;margin:0 auto 40px}
 .hero-404 .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+@keyframes zeroFall{
+  0%  {transform:rotate(0deg)}
+  65% {transform:rotate(96deg)}
+  82% {transform:rotate(87deg)}
+  100%{transform:rotate(90deg)}
+}
+@keyframes pushLeft{
+  0%  {transform:translateX(0)}
+  60% {transform:translateX(-0.18em)}
+  80% {transform:translateX(-0.13em)}
+  100%{transform:translateX(-0.15em)}
+}
+@keyframes pushRight{
+  0%  {transform:translateX(0)}
+  60% {transform:translateX(0.18em)}
+  80% {transform:translateX(0.13em)}
+  100%{transform:translateX(0.15em)}
+}
+.hero-404 h1 .zero{animation:zeroFall .85s cubic-bezier(.22,1,.36,1) .4s both}
+.hero-404 h1 .fl  {animation:pushLeft  .55s cubic-bezier(.22,1,.36,1) .9s both}
+.hero-404 h1 .fr  {animation:pushRight .55s cubic-bezier(.22,1,.36,1) .9s both}
 </style>
 <link rel="stylesheet" href="assets/shared.css">
 <link rel="stylesheet" href="assets/nav-dropdown.css">
@@ -56,7 +79,7 @@
 </nav>
 
 <div class="hero-404">
-  <h1>4<span class="red">0</span>4</h1>
+  <h1><span class="fl">4</span><span class="zero">0</span><span class="fr">4</span></h1>
   <p class="sub">Stránka nenalezena</p>
   <p>Tato stránka neexistuje nebo byla přesunuta. Zkuste to od začátku.</p>
   <div class="actions">

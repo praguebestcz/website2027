@@ -44,24 +44,25 @@ window.REFS = [
     ]
   },
 
-  /* ─── 2. FotoŠkoda ─────────────────────────────────── */
+  /* ─── 2. Harfa Sport ───────────────────────────────── */
   {
-    num:      '02',
-    id:       'fotoskoda',
-    name:     'FotoŠkoda',
-    headline: 'Největší český foto e-shop s&nbsp;plnou integrací skladového a&nbsp;ERP systému.',
-    category: 'E-shop',
+    num:      '05',
+    id:       'harfasport',
+    name:     'Harfa Sport',
+    headline: 'Přechod na&nbsp;headless architekturu zvýšil organickou návštěvnost o&nbsp;<b>164&nbsp;%</b> a&nbsp;obrat z&nbsp;organiky o&nbsp;<b>349&nbsp;%</b> už první měsíc po&nbsp;spuštění.',
+    category: 'Case Study 005 – E-commerce · Sport · Headless',
     year:     '2024',
     tags:     ["eshop"],
-    href:     '#',
-    domain:   'fotoskoda.cz',
-    mockImg:  'assets/reference/fotoskoda/mock.png',
-    thumb:    'assets/reference/fotoskoda/thumb.png',
+    href:     'harfasport.html',
+    domain:   'harfasport.cz',
+    mockImg:  'assets/reference/harfasport/mock.png',
+    thumb:    'assets/reference/harfasport/thumb.png',
     badge:    { show: false, text: 'WT100', year: '2024' },
-    cat:      'E-commerce · B2C · ERP',
+    cat:      'E-commerce · Sport · Headless',
     kpis: [
-      { label: 'SKU', value: '48k' },
-      { label: 'Konverze', value: '<span class="red">+</span>38%' },
+      { label: 'Organická návštěvnost', value: '<span class="red">+</span>164%', title: 'Organická návštěvnost', desc: 'Nárůst návštěvnosti z&nbsp;organického vyhledávání za&nbsp;první měsíc po&nbsp;spuštění.' },
+      { label: 'Obrat z organiky', value: '<span class="red">+</span>349%', title: 'Obrat z&nbsp;organiky', desc: 'Nárůst obratu z&nbsp;organického kanálu; počet objednávek z&nbsp;organiky vzrostl o&nbsp;290&nbsp;%.' },
+      { label: 'Celková návštěvnost', value: '<span class="red">+</span>96%', title: 'Celková návštěvnost', desc: 'Nárůst napříč všemi kanály; celkový obrat +192&nbsp;% a&nbsp;celkový počet objednávek +175&nbsp;%.' },
     ]
   },
 
@@ -73,7 +74,7 @@ window.REFS = [
     headline: 'Jedna platforma, 60 dealerských webů po&nbsp;celé ČR &ndash; jednotný design, lokální obsah a&nbsp;živý sklad vozidel v&nbsp;reálném čase.',
     category: 'Dealerská platforma',
     year:     '2015',
-    tags:     ["webapp"],
+    tags:     ["web"],
     href:     'hyundai.html',
     domain:   'louda.hyundai.cz',
     mockImg:  'assets/reference/hyundai/mock.png',
@@ -95,51 +96,7 @@ window.REFS = [
     ]
   },
 
-  /* ─── 4. Albi ──────────────────────────────────────── */
-  {
-    num:      '04',
-    id:       'albi',
-    name:     'Albi',
-    headline: 'Omnichannel e-shop propojující 120 poboček v&nbsp;CZ&nbsp;&amp;&nbsp;SK.',
-    category: 'Case Study 025',
-    year:     '2024',
-    tags:     ["eshop"],
-    href:     '#',
-    domain:   'albi.cz',
-    mockImg:  'assets/reference/albi/mock.png',
-    thumb:    'assets/reference/albi/thumb.png',
-    badge:    { show: false, text: 'WT100', year: '2024' },
-    cat:      'E-commerce · Omnichannel',
-    kpis: [
-      { label: 'Online obrat', value: '<span class="red">+</span>156%' },
-      { label: 'Poboček', value: '120' },
-      { label: 'SKU', value: '24 000' },
-    ]
-  },
-
-  /* ─── 5. Harfa Sport ───────────────────────────────── */
-  {
-    num:      '05',
-    id:       'harfasport',
-    name:     'Harfa Sport',
-    headline: 'Přechod na&nbsp;headless architekturu zvýšil organickou návštěvnost o&nbsp;<b>164&nbsp;%</b> a&nbsp;obrat z&nbsp;organiky o&nbsp;<b>349&nbsp;%</b> už první měsíc po&nbsp;spuštění.',
-    category: 'Case Study 005 – E-commerce · Sport · Headless',
-    year:     '2024',
-    tags:     ["eshop"],
-    href:     'harfasport.html',
-    domain:   'harfasport.cz',
-    mockImg:  'assets/reference/harfasport/mock.png',
-    thumb:    'assets/reference/harfasport/thumb.png',
-    badge:    { show: false },
-    cat:      'E-commerce · Sport · Headless',
-    kpis: [
-      { label: 'Organická návštěvnost', value: '<span class="red">+</span>164%', title: 'Organická návštěvnost', desc: 'Nárůst návštěvnosti z&nbsp;organického vyhledávání za&nbsp;první měsíc po&nbsp;spuštění.' },
-      { label: 'Obrat z organiky',      value: '<span class="red">+</span>349%', title: 'Obrat z&nbsp;organiky',      desc: 'Nárůst obratu z&nbsp;organického kanálu; počet objednávek z&nbsp;organiky vzrostl o&nbsp;290&nbsp;%.' },
-      { label: 'Celková návštěvnost',   value: '<span class="red">+</span>96%',  title: 'Celková návštěvnost',   desc: 'Nárůst napříč všemi kanály; celkový obrat +192&nbsp;% a&nbsp;celkový počet objednávek +175&nbsp;%.' },
-    ]
-  },
-
-  /* ─── 6. Konsepti ──────────────────────────────────── */
+  /* ─── 4. Konsepti ──────────────────────────────────── */
   {
     num:      '06',
     id:       'konsepti',
@@ -168,6 +125,49 @@ window.REFS = [
       { label: 'Showroomy a jazyky', value: '3', title: 'Showroomy a jazyky', desc: 'Praha, Bratislava, outlet Čestlice; CZ, EN, SK.' },
       { label: 'Zastupovaných značek', value: '100<span class="red">+</span>', title: 'Zastupovaných značek', desc: 'Vitra, B&amp;B Italia, Cassina, Flos, Moroso, Kartell a&nbsp;další.' },
       { label: 'Segmenty', value: '2', title: 'Segmenty na jednom webu', desc: 'Rezidenční klienti a&nbsp;B2B projekty.' },
+    ]
+  },
+
+  /* ─── 5. FotoŠkoda ─────────────────────────────────── */
+  {
+    num:      '02',
+    id:       'fotoskoda',
+    name:     'FotoŠkoda',
+    headline: 'Největší český foto e-shop s&nbsp;plnou integrací skladového a&nbsp;ERP systému.',
+    category: 'E-shop',
+    year:     '2024',
+    tags:     ["eshop"],
+    href:     '#',
+    domain:   'fotoskoda.cz',
+    mockImg:  'assets/reference/fotoskoda/mock.png',
+    thumb:    'assets/reference/fotoskoda/thumb.png',
+    badge:    { show: false, text: 'WT100', year: '2024' },
+    cat:      'E-commerce · B2C · ERP',
+    kpis: [
+      { label: 'SKU', value: '48k' },
+      { label: 'Konverze', value: '<span class="red">+</span>38%' },
+    ]
+  },
+
+  /* ─── 6. Albi ──────────────────────────────────────── */
+  {
+    num:      '04',
+    id:       'albi',
+    name:     'Albi',
+    headline: 'Omnichannel e-shop propojující 120 poboček v&nbsp;CZ&nbsp;&amp;&nbsp;SK.',
+    category: 'Case Study 025',
+    year:     '2024',
+    tags:     ["eshop"],
+    href:     '#',
+    domain:   'albi.cz',
+    mockImg:  'assets/reference/albi/mock.png',
+    thumb:    'assets/reference/albi/thumb.png',
+    badge:    { show: false, text: 'WT100', year: '2024' },
+    cat:      'E-commerce · Omnichannel',
+    kpis: [
+      { label: 'Online obrat', value: '<span class="red">+</span>156%' },
+      { label: 'Poboček', value: '120' },
+      { label: 'SKU', value: '24 000' },
     ]
   },
 
@@ -209,7 +209,7 @@ window.REFS = [
     headline: 'Web pro jednu z&nbsp;největších penzijních společností v&nbsp;ČR &ndash; přehledná prezentace produktů, výkonné kalkulačky a&nbsp;jasná cesta ke&nbsp;konverzi pro 900&nbsp;000 klientů.',
     category: 'Korporátní web',
     year:     '2017',
-    tags:     ["webapp"],
+    tags:     ["web"],
     href:     'generali.html',
     domain:   'generalipenze.cz',
     mockImg:  'assets/reference/generali/mock.png',
@@ -241,7 +241,7 @@ window.REFS = [
     headline: 'Webový portál největšího městského dopravce v&nbsp;ČR &ndash; živá data o&nbsp;provozu, odjezdové tabule a&nbsp;desítky agend na&nbsp;jedné platformě.',
     category: 'Veřejný portál',
     year:     '2019',
-    tags:     ["webapp"],
+    tags:     ["web"],
     href:     'dpp.html',
     domain:   'dpp.cz',
     mockImg:  'assets/reference/dpp/mock.png',
@@ -295,7 +295,7 @@ window.REFS = [
     headline: 'Implementace systému Webkasa zefektivnila prodej na&nbsp;prodejnách skrze integraci s&nbsp;ERP Vario a&nbsp;platebními terminály GP Tom &ndash; automatizace plateb a&nbsp;síťový tisk účtenek.',
     category: 'Pokladní systém',
     year:     '2024',
-    tags:     ["webapp"],
+    tags:     ["app"],
     href:     'armed.html',
     domain:   'armed.cz',
     badge:    { show: false, text: 'WT100', year: '2024' },
@@ -353,7 +353,7 @@ window.REFS = [
     headline: 'Web a&nbsp;mobilní aplikace pro Europe\'s No.&nbsp;1 Bordershop &ndash; ERP jako jediný zdroj pravdy, real-time synchronizace dat a&nbsp;věrnostní program přímo v&nbsp;kapse zákazníka.',
     category: 'Web + mobilní app',
     year:     '2016',
-    tags:     ["webapp"],
+    tags:     ["app"],
     href:     'travel-free.html',
     domain:   'travel-free.cz',
     badge:    { show: false, text: 'WT100', year: '2016' },
@@ -399,9 +399,4 @@ window.REFS = [
     ]
   }
 
-];
-
-window.FILTER_TAGS = [
-  { id: 'eshop',  label: 'E-shop' },
-  { id: 'webapp', label: 'Web & App' },
 ];

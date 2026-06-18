@@ -133,10 +133,9 @@ window.REFS = [
     badge:    { show: false },
     cat:      'E-commerce · Sport · Headless',
     kpis: [
-      { label: 'Organická návštěvnost', value: '<span class="plus">+</span>164&nbsp;<sub>%</sub>', title: 'Organická návštěvnost', desc: 'Nárůst návštěvnosti z&nbsp;organického vyhledávání za&nbsp;první měsíc po&nbsp;spuštění.' },
-      { label: 'Obrat z organiky',      value: '<span class="plus">+</span>349&nbsp;<sub>%</sub>', title: 'Obrat z&nbsp;organiky',      desc: 'Nárůst obratu z&nbsp;organického kanálu; počet objednávek z&nbsp;organiky vzrostl o&nbsp;290&nbsp;%.' },
-      { label: 'Celková návštěvnost',   value: '<span class="plus">+</span>96&nbsp;<sub>%</sub>',  title: 'Celková návštěvnost',   desc: 'Nárůst napříč všemi kanály; celkový obrat +192&nbsp;% a&nbsp;celkový počet objednávek +175&nbsp;%.' },
-      { label: 'Objednávky z mobilu',   value: '<span class="plus">+</span>220&nbsp;<sub>%</sub>', title: 'Objednávky z&nbsp;mobilu',   desc: 'Nárůst objednávek z&nbsp;mobilních zařízení; mobilní návštěvnost +112&nbsp;% a&nbsp;mobilní organika +164&nbsp;%.' },
+      { label: 'Organická návštěvnost', value: '<span class="red">+</span>164%', title: 'Organická návštěvnost', desc: 'Nárůst návštěvnosti z&nbsp;organického vyhledávání za&nbsp;první měsíc po&nbsp;spuštění.' },
+      { label: 'Obrat z organiky',      value: '<span class="red">+</span>349%', title: 'Obrat z&nbsp;organiky',      desc: 'Nárůst obratu z&nbsp;organického kanálu; počet objednávek z&nbsp;organiky vzrostl o&nbsp;290&nbsp;%.' },
+      { label: 'Celková návštěvnost',   value: '<span class="red">+</span>96%',  title: 'Celková návštěvnost',   desc: 'Nárůst napříč všemi kanály; celkový obrat +192&nbsp;% a&nbsp;celkový počet objednávek +175&nbsp;%.' },
     ]
   },
 
